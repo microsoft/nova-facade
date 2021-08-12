@@ -1,0 +1,28 @@
+{
+  "name": "@nova/monorepo",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "scripts"
+    ]
+  },
+  "scripts": {
+    "clean": "git clean -fdx -e node_modules",
+    "build": "lage build",
+    "types": "lage types",
+    "test": "lage test",
+    "lint": "lage lint",
+    "lage": "lage",
+    "ci": "yarn lage build types test lint && yarn checkchange",
+    "beachball": "beachball -b origin/main",
+    "change": "yarn beachball change",
+    "checkchange": "yarn beachball check",
+    "release": "yarn beachball publish"
+  },
+  "devDependencies": {
+    "beachball": "2.10.2",
+    "lage": "0.32.1",
+    "prettier": "^2.2.1"
+  }
+}

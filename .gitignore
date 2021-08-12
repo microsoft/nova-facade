@@ -1,0 +1,8 @@
+node_modules
+lib
+.tsbuildinfo
+
+# This is purely pre-cautionary; when linting becomes slow, delete this eslintcache entry
+.eslintcache
+
+*.tgz
