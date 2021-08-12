@@ -25,8 +25,8 @@ jobs:
       - run: yarn ci
       - run: |
           git config user.email "gql-svc@microsoft.com"
-          git config user.name "Graphitation Service Account"
+          git config user.name "Nova Service Account"
       - run: yarn types
-      - run: yarn release -y -n $NPM_AUTHTOKEN --access public
-        env:
-          NPM_AUTHTOKEN: ${{ secrets.npm_authtoken }}
+      # - run: yarn release -y -n $NPM_AUTHTOKEN --access public
+      #   env:
+      #     NPM_AUTHTOKEN: ${{ secrets.npm_authtoken }}
