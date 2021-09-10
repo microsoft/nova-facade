@@ -1,5 +1,6 @@
 {
-  "name": "@nova/a-package",
+  "name": "@nova/types",
+  "license": "MIT",
   "version": "0.1.0",
   "main": "./src/index.ts",
   "scripts": {
