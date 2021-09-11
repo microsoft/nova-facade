@@ -25,7 +25,7 @@ describe(useNovaGraphQL, () => {
   });
 
   it("is able to access the GraphQL instance provided by the provider", () => {
-    expect.assertions(2);
+    expect.assertions(3);
 
     const graphql = ({
       useLazyLoadQuery: jest.fn()
