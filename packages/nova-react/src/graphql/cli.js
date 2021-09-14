@@ -49,15 +49,6 @@ function main() {
     exclude: ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"],
     noFutureProofEnums: true,
     language: graphitationPluginInitializer,
-    customScalars: { // TODO review we probably don't want these
-      NovaCommandingEntityType: 'import("@nova/types").EntityType',
-      NovaCommandingEntityAction: 'import("@nova/types").EntityAction',
-      NovaCommandingEntityVisibilityState:
-        'import("@nova/types").EntityVisibilityState',
-      NovaCommandingEntityStateTransition:
-        'import("@nova/types").EntityStateTransition',
-      FluentUIIconName: "string"
-    }
   });
 }
 
