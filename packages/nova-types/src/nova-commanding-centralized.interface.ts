@@ -1,13 +1,13 @@
 /**
  * Describes the commanding contract a Nova component can expect to be provided by the host application. Refer to the equally
  * named React hooks provided by the `@nova/react-facade` package for their functional details.
- * 
+ *
  * TODO This contract needs to be redesigned to:
  * - support a common contract but distributed command definitions
  * - decouple command triggering from layout information
- * 
+ *
  * The current version is functional for a small number of users, but will not scale, and blurs the boundaries of responsibility
- * between the command triggerer and the host framework (which should be responsible for establishing how the user's intent is 
+ * between the command triggerer and the host framework (which should be responsible for establishing how the user's intent is
  * expressed within the larger system).
  */
 
@@ -40,7 +40,7 @@ export interface EntityCommand {
 export enum EntityVisibilityState {
   show = "show",
   hide = "hide",
-  toggle = "toggle"
+  toggle = "toggle",
 }
 
 export enum EntityStateTransition {
@@ -53,7 +53,7 @@ export enum EntityStateTransition {
   // Produces a new entity state from the given entity to be stored in parallel to the current state.
   new = "new",
   // Extends the current state with the given state.
-  extend = "extend"
+  extend = "extend",
 }
 
 export enum EntityAction {
@@ -62,7 +62,7 @@ export enum EntityAction {
   list = "list",
   signout = "signout",
   updateProfilePicture = "updateProfilePicture",
-  updateDisplayName = "updateDisplayName"
+  updateDisplayName = "updateDisplayName",
 }
 
 export enum EntityType {
@@ -77,5 +77,5 @@ export enum EntityType {
   outlook_people = "outlook_people",
   outlook_fileshub = "outlook_fileshub",
   outlook_tasks = "outlook_tasks",
-  m365_app = "m365_app"
+  m365_app = "m365_app",
 }

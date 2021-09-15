@@ -7,7 +7,8 @@ issues before filing new issues to avoid duplicates.  For new issues, file your 
 feature request as a new Issue.
 
 For help and questions about using this project, our initial documentation is in the code.
-Additional documentation will be added as the project matures.
+Additional documentation will be added as the project matures, and we will respond to issues
+filed as questions as well.
 
 ## Microsoft Support Policy  
 
