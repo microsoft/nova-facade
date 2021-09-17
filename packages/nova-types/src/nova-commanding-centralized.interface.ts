@@ -21,7 +21,7 @@ export interface EntityCommandInput {
 }
 
 export interface EntityInput {
-  id?: string | null;
+  entityId?: string | null;
   type: EntityType;
   action: EntityAction;
   linkedEntity?: LinkedEntity | null;
