@@ -26,7 +26,8 @@
   "devDependencies": {
     "@types/jest": "^26.0.22",
     "monorepo-scripts": "*",
-    "@testing-library/react": "^12.0.0"
+    "@testing-library/react": "^12.0.0",
+    "react-dom": "^16.13.0"
   },
   "publishConfig": {
     "main": "./lib/index",
