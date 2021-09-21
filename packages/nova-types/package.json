@@ -1,11 +1,12 @@
 {
-  "name": "@nova/a-package",
+  "name": "@nova/types",
+  "license": "MIT",
   "version": "0.1.0",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
     "lint": "monorepo-scripts lint",
-    "test": "monorepo-scripts test",
+    "test": "true",
     "types": "monorepo-scripts types",
     "just": "monorepo-scripts"
   },
