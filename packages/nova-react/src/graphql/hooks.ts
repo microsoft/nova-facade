@@ -160,7 +160,7 @@ export function useSubscription<TSubscriptionPayload extends OperationType>(
 }
 
 interface MutationCommitterOptions<TMutationPayload extends OperationType> {
-  variables?: TMutationPayload["variables"];
+  variables: TMutationPayload["variables"];
   optimisticResponse?: Partial<TMutationPayload["response"]> | null;
 }
 

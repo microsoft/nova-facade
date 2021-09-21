@@ -16,6 +16,7 @@ import {
 } from "@graphitation/graphql-js-operation-payload-generator";
 
 import { GraphQLTaggedNode } from "@nova/react";
+import { NovaGraphQL } from "@nova/types";
 
 type Generate<Schema, Node> = (
   operation: OperationDescriptor<Schema, Node>,
@@ -44,7 +45,7 @@ export function _createMockEnvironmentWithSchema(
       trigger: jest.fn()
     },
     graphql: {
-      ...GraphQLHooks,
+      ...(GraphQLHooks as NovaGraphQL),
       mock: client.mock as MockFunctions<any, any>
     },
     providerWrapper: ({ children }) => (
