@@ -24,9 +24,11 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
-    "monorepo-scripts": "*",
     "@testing-library/react": "^12.0.0",
+    "@types/invariant": "^2.2.35",
+    "@types/jest": "^26.0.22",
+    "@types/react-dom": "^16.9.14",
+    "monorepo-scripts": "*",
     "react-dom": "^16.13.0"
   },
   "publishConfig": {
