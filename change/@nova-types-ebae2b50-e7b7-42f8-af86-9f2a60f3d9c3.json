@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Adds additional types to central command enums",
+  "packageName": "@nova/types",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
