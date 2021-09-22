@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Initial alpha version",
-  "packageName": "@nova/react",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}
