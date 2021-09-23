@@ -1,0 +1,10 @@
+{
+  "type": "patch",
+  "comment": {
+    "title": "",
+    "value": ""
+  },
+  "packageName": "@nova/types",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
