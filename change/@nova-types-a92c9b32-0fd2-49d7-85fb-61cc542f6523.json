@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add additional command types",
-  "packageName": "@nova/types",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}
