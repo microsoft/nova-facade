@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fixing versions",
-  "packageName": "@nova/react-test-utils",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}
