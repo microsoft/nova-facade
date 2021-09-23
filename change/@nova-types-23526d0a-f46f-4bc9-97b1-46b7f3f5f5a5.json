@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Initial alpha version",
+  "comment": "Add command types to central commanding",
   "packageName": "@nova/types",
   "email": "kerrynb@microsoft.com",
   "dependentChangeType": "patch"
