@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fixing versions",
+  "packageName": "@nova/types",
+  "email": "kchau@microsoft.com",
+  "dependentChangeType": "patch"
+}
