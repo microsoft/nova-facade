@@ -2,7 +2,7 @@
   "type": "patch",
   "comment": {
     "title": "",
-    "value": ""
+    "value": "Fixes the 'test' script inside the types package.json"
   },
   "packageName": "@nova/types",
   "email": "kchau@microsoft.com",
