@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix exports for nova/react",
+  "packageName": "@nova/react",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
