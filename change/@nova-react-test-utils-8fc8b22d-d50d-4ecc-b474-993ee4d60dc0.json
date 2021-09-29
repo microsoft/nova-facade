@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Upgrade graphitation payload generator",
-  "packageName": "@nova/react-test-utils",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 24 Sep 2021 20:19:21 GMT and should not be manually modified.
+This log was last generated on Wed, 29 Sep 2021 18:41:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.2.0
+
+Wed, 29 Sep 2021 18:41:36 GMT
+
+### Minor changes
+
+- Upgrade graphitation payload generator (kerrynb@microsoft.com)
 
 ## 0.1.4
 
