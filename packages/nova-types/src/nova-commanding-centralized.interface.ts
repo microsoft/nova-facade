@@ -11,7 +11,7 @@
  * expressed within the larger system).
  */
 
- export interface NovaCentralizedCommanding {
+export interface NovaCentralizedCommanding {
   trigger(command: EntityCommand): Promise<void>;
 }
 
