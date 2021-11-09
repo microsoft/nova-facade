@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 09 Nov 2021 05:03:26 GMT",
+      "tag": "@nova/types_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "snehajain@microsoft.com",
+            "package": "@nova/types",
+            "comment": "added new entity type and action",
+            "commit": "7e51ec97710509ab644f1934c2391a1960bd67bd"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 23 Sep 2021 22:37:17 GMT",
       "tag": "@nova/types_v0.1.3",
       "version": "0.1.3",

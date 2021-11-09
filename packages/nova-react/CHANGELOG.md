@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 24 Sep 2021 20:19:21 GMT and should not be manually modified.
+This log was last generated on Tue, 09 Nov 2021 05:03:26 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.1.5
+
+Tue, 09 Nov 2021 05:03:26 GMT
+
+### Patches
+
+- Bump @nova/react to v0.1.5 (snehajain@microsoft.com)
 
 ## 0.1.4
 
