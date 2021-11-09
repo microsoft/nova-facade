@@ -57,6 +57,7 @@ export enum EntityStateTransition {
 }
 
 export enum EntityAction {
+  create = "create",
   default = "default",
   view = "view",
   list = "list",
@@ -74,6 +75,7 @@ export enum EntityType {
   teams_channel = "teams_channel",
   teams_calendar = "teams_calendar",
   teams_calling = "teams_calling",
+  teams_search = "teams_search",
   outlook_mail = "outlook_mail",
   outlook_calendar = "outlook_calendar",
   outlook_people = "outlook_people",

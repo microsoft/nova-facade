@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "added new entity type and action",
+  "packageName": "@nova/types",
+  "email": "snehajain@microsoft.com",
+  "dependentChangeType": "patch"
+}
