@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 02 Dec 2021 18:18:37 GMT",
+      "tag": "@nova/react_v0.2.0",
+      "version": "0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "kchau@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Fixes taggedNode to be compatible with .mjs; moves the @graphitation/graphql-js-tag as a peerDep rather than hard dep",
+            "commit": "4d82637a045ccf2517bde5dcdae42dcdc57ebc98"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 09 Nov 2021 05:03:26 GMT",
       "tag": "@nova/react_v0.1.5",
       "version": "0.1.5",

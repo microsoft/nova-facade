@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Fixes taggedNode to be compatible with .mjs; moves the @graphitation/graphql-js-tag as a peerDep rather than hard dep",
-  "packageName": "@nova/react",
-  "email": "kchau@microsoft.com",
-  "dependentChangeType": "patch"
-}
