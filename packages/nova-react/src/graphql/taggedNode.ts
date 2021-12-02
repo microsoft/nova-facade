@@ -1,4 +1,11 @@
-import invariant from "invariant";
+/**
+ * Imports graphql-js-tag from a peer dependency.
+ * 
+ * @graphitation/graphql-js-tag is expected to be provided by the consumer using this library.
+ * Failure to do so will result in a TypeScript compilation or a bundling error - there is no
+ * need to incur runtime costs to run checks for this library as a dependency.
+ */
+import { graphql as graphqlJsTag } from "@graphitation/graphql-js-tag";
 
 /**
  * An opaque type used to annotate a GraphQL document.
@@ -43,13 +50,7 @@ export function graphql(
   document: TemplateStringsArray,
   ...fragments: GraphQLTaggedNode[]
 ): GraphQLTaggedNode {
-  const graphql: typeof import("@graphitation/graphql-js-tag").graphql =
-    require("@graphitation/graphql-js-tag").graphql;
-  invariant(
-    graphql !== undefined,
-    "Expected the host application to provide the `@graphitation/graphql-js-tag` package"
-  );
-  return graphql(
+  return graphqlJsTag(
     document,
     ...(fragments as any[])
   ) as unknown as GraphQLTaggedNode;
