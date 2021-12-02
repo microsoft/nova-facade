@@ -6,4 +6,4 @@ This package provides a React specific implementation of the contexts etc requir
 
 ## Prerequisites
 
-In order to use this package, make sure to add `@graphitation/graphql-js-tag` as a dependency in your `package.json` along side with `@nova/react`.
+In order to use this package without compilation of documents, i.e. to parse string documents at runtime, make sure to add `@graphitation/graphql-js-tag` as a dependency in your `package.json` along side with `@nova/react`.
