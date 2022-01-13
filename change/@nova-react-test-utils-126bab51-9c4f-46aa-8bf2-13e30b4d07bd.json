@@ -3,5 +3,5 @@
   "comment": "Add ESM builds",
   "packageName": "@nova/react-test-utils",
   "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "minor"
 }

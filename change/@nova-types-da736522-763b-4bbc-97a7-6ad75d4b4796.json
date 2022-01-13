@@ -3,5 +3,5 @@
   "comment": "Add ESM builds",
   "packageName": "@nova/types",
   "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
+  "dependentChangeType": "minor"
 }
