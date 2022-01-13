@@ -22,7 +22,28 @@ export const build = () => {
     esbuildTask({
       ...baseEsbuildOptions,
       format: "esm",
+      bundle: true,
       outExtension: { ".js": ".mjs" },
+      plugins: [
+        {
+          name: "add-mjs",
+          setup(build) {
+            build.onResolve({ filter: /.*/ }, (args) => {
+              if (args.importer) {
+                let extPath = args.path;
+                if (extPath.startsWith(".")) {
+                  extPath = extPath + ".mjs";
+                }
+                return {
+                  path: extPath,
+                  namespace: "magic",
+                  external: true,
+                };
+              }
+            });
+          },
+        },
+      ],
     }),
     esbuildTask({
       ...baseEsbuildOptions,
