@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 09 Nov 2021 05:03:26 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Jan 2022 12:18:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Thu, 13 Jan 2022 12:18:00 GMT
+
+### Minor changes
+
+- Add ESM builds (mnovikov@microsoft.com)
 
 ## 0.2.0
 

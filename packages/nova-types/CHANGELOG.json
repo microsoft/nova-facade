@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Thu, 13 Jan 2022 12:18:00 GMT",
+      "tag": "@nova/types_v0.3.0",
+      "version": "0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Add ESM builds",
+            "commit": "ad95fdb2da2aaeac9fc1a8c3d6f67cb04e3bf49e"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 09 Nov 2021 05:03:26 GMT",
       "tag": "@nova/types_v0.2.0",
       "version": "0.2.0",

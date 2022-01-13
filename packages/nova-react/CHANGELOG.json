@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 13 Jan 2022 12:18:00 GMT",
+      "tag": "@nova/react_v0.3.0",
+      "version": "0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Add ESM builds",
+            "commit": "ad95fdb2da2aaeac9fc1a8c3d6f67cb04e3bf49e"
+          },
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react",
+            "commit": "ad95fdb2da2aaeac9fc1a8c3d6f67cb04e3bf49e",
+            "comment": "Bump @nova/react to v0.3.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Dec 2021 18:18:37 GMT",
       "tag": "@nova/react_v0.2.0",
       "version": "0.2.0",

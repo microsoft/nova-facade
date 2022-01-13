@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 02 Dec 2021 18:18:37 GMT and should not be manually modified.
+This log was last generated on Thu, 13 Jan 2022 12:18:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.0
+
+Thu, 13 Jan 2022 12:18:00 GMT
+
+### Minor changes
+
+- Add ESM builds (mnovikov@microsoft.com)
+- Bump @nova/react to v0.3.0 (mnovikov@microsoft.com)
 
 ## 0.2.0
 
