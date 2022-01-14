@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 14 Jan 2022 11:10:12 GMT",
+      "tag": "@nova/react-test-utils_v0.3.2",
+      "version": "0.3.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "Make sideeffects actually work",
+            "commit": "ea7af5225bbd5a5bcfbd3554216da36d2a5455dd"
+          },
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "ea7af5225bbd5a5bcfbd3554216da36d2a5455dd",
+            "comment": "Bump @nova/react-test-utils to v0.3.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Jan 2022 10:10:12 GMT",
       "tag": "@nova/react-test-utils_v0.3.1",
       "version": "0.3.1",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Make sideeffects actually work",
-  "packageName": "@nova/react",
-  "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
-}

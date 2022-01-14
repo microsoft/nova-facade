@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Fri, 14 Jan 2022 10:10:12 GMT and should not be manually modified.
+This log was last generated on Fri, 14 Jan 2022 11:10:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.2
+
+Fri, 14 Jan 2022 11:10:12 GMT
+
+### Patches
+
+- Make sideeffects actually work (mnovikov@microsoft.com)
 
 ## 0.3.1
 

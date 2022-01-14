@@ -1,7 +1,7 @@
 {
   "name": "@nova/react-test-utils",
   "license": "MIT",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -19,8 +19,8 @@
     "@graphitation/apollo-react-relay-duct-tape": "^0.4.2",
     "@graphitation/graphql-js-operation-payload-generator": "^0.5.8",
     "@graphitation/graphql-js-tag": "^0.5.3",
-    "@nova/react": "^0.3.1",
-    "@nova/types": "^0.3.1",
+    "@nova/react": "^0.3.2",
+    "@nova/types": "^0.3.2",
     "graphql": "^15.5.0",
     "invariant": "^2.2.4",
     "relay-compiler": "^10.1.3",
