@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Added side effect flags to all package.json",
-  "packageName": "@nova/react-test-utils",
-  "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
-}

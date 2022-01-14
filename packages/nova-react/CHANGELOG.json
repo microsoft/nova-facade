@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 14 Jan 2022 10:10:12 GMT",
+      "tag": "@nova/react_v0.3.1",
+      "version": "0.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Added side effect flags to all package.json",
+            "commit": "65d005484ecf1e35a94db5a24c5d88d9c85c9795"
+          },
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react",
+            "commit": "65d005484ecf1e35a94db5a24c5d88d9c85c9795",
+            "comment": "Bump @nova/react to v0.3.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 13 Jan 2022 12:18:00 GMT",
       "tag": "@nova/react_v0.3.0",
       "version": "0.3.0",

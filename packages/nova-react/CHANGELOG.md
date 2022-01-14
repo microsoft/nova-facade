@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 13 Jan 2022 12:18:00 GMT and should not be manually modified.
+This log was last generated on Fri, 14 Jan 2022 10:10:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.1
+
+Fri, 14 Jan 2022 10:10:12 GMT
+
+### Patches
+
+- Added side effect flags to all package.json (mnovikov@microsoft.com)
+- Bump @nova/react to v0.3.1 (mnovikov@microsoft.com)
 
 ## 0.3.0
 
