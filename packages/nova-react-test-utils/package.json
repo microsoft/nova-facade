@@ -36,12 +36,12 @@
     "react": "^16.13.0",
     "react-test-renderer": "^16.13.0"
   },
+  "sideEffects": false,
+  "access": "public",
   "publishConfig": {
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
-    "access": "public",
     "module": "./lib/index.mjs",
-    "sideEffects": false,
     "exports": {
       ".": {
         "import": "./lib/index.mjs",
