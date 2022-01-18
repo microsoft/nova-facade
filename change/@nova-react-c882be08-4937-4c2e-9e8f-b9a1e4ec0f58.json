@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update Nova Facade docs",
+  "packageName": "@nova/react",
+  "email": "mnovikov@microsoft.com",
+  "dependentChangeType": "patch"
+}
