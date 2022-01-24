@@ -1,5 +1,4 @@
-import * as React from "react";
-import { render, screen } from "@testing-library/react"
+import React from "react";
 
 import { NovaGraphQLProvider } from "./nova-graphql-provider";
 import { NovaGraphQL } from "@nova/types";
