@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Add include and exclude option to compiler cli",
+  "comment": "Add include, exclude, and src options to compiler cli",
   "packageName": "@nova/react",
   "email": "mnovikov@microsoft.com",
   "dependentChangeType": "patch"

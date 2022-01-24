@@ -14,6 +14,11 @@ function main() {
         demandOption: true,
         type: "string",
       },
+      src: {
+        demandOption: false,
+        default: ".",
+        type: "string",
+      },
       validate: {
         demandOption: false,
         default: false,
@@ -59,7 +64,6 @@ function main() {
     .help().argv;
   return relayCompiler({
     ...argv,
-    src: ".",
     extensions: ["ts", "tsx"], // FIXME: Why is this not taken from the language plugin?
     noFutureProofEnums: true,
     language: graphitationPluginInitializer,
