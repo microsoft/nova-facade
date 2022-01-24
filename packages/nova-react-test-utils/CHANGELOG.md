@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 18 Jan 2022 12:15:43 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Jan 2022 16:22:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.4
+
+Mon, 24 Jan 2022 16:22:44 GMT
+
+### Patches
+
+- Fix webpack 4 support by removing wrong imports and fixing main (mnovikov@microsoft.com)
+- Bump @nova/react-test-utils to v0.3.4 (mnovikov@microsoft.com)
 
 ## 0.3.3
 

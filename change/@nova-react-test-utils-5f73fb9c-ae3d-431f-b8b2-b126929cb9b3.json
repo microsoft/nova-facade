@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix webpack 4 support by removing wrong imports and fixing main",
-  "packageName": "@nova/react-test-utils",
-  "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
-}

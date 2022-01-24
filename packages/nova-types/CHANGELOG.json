@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Mon, 24 Jan 2022 16:22:44 GMT",
+      "tag": "@nova/types_v0.3.3",
+      "version": "0.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Fix webpack 4 support by removing wrong imports and fixing main",
+            "commit": "bc294198b716e23e3e24af1a4e534192bec4d015"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Jan 2022 11:10:12 GMT",
       "tag": "@nova/types_v0.3.2",
       "version": "0.3.2",

@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Fri, 14 Jan 2022 11:10:12 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Jan 2022 16:22:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.3
+
+Mon, 24 Jan 2022 16:22:44 GMT
+
+### Patches
+
+- Fix webpack 4 support by removing wrong imports and fixing main (mnovikov@microsoft.com)
 
 ## 0.3.2
 
