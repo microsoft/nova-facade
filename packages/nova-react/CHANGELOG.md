@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Mon, 24 Jan 2022 16:22:44 GMT and should not be manually modified.
+This log was last generated on Mon, 24 Jan 2022 16:30:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.5
+
+Mon, 24 Jan 2022 16:30:59 GMT
+
+### Patches
+
+- Add include, exclude, and src options to compiler cli (mnovikov@microsoft.com)
 
 ## 0.3.4
 
