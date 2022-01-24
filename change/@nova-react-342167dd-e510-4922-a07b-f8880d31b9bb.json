@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix webpack 4 support by removing wrong imports and fixing main",
+  "packageName": "@nova/react",
+  "email": "mnovikov@microsoft.com",
+  "dependentChangeType": "patch"
+}

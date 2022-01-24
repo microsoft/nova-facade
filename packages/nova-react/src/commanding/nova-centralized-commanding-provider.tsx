@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import type { NovaCentralizedCommanding } from "@nova/types";
 import invariant from "invariant";
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { NovaMockEnvironment } from "./nova-mock-environment";
 
 import { ApolloProvider } from "@apollo/client";
