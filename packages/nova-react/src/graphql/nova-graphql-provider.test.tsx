@@ -1,5 +1,7 @@
 import React from "react";
 import { NovaGraphQL } from "@nova/types";
+import { render } from "@testing-library/react";
+import { NovaGraphQLProvider, useNovaGraphQL } from "./nova-graphql-provider";
 
 describe(useNovaGraphQL, () => {
   it("throws without a provider", () => {
