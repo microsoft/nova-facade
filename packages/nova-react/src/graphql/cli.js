@@ -12,47 +12,65 @@ function main() {
     .options({
       schema: {
         demandOption: true,
-        type: "string"
+        type: "string",
+      },
+      src: {
+        demandOption: false,
+        default: ".",
+        type: "string",
       },
       validate: {
         demandOption: false,
         default: false,
-        type: "boolean"
+        type: "boolean",
       },
       verbose: {
         demandOption: false,
         default: false,
-        type: "boolean"
+        type: "boolean",
       },
       watch: {
         demandOption: false,
         default: false,
-        type: "boolean"
+        type: "boolean",
       },
       watchman: {
         demandOption: false,
         default: true,
-        type: "boolean"
+        type: "boolean",
       },
       quiet: {
         demandOption: false,
         default: false,
-        type: "boolean"
-      }
+        type: "boolean",
+      },
+      include: {
+        array: true,
+        demandOption: false,
+        default: ["**"],
+        type: "string",
+      },
+      exclude: {
+        array: true,
+        demandOption: false,
+        default: [
+          "**/node_modules/**",
+          "**/__mocks__/**",
+          "**/__generated__/**",
+        ],
+        type: "string",
+      },
     })
     .help().argv;
   return relayCompiler({
     ...argv,
-    src: ".",
     extensions: ["ts", "tsx"], // FIXME: Why is this not taken from the language plugin?
-    include: ["**"],
-    exclude: ["**/node_modules/**", "**/__mocks__/**", "**/__generated__/**"],
     noFutureProofEnums: true,
     language: graphitationPluginInitializer,
   });
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
