@@ -7,12 +7,12 @@ import { buildClientSchema, DocumentNode, GraphQLSchema } from "graphql";
 
 import {
   createMockClient,
-  MockFunctions
+  MockFunctions,
 } from "@graphitation/apollo-mock-client";
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import {
   generate as payloadGenerator,
-  OperationDescriptor
+  OperationDescriptor,
 } from "@graphitation/graphql-js-operation-payload-generator";
 
 import { GraphQLTaggedNode } from "@nova/react";
@@ -20,7 +20,7 @@ import { NovaGraphQL } from "@nova/types";
 
 type Generate<Schema, Node> = (
   operation: OperationDescriptor<Schema, Node>,
-  mockResolvers?: Parameters<typeof payloadGenerator>[1]
+  mockResolvers?: Parameters<typeof payloadGenerator>[1],
 ) => ReturnType<typeof payloadGenerator>;
 
 export const MockPayloadGenerator: {
@@ -30,27 +30,27 @@ export const MockPayloadGenerator: {
    */
   generate: Generate<unknown, GraphQLTaggedNode>;
 } = {
-  generate: payloadGenerator as Generate<any, any>
+  generate: payloadGenerator as Generate<any, any>,
 };
 
 /**
  * Exported only for testing purposes. Use `createMockEnvironment()` instead.
  */
 export function _createMockEnvironmentWithSchema(
-  schema: GraphQLSchema
+  schema: GraphQLSchema,
 ): NovaMockEnvironment {
   const client = createMockClient(schema);
   const env: NovaMockEnvironment = {
     commanding: {
-      trigger: jest.fn()
+      trigger: jest.fn(),
     },
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
-      mock: client.mock as MockFunctions<any, any>
+      mock: client.mock as MockFunctions<any, any>,
     },
     providerWrapper: ({ children }) => (
       <ApolloProvider client={client}>{children}</ApolloProvider>
-    )
+    ),
   };
   return env;
 }
@@ -89,21 +89,21 @@ export function createMockEnvironment() {
     // TODO: This should eventually use the 1GQL shared schema.
     // https://domoreexp.visualstudio.com/MSTeams/_workitems/edit/1763201
     SCHEMA = buildClientSchema(
-      require("@msteams/data-schema/generated/server-schema.json")
+      require("@msteams/data-schema/generated/server-schema.json"),
     );
   }
   return _createMockEnvironmentWithSchema(SCHEMA);
 }
 
 function getOperationDefinition(
-  operation: OperationDescriptor<unknown, GraphQLTaggedNode>
+  operation: OperationDescriptor<unknown, GraphQLTaggedNode>,
 ) {
   const definition = _getOperationDefinition(
-    (operation.request.node as unknown) as DocumentNode
+    operation.request.node as unknown as DocumentNode,
   );
   if (!definition) {
     throw new Error(
-      "Expected operation descriptor to contain a operation definition"
+      "Expected operation descriptor to contain a operation definition",
     );
   }
   return definition;
@@ -114,12 +114,12 @@ function getOperationDefinition(
  * @returns The name of the operation.
  */
 export function getOperationName(
-  operation: OperationDescriptor<unknown, GraphQLTaggedNode>
+  operation: OperationDescriptor<unknown, GraphQLTaggedNode>,
 ) {
   const name = getOperationDefinition(operation).name?.value;
   if (!name) {
     throw new Error(
-      "Expected operation descriptor to contain a named operation"
+      "Expected operation descriptor to contain a named operation",
     );
   }
   return name;
@@ -130,7 +130,7 @@ export function getOperationName(
  * @returns The type of the operation.
  */
 export function getOperationType(
-  operation: OperationDescriptor<unknown, GraphQLTaggedNode>
+  operation: OperationDescriptor<unknown, GraphQLTaggedNode>,
 ): "query" | "mutation" | "subscription" {
   return getOperationDefinition(operation).operation;
 }

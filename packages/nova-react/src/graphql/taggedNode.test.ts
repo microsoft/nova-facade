@@ -9,7 +9,7 @@ describe(graphql, () => {
     void graphql`some-sdl${anotherFragment}`;
     expect(mockedImplementation).toHaveBeenCalledWith(
       ["some-sdl", ""],
-      anotherFragment
+      anotherFragment,
     );
   });
 });

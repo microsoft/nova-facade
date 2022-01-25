@@ -1,6 +1,6 @@
 /**
  * Imports graphql-js-tag from a peer dependency.
- * 
+ *
  * @graphitation/graphql-js-tag is expected to be provided by the consumer using this library.
  * Failure to do so will result in a TypeScript compilation or a bundling error - there is no
  * need to incur runtime costs to run checks for this library as a dependency.
@@ -52,6 +52,6 @@ export function graphql(
 ): GraphQLTaggedNode {
   return graphqlJsTag(
     document,
-    ...(fragments as any[])
+    ...(fragments as any[]),
   ) as unknown as GraphQLTaggedNode;
 }

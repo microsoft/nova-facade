@@ -13,13 +13,13 @@
 export interface NovaGraphQL<GraphQLDocument = any> {
   useFragment?: (
     fragmentInput: GraphQLDocument,
-    fragmentRef: unknown
+    fragmentRef: unknown,
   ) => unknown;
 
   useLazyLoadQuery?: (
     query: GraphQLDocument,
     variables: { [name: string]: unknown },
-    options?: {}
+    options?: {},
   ) => { error?: Error; data?: unknown };
 
   useSubscription?: (config: {
@@ -30,12 +30,12 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   }) => void;
 
   useMutation?: (
-    mutation: GraphQLDocument
+    mutation: GraphQLDocument,
   ) => [
     (options: {
       variables: { [name: string]: unknown };
       optimisticResponse?: unknown | null;
     }) => Promise<{ errors?: Error[]; data?: unknown }>,
-    boolean
+    boolean,
   ];
 }

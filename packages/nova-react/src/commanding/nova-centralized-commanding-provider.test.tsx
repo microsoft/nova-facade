@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import { render } from "@testing-library/react";
 import {
@@ -21,7 +25,7 @@ describe(useNovaCentralizedCommanding, () => {
         useNovaCentralizedCommanding();
       } catch (e) {
         expect((e as Error).message).toMatch(
-          "Nova Centralized Commanding provider must be initialized prior to consumption!"
+          "Nova Centralized Commanding provider must be initialized prior to consumption!",
         );
       }
       return null;
@@ -33,9 +37,9 @@ describe(useNovaCentralizedCommanding, () => {
   it("is able to access the commanding instance provided by the provider", () => {
     expect.assertions(2);
 
-    const commanding = ({
+    const commanding = {
       trigger: jest.fn(),
-    } as unknown) as NovaCentralizedCommanding;
+    } as unknown as NovaCentralizedCommanding;
 
     const TestPassedContextComponent: React.FC = () => {
       const facadeFromContext = useNovaCentralizedCommanding();
@@ -55,9 +59,9 @@ describe(useNovaCentralizedCommanding, () => {
     };
 
     render(
-      <NovaCentralizedCommandingProvider commanding={commanding} >
+      <NovaCentralizedCommandingProvider commanding={commanding}>
         <TestPassedContextComponent />
-      </NovaCentralizedCommandingProvider>
+      </NovaCentralizedCommandingProvider>,
     );
   });
 });

@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import { render, screen } from "@testing-library/react";
 
@@ -10,8 +14,7 @@ import { FragmentRefs } from "./types";
 
 describe(useLazyLoadQuery, () => {
   it("ensures an implementation is supplied", () => {
-    const graphql: NovaGraphQL = {
-    };
+    const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
     spy.mockImplementation(() => {});
@@ -22,26 +25,26 @@ describe(useLazyLoadQuery, () => {
     };
 
     expect(() =>
-    render(
+      render(
         <NovaGraphQLProvider graphql={graphql}>
           <Subject />
-        </NovaGraphQLProvider>
-      )
+        </NovaGraphQLProvider>,
+      ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a useLazyLoadQuery hook"`
+      `"Expected host to provide a useLazyLoadQuery hook"`,
     );
   });
 
   it("uses the host's hook", () => {
-    const query = ({} as unknown) as GraphQLTaggedNode;
+    const query = {} as unknown as GraphQLTaggedNode;
     const graphql: NovaGraphQL = {
-      useLazyLoadQuery: jest.fn(() => ({ data: "some-data" }))
+      useLazyLoadQuery: jest.fn(() => ({ data: "some-data" })),
     };
 
     const Subject: React.FC = () => {
       const { data } = useLazyLoadQuery<{ response: string; variables: {} }>(
         query,
-        {}
+        {},
       );
       return <span>{data}</span>;
     };
@@ -49,14 +52,10 @@ describe(useLazyLoadQuery, () => {
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <Subject />
-      </NovaGraphQLProvider>
+      </NovaGraphQLProvider>,
     );
 
-    expect(graphql.useLazyLoadQuery).toHaveBeenCalledWith(
-      query,
-      {},
-      undefined
-    );
+    expect(graphql.useLazyLoadQuery).toHaveBeenCalledWith(query, {}, undefined);
     expect(screen.getByText("some-data")).toBeDefined();
   });
 });
@@ -64,10 +63,10 @@ describe(useLazyLoadQuery, () => {
 describe(useFragment, () => {
   it("uses the host's hook, if provided", () => {
     const graphql: NovaGraphQL = {
-      useFragment: jest.fn(() => ({ someKey: "some-data" }))
+      useFragment: jest.fn(() => ({ someKey: "some-data" })),
     };
 
-    const fragment = ({} as unknown) as GraphQLTaggedNode;
+    const fragment = {} as unknown as GraphQLTaggedNode;
     const fragmentRef = {} as any;
 
     const Subject: React.FC = () => {
@@ -78,22 +77,19 @@ describe(useFragment, () => {
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <Subject />
-      </NovaGraphQLProvider>
+      </NovaGraphQLProvider>,
     );
 
-    expect(graphql.useFragment).toHaveBeenCalledWith(
-      fragment,
-      fragmentRef
-    );
+    expect(graphql.useFragment).toHaveBeenCalledWith(fragment, fragmentRef);
     expect(screen.getByText("some-data")).toBeDefined();
   });
 
   it("simply passes through the data it receives, if the host does not provide an implementation", () => {
     const graphql: NovaGraphQL = {
-      useFragment: undefined
+      useFragment: undefined,
     };
 
-    const fragment = ({} as unknown) as GraphQLTaggedNode;
+    const fragment = {} as unknown as GraphQLTaggedNode;
     const fragmentRef = { someKey: "some-data" } as any;
 
     const Subject: React.FC = () => {
@@ -104,7 +100,7 @@ describe(useFragment, () => {
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <Subject />
-      </NovaGraphQLProvider>
+      </NovaGraphQLProvider>,
     );
 
     expect(screen.getByText("some-data")).toBeDefined();
@@ -117,8 +113,8 @@ describe(useFragment, () => {
       readonly " $fragmentRefs": FragmentRefs<"SomeFragment">;
     };
 
-    const fragment = ({} as unknown) as GraphQLTaggedNode;
-    const opaqueFragmentRef = ({} as unknown) as SomeFragment$key;
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const opaqueFragmentRef = {} as unknown as SomeFragment$key;
 
     // This test just checks that there are no TS errors. Alas the test suite currently won't fail if that were the
     // case, but at least there's a test that covers the intent.
@@ -130,8 +126,7 @@ describe(useFragment, () => {
 
 describe(useSubscription, () => {
   it("ensures an implementation is supplied", () => {
-    const graphql: NovaGraphQL = {
-    };
+    const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
     spy.mockImplementation(() => {});
@@ -145,17 +140,17 @@ describe(useSubscription, () => {
       render(
         <NovaGraphQLProvider graphql={graphql}>
           <Subject />
-        </NovaGraphQLProvider>
-      )
+        </NovaGraphQLProvider>,
+      ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a useSubscription hook"`
+      `"Expected host to provide a useSubscription hook"`,
     );
   });
 
   it("uses the host's hook", () => {
     const subscription: GraphQLTaggedNode = { __brand: "GraphQLTaggedNode" };
     const graphql: NovaGraphQL = {
-      useSubscription: jest.fn()
+      useSubscription: jest.fn(),
     };
 
     const onNext = jest.fn();
@@ -165,7 +160,7 @@ describe(useSubscription, () => {
       subscription,
       variables: { someVar: "some-value" },
       onNext,
-      onError
+      onError,
     };
 
     const Subject: React.FC = () => {
@@ -176,11 +171,9 @@ describe(useSubscription, () => {
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <Subject />
-      </NovaGraphQLProvider>
+      </NovaGraphQLProvider>,
     );
 
-    expect(graphql.useSubscription).toHaveBeenCalledWith(
-      expectedArgument
-    );
+    expect(graphql.useSubscription).toHaveBeenCalledWith(expectedArgument);
   });
 });
