@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 25 Jan 2022 10:59:36 GMT",
+      "tag": "@nova/types_v0.3.3",
+      "version": "0.3.3",
+      "comments": {
+        "none": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Add prettier config, update required deps and run prettier",
+            "commit": "6cac702093749a29e4d7b1558b06bbc55a50be31"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 24 Jan 2022 16:22:44 GMT",
       "tag": "@nova/types_v0.3.3",
       "version": "0.3.3",

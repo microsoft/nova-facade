@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 25 Jan 2022 10:59:36 GMT",
+      "tag": "@nova/react-test-utils_v0.3.5",
+      "version": "0.3.5",
+      "comments": {
+        "none": [
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "Add prettier config, update required deps and run prettier",
+            "commit": "6cac702093749a29e4d7b1558b06bbc55a50be31"
+          },
+          {
+            "author": "mnovikov@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "6cac702093749a29e4d7b1558b06bbc55a50be31",
+            "comment": "Bump @nova/react-test-utils to v0.3.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 24 Jan 2022 16:30:59 GMT",
       "tag": "@nova/react-test-utils_v0.3.5",
       "version": "0.3.5",

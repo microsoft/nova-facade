@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Add prettier config, update required deps and run prettier",
-  "packageName": "@nova/react-test-utils",
-  "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "none"
-}
