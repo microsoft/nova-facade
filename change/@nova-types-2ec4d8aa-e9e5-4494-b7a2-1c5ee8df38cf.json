@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Add prettier config, update required deps and run prettier",
+  "packageName": "@nova/types",
+  "email": "mnovikov@microsoft.com",
+  "dependentChangeType": "none"
+}
