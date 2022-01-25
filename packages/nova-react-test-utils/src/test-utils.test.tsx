@@ -3,7 +3,7 @@ import { buildASTSchema, parse } from "graphql";
 import {
   act,
   create as createTestRenderer,
-  ReactTestRenderer
+  ReactTestRenderer,
 } from "react-test-renderer";
 import { EntityCommand } from "@nova/types";
 
@@ -13,9 +13,12 @@ import {
   _createMockEnvironmentWithSchema,
   MockPayloadGenerator,
   getOperationName,
-  getOperationType
+  getOperationType,
 } from "./test-utils";
-import { NovaMockEnvironment, NovaMockEnvironmentProvider } from "./nova-mock-environment";
+import {
+  NovaMockEnvironment,
+  NovaMockEnvironmentProvider,
+} from "./nova-mock-environment";
 
 const schema = buildASTSchema(
   parse(`
@@ -36,7 +39,7 @@ const schema = buildASTSchema(
     type Avatar {
       url: String!
     }
-  `)
+  `),
 );
 
 const QuerySubject: React.FC = () => {
@@ -48,7 +51,7 @@ const QuerySubject: React.FC = () => {
         }
       }
     `,
-    {}
+    {},
   );
   return data ? <span>{data.user.name}</span> : null;
 };
@@ -66,7 +69,7 @@ describe(_createMockEnvironmentWithSchema, () => {
       tree = createTestRenderer(
         <NovaMockEnvironmentProvider environment={environment}>
           <div>42</div>
-        </NovaMockEnvironmentProvider>
+        </NovaMockEnvironmentProvider>,
       );
     });
     const expectedProvider = tree!.root.findByType("div").parent
@@ -89,20 +92,20 @@ describe(_createMockEnvironmentWithSchema, () => {
         tree = createTestRenderer(
           <NovaMockEnvironmentProvider environment={environment}>
             <QuerySubject />
-          </NovaMockEnvironmentProvider>
+          </NovaMockEnvironmentProvider>,
         );
       });
 
       expect(environment.graphql.mock.getAllOperations().length).toEqual(1);
 
       await act(async () =>
-        environment.graphql.mock.resolveMostRecentOperation(operation =>
-          MockPayloadGenerator.generate(operation)
-        )
+        environment.graphql.mock.resolveMostRecentOperation((operation) =>
+          MockPayloadGenerator.generate(operation),
+        ),
       );
 
       expect(tree!.root.findByType("span").children).toEqual([
-        `<mock-value-for-field-"name">`
+        `<mock-value-for-field-"name">`,
       ]);
     });
   });
@@ -113,12 +116,12 @@ describe(_createMockEnvironmentWithSchema, () => {
         createTestRenderer(
           <NovaMockEnvironmentProvider environment={environment}>
             <QuerySubject />
-          </NovaMockEnvironmentProvider>
+          </NovaMockEnvironmentProvider>,
         );
       });
 
       expect(
-        getOperationName(environment.graphql.mock.getMostRecentOperation())
+        getOperationName(environment.graphql.mock.getMostRecentOperation()),
       ).toEqual("MockTestQuery");
     });
 
@@ -127,12 +130,12 @@ describe(_createMockEnvironmentWithSchema, () => {
         createTestRenderer(
           <NovaMockEnvironmentProvider environment={environment}>
             <QuerySubject />
-          </NovaMockEnvironmentProvider>
+          </NovaMockEnvironmentProvider>,
         );
       });
 
       expect(
-        getOperationType(environment.graphql.mock.getMostRecentOperation())
+        getOperationType(environment.graphql.mock.getMostRecentOperation()),
       ).toEqual("query");
     });
   });

@@ -52,12 +52,12 @@ import { KeyType, KeyTypeData, OperationType } from "./types";
 export function useLazyLoadQuery<TQuery extends OperationType>(
   query: GraphQLTaggedNode,
   variables: TQuery["variables"],
-  options?: { fetchPolicy: "cache-first" }
+  options?: { fetchPolicy: "cache-first" },
 ): { error?: Error; data?: TQuery["response"] } {
   const graphql = useNovaGraphQL();
   invariant(
     graphql.useLazyLoadQuery,
-    "Expected host to provide a useLazyLoadQuery hook"
+    "Expected host to provide a useLazyLoadQuery hook",
   );
   return graphql.useLazyLoadQuery(query, variables, options);
 }
@@ -128,7 +128,7 @@ export function useLazyLoadQuery<TQuery extends OperationType>(
  */
 export function useFragment<TKey extends KeyType>(
   fragmentInput: GraphQLTaggedNode,
-  fragmentRef: TKey
+  fragmentRef: TKey,
 ): KeyTypeData<TKey> {
   return (
     useNovaGraphQL().useFragment?.(fragmentInput, fragmentRef) || fragmentRef
@@ -137,7 +137,7 @@ export function useFragment<TKey extends KeyType>(
 
 // https://github.com/facebook/relay/blob/master/website/docs/api-reference/types/GraphQLSubscriptionConfig.md
 interface GraphQLSubscriptionConfig<
-  TSubscriptionPayload extends OperationType
+  TSubscriptionPayload extends OperationType,
 > {
   subscription: GraphQLTaggedNode;
   variables: TSubscriptionPayload["variables"];
@@ -149,12 +149,12 @@ interface GraphQLSubscriptionConfig<
 }
 
 export function useSubscription<TSubscriptionPayload extends OperationType>(
-  config: GraphQLSubscriptionConfig<TSubscriptionPayload>
+  config: GraphQLSubscriptionConfig<TSubscriptionPayload>,
 ): void {
   const graphql = useNovaGraphQL();
   invariant(
     graphql.useSubscription,
-    "Expected host to provide a useSubscription hook"
+    "Expected host to provide a useSubscription hook",
   );
   graphql.useSubscription(config);
 }
@@ -165,11 +165,11 @@ interface MutationCommitterOptions<TMutationPayload extends OperationType> {
 }
 
 type MutationCommitter<TMutationPayload extends OperationType> = (
-  options: MutationCommitterOptions<TMutationPayload>
+  options: MutationCommitterOptions<TMutationPayload>,
 ) => Promise<{ errors?: Error[]; data?: TMutationPayload["response"] }>;
 
 export function useMutation<TMutationPayload extends OperationType>(
-  mutation: GraphQLTaggedNode
+  mutation: GraphQLTaggedNode,
 ): [MutationCommitter<TMutationPayload>, boolean] {
   const graphql = useNovaGraphQL();
   invariant(graphql.useMutation, "Expected host to provide a useMutation hook");

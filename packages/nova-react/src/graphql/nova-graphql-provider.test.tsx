@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import React from "react";
 import { NovaGraphQL } from "@nova/types";
 import { render } from "@testing-library/react";
@@ -12,7 +16,7 @@ describe(useNovaGraphQL, () => {
         useNovaGraphQL();
       } catch (e) {
         expect((e as Error).message).toMatch(
-          "Nova GraphQL provider must be initialized prior to consumption!"
+          "Nova GraphQL provider must be initialized prior to consumption!",
         );
       }
       return null;
@@ -24,18 +28,18 @@ describe(useNovaGraphQL, () => {
   it("is able to access the GraphQL instance provided by the provider", () => {
     expect.assertions(3);
 
-    const graphql = ({
-      useLazyLoadQuery: jest.fn()
-    } as unknown) as NovaGraphQL;
+    const graphql = {
+      useLazyLoadQuery: jest.fn(),
+    } as unknown as NovaGraphQL;
 
     const TestPassedContextComponent: React.FC = () => {
       const graphqlFromContext = useNovaGraphQL();
       expect(graphqlFromContext).toBe(graphql);
       expect(graphqlFromContext.useLazyLoadQuery).toBeDefined();
       // TODO figure out if this is needed
-      if(!graphqlFromContext.useLazyLoadQuery){
+      if (!graphqlFromContext.useLazyLoadQuery) {
         return null;
-      };
+      }
       graphqlFromContext.useLazyLoadQuery("foo", {});
       expect(graphql.useLazyLoadQuery).toBeCalledTimes(1);
       return null;
@@ -44,7 +48,7 @@ describe(useNovaGraphQL, () => {
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <TestPassedContextComponent />
-      </NovaGraphQLProvider>
+      </NovaGraphQLProvider>,
     );
   });
 });
