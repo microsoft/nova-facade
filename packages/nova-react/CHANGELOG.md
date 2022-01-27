@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Mon, 24 Jan 2022 16:30:59 GMT and should not be manually modified.
+This log was last generated on Thu, 27 Jan 2022 13:41:35 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Thu, 27 Jan 2022 13:41:35 GMT
+
+### Minor changes
+
+- Add types react peer dep (mnovikov@microsoft.com)
 
 ## 0.3.5
 

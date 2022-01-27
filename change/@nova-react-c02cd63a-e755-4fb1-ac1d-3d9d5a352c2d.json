@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add types react peer dep",
-  "packageName": "@nova/react",
-  "email": "mnovikov@microsoft.com",
-  "dependentChangeType": "patch"
-}
