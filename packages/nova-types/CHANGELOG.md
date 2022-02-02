@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Mon, 24 Jan 2022 16:22:44 GMT and should not be manually modified.
+This log was last generated on Wed, 02 Feb 2022 01:23:00 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.4
+
+Wed, 02 Feb 2022 01:23:00 GMT
+
+### Patches
+
+- Added additional entity types (82841113+megasly@users.noreply.github.com)
 
 ## 0.3.3
 

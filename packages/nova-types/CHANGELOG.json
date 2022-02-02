@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Wed, 02 Feb 2022 01:23:00 GMT",
+      "tag": "@nova/types_v0.3.4",
+      "version": "0.3.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "82841113+megasly@users.noreply.github.com",
+            "package": "@nova/types",
+            "comment": "Added additional entity types",
+            "commit": "a7a57c2adcce40126e3baa4179dcede2aa9f8ef8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 25 Jan 2022 10:59:36 GMT",
       "tag": "@nova/types_v0.3.3",
       "version": "0.3.3",
