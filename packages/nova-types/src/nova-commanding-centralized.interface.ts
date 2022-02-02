@@ -97,4 +97,9 @@ export enum EntityType {
   office_forms = "office_forms",
   office_visio = "office_visio",
   office_stream = "office_stream",
+  office_onedrive = "office_onedrive",
+  office_todo = "office_todo",
+  office_familysafety = "office_familysafety",
+  office_calendar = "office_calendar",
+  office_skype = "office_skype",
 }
