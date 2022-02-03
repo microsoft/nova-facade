@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Adding message extension entity type.",
-  "packageName": "@nova/types",
-  "email": "82841113+megasly@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

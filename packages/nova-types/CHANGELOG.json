@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Thu, 03 Feb 2022 00:34:47 GMT",
+      "tag": "@nova/types_v0.3.5",
+      "version": "0.3.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "82841113+megasly@users.noreply.github.com",
+            "package": "@nova/types",
+            "comment": "Adding message extension entity type.",
+            "commit": "6db08a9a7addd9e6677f69b0880da92a1400dc07"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 02 Feb 2022 01:23:00 GMT",
       "tag": "@nova/types_v0.3.4",
       "version": "0.3.4",

@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 03 Feb 2022 00:34:47 GMT",
+      "tag": "@nova/react-test-utils_v0.3.8",
+      "version": "0.3.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "82841113+megasly@users.noreply.github.com",
+            "package": "@nova/react-test-utils",
+            "commit": "6db08a9a7addd9e6677f69b0880da92a1400dc07",
+            "comment": "Bump @nova/react-test-utils to v0.3.8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 02 Feb 2022 01:23:00 GMT",
       "tag": "@nova/react-test-utils_v0.3.7",
       "version": "0.3.7",

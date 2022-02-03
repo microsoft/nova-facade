@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Wed, 02 Feb 2022 01:23:00 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Feb 2022 00:34:47 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.5
+
+Thu, 03 Feb 2022 00:34:47 GMT
+
+### Patches
+
+- Adding message extension entity type. (82841113+megasly@users.noreply.github.com)
 
 ## 0.3.4
 

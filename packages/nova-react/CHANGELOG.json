@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 03 Feb 2022 00:34:47 GMT",
+      "tag": "@nova/react_v0.4.2",
+      "version": "0.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "82841113+megasly@users.noreply.github.com",
+            "package": "@nova/react",
+            "commit": "6db08a9a7addd9e6677f69b0880da92a1400dc07",
+            "comment": "Bump @nova/react to v0.4.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 02 Feb 2022 01:23:00 GMT",
       "tag": "@nova/react_v0.4.1",
       "version": "0.4.1",
