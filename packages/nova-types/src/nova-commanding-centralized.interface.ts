@@ -83,6 +83,7 @@ export enum EntityType {
   outlook_tasks = "outlook_tasks",
   m365_app = "m365_app",
   m365_appsideload = "m365_appsideload",
+  m365_messageextension = "m365_messageextension",
   office_home = "office_home",
   office_create = "office_create",
   office_mycontent = "office_mycontent",
