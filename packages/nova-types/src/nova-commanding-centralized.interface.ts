@@ -79,6 +79,7 @@ export enum EntityType {
   outlook_mail = "outlook_mail",
   outlook_calendar = "outlook_calendar",
   outlook_people = "outlook_people",
+  outlook_groups = "outlook_groups",
   outlook_fileshub = "outlook_fileshub",
   outlook_tasks = "outlook_tasks",
   m365_app = "m365_app",
