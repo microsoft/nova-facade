@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Added Outlook Groups as a new EntityType.",
+  "packageName": "@nova/types",
+  "email": "82841113+megasly@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
