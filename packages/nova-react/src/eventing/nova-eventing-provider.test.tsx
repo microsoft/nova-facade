@@ -8,9 +8,7 @@ import {
   NovaEventingProvider,
   useNovaEventing,
 } from "./nova-eventing-provider";
-import {
-  NovaEventing,
-} from "@nova/types";
+import { NovaEventing } from "@nova/types";
 
 describe(useNovaEventing, () => {
   it("throws without a provider", () => {
@@ -54,13 +52,15 @@ describe(useNovaEventing, () => {
       isTrusted: false,
       isDefaultPrevented: jest.fn(),
       isPropagationStopped: jest.fn(),
-      persist:  jest.fn()
+      persist: jest.fn(),
     };
-
 
     const TestPassedContextComponent: React.FC = () => {
       const facadeFromContext = useNovaEventing();
-      facadeFromContext.bubble({ event: { originator: "test", type: "test"}, reactEvent: mockEvent });
+      facadeFromContext.bubble({
+        event: { originator: "test", type: "test" },
+        reactEvent: mockEvent,
+      });
       expect(eventing.bubble).toBeCalledTimes(1);
       expect(mapper).toBeCalledTimes(1);
       return null;

@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  NovaEvent,
-  NovaEventing,
-  EventWrapper
-} from "@nova/types";
+import { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
 import { mapEventMetadata } from "./react-event-source-mapper";
 import invariant from "invariant";
 
@@ -16,45 +12,44 @@ interface NovaEventingProviderProps {
 }
 
 export interface ReactEventWrapper {
-    event: NovaEvent<unknown>; // The event details for handling
-    reactEvent: React.SyntheticEvent;
-  }
+  event: NovaEvent<unknown>; // The event details for handling
+  reactEvent: React.SyntheticEvent;
+}
 
 export interface NovaReactEventing {
   bubble(event: ReactEventWrapper): Promise<void>;
 }
 
-export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderProps> = ({
-  children,
-  eventing,
-  reactEventMapper,
-}) => {
-    
-  // Stabilize the context value to prevent retriggering all consumers whenever this component rerenders
-  const reactEventing: NovaReactEventing = React.useMemo(() => ({
-    bubble: (eventWrapper: ReactEventWrapper) => {
-      const mappedEvent = reactEventMapper
-        ? reactEventMapper(eventWrapper)
-        : mapEventMetadata(eventWrapper);
-      return eventing.bubble(mappedEvent);
-    },
-  }), [eventing, reactEventMapper]);
+export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderProps> =
+  ({ children, eventing, reactEventMapper }) => {
+    // Stabilize the context value to prevent retriggering all consumers whenever this component rerenders
+    const reactEventing: NovaReactEventing = React.useMemo(
+      () => ({
+        bubble: (eventWrapper: ReactEventWrapper) => {
+          const mappedEvent = reactEventMapper
+            ? reactEventMapper(eventWrapper)
+            : mapEventMetadata(eventWrapper);
+          return eventing.bubble(mappedEvent);
+        },
+      }),
+      [eventing, reactEventMapper],
+    );
 
-  return (
-    <NovaEventingContext.Provider value={reactEventing}>
-      {children}
-    </NovaEventingContext.Provider>
-  );
-};
+    return (
+      <NovaEventingContext.Provider value={reactEventing}>
+        {children}
+      </NovaEventingContext.Provider>
+    );
+  };
 NovaEventingProvider.displayName = "NovaEventingProvider";
 
 export const useNovaEventing = (): NovaReactEventing => {
   const eventing = React.useContext<NovaReactEventing | null>(
-    NovaEventingContext
+    NovaEventingContext,
   );
   invariant(
     eventing,
-    "Nova Eventing provider must be initialized prior to consumption!"
+    "Nova Eventing provider must be initialized prior to consumption!",
   );
   return eventing;
 };
