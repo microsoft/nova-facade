@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add support for Nova Eventing",
+  "packageName": "@nova/react",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
