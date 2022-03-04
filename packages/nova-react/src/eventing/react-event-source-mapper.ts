@@ -62,7 +62,7 @@ const mapPointerTypeEvents = (pointerType: string): keyof typeof InputType => {
  * @param eventWrapper The input event for mapping
  * @returns The mapped event
  */
-export const mapEventMetadata = (eventWrapper: ReactEventWrapper<unknown>) => {
+export const mapEventMetadata = (eventWrapper: ReactEventWrapper) => {
   const { event, reactEvent } = eventWrapper;
   const inputType =
     reactEvent.type === "click"
@@ -76,7 +76,7 @@ export const mapEventMetadata = (eventWrapper: ReactEventWrapper<unknown>) => {
     timeStamp: reactEvent.timeStamp,
   };
 
-  const mappedEvent: EventWrapper<unknown> = {
+  const mappedEvent: EventWrapper = {
     event,
     source,
   };
