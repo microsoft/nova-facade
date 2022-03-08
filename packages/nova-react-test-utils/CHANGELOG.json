@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 08 Mar 2022 10:15:07 GMT",
+      "tag": "@nova/react-test-utils_v0.3.10",
+      "version": "0.3.10",
+      "comments": {
+        "patch": [
+          {
+            "author": "sergeystoyan@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "upgrade `graphitation` deps",
+            "commit": "23a8d57c4414e1bcfd26605bd9d7031f5e2acb89"
+          },
+          {
+            "author": "sergeystoyan@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "23a8d57c4414e1bcfd26605bd9d7031f5e2acb89",
+            "comment": "Bump @nova/react-test-utils to v0.3.10"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Feb 2022 19:06:29 GMT",
       "tag": "@nova/react-test-utils_v0.3.9",
       "version": "0.3.9",

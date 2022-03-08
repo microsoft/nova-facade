@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "upgrade `graphitation` deps",
-  "packageName": "@nova/react",
-  "email": "sergeystoyan@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "upgrade `graphitation` deps",
-  "packageName": "@nova/react-test-utils",
-  "email": "sergeystoyan@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 10 Feb 2022 19:06:29 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Mar 2022 10:15:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.3.10
+
+Tue, 08 Mar 2022 10:15:07 GMT
+
+### Patches
+
+- upgrade `graphitation` deps (sergeystoyan@microsoft.com)
+- Bump @nova/react-test-utils to v0.3.10 (sergeystoyan@microsoft.com)
 
 ## 0.3.9
 
