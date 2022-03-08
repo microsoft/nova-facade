@@ -854,33 +854,32 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@graphitation/apollo-mock-client@^0.6.4":
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.6.8.tgz#f2bfa11d7eae73b7d775c85be1277b8a33dee1b5"
-  integrity sha512-Y6RlxSt6wsJ1/x6ZSVHA8nGD8zZESe720vX1n1izMVo8SfUS/xlvtH5VXVjVeXNNh9OxEVxpYxXaTR5/gF3gYQ==
+"@graphitation/apollo-mock-client@^0.10.5":
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.10.5.tgz#76903803c40bd2dc41b78cc13fcacf49a9cad265"
+  integrity sha512-gtqIgnm1C7XKy+Q9SmQmtAbg/8t1hCpkK8SP3tHngPLFzffGWYG0CIQSywmeaRJVGR+Hw4FUiKCh/g5uvj4iIA==
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-0.4.2.tgz#db41950cbd2f15a5ab56bb41bfda76c2f9df8b2c"
-  integrity sha512-EM/EokooFAYZ29cRia2hxi1tHOlFFogiJQlzsLtcG9vdh9FNw706u/dWlFT3VCpCi+viqa+U0LCo85ASoK05NA==
+"@graphitation/apollo-react-relay-duct-tape@^0.7.7":
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-0.7.7.tgz#b8209c0c0f492a3882690d7e0f7d7cc015d9dda9"
+  integrity sha512-XuvGZZrhYPJSh0JPlKRod87C822q1SKivJ3J5Nhwwul3xMycwXexcD9fWF/A6OkOgkNDMvknH76HdpDw//bZSQ==
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/graphql-js-operation-payload-generator@^0.5.8":
-  version "0.5.8"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.5.8.tgz#f08cd43138ceb494647eb9cdee68373f781aedab"
-  integrity sha512-tU8kXxQc0fuAzIIfX2t5w0RfY6e1rvCdQGVzyjQ8/VfDL9Ra3j6DEcwsle0GKL1gxdmHu4bHtxRigqvdsWURgA==
+"@graphitation/graphql-js-operation-payload-generator@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.8.5.tgz#cbc17443e0f7bb6d3616cdab620200d9ca2c41f3"
+  integrity sha512-hl2jO/jBedrpdUItXAcrjndyoPZ5kK0vZ5MAnLhxS6qLFhL8oF/10jX3H1toLdegS/5mD5Uzvpsl/9Y2xpWQ6g==
   dependencies:
     deepmerge "^4.2.2"
 
-"@graphitation/graphql-js-tag@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.5.3.tgz#74afd3c2bdad27f03e1d9df1aede98d2890fd0e0"
-  integrity sha512-xH3QRkpvFWOtOutVtqNzu/iwx0Yn7fl/V/oHTKYQnub3TI0D6WgHK/dsqKg+BGiht0lPSFbKyjGYwUb66jm3GQ==
+"@graphitation/graphql-js-tag@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.0.tgz#4e368c5b43809123866b0400f96e460386e43fb6"
+  integrity sha512-TgRtUE6XurM6jz9FXdP+hxfEhzdWT/mljBCN03sFuEtyMpTfLjPYTd0QfqXbFd5fTnt1Yjfm2Vu0bB1Jz7cKEg==
   dependencies:
-    graphql "^15.0.0"
     invariant "^2.0.0"
 
 "@graphql-typed-document-node/core@^3.0.0":
@@ -3369,7 +3368,7 @@ graphql@^14.6.0:
   dependencies:
     iterall "^1.2.2"
 
-graphql@^15.0.0, graphql@^15.5.0:
+graphql@^15.5.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.6.0.tgz#e69323c6a9780a1a4b9ddf7e35ca8904bb04df02"
   integrity sha512-WJR872Zlc9hckiEPhXgyUftXH48jp2EjO5tgBBOyNMRJZ9fviL2mJBD6CAysk6N5S0r9BTs09Qk39nnJBkvOXQ==
