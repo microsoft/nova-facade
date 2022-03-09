@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 10 Feb 2022 19:06:29 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Mar 2022 10:15:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.4
+
+Tue, 08 Mar 2022 10:15:07 GMT
+
+### Patches
+
+- upgrade `graphitation` deps (sergeystoyan@microsoft.com)
 
 ## 0.4.3
 
