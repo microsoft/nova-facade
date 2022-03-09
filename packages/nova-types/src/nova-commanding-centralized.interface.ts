@@ -76,6 +76,7 @@ export enum EntityType {
   teams_calendar = "teams_calendar",
   teams_calling = "teams_calling",
   teams_search = "teams_search",
+  teams_meet = "teams_meet",
   outlook_mail = "outlook_mail",
   outlook_calendar = "outlook_calendar",
   outlook_people = "outlook_people",
