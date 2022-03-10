@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Thu, 10 Feb 2022 19:06:29 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 19:02:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.0
+
+Thu, 10 Mar 2022 19:02:07 GMT
+
+### Minor changes
+
+- Adding Meet app in supported Entity type (ajakum@AJAKUM-1)
 
 ## 0.3.6
 

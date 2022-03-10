@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 08 Mar 2022 10:15:07 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Mar 2022 19:02:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.4.5
+
+Thu, 10 Mar 2022 19:02:07 GMT
+
+### Patches
+
+- Bump @nova/react to v0.4.5 (ajakum@AJAKUM-1)
 
 ## 0.4.4
 
