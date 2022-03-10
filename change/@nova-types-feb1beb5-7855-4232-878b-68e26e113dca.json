@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Adding Meet app in supported Entity type",
+  "packageName": "@nova/types",
+  "email": "ajakum@AJAKUM-1",
+  "dependentChangeType": "patch"
+}
