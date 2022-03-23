@@ -18,6 +18,13 @@ export interface Source {
   inputType: keyof typeof InputType;
 }
 
+/**
+ * InputType is the UI framework agnostic list of detectable input types.
+ * This list should be extended as additional input types are created.
+ * Note: at this point in time there is no reliable way to detect screen readers.
+ * They are detected as either mouse or keyboard depending in the reader's interaction
+ * mode.
+ */
 export const InputType = {
   unknown: "unknown", // Fallback for events triggered by the user from an unknown input
   mouse: "mouse",
