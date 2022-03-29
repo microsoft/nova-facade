@@ -25,7 +25,7 @@ describe(useNovaCentralizedCommanding, () => {
         useNovaCentralizedCommanding();
       } catch (e) {
         expect((e as Error).message).toMatch(
-          "Nova Centralized Commanding provider must be initialized prior to consumption!",
+          "Nova Centralized Commanding provider must be initialized prior to consumption, but try Eventing instead!",
         );
       }
       return null;
