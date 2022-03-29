@@ -27,7 +27,7 @@ export const useNovaCentralizedCommanding = (): NovaCentralizedCommanding => {
   );
   invariant(
     commanding,
-    "Nova Centralized Commanding provider must be initialized prior to consumption!",
+    "Nova Centralized Commanding provider must be initialized prior to consumption, but try Eventing instead!",
   );
   return commanding;
 };
