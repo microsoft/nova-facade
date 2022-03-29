@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update comment in commanding to suggest using eventing",
+  "packageName": "@nova/react",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
