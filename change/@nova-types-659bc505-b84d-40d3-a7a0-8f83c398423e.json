@@ -1,6 +1,6 @@
 {
   "type": "minor",
-  "comment": "Add support for Nova Eventing",
+  "comment": "Add support for Nova Eventing API",
   "packageName": "@nova/types",
   "email": "kerrynb@microsoft.com",
   "dependentChangeType": "patch"
