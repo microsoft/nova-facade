@@ -8,6 +8,8 @@ variables:
     value: production,externalfacing
   - name: serviceTreeID
     value: 6F8CD842-E117-412F-BAE4-56A3B6166594
+  - name: adoNpmFeedBaseUrl
+    value: https://pkgs.dev.azure.com/domoreexp/_apis/packaging/feeds/npm-mirror
 
 jobs:
   - job: compliance
@@ -37,8 +39,20 @@ jobs:
       - script: |
           git config user.email "gql-svc@microsoft.com"
           git config user.name "Graphitation Service Account"
+          git remote set-url origin https://gql-svc:$(ossGithubPAT)@github.com/microsoft/nova-facade.git
         displayName: Configure git for release
       - script: yarn release -y -n $(ossNpmToken) --access public
         displayName: Release
-        env:
-          NPM_AUTHTOKEN: $(ossGithubPAT)
+      - task: AzureArtifacts.manifest-generator-task.manifest-generator-task.ManifestGeneratorTask@0
+        displayName: 📒 Generate Manifest
+        inputs:
+          BuildDropPath: $(System.DefaultWorkingDirectory)
+      - task: PublishPipelineArtifact@1
+        displayName: 📒 Publish Manifest
+        inputs:
+          artifactName: SBom-$(System.JobAttempt)
+          targetPath: $(System.DefaultWorkingDirectory)/_manifest
+      - template: ./steps/pierce-ado-npm-mirror-cache.yml
+        parameters:
+          adoNpmFeedPat: $(adoNpmFeedPat)
+          adoNpmFeedBaseUrl: $(adoNpmFeedBaseUrl)
