@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 10 Mar 2022 19:02:07 GMT and should not be manually modified.
+This log was last generated on Sat, 02 Apr 2022 16:11:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sat, 02 Apr 2022 16:11:38 GMT
+
+### Minor changes
+
+- Add support for Nova Eventing API (kerrynb@microsoft.com)
+- Bump @nova/react to v0.5.0 (kerrynb@microsoft.com)
 
 ## 0.4.5
 
