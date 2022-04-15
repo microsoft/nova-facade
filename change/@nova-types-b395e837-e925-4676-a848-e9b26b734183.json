@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Added entity type for admin tile in Office.",
-  "packageName": "@nova/types",
-  "email": "82841113+metasly@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

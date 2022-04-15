@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Sat, 02 Apr 2022 16:11:38 GMT and should not be manually modified.
+This log was last generated on Fri, 15 Apr 2022 19:17:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 0.5.1
+
+Fri, 15 Apr 2022 19:17:51 GMT
+
+### Patches
+
+- Added entity type for admin tile in Office. (82841113+metasly@users.noreply.github.com)
 
 ## 0.5.0
 

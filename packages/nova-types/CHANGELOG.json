@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Fri, 15 Apr 2022 19:17:51 GMT",
+      "tag": "@nova/types_v0.5.1",
+      "version": "0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "82841113+metasly@users.noreply.github.com",
+            "package": "@nova/types",
+            "comment": "Added entity type for admin tile in Office.",
+            "commit": "c4b9f33dc936595ca3b38001129e18acd68c0eae"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 02 Apr 2022 16:11:38 GMT",
       "tag": "@nova/types_v0.5.0",
       "version": "0.5.0",
