@@ -5,10 +5,12 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import {
+  GeneratedEventWrapper,
   NovaEventingProvider,
+  ReactEventWrapper,
   useNovaEventing,
 } from "./nova-eventing-provider";
-import { InputType, NovaEventing } from "@nova/types";
+import { EventWrapper, InputType, NovaEventing } from "@nova/types";
 
 describe(useNovaEventing, () => {
   it("throws without a provider", () => {
@@ -73,69 +75,90 @@ describe(useNovaEventing, () => {
     );
   });
 
-  it("exposes 'generateEvent', which defaults to current time to generate an event and call the bubble functions", () => {
-    expect.assertions(2);
-
-    const eventing = {
-      bubble: jest.fn(),
-    } as unknown as NovaEventing;
-
-    const mapper = jest.fn();
-
-    const now = 1479427200000;
-    jest.spyOn(Date, "now").mockImplementation(() => now);
-
-    const TestPassedContextComponent: React.FC = () => {
+  describe("exposes 'generateEvent'", () => {
+    interface Props {
+      overrideTimestamp?: boolean;
+      expectedTime: number;
+      eventing: NovaEventing;
+      mapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
+    }
+    const TestPassedContextComponent: React.FC<Props> = (
+      props: Props,
+    ): React.ReactElement | null => {
+      const { eventing, mapper, overrideTimestamp, expectedTime } = props;
       const facadeFromContext = useNovaEventing();
       const event = { originator: "test", type: "test" };
-      facadeFromContext.generateEvent({
-        event,
-      });
+
+      let eventWrapper: GeneratedEventWrapper;
+
+      if (overrideTimestamp) {
+        eventWrapper = {
+          event,
+          timeStampOverride: expectedTime,
+        };
+      } else {
+        eventWrapper = {
+          event,
+        };
+      }
+
+      facadeFromContext.generateEvent(eventWrapper);
+
       expect(eventing.bubble).toBeCalledWith({
         event,
-        source: { timeStamp: now, inputType: InputType.programmatic },
+        source: {
+          inputType: InputType.programmatic,
+          timeStamp: expectedTime,
+        },
       });
       expect(mapper).toBeCalledTimes(0);
       return null;
     };
 
-    render(
-      <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
-        <TestPassedContextComponent />
-      </NovaEventingProvider>,
-    );
-  });
+    it("and defaults to Date.now for event timestamp and calls the bubble function.", () => {
+      expect.assertions(2);
 
-  it("exposes 'generateEvent', which defaults to current time to generate an event and call the bubble functions", () => {
-    expect.assertions(2);
+      const eventing = {
+        bubble: jest.fn(),
+      } as unknown as NovaEventing;
 
-    const eventing = {
-      bubble: jest.fn(),
-    } as unknown as NovaEventing;
+      const mapper = jest.fn();
 
-    const mapper = jest.fn();
+      const now = 1000;
+      jest.spyOn(Date, "now").mockImplementation(() => now);
 
-    const overrideTime = 1479423200000;
+      render(
+        <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
+          <TestPassedContextComponent
+            expectedTime={now}
+            eventing={eventing}
+            mapper={mapper}
+          />
+        </NovaEventingProvider>,
+      );
+    });
 
-    const TestPassedContextComponent: React.FC = () => {
-      const facadeFromContext = useNovaEventing();
-      const event = { originator: "test", type: "test" };
-      facadeFromContext.generateEvent({
-        event,
-        timeStampOverride: overrideTime,
-      });
-      expect(eventing.bubble).toBeCalledWith({
-        event,
-        source: { timeStamp: overrideTime, inputType: InputType.programmatic },
-      });
-      expect(mapper).toBeCalledTimes(0);
-      return null;
-    };
+    it("and takes an override to set the timestamp and calls the bubble function.", () => {
+      expect.assertions(2);
 
-    render(
-      <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
-        <TestPassedContextComponent />
-      </NovaEventingProvider>,
-    );
+      const eventing = {
+        bubble: jest.fn(),
+      } as unknown as NovaEventing;
+
+      const mapper = jest.fn();
+
+      const overrideTime = 9999999999;
+
+      render(
+        <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
+          <TestPassedContextComponent
+            overrideTimestamp
+            expectedTime={overrideTime}
+            eventing={eventing}
+            mapper={mapper}
+          />
+        </NovaEventingProvider>,
+      );
+    });
   });
 });
