@@ -1,3 +1,10 @@
+/**
+ * Describes the eventing contract that is used to communicate between UI components and their logical parent within a host application.
+ *
+ * Usage: components should create small independent packages that define the events they generate using this contract.
+ * Logical parents can take a dependency on the event package, and use it to translate the events into appropriate actions within the larger application.
+ */
+
 export interface NovaEventing {
   bubble(event: EventWrapper): Promise<void>;
 }
@@ -13,6 +20,12 @@ export interface NovaEvent<T> {
   data?: () => T; // Optional function to generate the data associated with the event
 }
 
+/**
+ * The Source object contains the information about the user interaction
+ * used to generate the Event. For Nova Eventing in React, it is automatically
+ * derived from the React SyntheticEvent.
+ * Additional metadata will be added here as required by event managers.
+ */
 export interface Source {
   timeStamp: number; // When the event occured
   inputType: keyof typeof InputType;
