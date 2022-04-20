@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 20 Apr 2022 18:46:13 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Apr 2022 23:50:13 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Wed, 20 Apr 2022 23:50:13 GMT
+
+### Major changes
+
+- Publish 1.0.0, add support for generated events (kerrynb@microsoft.com)
 
 ## 0.5.2
 
