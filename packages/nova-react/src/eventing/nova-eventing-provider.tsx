@@ -1,5 +1,5 @@
 import * as React from "react";
-import { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
+import { NovaEvent, NovaEventing, EventWrapper, InputType } from "@nova/types";
 import { mapEventMetadata } from "./react-event-source-mapper";
 import invariant from "invariant";
 
@@ -8,16 +8,43 @@ const NovaEventingContext = React.createContext<NovaReactEventing | null>(null);
 
 interface NovaEventingProviderProps {
   eventing: NovaEventing;
+  /**
+   * Mapping logic to transform a React SyntheticEvent into a Nova
+   * Source object. Supply the Nova default implemenation using the import
+   * "mapEventMetadata".
+   * */
   reactEventMapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
 }
 
 export interface ReactEventWrapper {
-  event: NovaEvent<unknown>; // The event details for handling
+  event: NovaEvent<unknown>;
+  /**
+   * React event generated from the user interaction
+   */
   reactEvent: React.SyntheticEvent;
 }
 
+export interface GeneratedEventWrapper {
+  event: NovaEvent<unknown>;
+  /**
+   * Optional timestamp in milliseconds since epoch format,
+   * by default will use Date.now() if override not supplied.
+   */
+  timeStampOverride?: number;
+}
+
 export interface NovaReactEventing {
+  /**
+   * Bubble a user interaction event up to the host application.
+   * @param event the React SyntheticEvent and the Nova Event metadata associated with it.
+   */
   bubble(event: ReactEventWrapper): Promise<void>;
+  /**
+   * Generate a programmatic event to pass up the host application.
+   * Use this if the event is not associated with a React SyntheticEvent.
+   * @param event the NovaEvent to fire.
+   */
+  generateEvent(eventWrapper: GeneratedEventWrapper): Promise<void>;
 }
 
 export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderProps> =
@@ -29,6 +56,16 @@ export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderP
           const mappedEvent = reactEventMapper
             ? reactEventMapper(eventWrapper)
             : mapEventMetadata(eventWrapper);
+          return eventing.bubble(mappedEvent);
+        },
+        generateEvent: (eventWrapper: GeneratedEventWrapper) => {
+          const mappedEvent = {
+            event: eventWrapper.event,
+            source: {
+              inputType: InputType.programmatic,
+              timeStamp: eventWrapper.timeStampOverride ?? Date.now(),
+            },
+          };
           return eventing.bubble(mappedEvent);
         },
       }),
