@@ -12,12 +12,19 @@ interface NovaEventingProviderProps {
 }
 
 export interface ReactEventWrapper {
-  event: NovaEvent<unknown>; // The event details for handling
+  event: NovaEvent<unknown>;
+  /**
+   * React event generated from the user interaction
+   */
   reactEvent: React.SyntheticEvent;
 }
 
 export interface GeneratedEventWrapper {
-  event: NovaEvent<unknown>; // The event details for handling
+  event: NovaEvent<unknown>;
+  /**
+   * Optional timestamp in milliseconds since epoch format,
+   * default event will use Date.now() if override not supplied.
+   */
   timeStampOverride?: number;
 }
 
