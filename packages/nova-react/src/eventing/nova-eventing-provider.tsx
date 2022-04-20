@@ -8,6 +8,11 @@ const NovaEventingContext = React.createContext<NovaReactEventing | null>(null);
 
 interface NovaEventingProviderProps {
   eventing: NovaEventing;
+  /**
+   * Mapping logic to transform a React SyntheticEvent into a Nova
+   * Source object. Supply the Nova default implemenation using the import
+   * "mapEventMetadata".
+   * */
   reactEventMapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
 }
 
@@ -23,7 +28,7 @@ export interface GeneratedEventWrapper {
   event: NovaEvent<unknown>;
   /**
    * Optional timestamp in milliseconds since epoch format,
-   * default event will use Date.now() if override not supplied.
+   * by default will use Date.now() if override not supplied.
    */
   timeStampOverride?: number;
 }
