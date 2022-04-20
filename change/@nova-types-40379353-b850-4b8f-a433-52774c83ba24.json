@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Adding commanding interfaces, bumping to 1.0.0 for semver support",
-  "packageName": "@nova/types",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}
