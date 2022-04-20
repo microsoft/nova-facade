@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Fri, 15 Apr 2022 19:17:51 GMT and should not be manually modified.
+This log was last generated on Wed, 20 Apr 2022 18:46:13 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.0
+
+Wed, 20 Apr 2022 18:46:13 GMT
+
+### Major changes
+
+- Adding commanding interfaces, bumping to 1.0.0 for semver support (kerrynb@microsoft.com)
 
 ## 0.5.1
 

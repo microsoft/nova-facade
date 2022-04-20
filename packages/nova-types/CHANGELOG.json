@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Wed, 20 Apr 2022 18:46:13 GMT",
+      "tag": "@nova/types_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Adding commanding interfaces, bumping to 1.0.0 for semver support",
+            "commit": "4ac2fddb91eb247582804f64dfa239cf0757ba61"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 15 Apr 2022 19:17:51 GMT",
       "tag": "@nova/types_v0.5.1",
       "version": "0.5.1",
