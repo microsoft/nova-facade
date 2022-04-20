@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "Publish 1.0.0, add support for generated events",
+  "packageName": "@nova/react",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
