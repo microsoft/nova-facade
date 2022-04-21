@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Thu, 21 Apr 2022 18:01:57 GMT",
+      "tag": "@nova/types_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Fixing mjs generation pattern",
+            "commit": "15e901e41754069304563f6e5928181007db2da8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 20 Apr 2022 18:46:13 GMT",
       "tag": "@nova/types_v1.0.0",
       "version": "1.0.0",

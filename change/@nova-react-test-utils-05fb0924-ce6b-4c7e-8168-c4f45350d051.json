@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Fixing mjs generation pattern, bump to 1.0.0",
-  "packageName": "@nova/react-test-utils",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fixing mjs generation pattern",
-  "packageName": "@nova/types",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}

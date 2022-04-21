@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 21 Apr 2022 18:01:57 GMT",
+      "tag": "@nova/react-test-utils_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "Fixing mjs generation pattern, bump to 1.0.0",
+            "commit": "15e901e41754069304563f6e5928181007db2da8"
+          },
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "15e901e41754069304563f6e5928181007db2da8",
+            "comment": "Bump @nova/react-test-utils to v1.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 20 Apr 2022 23:50:13 GMT",
       "tag": "@nova/react-test-utils_v0.3.15",
       "version": "0.3.15",

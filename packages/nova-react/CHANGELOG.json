@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 21 Apr 2022 18:01:57 GMT",
+      "tag": "@nova/react_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Fixing mjs generation pattern",
+            "commit": "15e901e41754069304563f6e5928181007db2da8"
+          },
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/react",
+            "commit": "15e901e41754069304563f6e5928181007db2da8",
+            "comment": "Bump @nova/react to v1.0.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 20 Apr 2022 23:50:13 GMT",
       "tag": "@nova/react_v1.0.0",
       "version": "1.0.0",

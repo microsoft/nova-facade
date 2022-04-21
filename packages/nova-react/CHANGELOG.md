@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 20 Apr 2022 23:50:13 GMT and should not be manually modified.
+This log was last generated on Thu, 21 Apr 2022 18:01:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.1
+
+Thu, 21 Apr 2022 18:01:57 GMT
+
+### Patches
+
+- Fixing mjs generation pattern (kerrynb@microsoft.com)
+- Bump @nova/react to v1.0.1 (kerrynb@microsoft.com)
 
 ## 1.0.0
 
