@@ -8,6 +8,7 @@ import {
   EsbuildBuildOptions,
 } from "just-scripts";
 import * as path from "path";
+import * as fs from "fs";
 import * as glob from "fast-glob";
 
 export const types = tscTask({ emitDeclarationOnly: true });
@@ -32,7 +33,19 @@ export const build = () => {
               if (args.importer) {
                 let extPath = args.path;
                 if (extPath.startsWith(".")) {
-                  extPath = extPath + ".mjs";
+                  const absolutePath = path.resolve(
+                    args.importer,
+                    "..",
+                    extPath
+                  );
+                  if (
+                    fs.existsSync(absolutePath) &&
+                    fs.lstatSync(absolutePath).isDirectory()
+                  ) {
+                    extPath = extPath + "/index.mjs";
+                  } else {
+                    extPath = extPath + ".mjs";
+                  }
                 }
                 return {
                   path: extPath,
