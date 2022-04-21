@@ -1,0 +1,6 @@
+{
+  "type": "patch",
+  "packageName": "@nova/react-test-utils",
+  "email": "kerrynb@microsoft.com",
+  "dependentChangeType": "patch"
+}
