@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Thu, 21 Apr 2022 18:01:57 GMT and should not be manually modified.
+This log was last generated on Fri, 29 Apr 2022 17:51:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Fri, 29 Apr 2022 17:51:51 GMT
+
+### Minor changes
+
+- Add office_feed entity type (petar.paar@gmail.com)
 
 ## 1.0.1
 
