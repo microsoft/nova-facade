@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Mon, 02 May 2022 21:12:04 GMT",
+      "tag": "@nova/types_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "kerrynb@microsoft.com",
+            "package": "@nova/types",
+            "comment": "Export the commanding types",
+            "commit": "2d63207bd6dc5ad5301684b5676ff7288425781b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 29 Apr 2022 17:51:51 GMT",
       "tag": "@nova/types_v1.1.0",
       "version": "1.1.0",

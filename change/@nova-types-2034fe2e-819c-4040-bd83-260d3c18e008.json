@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Export the commanding types",
-  "packageName": "@nova/types",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}

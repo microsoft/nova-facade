@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Fri, 29 Apr 2022 17:51:51 GMT and should not be manually modified.
+This log was last generated on Mon, 02 May 2022 21:12:04 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.0
+
+Mon, 02 May 2022 21:12:04 GMT
+
+### Minor changes
+
+- Export the commanding types (kerrynb@microsoft.com)
 
 ## 1.1.0
 
