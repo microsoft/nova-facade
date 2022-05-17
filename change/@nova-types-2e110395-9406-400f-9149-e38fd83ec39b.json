@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Added entity type for People and Power Automate tiles in Office.",
-  "packageName": "@nova/types",
-  "email": "kelvinl@microsoft.com",
-  "dependentChangeType": "patch"
-}

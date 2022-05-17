@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Mon, 02 May 2022 21:12:04 GMT and should not be manually modified.
+This log was last generated on Tue, 17 May 2022 19:00:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.1
+
+Tue, 17 May 2022 19:00:28 GMT
+
+### Patches
+
+- Added entity type for People and Power Automate tiles in Office. (kelvinl@microsoft.com)
 
 ## 1.2.0
 
