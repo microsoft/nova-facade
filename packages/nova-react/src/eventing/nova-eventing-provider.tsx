@@ -1,6 +1,5 @@
 import * as React from "react";
 import { NovaEvent, NovaEventing, EventWrapper, InputType } from "@nova/types";
-import { mapEventMetadata } from "./react-event-source-mapper";
 import invariant from "invariant";
 
 // Initializing default with null to make sure providers are correctly placed in the tree
@@ -49,14 +48,25 @@ export interface NovaReactEventing {
 
 export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderProps> =
   ({ children, eventing, reactEventMapper }) => {
-    // Stabilize the context value to prevent retriggering all consumers whenever this component rerenders
+    // Nova contexts provide a facade over framework functions
+    // We don't need to trigger rerender in children when we are rerendered
+    // or when the input functions change, we just need to make sure callbacks
+    // use the right functions
+    const eventingRef = React.useRef(eventing);
+    if (eventingRef.current !== eventing) {
+      eventingRef.current = eventing;
+    }
+
+    const mapperRef = React.useRef(reactEventMapper);
+    if (mapperRef.current !== reactEventMapper) {
+      mapperRef.current = reactEventMapper;
+    }
+
     const reactEventing: NovaReactEventing = React.useMemo(
       () => ({
         bubble: (eventWrapper: ReactEventWrapper) => {
-          const mappedEvent = reactEventMapper
-            ? reactEventMapper(eventWrapper)
-            : mapEventMetadata(eventWrapper);
-          return eventing.bubble(mappedEvent);
+          const mappedEvent: EventWrapper = mapperRef.current(eventWrapper);
+          return eventingRef.current.bubble(mappedEvent);
         },
         generateEvent: (eventWrapper: GeneratedEventWrapper) => {
           const mappedEvent = {
@@ -66,10 +76,10 @@ export const NovaEventingProvider: React.FunctionComponent<NovaEventingProviderP
               timeStamp: eventWrapper.timeStampOverride ?? Date.now(),
             },
           };
-          return eventing.bubble(mappedEvent);
+          return eventingRef.current.bubble(mappedEvent);
         },
       }),
-      [eventing, reactEventMapper],
+      [],
     );
 
     return (
