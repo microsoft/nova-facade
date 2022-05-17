@@ -106,5 +106,7 @@ export enum EntityType {
   office_familysafety = "office_familysafety",
   office_calendar = "office_calendar",
   office_skype = "office_skype",
+  office_people = "office_people",
+  office_powerautomate = "office_powerautomate",
   office_admin = "office_admin",
 }
