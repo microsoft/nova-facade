@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Stabilize eventing across function changes",
-  "packageName": "@nova/react",
-  "email": "kerrynb@microsoft.com",
-  "dependentChangeType": "patch"
-}

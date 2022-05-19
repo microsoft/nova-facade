@@ -1,7 +1,7 @@
 {
   "name": "@nova/react",
   "license": "MIT",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",

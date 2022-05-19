@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 17 May 2022 19:00:28 GMT and should not be manually modified.
+This log was last generated on Thu, 19 May 2022 16:42:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.5
+
+Thu, 19 May 2022 16:42:14 GMT
+
+### Patches
+
+- Stabilize eventing across function changes (kerrynb@microsoft.com)
 
 ## 1.0.4
 
