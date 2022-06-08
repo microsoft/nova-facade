@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Wed, 08 Jun 2022 18:24:10 GMT",
+      "tag": "@nova/react-test-utils_v1.0.5",
+      "version": "1.0.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "kallgood@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "059576fa0d087ca0b6b62948b394fd888e032130",
+            "comment": "Bump @nova/react-test-utils to v1.0.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 May 2022 16:42:14 GMT",
       "tag": "@nova/react-test-utils_v1.0.4",
       "version": "1.0.4",

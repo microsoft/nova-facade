@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 17 May 2022 19:00:28 GMT and should not be manually modified.
+This log was last generated on Wed, 08 Jun 2022 18:24:10 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.2
+
+Wed, 08 Jun 2022 18:24:10 GMT
+
+### Patches
+
+- Adding m365_gallery entity type to nova-commanding-centralized.interface (kallgood@microsoft.com)
 
 ## 1.2.1
 
