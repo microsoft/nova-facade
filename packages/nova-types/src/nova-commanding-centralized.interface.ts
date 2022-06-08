@@ -90,6 +90,7 @@ export enum EntityType {
   office_create = "office_create",
   office_mycontent = "office_mycontent",
   office_feed = "office_feed",
+  office_gallery = "office_gallery",
   office_spaces = "office_spaces",
   office_outlook = "office_outlook",
   office_teams = "office_teams",
