@@ -1,0 +1,2 @@
+# Adding an empty .npmignore so npm won't pick up the .gitignore rules
+# https://npm.github.io/publishing-pkgs-docs/publishing/the-npmignore-file.html
