@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Bump to get back into a good state.",
+  "packageName": "@nova/react",
+  "email": "ashen@microsoft.com",
+  "dependentChangeType": "patch"
+}
