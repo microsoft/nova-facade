@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Adding m365_gallery entity type to nova-commanding-centralized.interface",
-  "packageName": "@nova/types",
-  "email": "kallgood@microsoft.com",
-  "dependentChangeType": "patch"
-}
