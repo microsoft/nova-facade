@@ -1,2 +1,3 @@
-# Adding an empty .npmignore so npm won't pick up the .gitignore rules
+# Negating entries in .gitignore so the files are included in the publishing process.
 # https://npm.github.io/publishing-pkgs-docs/publishing/the-npmignore-file.html
+!lib
