@@ -1,8 +1,18 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 19 May 2022 16:42:14 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Jun 2022 21:14:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.7
+
+Mon, 13 Jun 2022 21:14:40 GMT
+
+### Patches
+
+- Bump to get back into a good state. (ashen@microsoft.com)
+- Attempting to fix .npmignore again. (ashen@microsoft.com)
+- Bump @nova/react-test-utils to v1.0.7 (ashen@microsoft.com)
 
 ## 1.0.4
 

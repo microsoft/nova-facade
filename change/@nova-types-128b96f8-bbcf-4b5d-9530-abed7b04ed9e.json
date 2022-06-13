@@ -1,8 +1,0 @@
-{
-    "type": "patch",
-    "comment": "Fixing .npmignore so packages are published correctly.",
-    "packageName": "@nova/types",
-    "email": "ashen@microsoft.com",
-    "dependentChangeType": "patch"
-  }
-  

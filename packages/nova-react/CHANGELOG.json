@@ -2,6 +2,33 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Mon, 13 Jun 2022 21:14:40 GMT",
+      "tag": "@nova/react_v1.0.8",
+      "version": "1.0.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "ashen@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Attempting to fix .npmignore again.",
+            "commit": "80ebd5d3f1be58b0eacaaa3b0b73bee3c7a87e75"
+          },
+          {
+            "author": "ashen@microsoft.com",
+            "package": "@nova/react",
+            "comment": "Bump to get back into a good state.",
+            "commit": "80ebd5d3f1be58b0eacaaa3b0b73bee3c7a87e75"
+          },
+          {
+            "author": "ashen@microsoft.com",
+            "package": "@nova/react",
+            "commit": "80ebd5d3f1be58b0eacaaa3b0b73bee3c7a87e75",
+            "comment": "Bump @nova/react to v1.0.8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 May 2022 16:42:14 GMT",
       "tag": "@nova/react_v1.0.5",
       "version": "1.0.5",

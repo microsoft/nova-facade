@@ -1,8 +1,18 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 19 May 2022 16:42:14 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Jun 2022 21:14:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.8
+
+Mon, 13 Jun 2022 21:14:40 GMT
+
+### Patches
+
+- Attempting to fix .npmignore again. (ashen@microsoft.com)
+- Bump to get back into a good state. (ashen@microsoft.com)
+- Bump @nova/react to v1.0.8 (ashen@microsoft.com)
 
 ## 1.0.5
 

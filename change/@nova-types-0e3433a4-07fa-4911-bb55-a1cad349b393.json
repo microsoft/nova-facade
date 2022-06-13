@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Attempting to fix .npmignore again.",
-  "packageName": "@nova/types",
-  "email": "ashen@microsoft.com",
-  "dependentChangeType": "patch"
-}

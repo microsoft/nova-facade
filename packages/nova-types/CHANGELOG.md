@@ -1,8 +1,18 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 17 May 2022 19:00:28 GMT and should not be manually modified.
+This log was last generated on Mon, 13 Jun 2022 21:14:40 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.4
+
+Mon, 13 Jun 2022 21:14:40 GMT
+
+### Patches
+
+- Attempting to fix .npmignore again. (ashen@microsoft.com)
+- Fixing .npmignore so packages are published correctly. (ashen@microsoft.com)
+- Bump to get back into a good state. (ashen@microsoft.com)
 
 ## 1.2.1
 
