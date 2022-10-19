@@ -1,6 +1,10 @@
 import React from "react";
 import type { ComponentType } from "react";
-import { NovaCentralizedCommanding, NovaGraphQL, NovaEventing } from "@nova/types";
+import {
+  NovaCentralizedCommanding,
+  NovaGraphQL,
+  NovaEventing,
+} from "@nova/types";
 import { MockFunctions } from "@graphitation/apollo-mock-client";
 
 import {
@@ -29,7 +33,10 @@ interface NovaMockEnvironmentProviderProps {
 export const NovaMockEnvironmentProvider: React.FunctionComponent<NovaMockEnvironmentProviderProps> =
   ({ children, environment }) => {
     return (
-      <NovaEventingProvider eventing={environment.eventing} reactEventMapper={mapEventMetadata}>
+      <NovaEventingProvider
+        eventing={environment.eventing}
+        reactEventMapper={mapEventMetadata}
+      >
         <NovaCentralizedCommandingProvider commanding={environment.commanding}>
           <NovaGraphQLProvider graphql={environment.graphql}>
             {React.createElement(
