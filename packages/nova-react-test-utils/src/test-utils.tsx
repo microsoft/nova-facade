@@ -44,6 +44,9 @@ export function _createMockEnvironmentWithSchema(
     commanding: {
       trigger: jest.fn(),
     },
+    eventing: {
+      bubble: jest.fn(),
+    },
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
       mock: client.mock as MockFunctions<any, any>,

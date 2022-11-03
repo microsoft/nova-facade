@@ -5,7 +5,7 @@ import {
   create as createTestRenderer,
   ReactTestRenderer,
 } from "react-test-renderer";
-import { EntityCommand } from "@nova/types";
+import { EntityCommand, EventWrapper } from "@nova/types";
 
 import { graphql, useLazyLoadQuery } from "@nova/react";
 
@@ -82,6 +82,12 @@ describe(_createMockEnvironmentWithSchema, () => {
       const cmd = {} as EntityCommand;
       environment.commanding.trigger(cmd);
       expect(environment.commanding.trigger.mock.calls).toEqual([[cmd]]);
+    });
+
+    it("exposes mocks for eventing", () => {
+      const event = {} as EventWrapper;
+      environment.eventing.bubble(event);
+      expect(environment.eventing.bubble.mock.calls).toEqual([[event]]);
     });
 
     it("exposes mocks for GraphQL operations", async () => {
