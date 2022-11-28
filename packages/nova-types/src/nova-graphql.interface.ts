@@ -32,10 +32,10 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   useMutation?: (
     mutation: GraphQLDocument,
   ) => [
-    (options: {
-      variables: { [name: string]: unknown };
-      optimisticResponse?: unknown | null;
-    }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
-    boolean,
-  ];
+      (options: {
+        variables: { [name: string]: unknown };
+        optimisticResponse?: unknown | null;
+      }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
+      boolean,
+    ];
 }
