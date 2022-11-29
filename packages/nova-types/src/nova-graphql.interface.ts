@@ -35,7 +35,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     (options: {
       variables: { [name: string]: unknown };
       optimisticResponse?: unknown | null;
-    }) => Promise<{ errors?: Error[]; data?: unknown }>,
+    }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
     boolean,
   ];
 }

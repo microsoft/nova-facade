@@ -166,7 +166,10 @@ interface MutationCommitterOptions<TMutationPayload extends OperationType> {
 
 type MutationCommitter<TMutationPayload extends OperationType> = (
   options: MutationCommitterOptions<TMutationPayload>,
-) => Promise<{ errors?: Error[]; data?: TMutationPayload["response"] }>;
+) => Promise<{
+  errors?: readonly Error[];
+  data?: TMutationPayload["response"];
+}>;
 
 export function useMutation<TMutationPayload extends OperationType>(
   mutation: GraphQLTaggedNode,
