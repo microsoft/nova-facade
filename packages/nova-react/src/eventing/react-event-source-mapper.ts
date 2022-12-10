@@ -77,7 +77,7 @@ export const mapEventMetadata = (eventWrapper: ReactEventWrapper) => {
   // If the event doesn't have a timestamp, fall back to Date.now()
   let timeStamp: number;
   const uiEvent = reactEvent.nativeEvent as UIEvent;
-  if (uiEvent.view) {
+  if (uiEvent?.view && reactEvent.timeStamp) {
     timeStamp = uiEvent.view.performance.timeOrigin + reactEvent.timeStamp;
   } else {
     timeStamp = Date.now();

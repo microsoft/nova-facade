@@ -124,4 +124,22 @@ describe(mapEventMetadata, () => {
 
     expect(mappedEventWrapper.source.timeStamp).toEqual(nowTimeStamp);
   });
+
+  test("Validate events without a timestamp fallback to Date.now for the timestamp", () => {
+    const mappedEventWrapper = mapEventMetadata({
+      reactEvent: {
+        type: "unknown",
+        nativeEvent: {
+          view: {
+            performance: {
+              timeOrigin,
+            },
+          },
+        },
+      } as unknown as SyntheticEvent,
+      event: novaEventWithData,
+    });
+
+    expect(mappedEventWrapper.source.timeStamp).toEqual(nowTimeStamp);
+  });
 });
