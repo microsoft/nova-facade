@@ -10,14 +10,34 @@ export interface NovaEventing {
 }
 
 export interface EventWrapper {
-  event: NovaEvent<unknown>; // The event details for handling
-  source: Source; // Details about the underlying event
+  /**
+   * The event details for handling
+   */
+  event: NovaEvent<unknown>;
+  /**
+   * Details about the originating event like input method and timestamp
+   */
+  source: Source;
 }
 
 export interface NovaEvent<T> {
-  originator: string; // eg AppBar - matches to the Views root element for the control
-  type: string; // eg AppTileClick - control will have multiple groups of events
-  data?: () => T; // Optional function to generate the data associated with the event
+  /**
+   * The Event originator is a unique string identifier the component 
+   * that is sending the event.
+   * e.g. AppBar
+   */
+  originator: string;
+  /**
+   * The Event type is unique within the originator to specify the nature
+   * of the event. Each originator will likely support multiple groups of events.
+   * e.g. AppTileClick
+   */
+  type: string;
+  /**
+   * The optional Event data function allows the originator to encode typed data
+   * with the event. This can be used for functional or telemetry purposes.
+   */
+  data?: () => T;
 }
 
 /**
@@ -27,7 +47,19 @@ export interface NovaEvent<T> {
  * Additional metadata will be added here as required by event managers.
  */
 export interface Source {
-  timeStamp: number; // When the event occured
+  /**
+   * Timestamp a number in Epoch format (milliseconds since 1 Jan 1970)
+   * If not able to be extracted from the React event, the event source mapper
+   * should use Date.now() at the point of bubbling.
+   */
+  timeStamp: number;
+  /**
+   * InputType is the UI framework agnostic list of detectable input types.
+   * This list should be extended as additional input types are created.
+   * Note: at this point in time there is no reliable way to detect screen readers.
+   * They are detected as either mouse or keyboard depending in the reader's interaction
+   * mode.
+   */
   inputType: keyof typeof InputType;
 }
 
@@ -39,10 +71,16 @@ export interface Source {
  * mode.
  */
 export const InputType = {
-  unknown: "unknown", // Fallback for events triggered by the user from an unknown input
+  /**
+   * Fallback for events triggered by the user from an unknown input
+   */
+  unknown: "unknown",
   mouse: "mouse",
   keyboard: "keyboard",
   touch: "touch",
   pen: "pen",
-  programmatic: "programmatic", // Used for events triggered by code processes
+  /**
+   * Used for events triggered by code processes
+   */
+  programmatic: "programmatic",
 } as const;
