@@ -74,7 +74,8 @@ export const mapEventMetadata = (eventWrapper: ReactEventWrapper) => {
 
   // Timestamps in DOM events are relative to the window origin time
   // Nova event timestamps should be Epoch timestamps
-  // If the event doesn't have a timestamp, fall back to Date.now()
+  // If the underlying timeOrigin isn't accessible or the timestamp
+  // is missing, fall back to Date.now()
   let timeStamp: number;
   const uiEvent = reactEvent.nativeEvent as UIEvent;
   if (uiEvent?.view && reactEvent.timeStamp) {

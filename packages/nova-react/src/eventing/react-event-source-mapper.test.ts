@@ -82,7 +82,7 @@ describe(mapEventMetadata, () => {
         reactEvent: mockUIEvent,
         event: novaEventWithData,
       });
-
+      // Assert that the inputType maps correctly to the expected Nova inputType
       expect(mappedEventWrapper.source.inputType).toEqual(novaInputType);
       expect(mappedEventWrapper.source.timeStamp).toEqual(
         timeStamp + timeOrigin,
@@ -107,7 +107,7 @@ describe(mapEventMetadata, () => {
         reactEvent: mockUIEvent,
         event: novaEventWithData,
       });
-
+      // Assert that the inputType maps correctly to the expected Nova inputType
       expect(mappedEventWrapper.source.inputType).toEqual(novaInputType);
       expect(mappedEventWrapper.source.timeStamp).toEqual(
         timeStamp + timeOrigin,

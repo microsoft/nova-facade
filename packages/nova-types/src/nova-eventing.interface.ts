@@ -28,29 +28,31 @@ export interface NovaEvent<T> {
    */
   originator: string;
   /**
-   * The Event type is unique within the originator to specify the nature
-   * of the event. Each originator will likely support multiple groups of events.
+   * The Event type is a unique string within an originator that specifies the nature
+   * of the event. Each originator will likely support multiple types of events.
    * e.g. AppTileClick
    */
   type: string;
   /**
    * The optional Event data function allows the originator to encode typed data
-   * with the event. This can be used for functional or telemetry purposes.
+   * with the event. This can be used for functional purposes, or in combination
+   * with the Source object for telemetry purposes.
    */
   data?: () => T;
 }
 
 /**
  * The Source object contains the information about the user interaction
- * used to generate the Event. For Nova Eventing in React, it is automatically
+ * that generated the Event. For Nova Eventing in React, it is automatically
  * derived from the React SyntheticEvent.
  * Additional metadata will be added here as required by event managers.
  */
 export interface Source {
   /**
-   * Timestamp a number in Epoch format (milliseconds since 1 Jan 1970)
-   * If not able to be extracted from the React event, the event source mapper
-   * should use Date.now() at the point of bubbling.
+   * Timestamp is a number in Epoch format (milliseconds since 1 Jan 1970).
+   * For Nova Eventing in React, if not able to be extracted from the React
+   * event, the event source mapper should set it to Date.now() at the point
+   * of bubbling.
    */
   timeStamp: number;
   /**
