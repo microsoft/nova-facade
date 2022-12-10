@@ -22,7 +22,7 @@ export interface EventWrapper {
 
 export interface NovaEvent<T> {
   /**
-   * The Event originator is a unique string identifier the component 
+   * The Event originator is a unique string identifier the component
    * that is sending the event.
    * e.g. AppBar
    */
