@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update comments on interfaces",
+  "packageName": "@nova/types",
+  "email": "kerryn@zyridium.net",
+  "dependentChangeType": "patch"
+}
