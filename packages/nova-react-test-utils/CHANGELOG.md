@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Mon, 13 Jun 2022 21:14:40 GMT and should not be manually modified.
+This log was last generated on Tue, 13 Dec 2022 20:06:05 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Tue, 13 Dec 2022 20:06:05 GMT
+
+### Minor changes
+
+- allow mocking eventing on test environment (sjwilczynski@users.noreply.github.com)
+- Bump @nova/react-test-utils to v1.1.0 (kerryn@zyridium.net)
 
 ## 1.0.7
 

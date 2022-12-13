@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "allow mocking eventing on test environment",
-  "packageName": "@nova/react-test-utils",
-  "email": "sjwilczynski@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

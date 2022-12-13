@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix Source timestamp to use consistent Epoch time",
-  "packageName": "@nova/react",
-  "email": "kerryn@zyridium.net",
-  "dependentChangeType": "patch"
-}

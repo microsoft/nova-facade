@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 13 Dec 2022 20:06:05 GMT",
+      "tag": "@nova/react-test-utils_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "sjwilczynski@users.noreply.github.com",
+            "package": "@nova/react-test-utils",
+            "comment": "allow mocking eventing on test environment",
+            "commit": "5bd164520e1e90c1be8f70ebefbe05248fd08c88"
+          },
+          {
+            "author": "kerryn@zyridium.net",
+            "package": "@nova/react-test-utils",
+            "commit": "5bd164520e1e90c1be8f70ebefbe05248fd08c88",
+            "comment": "Bump @nova/react-test-utils to v1.1.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 13 Jun 2022 21:14:40 GMT",
       "tag": "@nova/react-test-utils_v1.0.7",
       "version": "1.0.7",

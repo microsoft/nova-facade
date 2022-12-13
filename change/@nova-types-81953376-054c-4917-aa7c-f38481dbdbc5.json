@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "change error response to readonly",
-  "packageName": "@nova/types",
-  "email": "jobutle@microsoft.com",
-  "dependentChangeType": "patch"
-}
