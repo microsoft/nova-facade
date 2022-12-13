@@ -1,3 +1,4 @@
+import * as React from "react";
 import { EventWrapper, InputType, Source } from "@nova/types";
 import { ReactEventWrapper } from "./nova-eventing-provider";
 
@@ -71,9 +72,21 @@ export const mapEventMetadata = (eventWrapper: ReactEventWrapper) => {
         )
       : typeMap[reactEvent.type as keyof typeof typeMap];
 
+  // Timestamps in DOM events are relative to the window origin time
+  // Nova event timestamps should be Epoch timestamps
+  // If the underlying timeOrigin isn't accessible or the timestamp
+  // is missing, fall back to Date.now()
+  let timeStamp: number;
+  const uiEvent = reactEvent.nativeEvent as UIEvent;
+  if (uiEvent?.view && reactEvent.timeStamp) {
+    timeStamp = uiEvent.view.performance.timeOrigin + reactEvent.timeStamp;
+  } else {
+    timeStamp = Date.now();
+  }
+
   const source: Source = {
     inputType: inputType ?? InputType.unknown,
-    timeStamp: reactEvent.timeStamp,
+    timeStamp,
   };
 
   const mappedEvent: EventWrapper = {

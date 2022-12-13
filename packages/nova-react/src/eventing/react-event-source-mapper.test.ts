@@ -2,9 +2,12 @@
  * @jest-environment jsdom
  */
 
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { mapEventMetadata } from "./react-event-source-mapper";
 import { NovaEvent, InputType } from "@nova/types";
+
+const nowTimeStamp = 1670638671187;
+Date.now = jest.fn(() => nowTimeStamp);
 
 const mappedTypes = [
   ["dblclick", InputType.mouse],
@@ -43,13 +46,22 @@ const novaEventWithData: NovaEvent<string> = {
   type: "testType",
 };
 
-const mockEvent: React.SyntheticEvent = {
+const timeStamp = 123;
+const timeOrigin = 1670638671187;
+
+const mockUIEvent: React.SyntheticEvent = {
   target: {} as EventTarget,
-  timeStamp: 123,
+  timeStamp,
   type: "keydown",
   preventDefault: jest.fn(),
   stopPropagation: jest.fn(),
-  nativeEvent: {} as Event,
+  nativeEvent: {
+    view: {
+      performance: {
+        timeOrigin,
+      },
+    },
+  } as unknown as UIEvent,
   currentTarget: {} as EventTarget & Element,
   bubbles: false,
   cancelable: false,
@@ -65,14 +77,16 @@ describe(mapEventMetadata, () => {
   test.each(mappedTypes)(
     "Validate React events with type `%s` maps to expected Nova input type",
     (eventType: string, novaInputType: string) => {
-      mockEvent.type = eventType;
+      mockUIEvent.type = eventType;
       const mappedEventWrapper = mapEventMetadata({
-        reactEvent: mockEvent,
+        reactEvent: mockUIEvent,
         event: novaEventWithData,
       });
-      // Assert that the current theme maps correctly to the Converged theme
+      // Assert that the inputType maps correctly to the expected Nova inputType
       expect(mappedEventWrapper.source.inputType).toEqual(novaInputType);
-      expect(mappedEventWrapper.source.timeStamp).toEqual(mockEvent.timeStamp);
+      expect(mappedEventWrapper.source.timeStamp).toEqual(
+        timeStamp + timeOrigin,
+      );
       expect(mappedEventWrapper.event).toEqual(novaEventWithData);
     },
   );
@@ -80,18 +94,52 @@ describe(mapEventMetadata, () => {
   test.each(mappedPointerTypes)(
     "Validate React Pointer events with type `%s` maps to correct Nova input type",
     (eventType: string, novaInputType: string) => {
-      mockEvent.type = "click";
-      mockEvent.nativeEvent = {
+      mockUIEvent.type = "click";
+      mockUIEvent.nativeEvent = {
         pointerType: eventType,
-      } as unknown as Event;
+        view: {
+          performance: {
+            timeOrigin,
+          },
+        },
+      } as unknown as UIEvent;
       const mappedEventWrapper = mapEventMetadata({
-        reactEvent: mockEvent,
+        reactEvent: mockUIEvent,
         event: novaEventWithData,
       });
-      // Assert that the current theme maps correctly to the Converged theme
+      // Assert that the inputType maps correctly to the expected Nova inputType
       expect(mappedEventWrapper.source.inputType).toEqual(novaInputType);
-      expect(mappedEventWrapper.source.timeStamp).toEqual(mockEvent.timeStamp);
+      expect(mappedEventWrapper.source.timeStamp).toEqual(
+        timeStamp + timeOrigin,
+      );
       expect(mappedEventWrapper.event).toEqual(novaEventWithData);
     },
   );
+
+  test("Validate non UI events (no view data) use Date.now for the timestamp", () => {
+    const mappedEventWrapper = mapEventMetadata({
+      reactEvent: { type: "unknown" } as SyntheticEvent,
+      event: novaEventWithData,
+    });
+
+    expect(mappedEventWrapper.source.timeStamp).toEqual(nowTimeStamp);
+  });
+
+  test("Validate events without a timestamp fallback to Date.now for the timestamp", () => {
+    const mappedEventWrapper = mapEventMetadata({
+      reactEvent: {
+        type: "unknown",
+        nativeEvent: {
+          view: {
+            performance: {
+              timeOrigin,
+            },
+          },
+        },
+      } as unknown as SyntheticEvent,
+      event: novaEventWithData,
+    });
+
+    expect(mappedEventWrapper.source.timeStamp).toEqual(nowTimeStamp);
+  });
 });

@@ -10,24 +10,58 @@ export interface NovaEventing {
 }
 
 export interface EventWrapper {
-  event: NovaEvent<unknown>; // The event details for handling
-  source: Source; // Details about the underlying event
+  /**
+   * The event details for handling
+   */
+  event: NovaEvent<unknown>;
+  /**
+   * Details about the originating event like input method and timestamp
+   */
+  source: Source;
 }
 
 export interface NovaEvent<T> {
-  originator: string; // eg AppBar - matches to the Views root element for the control
-  type: string; // eg AppTileClick - control will have multiple groups of events
-  data?: () => T; // Optional function to generate the data associated with the event
+  /**
+   * The Event originator is a unique string identifier the component
+   * that is sending the event.
+   * e.g. AppBar
+   */
+  originator: string;
+  /**
+   * The Event type is a unique string within an originator that specifies the nature
+   * of the event. Each originator will likely support multiple types of events.
+   * e.g. AppTileClick
+   */
+  type: string;
+  /**
+   * The optional Event data function allows the originator to encode typed data
+   * with the event. This can be used for functional purposes, or in combination
+   * with the Source object for telemetry purposes.
+   */
+  data?: () => T;
 }
 
 /**
  * The Source object contains the information about the user interaction
- * used to generate the Event. For Nova Eventing in React, it is automatically
+ * that generated the Event. For Nova Eventing in React, it is automatically
  * derived from the React SyntheticEvent.
  * Additional metadata will be added here as required by event managers.
  */
 export interface Source {
-  timeStamp: number; // When the event occured
+  /**
+   * Timestamp is a number in Epoch format (milliseconds since 1 Jan 1970).
+   * For Nova Eventing in React, if not able to be extracted from the React
+   * event, the event source mapper should set it to Date.now() at the point
+   * of bubbling.
+   */
+  timeStamp: number;
+  /**
+   * InputType is the UI framework agnostic list of detectable input types.
+   * This list should be extended as additional input types are created.
+   * Note: at this point in time there is no reliable way to detect screen readers.
+   * They are detected as either mouse or keyboard depending in the reader's interaction
+   * mode.
+   */
   inputType: keyof typeof InputType;
 }
 
@@ -39,10 +73,16 @@ export interface Source {
  * mode.
  */
 export const InputType = {
-  unknown: "unknown", // Fallback for events triggered by the user from an unknown input
+  /**
+   * Fallback for events triggered by the user from an unknown input
+   */
+  unknown: "unknown",
   mouse: "mouse",
   keyboard: "keyboard",
   touch: "touch",
   pen: "pen",
-  programmatic: "programmatic", // Used for events triggered by code processes
+  /**
+   * Used for events triggered by code processes
+   */
+  programmatic: "programmatic",
 } as const;
