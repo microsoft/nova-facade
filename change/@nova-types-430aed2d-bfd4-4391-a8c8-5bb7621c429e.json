@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Updated nova types to include teams_people Entity type",
+  "packageName": "@nova/types",
+  "email": "mushierc@gmail.com",
+  "dependentChangeType": "patch"
+}
