@@ -11,5 +11,7 @@
     "isolatedModules": true,
     "importsNotUsedAsValues": "error",
     "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }
