@@ -1,11 +1,8 @@
 import React from "react";
 import { buildASTSchema, parse } from "graphql";
-import {
-  act,
-  create as createTestRenderer,
-  ReactTestRenderer,
-} from "react-test-renderer";
-import { EntityCommand, EventWrapper } from "@nova/types";
+import type { ReactTestRenderer } from "react-test-renderer";
+import { act, create as createTestRenderer } from "react-test-renderer";
+import type { EntityCommand, EventWrapper } from "@nova/types";
 
 import { graphql, useLazyLoadQuery } from "@nova/react";
 
@@ -15,10 +12,8 @@ import {
   getOperationName,
   getOperationType,
 } from "./test-utils";
-import {
-  NovaMockEnvironment,
-  NovaMockEnvironmentProvider,
-} from "./nova-mock-environment";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
+import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
 
 const schema = buildASTSchema(
   parse(`

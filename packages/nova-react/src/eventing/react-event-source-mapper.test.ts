@@ -2,9 +2,10 @@
  * @jest-environment jsdom
  */
 
-import React, { SyntheticEvent } from "react";
+import type { SyntheticEvent } from "react";
 import { mapEventMetadata } from "./react-event-source-mapper";
-import { NovaEvent, InputType } from "@nova/types";
+import type { NovaEvent } from "@nova/types";
+import { InputType } from "@nova/types";
 
 const nowTimeStamp = 1670638671187;
 Date.now = jest.fn(() => nowTimeStamp);
@@ -49,7 +50,7 @@ const novaEventWithData: NovaEvent<string> = {
 const timeStamp = 123;
 const timeOrigin = 1670638671187;
 
-const mockUIEvent: React.SyntheticEvent = {
+const mockUIEvent: SyntheticEvent = {
   target: {} as EventTarget,
   timeStamp,
   type: "keydown",

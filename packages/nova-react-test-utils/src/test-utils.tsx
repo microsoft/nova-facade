@@ -1,22 +1,18 @@
 import React from "react";
-import { NovaMockEnvironment } from "./nova-mock-environment";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
 
 import { ApolloProvider } from "@apollo/client";
 import { getOperationDefinition as _getOperationDefinition } from "@apollo/client/utilities";
-import { DocumentNode, GraphQLSchema } from "graphql";
+import type { DocumentNode, GraphQLSchema } from "graphql";
 
-import {
-  createMockClient,
-  MockFunctions,
-} from "@graphitation/apollo-mock-client";
+import type { MockFunctions } from "@graphitation/apollo-mock-client";
+import { createMockClient } from "@graphitation/apollo-mock-client";
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
-import {
-  generate as payloadGenerator,
-  OperationDescriptor,
-} from "@graphitation/graphql-js-operation-payload-generator";
+import type { OperationDescriptor } from "@graphitation/graphql-js-operation-payload-generator";
+import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 
-import { GraphQLTaggedNode } from "@nova/react";
-import { NovaGraphQL } from "@nova/types";
+import type { GraphQLTaggedNode } from "@nova/react";
+import type { NovaGraphQL } from "@nova/types";
 
 type Generate<Schema, Node> = (
   operation: OperationDescriptor<Schema, Node>,

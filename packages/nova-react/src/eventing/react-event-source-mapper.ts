@@ -1,6 +1,7 @@
-import * as React from "react";
-import { EventWrapper, InputType, Source } from "@nova/types";
-import { ReactEventWrapper } from "./nova-eventing-provider";
+import type { PointerEvent } from "react";
+import type { EventWrapper, Source } from "@nova/types";
+import { InputType } from "@nova/types";
+import type { ReactEventWrapper } from "./nova-eventing-provider";
 
 /**
  * Maps DOM event type strings to the Nova InputType.
@@ -68,7 +69,7 @@ export const mapEventMetadata = (eventWrapper: ReactEventWrapper) => {
   const inputType =
     reactEvent.type === "click"
       ? mapPointerTypeEvents(
-          (reactEvent as React.PointerEvent).nativeEvent.pointerType,
+          (reactEvent as PointerEvent).nativeEvent.pointerType,
         )
       : typeMap[reactEvent.type as keyof typeof typeMap];
 

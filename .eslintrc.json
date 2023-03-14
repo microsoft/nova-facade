@@ -10,9 +10,15 @@
     "node": true
   },
   "ignorePatterns": ["**/coverage", "**/lib", "**/temp"],
-  "plugins": ["prettier"],
+  "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": "error"
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "disallowTypeAnnotations": true,
+        "prefer": "type-imports"
+      }
+    ]
   },
   "extends": ["plugin:prettier/recommended"]
 }

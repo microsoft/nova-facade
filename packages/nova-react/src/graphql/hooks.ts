@@ -1,8 +1,8 @@
 import { useNovaGraphQL } from "./nova-graphql-provider";
 import invariant from "invariant";
 
-import { GraphQLTaggedNode } from "./taggedNode";
-import { KeyType, KeyTypeData, OperationType } from "./types";
+import type { GraphQLTaggedNode } from "./taggedNode";
+import type { KeyType, KeyTypeData, OperationType } from "./types";
 
 /**
  * Executes a GraphQL query.
