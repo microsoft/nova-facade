@@ -3,7 +3,7 @@ import { NovaMockEnvironment } from "./nova-mock-environment";
 
 import { ApolloProvider } from "@apollo/client";
 import { getOperationDefinition as _getOperationDefinition } from "@apollo/client/utilities";
-import { buildClientSchema, DocumentNode, GraphQLSchema } from "graphql";
+import { DocumentNode, GraphQLSchema } from "graphql";
 
 import {
   createMockClient,
@@ -34,9 +34,33 @@ export const MockPayloadGenerator: {
 };
 
 /**
- * Exported only for testing purposes. Use `createMockEnvironment()` instead.
+ * Creates a Nova environment object that can be used with the NovaMockEnvironmentProvider and has mocks instantiated
+ * for each piece of the facade interface.
+ *
+ * The `environment.graphql.mock` mock provides an API to act on operations issued by a component tree. For details on
+ * the API see {@see https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client} and for mock data
+ * generation see {@see MockPayloadGenerator.generate}
+ *
+ * @example
+ ```ts
+   const environment = createMockEnvironment();
+   const wrapper = mount(
+     <NovaMockEnvironmentProvider environment={environment}>
+       <SomeTestSubject />
+     </NovaMockEnvironmentProvider>
+   );
+
+   await act(async () =>
+     environment.graphql.mock.resolveMostRecentOperation(operation =>
+       MockPayloadGenerator.generate(operation)
+     )
+   );
+
+   wrapper.update().find("#some-button").simulate("click", {});
+   expect(environment.commanding.trigger).toHaveBeenCalled();
+ ```
  */
-export function _createMockEnvironmentWithSchema(
+export function createMockEnvironment(
   schema: GraphQLSchema,
 ): NovaMockEnvironment {
   const client = createMockClient(schema);
@@ -56,46 +80,6 @@ export function _createMockEnvironmentWithSchema(
     ),
   };
   return env;
-}
-
-let SCHEMA: GraphQLSchema | null = null;
-
-/**
- * Creates a Nova environment object that can be used with the NovaFacadeProvider per usual, but has mocks instantiated
- * for each piece of the facade interface.
- *
- * The `environment.graphql.mock` mock provides an API to act on operations issued by a component tree. For details on
- * the API see {@see https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client} and for mock data
- * generation see {@see MockPayloadGenerator.generate}
- *
- * @example
- ```ts
-   const environment = createMockEnvironment();
-   const wrapper = mount(
-     <NovaFacadeProvider environment={environment}>
-       <SomeTestSubject />
-     </NovaFacadeProvider>
-   );
-
-   await act(async () =>
-     environment.graphql.mock.resolveMostRecentOperation(operation =>
-       MockPayloadGenerator.generate(operation)
-     )
-   );
-
-   wrapper.update().find("#some-button").simulate("click", {});
-   expect(environment.commanding.trigger).toHaveBeenCalled();
- ```
- */
-export function createMockEnvironment() {
-  if (SCHEMA === null) {
-    // TODO: This should eventually use the 1GQL shared schema.
-    // https://domoreexp.visualstudio.com/MSTeams/_workitems/edit/1763201
-    SCHEMA = buildClientSchema(
-      require("@msteams/data-schema/generated/server-schema.json"),
-    );
-  }
-  return _createMockEnvironmentWithSchema(SCHEMA);
 }
 
 function getOperationDefinition(
