@@ -8,10 +8,10 @@
     "monorepo-scripts": "bin/monorepo-scripts.js"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "esbuild": "^0.11.5",
-    "eslint": "^8.7.0",
+    "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "fast-glob": "^3.2.5",
@@ -19,6 +19,6 @@
     "just-scripts": "^2.0.0",
     "ts-jest": "^27.1.3",
     "ts-node": "^9.1.1",
-    "typescript": ">=4.2.3"
+    "typescript": ">=4.9.5"
   }
 }
