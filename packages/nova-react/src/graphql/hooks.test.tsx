@@ -17,7 +17,9 @@ describe(useLazyLoadQuery, () => {
     const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
-    spy.mockImplementation(() => {});
+    spy.mockImplementation(() => {
+      /* noop */
+    });
 
     const Subject: React.FC = () => {
       useLazyLoadQuery({} as any, {});
@@ -42,10 +44,10 @@ describe(useLazyLoadQuery, () => {
     };
 
     const Subject: React.FC = () => {
-      const { data } = useLazyLoadQuery<{ response: string; variables: {} }>(
-        query,
-        {},
-      );
+      const { data } = useLazyLoadQuery<{
+        response: string;
+        variables: Record<string, unknown>;
+      }>(query, {});
       return <span>{data}</span>;
     };
 
@@ -129,7 +131,9 @@ describe(useSubscription, () => {
     const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
-    spy.mockImplementation(() => {});
+    spy.mockImplementation(() => {
+      /* noop */
+    });
 
     const Subject: React.FC = () => {
       useSubscription({} as any);

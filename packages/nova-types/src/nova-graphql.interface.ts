@@ -19,7 +19,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   useLazyLoadQuery?: (
     query: GraphQLDocument,
     variables: { [name: string]: unknown },
-    options?: {},
+    options?: Record<string, unknown>,
   ) => { error?: Error; data?: unknown };
 
   useSubscription?: (config: {
