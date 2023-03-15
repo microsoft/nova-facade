@@ -10,7 +10,7 @@ import { EntityCommand, EventWrapper } from "@nova/types";
 import { graphql, useLazyLoadQuery } from "@nova/react";
 
 import {
-  _createMockEnvironmentWithSchema,
+  createMockEnvironment,
   MockPayloadGenerator,
   getOperationName,
   getOperationType,
@@ -56,11 +56,11 @@ const QuerySubject: React.FC = () => {
   return data ? <span>{data.user.name}</span> : null;
 };
 
-describe(_createMockEnvironmentWithSchema, () => {
+describe(createMockEnvironment, () => {
   let environment: NovaMockEnvironment;
 
   beforeEach(() => {
-    environment = _createMockEnvironmentWithSchema(schema);
+    environment = createMockEnvironment(schema);
   });
 
   it("wraps the user specified children in an Apollo provider", () => {
