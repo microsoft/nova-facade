@@ -1,6 +1,6 @@
 {
   "type": "major",
-  "comment": "use type imports and fix lint issues",
+  "comment": "use type imports, fix lint issues and bump @apollo/client",
   "packageName": "@nova/react-test-utils",
   "email": "Stanislaw.Wilczynski@microsoft.com",
   "dependentChangeType": "patch"
