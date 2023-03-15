@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add useRefetchableFragment and usePaginationFragment",
+  "packageName": "@nova/types",
+  "email": "dragoshomner@yahoo.com",
+  "dependentChangeType": "patch"
+}
