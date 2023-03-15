@@ -1,0 +1,25 @@
+type Mutation {
+  feedbackLike(input: FeedbackLikeInput!): FeedbackLikeMutationResult!
+}
+type Query {
+  feedback(id: ID!): Feedback!
+}
+
+type FeedbackLikeMutationResult {
+  feedback: Feedback!
+}
+
+type Feedback {
+  id: ID!
+  message: Message!
+  doesViewerLike: Boolean!
+}
+
+type Message {
+  text: String!
+}
+
+input FeedbackLikeInput {
+  feedbackId: ID!
+  doesViewerLike: Boolean!
+}

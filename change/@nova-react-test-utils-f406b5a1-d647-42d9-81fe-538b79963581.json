@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "add storybook decorator for nova components",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}

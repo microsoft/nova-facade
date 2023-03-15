@@ -10,7 +10,7 @@
     "just": "monorepo-scripts"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^29.2.0",
     "monorepo-scripts": "*"
   },
   "repository": {
