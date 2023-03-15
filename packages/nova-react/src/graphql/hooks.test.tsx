@@ -8,7 +8,13 @@ import { render, screen } from "@testing-library/react";
 import { NovaGraphQLProvider } from "./nova-graphql-provider";
 import { NovaGraphQL } from "@nova/types";
 
-import { useFragment, useLazyLoadQuery, useSubscription } from "./hooks";
+import {
+  useFragment,
+  useLazyLoadQuery,
+  usePaginationFragment,
+  useRefetchableFragment,
+  useSubscription,
+} from "./hooks";
 import { GraphQLTaggedNode } from "./taggedNode";
 import { FragmentRefs } from "./types";
 
@@ -121,6 +127,126 @@ describe(useFragment, () => {
     const _: () => SomeFragment$data = () =>
       useFragment(fragment, opaqueFragmentRef);
     void _;
+  });
+});
+
+describe(useRefetchableFragment, () => {
+  it("uses the host's hook, if provided", () => {
+    const graphql: NovaGraphQL = {
+      useRefetchableFragment: jest.fn(() => [
+        { someKey: "some-data" },
+        ({}) => ({ dispose: () => {} }),
+      ]),
+    };
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const fragmentRef = {} as any;
+
+    const Subject: React.FC = () => {
+      const [data, _] = useRefetchableFragment(fragment, fragmentRef);
+      return <span>{data.someKey}</span>;
+    };
+
+    render(
+      <NovaGraphQLProvider graphql={graphql}>
+        <Subject />
+      </NovaGraphQLProvider>,
+    );
+
+    expect(graphql.useRefetchableFragment).toHaveBeenCalledWith(
+      fragment,
+      fragmentRef,
+    );
+    expect(screen.getByText("some-data")).toBeDefined();
+  });
+
+  it("ensures an implementation is supplied", () => {
+    const graphql: NovaGraphQL = {
+      useRefetchableFragment: undefined,
+    };
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const fragmentRef = { someKey: "some-data" } as any;
+
+    const Subject: React.FC = () => {
+      const [data, _] = useRefetchableFragment(fragment, fragmentRef);
+      return <span>{data.someKey}</span>;
+    };
+
+    expect(() =>
+      render(
+        <NovaGraphQLProvider graphql={graphql}>
+          <Subject />
+        </NovaGraphQLProvider>,
+      ),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Expected host to provide a useRefetchableFragment hook"`,
+    );
+  });
+});
+
+describe(usePaginationFragment, () => {
+  it("uses the host's hook, if provided", () => {
+    const mockedResponse = {
+      data: {
+        someKey: "some-data",
+      },
+      loadNext: jest.fn(),
+      loadPrevious: jest.fn(),
+      hasNext: false,
+      hasPrevious: false,
+      isLoadingNext: false,
+      isLoadingPrevious: false,
+      refetch: jest.fn(),
+    };
+
+    const graphql: NovaGraphQL = {
+      usePaginationFragment: jest.fn(() => mockedResponse),
+    };
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const fragmentRef = {} as any;
+
+    const Subject: React.FC = () => {
+      const fragmentResponse = usePaginationFragment(fragment, fragmentRef);
+      return <span>{fragmentResponse.data.someKey}</span>;
+    };
+
+    render(
+      <NovaGraphQLProvider graphql={graphql}>
+        <Subject />
+      </NovaGraphQLProvider>,
+    );
+
+    expect(graphql.usePaginationFragment).toHaveBeenCalledWith(
+      fragment,
+      fragmentRef,
+    );
+    expect(screen.getByText("some-data")).toBeDefined();
+  });
+
+  it("ensures an implementation is supplied", () => {
+    const graphql: NovaGraphQL = {
+      usePaginationFragment: undefined,
+    };
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const fragmentRef = { someKey: "some-data" } as any;
+
+    const Subject: React.FC = () => {
+      const fragmentResponse = usePaginationFragment(fragment, fragmentRef);
+      return <span>{fragmentResponse.data.someKey}</span>;
+    };
+
+    expect(() =>
+      render(
+        <NovaGraphQLProvider graphql={graphql}>
+          <Subject />
+        </NovaGraphQLProvider>,
+      ),
+    ).toThrowErrorMatchingInlineSnapshot(
+      `"Expected host to provide a usePaginationFragment hook"`,
+    );
   });
 });
 
