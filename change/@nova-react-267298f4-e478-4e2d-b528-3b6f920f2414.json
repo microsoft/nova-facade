@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "use type imports and fix lint issues",
+  "packageName": "@nova/react",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "none"
+}

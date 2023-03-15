@@ -1,5 +1,6 @@
 import * as React from "react";
-import { NovaEvent, NovaEventing, EventWrapper, InputType } from "@nova/types";
+import type { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
+import { InputType } from "@nova/types";
 import invariant from "invariant";
 
 // Initializing default with null to make sure providers are correctly placed in the tree

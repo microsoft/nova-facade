@@ -6,18 +6,20 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { NovaGraphQLProvider } from "./nova-graphql-provider";
-import { NovaGraphQL } from "@nova/types";
+import type { NovaGraphQL } from "@nova/types";
 
 import { useFragment, useLazyLoadQuery, useSubscription } from "./hooks";
-import { GraphQLTaggedNode } from "./taggedNode";
-import { FragmentRefs } from "./types";
+import type { GraphQLTaggedNode } from "./taggedNode";
+import type { FragmentRefs } from "./types";
 
 describe(useLazyLoadQuery, () => {
   it("ensures an implementation is supplied", () => {
     const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
-    spy.mockImplementation(() => {});
+    spy.mockImplementation(() => {
+      /* noop */
+    });
 
     const Subject: React.FC = () => {
       useLazyLoadQuery({} as any, {});
@@ -42,10 +44,10 @@ describe(useLazyLoadQuery, () => {
     };
 
     const Subject: React.FC = () => {
-      const { data } = useLazyLoadQuery<{ response: string; variables: {} }>(
-        query,
-        {},
-      );
+      const { data } = useLazyLoadQuery<{
+        response: string;
+        variables: Record<string, unknown>;
+      }>(query, {});
       return <span>{data}</span>;
     };
 
@@ -129,7 +131,9 @@ describe(useSubscription, () => {
     const graphql: NovaGraphQL = {};
 
     const spy = jest.spyOn(console, "error");
-    spy.mockImplementation(() => {});
+    spy.mockImplementation(() => {
+      /* noop */
+    });
 
     const Subject: React.FC = () => {
       useSubscription({} as any);
