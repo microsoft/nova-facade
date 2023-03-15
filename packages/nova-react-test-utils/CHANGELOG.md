@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 13 Dec 2022 20:06:05 GMT and should not be manually modified.
+This log was last generated on Wed, 15 Mar 2023 09:33:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.0
+
+Wed, 15 Mar 2023 09:33:57 GMT
+
+### Major changes
+
+- remove dependency on teams schema (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.1.0
 
