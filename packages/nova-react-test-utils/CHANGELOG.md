@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Wed, 15 Mar 2023 09:33:57 GMT and should not be manually modified.
+This log was last generated on Wed, 15 Mar 2023 17:49:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.0.0
+
+Wed, 15 Mar 2023 17:49:27 GMT
+
+### Major changes
+
+- use type imports, fix lint issues and bump @apollo/client (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v3.0.0 (Stanislaw.Wilczynski@microsoft.com)
 
 ## 2.0.0
 

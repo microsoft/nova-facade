@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Wed, 15 Mar 2023 17:49:27 GMT",
+      "tag": "@nova/react_v1.0.9",
+      "version": "1.0.9",
+      "comments": {
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "comment": "use type imports and fix lint issues",
+            "commit": "7f7f99494ffde849360781e7ef0b85fbee5530a3"
+          },
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "7f7f99494ffde849360781e7ef0b85fbee5530a3",
+            "comment": "Bump @nova/react to v1.0.9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Dec 2022 20:06:05 GMT",
       "tag": "@nova/react_v1.0.9",
       "version": "1.0.9",

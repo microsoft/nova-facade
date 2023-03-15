@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Wed, 15 Mar 2023 17:49:27 GMT",
+      "tag": "@nova/types_v1.2.5",
+      "version": "1.2.5",
+      "comments": {
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/types",
+            "comment": "use type imports and fix lint issues",
+            "commit": "7f7f99494ffde849360781e7ef0b85fbee5530a3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Dec 2022 20:06:05 GMT",
       "tag": "@nova/types_v1.2.5",
       "version": "1.2.5",
