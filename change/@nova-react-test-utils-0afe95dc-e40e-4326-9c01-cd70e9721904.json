@@ -1,7 +1,7 @@
 {
-  "type": "none",
+  "type": "major",
   "comment": "use type imports and fix lint issues",
   "packageName": "@nova/react-test-utils",
   "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "none"
+  "dependentChangeType": "patch"
 }
