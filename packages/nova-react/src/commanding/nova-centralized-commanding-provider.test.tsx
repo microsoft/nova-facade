@@ -8,8 +8,8 @@ import {
   NovaCentralizedCommandingProvider,
   useNovaCentralizedCommanding,
 } from "./nova-centralized-commanding-provider";
+import type { NovaCentralizedCommanding } from "@nova/types";
 import {
-  NovaCentralizedCommanding,
   EntityType,
   EntityAction,
   EntityStateTransition,

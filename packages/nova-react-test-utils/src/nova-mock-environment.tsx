@@ -1,14 +1,14 @@
 import React from "react";
 import type { ComponentType } from "react";
-import {
+import type {
   NovaCentralizedCommanding,
   NovaGraphQL,
   NovaEventing,
 } from "@nova/types";
-import { MockFunctions } from "@graphitation/apollo-mock-client";
+import type { MockFunctions } from "@graphitation/apollo-mock-client";
 
+import type { GraphQLTaggedNode } from "@nova/react";
 import {
-  GraphQLTaggedNode,
   mapEventMetadata,
   NovaCentralizedCommandingProvider,
   NovaEventingProvider,

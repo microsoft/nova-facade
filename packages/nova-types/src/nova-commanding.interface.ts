@@ -1,4 +1,4 @@
-import { Source } from "./nova-eventing.interface";
+import type { Source } from "./nova-eventing.interface";
 
 /**
  * Describes the commanding contract that can be used to communicate between two logical actors within a host application.

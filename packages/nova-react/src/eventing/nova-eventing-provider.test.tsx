@@ -4,14 +4,17 @@
 
 import React from "react";
 import { render } from "@testing-library/react";
-import {
+import type {
   GeneratedEventWrapper,
-  NovaEventingProvider,
   ReactEventWrapper,
   NovaReactEventing,
+} from "./nova-eventing-provider";
+import {
+  NovaEventingProvider,
   useNovaEventing,
 } from "./nova-eventing-provider";
-import { EventWrapper, InputType, NovaEventing } from "@nova/types";
+import type { EventWrapper, NovaEventing } from "@nova/types";
+import { InputType } from "@nova/types";
 
 import * as ReactEventSourceMapper from "./react-event-source-mapper";
 
