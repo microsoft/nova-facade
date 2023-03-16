@@ -208,8 +208,8 @@ describe(usePaginationFragment, () => {
     const fragmentRef = {} as any;
 
     const Subject: React.FC = () => {
-      const fragmentResponse = usePaginationFragment(fragment, fragmentRef);
-      return <span>{fragmentResponse.data.someKey}</span>;
+      const { data } = usePaginationFragment(fragment, fragmentRef);
+      return <span>{data.someKey}</span>;
     };
 
     render(
@@ -234,8 +234,8 @@ describe(usePaginationFragment, () => {
     const fragmentRef = { someKey: "some-data" } as any;
 
     const Subject: React.FC = () => {
-      const fragmentResponse = usePaginationFragment(fragment, fragmentRef);
-      return <span>{fragmentResponse.data.someKey}</span>;
+      const { data } = usePaginationFragment(fragment, fragmentRef);
+      return <span>{data.someKey}</span>;
     };
 
     expect(() =>
