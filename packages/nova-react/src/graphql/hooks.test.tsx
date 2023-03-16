@@ -137,7 +137,7 @@ describe(useRefetchableFragment, () => {
     const graphql: NovaGraphQL = {
       useRefetchableFragment: jest.fn(() => [
         { someKey: "some-data" },
-        ({}) => ({ dispose: () => {} }),
+        ({}) => ({ dispose: jest.fn() }),
       ]),
     };
 

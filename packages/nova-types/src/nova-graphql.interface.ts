@@ -23,7 +23,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     data: unknown,
     refetch: (
       variables: { [name: string]: unknown },
-      options?: {},
+      options?: Record<string, unknown>,
     ) => { dispose: () => void },
   ];
 
@@ -32,15 +32,21 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     fragmentRef: unknown,
   ) => {
     data: unknown;
-    loadNext: (count: number, options?: {}) => { dispose: () => void };
-    loadPrevious: (count: number, options?: {}) => { dispose: () => void };
+    loadNext: (
+      count: number,
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void };
+    loadPrevious: (
+      count: number,
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void };
     hasNext: boolean;
     hasPrevious: boolean;
     isLoadingNext: boolean;
     isLoadingPrevious: boolean;
     refetch: (
       variables: { [name: string]: unknown },
-      options?: {},
+      options?: Record<string, unknown>,
     ) => { dispose: () => void };
   };
 

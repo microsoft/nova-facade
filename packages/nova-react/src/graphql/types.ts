@@ -58,7 +58,7 @@ export type ArrayKeyTypeData<
  * Support for refetchable fragments like useRefetchableFragment and usePaginationFragment
  */
 
-export type RefetchFn<Variables extends {} = {}> = (
+export type RefetchFn<Variables extends Record<string, unknown>> = (
   variables: Partial<Variables>,
   options?: RefetchOptions,
 ) => Disposable;
@@ -74,11 +74,11 @@ type FetchPolicy =
   | "network-only"
   | "store-only";
 
-interface RefetchOptions {
+type RefetchOptions = {
   onCompleted?: (error: Error | null) => void;
   fetchPolicy?: FetchPolicy;
-}
+};
 
-interface Disposable {
+type Disposable = {
   dispose(): void;
-}
+};
