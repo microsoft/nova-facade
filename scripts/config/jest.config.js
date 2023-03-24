@@ -3,4 +3,5 @@ module.exports = {
   rootDir: process.cwd(),
   roots: ["<rootDir>/src"],
   testPathIgnorePatterns: ["node_modules", "__generated__"],
+  testEnvironment: "jsdom",
 };
