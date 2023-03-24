@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "bump version of react",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

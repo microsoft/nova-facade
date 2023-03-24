@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 24 Mar 2023 16:52:58 GMT",
+      "tag": "@nova/react-test-utils_v3.1.0",
+      "version": "3.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "bump version of react",
+            "commit": "2774eb5e24d8c56453d7665c0c7fdb0ef203e5cf"
+          },
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "2774eb5e24d8c56453d7665c0c7fdb0ef203e5cf",
+            "comment": "Bump @nova/react-test-utils to v3.1.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Mar 2023 17:49:27 GMT",
       "tag": "@nova/react-test-utils_v3.0.0",
       "version": "3.0.0",
