@@ -1,3 +1,4 @@
+import type { EsbuildBuildOptions } from "just-scripts";
 import {
   tscTask,
   esbuildTask,
@@ -5,7 +6,6 @@ import {
   eslintTask,
   argv,
   parallel,
-  EsbuildBuildOptions,
 } from "just-scripts";
 import * as path from "path";
 import * as fs from "fs";
@@ -36,7 +36,7 @@ export const build = () => {
                   const absolutePath = path.resolve(
                     args.importer,
                     "..",
-                    extPath
+                    extPath,
                   );
                   if (
                     fs.existsSync(absolutePath) &&
@@ -61,7 +61,7 @@ export const build = () => {
     esbuildTask({
       ...baseEsbuildOptions,
       format: "cjs",
-    })
+    }),
   );
 };
 
