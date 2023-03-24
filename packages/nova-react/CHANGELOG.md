@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 13 Dec 2022 20:06:05 GMT and should not be manually modified.
+This log was last generated on Fri, 24 Mar 2023 16:52:58 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Fri, 24 Mar 2023 16:52:58 GMT
+
+### Minor changes
+
+- bump version of react (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.0.9
 
