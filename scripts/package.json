@@ -8,9 +8,10 @@
     "monorepo-scripts": "bin/monorepo-scripts.js"
   },
   "devDependencies": {
+    "@graphql-tools/jest-transform": "^1.2.2",
+    "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
-    "@types/node": "^16.11.6",
     "esbuild": "^0.17.1",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",

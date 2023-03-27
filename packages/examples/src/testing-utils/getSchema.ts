@@ -1,4 +1,4 @@
 import { buildASTSchema } from "graphql";
-import * as schema from "../schema.graphql";
 
-export const getSchema = () => buildASTSchema(schema);
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+export const getSchema = () => buildASTSchema(require("../schema.graphql"));

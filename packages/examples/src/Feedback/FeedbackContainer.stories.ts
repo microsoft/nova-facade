@@ -22,12 +22,21 @@ export const Primary: Story & {
   parameters: {
     novaEnvironment: {
       resolvers: {
+        Feedback: () => sampleFeedback
+      },
+    },
+  },
+};
+
+export const Liked: Story & {
+  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
+} = {
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
         Feedback: () => ({
-          id: "42",
-          message: {
-            text: "Feedback title",
-          },
-          doesViewerLike: false,
+          ...sampleFeedback,
+          doesViewerLike: true,
         }),
       },
     },
@@ -40,19 +49,10 @@ export const Like: Story & {
   parameters: {
     novaEnvironment: {
       resolvers: {
-        Feedback: () => ({
-          id: "42",
-          message: {
-            text: "Feedback title",
-          },
-          doesViewerLike: false,
-        }),
+        Feedback: () => sampleFeedback,
         FeedbackLikeMutationResult: () => ({
           feedback: {
-            id: "42",
-            message: {
-              text: "Feedback title",
-            },
+            ...sampleFeedback,
             doesViewerLike: true,
           },
         }),
@@ -64,4 +64,12 @@ export const Like: Story & {
     const likeButton = await container.findByRole("button", { name: "Like" });
     userEvent.click(likeButton);
   },
+};
+
+const sampleFeedback = {
+  id: "42",
+  message: {
+    text: "Feedback title",
+  },
+  doesViewerLike: false,
 };
