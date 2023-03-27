@@ -44,11 +44,12 @@ export const FeedbackComponent = (props: Props) => {
   //       },
   //     },
   //   });
+  console.log({ like, isPending });
   return (
     <div>
       {/* TODO: handle setting message from mutation depending on it success state */}
       {/* {errorMessage != null && <span id="errorMessage">{errorMessage}</span>} */}
-      Feedback: {feedback.message.text}
+      Feedback: {feedback?.message?.text}
       <button
         id="likeButton"
         disabled={isPending}
@@ -56,10 +57,17 @@ export const FeedbackComponent = (props: Props) => {
           like({
             variables: {
               input: {
-                feedbackId: feedback.id,
+                feedbackId: feedback?.id ?? "42",
               },
             },
-          });
+          })
+            .then((result) => {
+              console.log({ result });
+            })
+            .catch((error) => {
+              console.log({ error });
+              throw error;
+            });
         }}
       >
         {feedback.doesViewerLike ? "Unlike" : "Like"}
