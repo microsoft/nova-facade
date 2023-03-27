@@ -1,6 +1,6 @@
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
-import { createMockEnvironment, MockPayloadGenerator } from "./test-utils";
+import { MockPayloadGenerator } from "./test-utils";
 
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
@@ -10,8 +10,12 @@ import { makeDecorator } from "@storybook/addons"; // it would be better to impo
 import { action } from "@storybook/addon-actions";
 
 import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
+import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
+import type { MockFunctions } from "@graphitation/apollo-mock-client";
+import { createMockClient } from "@graphitation/apollo-mock-client";
 
-import type { EntityCommand, EventWrapper } from "@nova/types";
+import type { EntityCommand, EventWrapper, NovaGraphQL } from "@nova/types";
+import { ApolloProvider } from "@apollo/client";
 
 type DefaultMockResolvers = Partial<{
   ID: string;
@@ -41,12 +45,13 @@ export const getNovaEnvironmentDecorator: (
         [],
       );
       const parameters = settings.parameters as
-        | NovaEnvironmentDecoratorParameters
+        | NovaEnvironmentDecoratorParameters["novaEnvironment"]
         | undefined;
-      const mockResolvers = parameters?.novaEnvironment?.resolvers;
-      environment.graphql.mock.queueOperationResolver((operation) =>
-        MockPayloadGenerator.generate(operation, mockResolvers),
-      );
+      const mockResolvers = parameters?.resolvers;
+      environment.graphql.mock.queueOperationResolver((operation) => {
+        const payload = MockPayloadGenerator.generate(operation, mockResolvers);
+        return payload;
+      });
       return (
         <NovaMockEnvironmentProvider environment={environment}>
           {getStory(context)}
@@ -58,8 +63,15 @@ export const getNovaEnvironmentDecorator: (
 function createNovaEnvironment(
   schema: GraphQLSchema,
 ): NovaMockEnvironment<"storybook"> {
+  const client = createMockClient(schema);
   const env: NovaMockEnvironment<"storybook"> = {
-    ...createMockEnvironment(schema),
+    graphql: {
+      ...(GraphQLHooks as NovaGraphQL),
+      mock: client.mock as MockFunctions<any, any>,
+    },
+    providerWrapper: ({ children }) => (
+      <ApolloProvider client={client}>{children}</ApolloProvider>
+    ),
     commanding: {
       trigger: defaultTrigger,
     },

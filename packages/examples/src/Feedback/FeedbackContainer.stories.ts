@@ -22,7 +22,7 @@ export const Primary: Story & {
     novaEnvironment: {
       resolvers: {
         Feedback: () => ({
-          id: "1",
+          id: "42",
           message: {
             text: "Feedback title",
           },
