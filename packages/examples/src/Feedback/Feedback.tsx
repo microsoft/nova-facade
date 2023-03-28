@@ -1,5 +1,6 @@
 import { graphql, useFragment, useMutation } from "@nova/react";
 import * as React from "react";
+import type { FeedbackComponent_LikeMutation } from "./__generated__/FeedbackComponent_LikeMutation.graphql";
 import type { Feedback_feedbackFragment$key } from "./__generated__/Feedback_feedbackFragment.graphql";
 
 type Props = {
@@ -13,13 +14,14 @@ export const Feedback_feedbackFragment = graphql`
       text
     }
     doesViewerLike
+    __typename
   }
 `;
 
 export const FeedbackComponent = (props: Props) => {
   //   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const feedback = useFragment(Feedback_feedbackFragment, props.feedback);
-  const [like, isPending] = useMutation(
+  const [like, isPending] = useMutation<FeedbackComponent_LikeMutation>(
     graphql`
       mutation FeedbackComponent_LikeMutation($input: FeedbackLikeInput!) {
         feedbackLike(input: $input) {
@@ -61,14 +63,15 @@ export const FeedbackComponent = (props: Props) => {
                 doesViewerLike: !feedback?.doesViewerLike,
               },
             },
-          })
-            .then((result) => {
-              console.log({ result });
-            })
-            .catch((error) => {
-              console.log({ error });
-              throw error;
-            });
+            optimisticResponse: {
+              feedbackLike: {
+                feedback: {
+                  id: feedback?.id ?? "42",
+                  doesViewerLike: !feedback?.doesViewerLike,
+                },
+              },
+            },
+          });
         }}
       >
         {feedback.doesViewerLike ? "Unlike" : "Like"}

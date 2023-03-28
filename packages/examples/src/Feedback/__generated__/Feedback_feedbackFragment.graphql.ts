@@ -9,6 +9,7 @@ export type Feedback_feedbackFragment = {
         readonly text: string;
     };
     readonly doesViewerLike: boolean;
+    readonly __typename: "Feedback";
     readonly " $refType": "Feedback_feedbackFragment";
 };
 export type Feedback_feedbackFragment$data = Feedback_feedbackFragment;

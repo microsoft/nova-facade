@@ -22,7 +22,7 @@ export const Primary: Story & {
   parameters: {
     novaEnvironment: {
       resolvers: {
-        Feedback: () => sampleFeedback
+        Feedback: () => sampleFeedback,
       },
     },
   },
