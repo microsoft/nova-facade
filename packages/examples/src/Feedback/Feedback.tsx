@@ -58,6 +58,7 @@ export const FeedbackComponent = (props: Props) => {
             variables: {
               input: {
                 feedbackId: feedback?.id ?? "42",
+                doesViewerLike: !feedback?.doesViewerLike,
               },
             },
           })
