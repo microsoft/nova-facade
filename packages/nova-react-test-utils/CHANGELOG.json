@@ -2,6 +2,33 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 30 Mar 2023 16:45:12 GMT",
+      "tag": "@nova/react-test-utils_v3.1.1",
+      "version": "3.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "miclo@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7",
+            "comment": "Add types entry to exports map"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.1.1",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.2.6",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 Mar 2023 16:52:58 GMT",
       "tag": "@nova/react-test-utils_v3.1.0",
       "version": "3.1.0",

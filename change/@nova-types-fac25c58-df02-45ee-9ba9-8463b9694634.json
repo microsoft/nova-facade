@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add types entry to exports map",
-  "packageName": "@nova/types",
-  "email": "miclo@microsoft.com",
-  "dependentChangeType": "patch"
-}

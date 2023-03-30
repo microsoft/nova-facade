@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Thu, 30 Mar 2023 16:45:12 GMT",
+      "tag": "@nova/types_v1.2.6",
+      "version": "1.2.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "miclo@microsoft.com",
+            "package": "@nova/types",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7",
+            "comment": "Add types entry to exports map"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Mar 2023 17:49:27 GMT",
       "tag": "@nova/types_v1.2.5",
       "version": "1.2.5",
