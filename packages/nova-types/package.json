@@ -21,6 +21,7 @@
     "module": "./lib/index.mjs",
     "exports": {
       ".": {
+        "types": "./lib/index.d.ts",
         "import": "./lib/index.mjs",
         "require": "./lib/index.js"
       }
