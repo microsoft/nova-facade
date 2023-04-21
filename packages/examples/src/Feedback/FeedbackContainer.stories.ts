@@ -66,6 +66,21 @@ export const Like: Story & {
   },
 };
 
+// TODO get this to work
+export const LikeFailure: Story & {
+  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
+} = {
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
+        Feedback: () => sampleFeedback,
+        // FeedbackLikeMutationResult: () => new Error("Like failed"),
+      },
+    },
+  },
+  play: Like.play,
+};
+
 const sampleFeedback = {
   id: "42",
   message: {

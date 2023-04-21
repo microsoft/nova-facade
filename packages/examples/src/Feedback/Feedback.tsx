@@ -18,7 +18,7 @@ export const Feedback_feedbackFragment = graphql`
 `;
 
 export const FeedbackComponent = (props: Props) => {
-  //   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const feedback = useFragment(Feedback_feedbackFragment, props.feedback);
   const [like, isPending] = useMutation<FeedbackComponent_LikeMutation>(
     graphql`
@@ -32,24 +32,11 @@ export const FeedbackComponent = (props: Props) => {
       }
     `,
   );
-
-  // {
-  //     optimisticResponse: {
-  //       feedbackLike: {
-  //         __typename: "FeedbackLikeResponsePayload",
-  //         feedback: {
-  //           __typename: "Feedback",
-  //           id: props.feedback.id,
-  //           doesViewerLike: true,
-  //         },
-  //       },
-  //     },
-  //   });
-  console.log({ like, isPending });
   return (
     <div>
-      {/* TODO: handle setting message from mutation depending on it success state */}
-      {/* {errorMessage != null && <span id="errorMessage">{errorMessage}</span>} */}
+      {errorMessage != null && (
+        <span style={{ color: "red" }}>{errorMessage}</span>
+      )}
       Feedback: {feedback?.message?.text}
       <button
         id="likeButton"
@@ -70,6 +57,8 @@ export const FeedbackComponent = (props: Props) => {
                 },
               },
             },
+          }).catch(() => {
+            setErrorMessage("Something went wrong");
           });
         }}
       >
