@@ -1277,24 +1277,10 @@
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
   integrity sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==
 
-"@graphitation/apollo-mock-client@^0.10.5":
-  version "0.10.17"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.10.17.tgz#95cae10c13d1c6a5efbd4de592fa0532c3283742"
-  integrity sha512-Fak2ADbYIcmlOe8NZARIsACZtgoEQc+tYmHxL84eoiVgI2Ql30Ivq82ZDixVxmiScewBc4yBi0LTBl6+GenGZg==
-  dependencies:
-    invariant "^2.2.4"
-
 "@graphitation/apollo-mock-client@^0.11.0":
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.0.tgz#1074cbfb106659b68fdb3d155d215e4e6019794c"
   integrity sha512-0tXP37d8Mf5x0rd5vLQph2Tx2cZ8tR4wogicNBmVSleJR3SSEKDia+h7ZZ5r0P/dq6xsYpOazISpBRyuNREaYQ==
-  dependencies:
-    invariant "^2.2.4"
-
-"@graphitation/apollo-react-relay-duct-tape@^0.7.7":
-  version "0.7.16"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-0.7.16.tgz#7f4bcb8b94e4c4b81183f5159431c8a79a94a791"
-  integrity sha512-08hYb0OjiSPNS/MYLwEq30VI+OOCCv1DVStCmOBwBepaOfiLRgC0ngd98ErxeLs/uLFcSmNU/jpw5OQu37yhYw==
   dependencies:
     invariant "^2.2.4"
 
@@ -1316,13 +1302,6 @@
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.12.1.tgz#e1d6911a6ac55fd6131dbe1808a43ee3b37b443c"
   integrity sha512-N1S3FsL0GwkcCT8iB6MC0iP72GLiXswIuzAdJ/DppdwWwHGELJzxAHPFl02vGNYoXQKpF7/bjNvFly7+rJzy0A==
-  dependencies:
-    deepmerge "^4.2.2"
-
-"@graphitation/graphql-js-operation-payload-generator@^0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.8.5.tgz#cbc17443e0f7bb6d3616cdab620200d9ca2c41f3"
-  integrity sha512-hl2jO/jBedrpdUItXAcrjndyoPZ5kK0vZ5MAnLhxS6qLFhL8oF/10jX3H1toLdegS/5mD5Uzvpsl/9Y2xpWQ6g==
   dependencies:
     deepmerge "^4.2.2"
 
@@ -2081,41 +2060,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
-
-"@nova/react-test-utils@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@nova/react-test-utils/-/react-test-utils-3.1.0.tgz#79eea681a5a67117c160338b7559dbe79a87bb62"
-  integrity sha512-8mbvPnplpbNN/EDMlUZtK4wkEweR9f27mSmkOexoEHErOEnWnMzAaZ6FXNUlQiajg20AbcJPLGrc284jux2xJQ==
-  dependencies:
-    "@apollo/client" "^3.4.15"
-    "@graphitation/apollo-mock-client" "^0.10.5"
-    "@graphitation/apollo-react-relay-duct-tape" "^0.7.7"
-    "@graphitation/graphql-js-operation-payload-generator" "^0.8.5"
-    "@graphitation/graphql-js-tag" "^0.9.0"
-    "@nova/react" "^1.1.0"
-    "@nova/types" "^1.2.5"
-    graphql "^15.5.0"
-    invariant "^2.2.4"
-    relay-compiler "^10.1.3"
-    relay-compiler-language-graphitation "^0.5.1"
-    yargs "^16.2.0"
-
-"@nova/react@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@nova/react/-/react-1.1.0.tgz#7e72b985bd7a335d4d9e62b895f465091c338a78"
-  integrity sha512-wQFN3qbk37Yjd3u6sGhFi0ZnYCitU2FZesYRb1rExrpvrWlFJiliP5bAr5xhEbfsd51jdb7W43EZPsBgSd3hyg==
-  dependencies:
-    "@nova/types" "^1.2.5"
-    graphql "^15.5.0"
-    invariant "^2.2.4"
-    relay-compiler "^10.1.3"
-    relay-compiler-language-graphitation "^0.5.1"
-    yargs "^16.2.0"
-
-"@nova/types@1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@nova/types/-/types-1.2.5.tgz#590df63a2beab3922652f596bb23ac6402fca657"
-  integrity sha512-KuVt6DV3/o30tkgJu78Wl45TMMjqjFKtCEbauArM+eGX2TXVP6qaQ3euODaJZ+z02lX8+vP14HT8Q46GMuKy1w==
 
 "@parcel/watcher@^2.1.0":
   version "2.1.0"
@@ -9351,14 +9295,6 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==
 
-relay-compiler-language-graphitation@^0.5.1:
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/relay-compiler-language-graphitation/-/relay-compiler-language-graphitation-0.5.3.tgz#3a4b74227a7cbe0c7626e0df344467ced4d2367a"
-  integrity sha512-VR9MFvQYbjH1RPkXFUxpiegEOv3ygOQNonV7HOkv/TdxocFtTdSYx4Zqxbqdd1rZu5lTjKfeUTevOOzbInq+dA==
-  dependencies:
-    relay-compiler-language-typescript "^14.0.0"
-    typescript "^4.2.3"
-
 relay-compiler-language-graphitation@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/relay-compiler-language-graphitation/-/relay-compiler-language-graphitation-0.8.2.tgz#9f2f2c69795abed38072ca14b2471cf2ea4cc336"
@@ -9371,13 +9307,6 @@ relay-compiler-language-typescript@>=14.0.0:
   version "15.0.1"
   resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-15.0.1.tgz#78e952cdf6d7c9f833f168c6f8765e985a791d3d"
   integrity sha512-hy760TxYhylNhSDkkxrQJvEqbhtknE8YtzmY+tRpgKGCq1Axi7eh3YjCLmfc3P2jumJXNEROQTkqqz8IbgU+tg==
-  dependencies:
-    invariant "^2.2.4"
-
-relay-compiler-language-typescript@^14.0.0:
-  version "14.3.0"
-  resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-14.3.0.tgz#33d516c0bd286c9ccd93d6854aa52df725c4de89"
-  integrity sha512-UonGzflk11duTthhbcbrVunx0IgdDjBgkrUSfZFpZRdfk/t1KlMiLiYHXXTNqFn76Gl9aOOlx9hzGVZ+rtEelA==
   dependencies:
     invariant "^2.2.4"
 
@@ -10427,7 +10356,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@>=4.2.3, typescript@>=4.9.5, typescript@^4.2.3:
+typescript@>=4.2.3, typescript@>=4.9.5:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==

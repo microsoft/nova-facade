@@ -15,9 +15,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@nova/react": "1.1.0",
-    "@nova/react-test-utils": "3.1.0",
-    "@nova/types": "1.2.5",
+    "@nova/react": "1.1.1",
+    "@nova/react-test-utils": "3.1.1",
+    "@nova/types": "1.2.6",
     "graphql": "^15.5.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
