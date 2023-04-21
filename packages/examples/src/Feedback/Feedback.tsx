@@ -14,7 +14,6 @@ export const Feedback_feedbackFragment = graphql`
       text
     }
     doesViewerLike
-    __typename
   }
 `;
 

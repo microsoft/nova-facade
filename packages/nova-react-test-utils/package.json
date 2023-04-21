@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.15",
-    "@graphitation/apollo-mock-client": "^0.10.5",
+    "@graphitation/apollo-mock-client": "^0.11.0",
     "@graphitation/apollo-react-relay-duct-tape": "^0.8.2",
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.0",
     "@graphitation/graphql-js-tag": "^0.9.0",
