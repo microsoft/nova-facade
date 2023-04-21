@@ -19,8 +19,8 @@
     "@nova/react-test-utils": "3.1.1",
     "@nova/types": "1.2.6",
     "graphql": "^15.5.0",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
