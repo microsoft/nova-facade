@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 30 Mar 2023 16:45:12 GMT and should not be manually modified.
+This log was last generated on Wed, 26 Apr 2023 08:47:37 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 3.1.2
+
+Wed, 26 Apr 2023 08:47:37 GMT
+
+### Patches
+
+- Bump @nova/react to v1.2.0
+- Bump @nova/types to v1.3.0
 
 ## 3.1.1
 

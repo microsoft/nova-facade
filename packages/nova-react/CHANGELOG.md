@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 30 Mar 2023 16:45:12 GMT and should not be manually modified.
+This log was last generated on Wed, 26 Apr 2023 08:47:37 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.0
+
+Wed, 26 Apr 2023 08:47:37 GMT
+
+### Minor changes
+
+- update nova hooks to support context (52814187+ira-kaundal@users.noreply.github.com)
+- Bump @nova/types to v1.3.0
 
 ## 1.1.1
 

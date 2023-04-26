@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Wed, 26 Apr 2023 08:47:37 GMT",
+      "tag": "@nova/react_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "52814187+ira-kaundal@users.noreply.github.com",
+            "package": "@nova/react",
+            "commit": "671a9acd64ad6b6200355a3b8cebe84ddbe90d1f",
+            "comment": "update nova hooks to support context"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react",
+            "comment": "Bump @nova/types to v1.3.0",
+            "commit": "671a9acd64ad6b6200355a3b8cebe84ddbe90d1f"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 30 Mar 2023 16:45:12 GMT",
       "tag": "@nova/react_v1.1.1",
       "version": "1.1.1",
