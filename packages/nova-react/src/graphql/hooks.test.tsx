@@ -47,7 +47,8 @@ describe(useLazyLoadQuery, () => {
       const { data } = useLazyLoadQuery<{
         response: string;
         variables: Record<string, unknown>;
-      }>(query, {});
+        context?: Record<string, unknown>;
+      }>(query, {}, { context: { callerInfo: "subject-with-query" } });
       return <span>{data}</span>;
     };
 
@@ -57,7 +58,11 @@ describe(useLazyLoadQuery, () => {
       </NovaGraphQLProvider>,
     );
 
-    expect(graphql.useLazyLoadQuery).toHaveBeenCalledWith(query, {}, undefined);
+    expect(graphql.useLazyLoadQuery).toHaveBeenCalledWith(
+      query,
+      {},
+      { context: { callerInfo: "subject-with-query" } }
+    );
     expect(screen.getByText("some-data")).toBeDefined();
   });
 });
@@ -163,6 +168,7 @@ describe(useSubscription, () => {
     const expectedArgument = {
       subscription,
       variables: { someVar: "some-value" },
+      context: { callerInfo: "subject-with-subscription" },
       onNext,
       onError,
     };

@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "update nova hooks to support context",
+  "packageName": "@nova/types",
+  "email": "52814187+ira-kaundal@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
