@@ -128,7 +128,8 @@ export function useLazyLoadQuery<TQuery extends OperationType>(
  *                    fragment.
  * @returns The data corresponding to the field selections.
  */
-export function useFragment<TKey extends KeyType>(fragmentInput: GraphQLTaggedNode,
+export function useFragment<TKey extends KeyType>(
+  fragmentInput: GraphQLTaggedNode,
   fragmentRef: TKey,
 ): KeyTypeData<TKey> {
   return (
