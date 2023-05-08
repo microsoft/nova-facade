@@ -6,7 +6,7 @@ import type { GraphQLSchema } from "graphql";
 import * as React from "react";
 
 import type { MakeDecoratorResult } from "@storybook/addons";
-import { makeDecorator } from "@storybook/addons"; // it would be better to import from @storybook/preview-api but that one is available only in version 7. As long as we support both 6 and 7 we keep this import.
+import { makeDecorator } from "@storybook/addons";
 import { action } from "@storybook/addon-actions";
 
 import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
