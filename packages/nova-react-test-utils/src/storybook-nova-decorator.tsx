@@ -28,9 +28,28 @@ type DefaultMockResolvers = Partial<{
 export type NovaEnvironmentDecoratorParameters<
   T extends DefaultMockResolvers = DefaultMockResolvers,
 > = {
-  novaEnvironment: {
-    resolvers?: MockResolvers<T>;
-  };
+  novaEnvironment:
+    | {
+        enableQueuedMockResolvers?: true;
+        resolvers?: MockResolvers<T>;
+      }
+    | {
+        enableQueuedMockResolvers?: false;
+        resolvers?: never;
+      };
+};
+
+const Envs: Record<string, NovaMockEnvironment<"storybook">> = {};
+
+export const getEnvForStory = (storyId: string) => {
+  const env = Envs[storyId];
+  if (!env) {
+    throw new Error(
+      `No environment found for story "${storyId}". Did you forget to add the "withNovaEnvironment" decorator? Remember that you can call "getEnvForStory" only once per story play function.`,
+    );
+  }
+  delete Envs[storyId];
+  return env;
 };
 
 export const getNovaEnvironmentDecorator: (
@@ -45,13 +64,18 @@ export const getNovaEnvironmentDecorator: (
         [],
       );
       const parameters = settings.parameters as
-        | NovaEnvironmentDecoratorParameters["novaEnvironment"]
-        | undefined;
-      const mockResolvers = parameters?.resolvers;
-      environment.graphql.mock.queueOperationResolver((operation) => {
-        const payload = MockPayloadGenerator.generate(operation, mockResolvers);
-        return payload;
-      });
+        | NovaEnvironmentDecoratorParameters["novaEnvironment"];
+      if (parameters?.enableQueuedMockResolvers ?? true) {
+        const mockResolvers = parameters?.resolvers;
+        environment.graphql.mock.queueOperationResolver((operation) => {
+          const payload = MockPayloadGenerator.generate(
+            operation,
+            mockResolvers,
+          );
+          return payload;
+        });
+      }
+      Envs[context.name] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
           {getStory(context)}

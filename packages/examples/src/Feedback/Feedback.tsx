@@ -35,7 +35,7 @@ export const FeedbackComponent = (props: Props) => {
   return (
     <div>
       {errorMessage != null && (
-        <span style={{ color: "red" }}>{errorMessage}</span>
+        <div style={{ color: "red" }}>{errorMessage}</div>
       )}
       Feedback: {feedback?.message?.text}
       <button

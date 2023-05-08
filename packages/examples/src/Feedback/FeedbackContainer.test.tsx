@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
 
-const { Primary, Liked, Like } = composeStories(stories);
+const { Primary, Liked, Like, LikeFailure } = composeStories(stories);
 
 describe("FeedbackContainer", () => {
   it("should show like button", async () => {
@@ -24,5 +24,12 @@ describe("FeedbackContainer", () => {
     await Like.play({ canvasElement: container });
     const button = await screen.findByRole("button", { name: "Unlike" });
     expect(button).toBeInTheDocument();
+  });
+
+  it("should show an error if the like button fails", async () => {
+    const { container } = render(<LikeFailure />);
+    await LikeFailure.play({ canvasElement: container, name: "Like failure" });
+    const error = await screen.findByText("Something went wrong");
+    expect(error).toBeInTheDocument();
   });
 });

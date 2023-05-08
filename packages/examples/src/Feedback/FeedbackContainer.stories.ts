@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
+import { MockPayloadGenerator } from "@nova/react-test-utils";
+import { getEnvForStory } from "@nova/react-test-utils";
 import { getNovaEnvironmentDecorator } from "@nova/react-test-utils";
 import { getSchema } from "../testing-utils/getSchema";
 import type { TypeMap } from "../__generated__/schema.all.interface";
@@ -66,19 +68,30 @@ export const Like: Story & {
   },
 };
 
-// TODO get this to work
 export const LikeFailure: Story & {
   parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
 } = {
+  storyName: "Like failure",
   parameters: {
     novaEnvironment: {
-      resolvers: {
-        Feedback: () => sampleFeedback,
-        // FeedbackLikeMutationResult: () => new Error("Like failed"),
-      },
+      enableQueuedMockResolvers: false,
     },
   },
-  play: Like.play,
+  play: async (context) => {
+    const {
+      graphql: { mock },
+    } = getEnvForStory(context.name);
+
+    // wait for next tick for apollo client to update state
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await mock.resolveMostRecentOperation((operation) =>
+      MockPayloadGenerator.generate(operation, {
+        Feedback: () => sampleFeedback,
+      }),
+    );
+    await Like.play?.(context);
+    mock.rejectMostRecentOperation(new Error("Like failed"));
+  },
 };
 
 const sampleFeedback = {
