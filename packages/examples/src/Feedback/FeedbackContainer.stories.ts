@@ -71,7 +71,7 @@ export const Like: Story & {
 export const LikeFailure: Story & {
   parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
 } = {
-  storyName: "Like failure",
+  name: "Like failure",
   parameters: {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
