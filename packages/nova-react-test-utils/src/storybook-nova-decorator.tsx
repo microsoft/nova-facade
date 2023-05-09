@@ -39,6 +39,12 @@ export type NovaEnvironmentDecoratorParameters<
       };
 };
 
+// Preferably, instead of creating module scope state, we would expose environment
+// for specific story on `parameters` object by adding the property `parameters.novaEnvironment` inside
+// the decorator. Unfortunately, there seems to be an issue with Storybook that the parameters passed to `play`
+// function are not getting updated, even if they were changed in the decorator. We should remove the modules scope
+// once the issue is fixed upstream. Check https://github.com/storybookjs/storybook/issues/21252#issuecomment-1447777629
+// for details.
 const Envs: Record<string, NovaMockEnvironment<"storybook">> = {};
 
 export const getEnvForStory = (storyId: string) => {
