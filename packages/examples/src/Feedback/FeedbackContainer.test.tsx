@@ -4,7 +4,7 @@ import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
 
-const { Primary, Liked, Like, LikeFailure } = composeStories(stories);
+const { Primary, Liked, Like, LikeFailure, Loading } = composeStories(stories);
 
 describe("FeedbackContainer", () => {
   it("should show like button", async () => {
@@ -31,5 +31,11 @@ describe("FeedbackContainer", () => {
     await LikeFailure.play({ canvasElement: container, name: "Like failure" });
     const error = await screen.findByText("Something went wrong");
     expect(error).toBeInTheDocument();
+  });
+
+  it("should show loading state", async () => {
+    render(<Loading />);
+    const loading = await screen.findByText("Loading...");
+    expect(loading).toBeInTheDocument();
   });
 });

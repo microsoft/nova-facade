@@ -94,6 +94,16 @@ export const LikeFailure: Story & {
   },
 };
 
+export const Loading: Story & {
+  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
+} = {
+  parameters: {
+    novaEnvironment: {
+      enableQueuedMockResolvers: false,
+    },
+  },
+};
+
 const sampleFeedback = {
   id: "42",
   message: {
