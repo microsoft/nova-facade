@@ -30,30 +30,7 @@ export const MockPayloadGenerator: {
 
 /**
  * Creates a Nova environment object that can be used with the NovaMockEnvironmentProvider and has mocks instantiated
- * for each piece of the facade interface.
- *
- * The `environment.graphql.mock` mock provides an API to act on operations issued by a component tree. For details on
- * the API see {@see https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client} and for mock data
- * generation see {@see MockPayloadGenerator.generate}
- *
- * @example
- ```ts
-   const environment = createMockEnvironment();
-   const wrapper = mount(
-     <NovaMockEnvironmentProvider environment={environment}>
-       <SomeTestSubject />
-     </NovaMockEnvironmentProvider>
-   );
-
-   await act(async () =>
-     environment.graphql.mock.resolveMostRecentOperation(operation =>
-       MockPayloadGenerator.generate(operation)
-     )
-   );
-
-   wrapper.update().find("#some-button").simulate("click", {});
-   expect(environment.commanding.trigger).toHaveBeenCalled();
- ```
+ * for each piece of the facade interface. Check README for details.
  */
 export function createMockEnvironment(
   schema: GraphQLSchema,
