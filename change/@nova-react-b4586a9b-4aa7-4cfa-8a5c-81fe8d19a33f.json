@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "make context optional in use subscription",
+  "packageName": "@nova/react",
+  "email": "52814187+ira-kaundal@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}

@@ -146,7 +146,7 @@ interface GraphQLSubscriptionConfig<
   /**
    * Should be avoided when possible as it will not be compatible with Relay APIs.
    */
-  context: TSubscriptionPayload["context"];
+  context?: TSubscriptionPayload["context"];
   /**
    * Should response be nullable?
    */
