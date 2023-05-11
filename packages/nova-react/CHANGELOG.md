@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 26 Apr 2023 08:47:37 GMT and should not be manually modified.
+This log was last generated on Thu, 11 May 2023 15:41:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.2.1
+
+Thu, 11 May 2023 15:41:59 GMT
+
+### Patches
+
+- make context optional in use subscription (52814187+ira-kaundal@users.noreply.github.com)
 
 ## 1.2.0
 
