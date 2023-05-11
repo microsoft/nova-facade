@@ -18,21 +18,17 @@ const meta: Meta<typeof FeedbackContainer> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story & {
-  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
-} = {
+export const Primary: Story = {
   parameters: {
     novaEnvironment: {
       resolvers: {
         Feedback: () => sampleFeedback,
       },
     },
-  },
+  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
 };
 
-export const Liked: Story & {
-  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
-} = {
+export const Liked: Story = {
   parameters: {
     novaEnvironment: {
       resolvers: {
@@ -42,12 +38,10 @@ export const Liked: Story & {
         }),
       },
     },
-  },
+  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
 };
 
-export const Like: Story & {
-  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
-} = {
+export const Like: Story = {
   parameters: {
     novaEnvironment: {
       resolvers: {
@@ -60,7 +54,7 @@ export const Like: Story & {
         }),
       },
     },
-  },
+  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -68,15 +62,13 @@ export const Like: Story & {
   },
 };
 
-export const LikeFailure: Story & {
-  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
-} = {
+export const LikeFailure: Story = {
   name: "Like failure",
   parameters: {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  },
+  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -94,14 +86,12 @@ export const LikeFailure: Story & {
   },
 };
 
-export const Loading: Story & {
-  parameters: NovaEnvironmentDecoratorParameters<TypeMap>;
-} = {
+export const Loading: Story = {
   parameters: {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  },
+  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
 };
 
 const sampleFeedback = {
