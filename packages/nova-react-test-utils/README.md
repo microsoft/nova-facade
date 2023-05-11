@@ -39,8 +39,7 @@ Let's break it down:
 
 `createMockEnvironment` creates a Nova environment object that can be used with the `NovaMockEnvironmentProvider` and has mocks instantiated for each piece of the facade interface (eventing, commanding and graphql). `createMockEnvironment` takes a schema as an argument. The schema is a GraphQL schema that is later used to generate mock data for the GraphQL mock.
 
-The `environment.graphql.mock` mock provides an API to act on operations issued by a component tree. For details on
-the API see [apollo-mock-client docs](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client). Together with mock client, which intercepts all operations, for mock data generation one can use `MockPayloadGenerator` whose generate function is leveraging [graphql-js-operation-payload-generator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator).
+The `environment.graphql.mock` mock provides an API to act on operations issued by a component tree. For details on the API see [apollo-mock-client docs](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client). Together with mock client, which intercepts all operations, for mock data generation one can use `MockPayloadGenerator` whose generate function is leveraging [graphql-js-operation-payload-generator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator).
 
 Each call to `graphql.mock.resolve/reject` should be wrapped in `await act(async () => ...)` as each state update in RTL needs to be wrapped in `act` and we want to wait for the operation to finish.
 
@@ -95,7 +94,7 @@ environment.graphql.mock.queueOperationResolver((operation) =>
 );
 ```
 
-By default, the resolvers are queued, instead of being resolved manually, so that users can interact with running story, without loss of functionality and to not have to specify any after render action (only doable by `play` function) if the component is static.
+By default, the resolvers are queued, instead of being called manually, so that users can interact with running story, without loss of functionality and to not have to specify any after render action (only doable by `play` function) if the component is static.
 
 - `enableQueuedMockResolvers` - the property (true by default) controls if default resolvers are queued. If set to false, user can no longer specify custom resolvers, but has all the capabilities of apollo-mock-client available manually inside play function. Check this example:
 
@@ -128,7 +127,7 @@ export const LikeFailure: Story = {
 
 This time not resolvers are queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getEnvForStory` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
 
-For more real life examples please check the [examples package](../examples/src/). Additionally, please check [unit tests file](../examples/src/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://github.com/storybookjs/testing-react) to treat storybook as the single source of truth for all the config/setup needed to test your component.
+For more real life examples please check the [examples package](../examples/src/).
 
 You can also see that `satisfies NovaEnvironmentDecoratorParameters<TypeMap>` is used to strongly type parameters. The `TypeMap` type gives you strongly typed mock resolvers and can be generated using [typemap-plugin](https://github.com/microsoft/graphitation/tree/main/packages/graphql-codegen-typescript-typemap-plugin) that can be added to graphql codegen config file.
 
@@ -162,6 +161,10 @@ graphql.mock.queueOperationResolver((operation) => {
   }
 });
 ```
+
+#### Can I reuse the setup I made for stories somehow in unit tests?
+
+Sure, please check [unit tests file](../examples/src/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://github.com/storybookjs/testing-react) to treat storybook as the single source of truth for all the config/setup needed to test your component.
 
 #### How can I use the test utils (both in stories and tests) for components which don't fire graphql operations but rely on graphql fragments only?
 
