@@ -37,7 +37,7 @@ export const FeedbackComponent = (props: Props) => {
       {errorMessage != null && (
         <div style={{ color: "red" }}>{errorMessage}</div>
       )}
-      Feedback: {feedback?.message?.text}
+      Feedback: {feedback.message.text}
       <button
         id="likeButton"
         disabled={isPending}
@@ -45,15 +45,15 @@ export const FeedbackComponent = (props: Props) => {
           like({
             variables: {
               input: {
-                feedbackId: feedback?.id ?? "42",
-                doesViewerLike: !feedback?.doesViewerLike,
+                feedbackId: feedback.id,
+                doesViewerLike: !feedback.doesViewerLike,
               },
             },
             optimisticResponse: {
               feedbackLike: {
                 feedback: {
-                  id: feedback?.id ?? "42",
-                  doesViewerLike: !feedback?.doesViewerLike,
+                  id: feedback.id,
+                  doesViewerLike: !feedback.doesViewerLike,
                 },
               },
             },
