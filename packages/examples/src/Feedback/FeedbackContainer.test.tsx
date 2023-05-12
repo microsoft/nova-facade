@@ -28,9 +28,7 @@ describe("FeedbackContainer", () => {
 
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
-    // When it becomes available we should rely on id, instead of name:
-    // https://github.com/storybookjs/storybook/pull/22471
-    await LikeFailure.play({ canvasElement: container, name: "Like failure" });
+    await LikeFailure.play({ canvasElement: container, id: LikeFailure.id });
     const error = await screen.findByText("Something went wrong");
     expect(error).toBeInTheDocument();
   });

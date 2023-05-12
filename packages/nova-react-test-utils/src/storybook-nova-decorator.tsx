@@ -81,8 +81,7 @@ export const getNovaEnvironmentDecorator: (
           return payload;
         });
       }
-      // TODO: change to rely on `context.id` when https://github.com/storybookjs/storybook/pull/22471 is merged and released
-      Envs[context.name] = environment;
+      Envs[context.id] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
           {getStory(context)}

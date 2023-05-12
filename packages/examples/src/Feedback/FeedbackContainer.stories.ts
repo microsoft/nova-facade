@@ -65,7 +65,6 @@ export const Like: Story = {
 };
 
 export const LikeFailure: Story = {
-  name: "Like failure",
   parameters: {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
@@ -74,7 +73,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getEnvForStory(context.name);
+    } = getEnvForStory(context.id);
 
     // wait for next tick for apollo client to update state
     await new Promise((resolve) => setTimeout(resolve, 0));
