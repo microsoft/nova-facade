@@ -1,6 +1,6 @@
 import { composeStories } from "@storybook/react";
 import * as stories from "./FeedbackContainer.stories";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
 
@@ -28,7 +28,14 @@ describe("FeedbackContainer", () => {
 
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
-    await LikeFailure.play({ canvasElement: container, id: LikeFailure.id });
+    // This needs to be wrapped in act as play function for this story
+    // relies on mock client to resolve queries which updates component state
+    await act(async () =>
+      LikeFailure.play({
+        canvasElement: container,
+        id: LikeFailure.id,
+      }),
+    );
     const error = await screen.findByText("Something went wrong");
     expect(error).toBeInTheDocument();
   });
