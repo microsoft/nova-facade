@@ -18,7 +18,7 @@ describe(useNovaScheduling, () => {
         useNovaScheduling();
       } catch (e) {
         expect((e as Error).message).toMatch(
-          "Nova scheduling provider must be initialized prior to consumption!",
+          "Nova Scheduling provider must be initialized prior to consumption!",
         );
       }
       return null;
@@ -28,7 +28,7 @@ describe(useNovaScheduling, () => {
   });
 
   it("is able to access the scheduling instance provided by the provider", () => {
-    expect.assertions(2);
+    expect.assertions(3);
 
     const scheduling = {
       schedule: jest.fn(),
@@ -38,6 +38,7 @@ describe(useNovaScheduling, () => {
     const TestPassedContextComponent: React.FC = () => {
       const facadeFromContext = useNovaScheduling();
       expect(facadeFromContext).toBe(scheduling);
+
       facadeFromContext.schedule(
         () => {
           return;
@@ -45,6 +46,10 @@ describe(useNovaScheduling, () => {
         { priority: "background", scheduledById: "test", id: "test" },
       );
       expect(scheduling.schedule).toBeCalledTimes(1);
+
+      facadeFromContext.cancel(1);
+      expect(scheduling.cancel).toBeCalledTimes(1);
+
       return null;
     };
 
