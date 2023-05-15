@@ -1,0 +1,9 @@
+{
+  "type": "minor",
+  "comment": {
+    "title": ""
+  },
+  "packageName": "@nova/types",
+  "email": "dratkins@microsoft.com",
+  "dependentChangeType": "patch"
+}
