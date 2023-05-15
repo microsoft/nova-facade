@@ -1,7 +1,7 @@
 {
   "type": "minor",
   "comment": {
-    "title": ""
+    "title": "Adds Nova Scheduling Provider"
   },
   "packageName": "@nova/react",
   "email": "dratkins@microsoft.com",
