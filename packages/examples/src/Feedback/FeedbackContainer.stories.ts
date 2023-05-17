@@ -3,7 +3,7 @@ import { userEvent, within } from "@storybook/testing-library";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
 import {
-  getEnvForStory,
+  getNovaEnvironmentForStory,
   getNovaEnvironmentDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils";
@@ -73,7 +73,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getEnvForStory(context.id);
+    } = getNovaEnvironmentForStory(context);
 
     // wait for next tick for apollo client to update state
     await new Promise((resolve) => setTimeout(resolve, 0));

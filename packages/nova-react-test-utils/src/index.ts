@@ -6,5 +6,6 @@ export { getOperationName, getOperationType } from "./operation-utils";
 export type { NovaEnvironmentDecoratorParameters } from "./storybook-nova-decorator";
 export {
   getNovaEnvironmentDecorator,
-  getEnvForStory,
+  getNovaEnvironmentForStory,
+  prepareStoryContextForTest,
 } from "./storybook-nova-decorator";

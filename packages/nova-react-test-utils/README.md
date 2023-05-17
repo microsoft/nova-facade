@@ -53,7 +53,6 @@ Similarly to unit tests this package provide a decorator for storybook stories.
 import type { Meta, StoryObj } from "@storybook/react";
 import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
 import {
-  getEnvForStory,
   getNovaEnvironmentDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils";
@@ -108,7 +107,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getEnvForStory(context.id);
+    } = getNovaEnvironmentDecorator(context);
 
     // wait for next tick for apollo client to update state
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -125,7 +124,7 @@ export const LikeFailure: Story = {
 };
 ```
 
-This time not resolvers are queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getEnvForStory` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
+This time not resolvers are queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentDecorator` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
 
 For more real life examples please check the [examples package](../examples/src/).
 
@@ -165,6 +164,30 @@ graphql.mock.queueOperationResolver((operation) => {
 #### Can I reuse the setup I made for stories somehow in unit tests?
 
 Sure, please check [unit tests file](../examples/src/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://github.com/storybookjs/testing-react) to treat storybook as the single source of truth for all the config/setup needed to test your component.
+
+Here is also an example:
+
+```tsx
+import { composeStories } from "@storybook/react";
+import * as stories from "./FeedbackContainer.stories";
+import { act, render, screen } from "@testing-library/react";
+import * as React from "react";
+import "@testing-library/jest-dom";
+import { prepareStoryContextForTest } from "@nova/react-test-utils";
+
+const { LikeFailure } = composeStories(stories);
+
+it("should show an error if the like button fails", async () => {
+  const { container } = render(<LikeFailure />);
+  await act(async () =>
+    LikeFailure.play(prepareStoryContextForTest(LikeFailure, container)),
+  );
+  const error = await screen.findByText("Something went wrong");
+  expect(error).toBeInTheDocument();
+});
+```
+
+The `prepareStoryContextForTest` is needed to make sure the context passed to `play` function during unit tests execution contains the `novaEnvironment`.
 
 #### How can I use the test utils (both in stories and tests) for components which don't fire graphql operations but rely on graphql fragments only?
 

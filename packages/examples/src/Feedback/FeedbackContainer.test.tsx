@@ -3,6 +3,7 @@ import * as stories from "./FeedbackContainer.stories";
 import { act, render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
+import { prepareStoryContextForTest } from "@nova/react-test-utils";
 
 const { Primary, Liked, Like, LikeFailure, Loading } = composeStories(stories);
 
@@ -31,10 +32,7 @@ describe("FeedbackContainer", () => {
     // This needs to be wrapped in act as play function for this story
     // relies on mock client to resolve queries which updates component state
     await act(async () =>
-      LikeFailure.play({
-        canvasElement: container,
-        id: LikeFailure.id,
-      }),
+      LikeFailure.play(prepareStoryContextForTest(LikeFailure, container)),
     );
     const error = await screen.findByText("Something went wrong");
     expect(error).toBeInTheDocument();

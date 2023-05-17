@@ -31,6 +31,8 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@storybook/react": "^7.0.11",
+    "@storybook/types": "^7.0.11",
     "@testing-library/react": "^12.0.0",
     "@types/jest": "^29.2.0",
     "@types/react": "^17.0.2",

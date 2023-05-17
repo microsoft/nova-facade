@@ -8,6 +8,12 @@ import * as React from "react";
 import type { MakeDecoratorResult } from "@storybook/addons";
 import { makeDecorator } from "@storybook/addons";
 import { action } from "@storybook/addon-actions";
+import type {
+  ComposedStoryPlayContext,
+  PlayFunctionContext,
+  PreparedStoryFn,
+} from "@storybook/types";
+import type { ReactRenderer } from "@storybook/react";
 
 import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
@@ -39,22 +45,28 @@ export type NovaEnvironmentDecoratorParameters<
       };
 };
 
-// Preferably, instead of creating module scope state, we would expose environment
-// for specific story on `parameters` object by adding the property `parameters.novaEnvironment` inside
-// the decorator. Unfortunately, there seems to be an issue with Storybook that the parameters passed to `play`
-// function are not getting updated, even if they were changed in the decorator. We should remove the modules scope
-// once the issue is fixed upstream. Check https://github.com/storybookjs/storybook/issues/21252#issuecomment-1447777629
-// for details.
-const Envs: Record<string, NovaMockEnvironment<"storybook">> = {};
+// This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
+export const prepareStoryContextForTest = (
+  story: PreparedStoryFn<ReactRenderer>,
+  canvasElement?: HTMLElement,
+): ComposedStoryPlayContext<ReactRenderer> => ({
+  canvasElement,
+  id: story.id,
+  parameters: story.parameters,
+});
 
-export const getEnvForStory = (storyId: string) => {
-  const env = Envs[storyId];
+// This function should be used inside `play` function of a story to get the nova environment for that story.
+export const getNovaEnvironmentForStory = (
+  context: PlayFunctionContext<ReactRenderer>,
+) => {
+  const env = context.parameters?.novaEnvironment as
+    | NovaMockEnvironment<"storybook">
+    | undefined;
   if (!env) {
     throw new Error(
-      `No environment found for story "${storyId}". Did you forget to add the "withNovaEnvironment" decorator? Remember that you can call "getEnvForStory" only once per story play function.`,
+      `No environment found for story "${context.storyId}". Did you forget to add the "withNovaEnvironment" decorator or pass proper context to "play" function inside your unit test?`,
     );
   }
-  delete Envs[storyId];
   return env;
 };
 
@@ -81,7 +93,11 @@ export const getNovaEnvironmentDecorator: (
           return payload;
         });
       }
-      Envs[context.id] = environment;
+      // As discussed in https://github.com/storybookjs/storybook/issues/21252#issuecomment-1550573564 this works but is a bit fragile.
+      // Long term hopefully there is a solution to update the context object itself in a more robust way. In case this stops working after
+      // a storybook update, we can change this code to keep a module scope state with dictionary of environments where story id is a key. That
+      // approach was implemented in initial iterations of https://github.com/microsoft/nova-facade/pull/72
+      context.parameters.novaEnvironment = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
           {getStory(context)}
