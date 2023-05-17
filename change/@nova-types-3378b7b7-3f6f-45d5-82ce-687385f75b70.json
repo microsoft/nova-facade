@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "bump deps",
+  "packageName": "@nova/types",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}

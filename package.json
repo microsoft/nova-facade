@@ -14,6 +14,7 @@
     "test": "lage test",
     "lint": "lage lint",
     "lage": "lage",
+    "prepare": "lage prepare",
     "ci": "yarn lage build types test lint && yarn checkchange",
     "beachball": "beachball -b origin/main",
     "change": "yarn beachball change",
