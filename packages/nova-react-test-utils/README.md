@@ -124,7 +124,7 @@ export const LikeFailure: Story = {
 };
 ```
 
-This time not resolvers are queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentDecorator` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
+This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentDecorator` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
 
 For more real life examples please check the [examples package](../examples/src/).
 
