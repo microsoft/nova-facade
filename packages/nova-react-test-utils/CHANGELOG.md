@@ -1,8 +1,18 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 11 May 2023 15:41:59 GMT and should not be manually modified.
+This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.0.0
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Major changes
+
+- add storybook decorator for nova components (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v1.3.0
+- Bump @nova/types to v1.3.1
 
 ## 3.1.3
 

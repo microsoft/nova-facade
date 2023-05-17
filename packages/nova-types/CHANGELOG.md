@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Wed, 26 Apr 2023 08:47:37 GMT and should not be manually modified.
+This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.1
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Patches
+
+- bump deps (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.3.0
 

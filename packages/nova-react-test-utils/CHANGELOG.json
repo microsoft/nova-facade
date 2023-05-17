@@ -2,6 +2,33 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/react-test-utils_v4.0.0",
+      "version": "4.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "add storybook decorator for nova components"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.3.0",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.3.1",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 May 2023 15:41:59 GMT",
       "tag": "@nova/react-test-utils_v3.1.3",
       "version": "3.1.3",

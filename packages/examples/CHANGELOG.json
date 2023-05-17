@@ -1,0 +1,38 @@
+{
+  "name": "@nova/examples",
+  "entries": [
+    {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/examples_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "add examples package"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v1.3.0",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.0.0",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/types to v1.3.1",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          }
+        ]
+      }
+    }
+  ]
+}
