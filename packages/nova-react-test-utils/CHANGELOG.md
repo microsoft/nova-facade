@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
+This log was last generated on Thu, 18 May 2023 12:45:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.0.1
+
+Thu, 18 May 2023 12:45:50 GMT
+
+### Patches
+
+- fix decorator to stop overriding parameters provided by the story (Stanislaw.Wilczynski@microsoft.com)
 
 ## 4.0.0
 

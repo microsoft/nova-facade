@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 18 May 2023 12:45:50 GMT",
+      "tag": "@nova/react-test-utils_v4.0.1",
+      "version": "4.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "5f93fa72307d69dcdda74167481db15811532afe",
+            "comment": "fix decorator to stop overriding parameters provided by the story"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 May 2023 12:00:17 GMT",
       "tag": "@nova/react-test-utils_v4.0.0",
       "version": "4.0.0",

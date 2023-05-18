@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 18 May 2023 12:45:50 GMT",
+      "tag": "@nova/examples_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "5f93fa72307d69dcdda74167481db15811532afe",
+            "comment": "add test verifying decorator override behavior"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.0.1",
+            "commit": "5f93fa72307d69dcdda74167481db15811532afe"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 17 May 2023 12:00:17 GMT",
       "tag": "@nova/examples_v1.0.0",
       "version": "1.0.0",

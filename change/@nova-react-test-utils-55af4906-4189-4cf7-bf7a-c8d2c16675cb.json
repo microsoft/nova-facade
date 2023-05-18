@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix decorator to stop overriding parameters provided by the story",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
