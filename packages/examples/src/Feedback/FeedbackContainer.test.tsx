@@ -43,4 +43,13 @@ describe("FeedbackContainer", () => {
     const loading = await screen.findByText("Loading...");
     expect(loading).toBeInTheDocument();
   });
+
+  it("should correctly propagate parameters even when multiple stories with same resolvers are rendered", async () => {
+    render(<Primary />);
+    render(<Liked />);
+    render(<Primary />);
+    const texts = await screen.findAllByText("Feedback: Feedback title");
+    expect(texts).toHaveLength(3);
+    expect(texts[2]).toBeInTheDocument();
+  });
 });
