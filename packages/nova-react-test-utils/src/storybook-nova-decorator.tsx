@@ -23,6 +23,11 @@ import { createMockClient } from "@graphitation/apollo-mock-client";
 import type { EntityCommand, EventWrapper, NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
 
+// this has to be unique and different then name of the property added on story level to parameters
+// otherwise editing it within the decorator will override the mock resolvers
+const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
+  "novaEnvironmentAssignedParameterValue";
+
 type DefaultMockResolvers = Partial<{
   ID: string;
   Boolean: boolean;
@@ -59,7 +64,7 @@ export const prepareStoryContextForTest = (
 export const getNovaEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
 ) => {
-  const env = context.parameters?.novaEnvironment as
+  const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
     | NovaMockEnvironment<"storybook">
     | undefined;
   if (!env) {
@@ -97,7 +102,7 @@ export const getNovaEnvironmentDecorator: (
       // Long term hopefully there is a solution to update the context object itself in a more robust way. In case this stops working after
       // a storybook update, we can change this code to keep a module scope state with dictionary of environments where story id is a key. That
       // approach was implemented in initial iterations of https://github.com/microsoft/nova-facade/pull/72
-      context.parameters.novaEnvironment = environment;
+      context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
           {getStory(context)}
