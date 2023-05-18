@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add test verifying decorator override behavior",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
