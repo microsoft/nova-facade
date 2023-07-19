@@ -16,6 +16,40 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     fragmentRef: unknown,
   ) => unknown;
 
+  useRefetchableFragment?: (
+    fragmentInput: GraphQLDocument,
+    fragmentRef: unknown,
+  ) => [
+    data: unknown,
+    refetch: (
+      variables: { [name: string]: unknown },
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void },
+  ];
+
+  usePaginationFragment?: (
+    fragmentInput: GraphQLDocument,
+    fragmentRef: unknown,
+  ) => {
+    data: unknown;
+    loadNext: (
+      count: number,
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void };
+    loadPrevious: (
+      count: number,
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void };
+    hasNext: boolean;
+    hasPrevious: boolean;
+    isLoadingNext: boolean;
+    isLoadingPrevious: boolean;
+    refetch: (
+      variables: { [name: string]: unknown },
+      options?: Record<string, unknown>,
+    ) => { dispose: () => void };
+  };
+
   useLazyLoadQuery?: (
     query: GraphQLDocument,
     variables: { [name: string]: unknown },

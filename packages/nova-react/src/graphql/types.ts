@@ -58,3 +58,32 @@ export type ArrayKeyTypeData<
   TKey extends ArrayKeyType<TData>,
   TData = unknown,
 > = KeyTypeData<NonNullable<TKey[number]>>;
+
+/**
+ * Support for refetchable fragments like useRefetchableFragment and usePaginationFragment
+ */
+
+export type RefetchFn<Variables extends Record<string, unknown>> = (
+  variables: Partial<Variables>,
+  options?: RefetchOptions,
+) => Disposable;
+
+export type PaginationFn = (
+  count: number,
+  options?: RefetchOptions,
+) => Disposable;
+
+type FetchPolicy =
+  | "store-or-network"
+  | "store-and-network"
+  | "network-only"
+  | "store-only";
+
+type RefetchOptions = {
+  onCompleted?: (error: Error | null) => void;
+  fetchPolicy?: FetchPolicy;
+};
+
+type Disposable = {
+  dispose(): void;
+};
