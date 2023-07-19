@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
+This log was last generated on Wed, 19 Jul 2023 00:56:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.4.0
+
+Wed, 19 Jul 2023 00:56:30 GMT
+
+### Minor changes
+
+- add useRefetchableFragment and usePaginationFragment (dragoshomner@yahoo.com)
 
 ## 1.3.1
 

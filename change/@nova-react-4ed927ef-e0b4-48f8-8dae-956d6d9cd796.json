@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add useRefetchableFragment and usePaginationFragment",
-  "packageName": "@nova/react",
-  "email": "dragoshomner@yahoo.com",
-  "dependentChangeType": "patch"
-}
