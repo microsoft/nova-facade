@@ -9,8 +9,8 @@
     "es6": true,
     "node": true
   },
-  "ignorePatterns": ["**/coverage", "**/lib", "**/temp"],
-  "plugins": ["@typescript-eslint", "prettier"],
+  "ignorePatterns": ["**/coverage", "**/lib", "**/temp", "**/__generated__"],
+  "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/consistent-type-imports": [
       "error",
@@ -20,8 +20,5 @@
       }
     ]
   },
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
-  ]
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier"]
 }

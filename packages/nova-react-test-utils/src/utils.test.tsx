@@ -6,14 +6,10 @@ import type { EntityCommand, EventWrapper } from "@nova/types";
 
 import { graphql, useLazyLoadQuery } from "@nova/react";
 
-import {
-  createMockEnvironment,
-  MockPayloadGenerator,
-  getOperationName,
-  getOperationType,
-} from "./test-utils";
+import { createMockEnvironment, MockPayloadGenerator } from "./test-utils";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
+import { getOperationName, getOperationType } from "./operation-utils";
 
 const schema = buildASTSchema(
   parse(`

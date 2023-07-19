@@ -59,6 +59,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   useSubscription?: (config: {
     subscription: GraphQLDocument;
     variables: { [name: string]: unknown };
+    context?: { [name: string]: unknown };
     onNext?: (response: unknown) => void;
     onError?: (error: Error) => void;
   }) => void;
@@ -68,6 +69,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   ) => [
     (options: {
       variables: { [name: string]: unknown };
+      context?: { [name: string]: unknown };
       optimisticResponse?: unknown | null;
     }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
     boolean,

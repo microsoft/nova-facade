@@ -1,8 +1,51 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 13 Dec 2022 20:06:05 GMT and should not be manually modified.
+This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.0
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Minor changes
+
+- bump version of relay-compiler-language-graphitation (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/types to v1.3.1
+
+## 1.2.1
+
+Thu, 11 May 2023 15:41:59 GMT
+
+### Patches
+
+- make context optional in use subscription (52814187+ira-kaundal@users.noreply.github.com)
+
+## 1.2.0
+
+Wed, 26 Apr 2023 08:47:37 GMT
+
+### Minor changes
+
+- update nova hooks to support context (52814187+ira-kaundal@users.noreply.github.com)
+- Bump @nova/types to v1.3.0
+
+## 1.1.1
+
+Thu, 30 Mar 2023 16:45:12 GMT
+
+### Patches
+
+- Add types entry to exports map (miclo@microsoft.com)
+- Bump @nova/types to v1.2.6
+
+## 1.1.0
+
+Fri, 24 Mar 2023 16:52:58 GMT
+
+### Minor changes
+
+- bump version of react (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.0.9
 

@@ -1,8 +1,32 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 13 Dec 2022 20:06:05 GMT and should not be manually modified.
+This log was last generated on Wed, 17 May 2023 12:00:17 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.1
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Patches
+
+- bump deps (Stanislaw.Wilczynski@microsoft.com)
+
+## 1.3.0
+
+Wed, 26 Apr 2023 08:47:37 GMT
+
+### Minor changes
+
+- update nova hooks to support context (52814187+ira-kaundal@users.noreply.github.com)
+
+## 1.2.6
+
+Thu, 30 Mar 2023 16:45:12 GMT
+
+### Patches
+
+- Add types entry to exports map (miclo@microsoft.com)
 
 ## 1.2.5
 

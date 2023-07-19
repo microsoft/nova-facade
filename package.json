@@ -14,6 +14,7 @@
     "test": "lage test",
     "lint": "lage lint",
     "lage": "lage",
+    "prepare": "lage prepare",
     "ci": "yarn lage build types test lint && yarn checkchange",
     "beachball": "beachball -b origin/main",
     "change": "yarn beachball change",
@@ -21,8 +22,8 @@
     "release": "yarn beachball publish"
   },
   "devDependencies": {
-    "beachball": "2.10.2",
-    "lage": "0.32.1",
-    "prettier": "^2.2.1"
+    "beachball": "2.31.12",
+    "lage": "2.3.1",
+    "prettier": "^2.8.1"
   }
 }

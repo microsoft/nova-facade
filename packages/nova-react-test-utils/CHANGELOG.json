@@ -2,6 +2,132 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 18 May 2023 12:45:50 GMT",
+      "tag": "@nova/react-test-utils_v4.0.1",
+      "version": "4.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "5f93fa72307d69dcdda74167481db15811532afe",
+            "comment": "fix decorator to stop overriding parameters provided by the story"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/react-test-utils_v4.0.0",
+      "version": "4.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "add storybook decorator for nova components"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.3.0",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.3.1",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 11 May 2023 15:41:59 GMT",
+      "tag": "@nova/react-test-utils_v3.1.3",
+      "version": "3.1.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.2.1",
+            "commit": "48ee0c442fd479e7f6848c429e911bc9a79779ae"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 26 Apr 2023 08:47:37 GMT",
+      "tag": "@nova/react-test-utils_v3.1.2",
+      "version": "3.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.2.0",
+            "commit": "671a9acd64ad6b6200355a3b8cebe84ddbe90d1f"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.3.0",
+            "commit": "671a9acd64ad6b6200355a3b8cebe84ddbe90d1f"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 30 Mar 2023 16:45:12 GMT",
+      "tag": "@nova/react-test-utils_v3.1.1",
+      "version": "3.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "miclo@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7",
+            "comment": "Add types entry to exports map"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.1.1",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.2.6",
+            "commit": "500c3d84ca468fa99319e6f0738f649071d0ced7"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 24 Mar 2023 16:52:58 GMT",
+      "tag": "@nova/react-test-utils_v3.1.0",
+      "version": "3.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "comment": "bump version of react",
+            "commit": "2774eb5e24d8c56453d7665c0c7fdb0ef203e5cf"
+          },
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "2774eb5e24d8c56453d7665c0c7fdb0ef203e5cf",
+            "comment": "Bump @nova/react-test-utils to v3.1.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Mar 2023 17:49:27 GMT",
       "tag": "@nova/react-test-utils_v3.0.0",
       "version": "3.0.0",
