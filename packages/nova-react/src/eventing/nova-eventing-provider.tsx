@@ -3,9 +3,10 @@ import type { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
 import { InputType } from "@nova/types";
 import invariant from "invariant";
 
-// Initializing default with null to make sure providers are correctly placed in the tree
+// Context is initialized with an empty object and this is null-checked within the hooks
 const NovaEventingContext = React.createContext<INovaEventingContext>({});
 
+// Both are optional in the context for initialization state only, but eventing must be supplied in the props
 interface INovaEventingContext {
   eventing?: NovaReactEventing;
   unmountEventing?: NovaReactEventing;
@@ -104,6 +105,12 @@ export const useNovaEventing = (): NovaReactEventing => {
   return eventing;
 };
 
+/**
+ * Used for eventing that should be triggered when the component is unmounted, such as within a useEffect cleanup function
+ * If unmountEventing has not been supplied to the NovaEventingProvider, this will fallback to use the defualt eventing instance
+ *
+ * @returns NovaReactEventing
+ */
 export const useNovaUnmountEventing = (): NovaReactEventing => {
   const { unmountEventing } = React.useContext(NovaEventingContext);
   invariant(
