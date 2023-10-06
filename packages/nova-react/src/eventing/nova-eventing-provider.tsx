@@ -75,12 +75,12 @@ export const NovaEventingProvider: React.FunctionComponent<
     mapperRef.current = reactEventMapper;
   }
 
-  const reactEventing: NovaReactEventing = React.useMemo(
+  const reactEventing = React.useMemo(
     generateEventing(eventingRef, mapperRef),
     [],
   );
 
-  const reactUnmountEventing: NovaReactEventing = React.useMemo(
+  const reactUnmountEventing = React.useMemo(
     generateEventing(unmountEventingRef, mapperRef),
     [],
   );
@@ -120,7 +120,7 @@ const generateEventing =
       (reactEventWrapper: ReactEventWrapper) => EventWrapper
     >,
   ) =>
-  () => ({
+  (): NovaReactEventing => ({
     bubble: (eventWrapper: ReactEventWrapper) => {
       const mappedEvent: EventWrapper = mapperRef.current(eventWrapper);
       return eventingRef.current.bubble(mappedEvent);
