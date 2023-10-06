@@ -6,7 +6,7 @@ import invariant from "invariant";
 // Context is initialized with an empty object and this is null-checked within the hooks
 const NovaEventingContext = React.createContext<INovaEventingContext>({});
 
-// Both are optional in the context for initialization state only, but eventing must be supplied in the props
+// Both properties are optional in the context for initialization state only, but eventing must be supplied in the props
 interface INovaEventingContext {
   eventing?: NovaReactEventing;
   unmountEventing?: NovaReactEventing;
@@ -14,7 +14,10 @@ interface INovaEventingContext {
 
 interface NovaEventingProviderProps {
   eventing: NovaEventing;
-  unmountEventing?: NovaEventing; // Optional version of eventing to use when unmounting, defaults to eventing if not supplied
+  /**
+   * Optional version of eventing to use when unmounting, defaults to eventing if not supplied via props
+   */
+  unmountEventing?: NovaEventing;
   /**
    * Mapping logic to transform a React SyntheticEvent into a Nova
    * Source object. Supply the Nova default implemenation using the import
