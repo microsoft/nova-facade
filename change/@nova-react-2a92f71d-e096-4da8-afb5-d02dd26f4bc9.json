@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add useNovaUnmountEventing",
+  "packageName": "@nova/react",
+  "email": "dratkins@microsoft.com",
+  "dependentChangeType": "patch"
+}
