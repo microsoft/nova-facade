@@ -89,10 +89,13 @@ export const NovaEventingProvider: React.FunctionComponent<
     [],
   );
 
+  const contextValue = React.useMemo(
+    () => ({ eventing: reactEventing, unmountEventing: reactUnmountEventing }),
+    [reactEventing, reactUnmountEventing],
+  );
+
   return (
-    <NovaEventingContext.Provider
-      value={{ eventing: reactEventing, unmountEventing: reactUnmountEventing }}
-    >
+    <NovaEventingContext.Provider value={contextValue}>
       {children}
     </NovaEventingContext.Provider>
   );
