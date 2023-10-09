@@ -19,6 +19,8 @@ import { InputType } from "@nova/types";
 
 import * as ReactEventSourceMapper from "./react-event-source-mapper";
 
+const { useEffect } = React;
+
 jest.mock("./react-event-source-mapper");
 
 describe("useNovaEventing", () => {
@@ -336,5 +338,45 @@ describe("useUnmountEventing", () => {
         <TestPassedContextComponent />
       </NovaEventingProvider>,
     );
+  });
+
+  it("calls the unmounting eventing instance when the component calls unmounting through a useEffect cleanup event", () => {
+    const eventing = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+    const unmountEventingMock = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const mapper = jest.fn();
+
+    const TestPassedContextComponent: React.FC = () => {
+      const unmountEventing = useNovaUnmountEventing();
+      expect(unmountEventing).toBeDefined();
+
+      useEffect(
+        () => () => {
+          unmountEventing.bubble({} as ReactEventWrapper);
+        },
+        [unmountEventing],
+      );
+
+      return null;
+    };
+
+    const { unmount } = render(
+      <NovaEventingProvider
+        eventing={eventing}
+        unmountEventing={unmountEventingMock}
+        reactEventMapper={mapper}
+      >
+        <TestPassedContextComponent />
+      </NovaEventingProvider>,
+    );
+
+    unmount();
+
+    expect(unmountEventingMock.bubble).toHaveBeenCalled();
+    expect(eventing.bubble).not.toHaveBeenCalled();
   });
 });
