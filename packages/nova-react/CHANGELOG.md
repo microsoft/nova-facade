@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 19 Jul 2023 00:56:30 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Oct 2023 17:45:23 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.0
+
+Tue, 10 Oct 2023 17:45:23 GMT
+
+### Minor changes
+
+- add useNovaUnmountEventing (dratkins@microsoft.com)
 
 ## 1.4.0
 
