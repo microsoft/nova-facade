@@ -135,6 +135,23 @@ describe(useFragment, () => {
       useFragment(fragment, opaqueFragmentRef);
     void _;
   });
+
+  it("supports the $fragmentSpreads format that is generated from Relay 13", () => {
+    type SomeFragment$data = { someKey: string };
+    type SomeFragment$key = {
+      readonly " $data"?: SomeFragment$data;
+      readonly " $fragmentSpreads": FragmentRefs<"SomeFragment">;
+    };
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const opaqueFragmentRef = {} as unknown as SomeFragment$key;
+
+    // This test just checks that there are no TS errors. Alas the test suite currently won't fail if that were the
+    // case, but at least there's a test that covers the intent.
+    const _: () => SomeFragment$data = () =>
+      useFragment(fragment, opaqueFragmentRef);
+    void _;
+  });
 });
 
 describe(useRefetchableFragment, () => {
