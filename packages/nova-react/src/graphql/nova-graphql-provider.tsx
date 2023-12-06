@@ -9,7 +9,7 @@ interface NovaGraphQLProviderProps {
   graphql: NovaGraphQL;
 }
 
-export const NovaGraphQLProvider: React.FunctionComponent<NovaGraphQLProviderProps> =
+export const NovaGraphQLProvider: React.FunctionComponent<React.PropsWithChildren<NovaGraphQLProviderProps>> =
   ({ children, graphql }) => {
     return (
       <NovaGraphQLContext.Provider value={graphql}>

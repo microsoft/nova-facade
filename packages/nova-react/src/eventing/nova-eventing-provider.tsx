@@ -58,7 +58,7 @@ export interface NovaReactEventing {
 }
 
 export const NovaEventingProvider: React.FunctionComponent<
-  NovaEventingProviderProps
+  React.PropsWithChildren<NovaEventingProviderProps>
 > = ({ children, eventing, unmountEventing, reactEventMapper }) => {
   // Nova contexts provide a facade over framework functions
   // We don't need to trigger rerender in children when we are rerendered
