@@ -12,11 +12,14 @@ import type {
 import {
   NovaEventingProvider,
   useNovaEventing,
+  useNovaUnmountEventing,
 } from "./nova-eventing-provider";
 import type { EventWrapper, NovaEventing } from "@nova/types";
 import { InputType } from "@nova/types";
 
 import * as ReactEventSourceMapper from "./react-event-source-mapper";
+
+const { useEffect } = React;
 
 jest.mock("./react-event-source-mapper");
 
@@ -61,7 +64,7 @@ describe("useNovaEventing", () => {
     };
   });
 
-  it("throws without a provider", () => {
+  it("useNovaEventing throws without a provider", () => {
     expect.assertions(1);
 
     const TestUndefinedContextComponent: React.FC = () => {
@@ -69,7 +72,24 @@ describe("useNovaEventing", () => {
         useNovaEventing();
       } catch (e) {
         expect((e as Error).message).toMatch(
-          "Nova Eventing provider must be initialized prior to consumption!",
+          "Nova Eventing provider must be initialized prior to consumption of eventing!",
+        );
+      }
+      return null;
+    };
+
+    render(<TestUndefinedContextComponent />);
+  });
+
+  it("useNovaUnmountEventing throws without a provider", () => {
+    expect.assertions(1);
+
+    const TestUndefinedContextComponent: React.FC = () => {
+      try {
+        useNovaUnmountEventing();
+      } catch (e) {
+        expect((e as Error).message).toMatch(
+          "Nova Eventing provider must be initialized prior to consumption of unmountEventing!",
         );
       }
       return null;
@@ -258,5 +278,105 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
         />
       </NovaEventingProvider>,
     );
+  });
+});
+
+describe("useUnmountEventing", () => {
+  it("falls back to eventing instance when unmountEventing is not provided", () => {
+    const eventing = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const mapper = jest.fn();
+
+    const TestPassedContextComponent: React.FC =
+      (): React.ReactElement | null => {
+        const unmountEventing = useNovaUnmountEventing();
+        expect(unmountEventing).toBeDefined();
+
+        unmountEventing.bubble({} as ReactEventWrapper);
+
+        expect(eventing.bubble).toHaveBeenCalled();
+        return null;
+      };
+
+    render(
+      <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
+        <TestPassedContextComponent />
+      </NovaEventingProvider>,
+    );
+  });
+
+  it('calls "bubble" on the unmountEventing instance when provided', () => {
+    const eventing = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const unmountEventingMock = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const mapper = jest.fn();
+
+    const TestPassedContextComponent: React.FC =
+      (): React.ReactElement | null => {
+        const unmountEventing = useNovaUnmountEventing();
+        expect(unmountEventing).toBeDefined();
+
+        unmountEventing.bubble({} as ReactEventWrapper);
+
+        expect(unmountEventingMock.bubble).toHaveBeenCalled();
+        return null;
+      };
+
+    render(
+      <NovaEventingProvider
+        eventing={eventing}
+        unmountEventing={unmountEventingMock}
+        reactEventMapper={mapper}
+      >
+        <TestPassedContextComponent />
+      </NovaEventingProvider>,
+    );
+  });
+
+  it("calls the unmounting eventing instance when the component calls unmounting through a useEffect cleanup event", () => {
+    const eventing = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+    const unmountEventingMock = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const mapper = jest.fn();
+
+    const TestPassedContextComponent: React.FC = () => {
+      const unmountEventing = useNovaUnmountEventing();
+      expect(unmountEventing).toBeDefined();
+
+      useEffect(
+        () => () => {
+          unmountEventing.bubble({} as ReactEventWrapper);
+        },
+        [unmountEventing],
+      );
+
+      return null;
+    };
+
+    const { unmount } = render(
+      <NovaEventingProvider
+        eventing={eventing}
+        unmountEventing={unmountEventingMock}
+        reactEventMapper={mapper}
+      >
+        <TestPassedContextComponent />
+      </NovaEventingProvider>,
+    );
+
+    unmount();
+
+    expect(unmountEventingMock.bubble).toHaveBeenCalled();
+    expect(eventing.bubble).not.toHaveBeenCalled();
   });
 });

@@ -2,6 +2,84 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 10 Oct 2023 17:45:23 GMT",
+      "tag": "@nova/react-test-utils_v4.0.3",
+      "version": "4.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.5.0",
+            "commit": "6f2668efac7ec8a519ef5aae1007dd75563b3007"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 19 Jul 2023 00:56:30 GMT",
+      "tag": "@nova/react-test-utils_v4.0.2",
+      "version": "4.0.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.4.0",
+            "commit": "560e2cb8833f468dcdb00d3e7cbfd0f21bbe5507"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.4.0",
+            "commit": "560e2cb8833f468dcdb00d3e7cbfd0f21bbe5507"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 18 May 2023 12:45:50 GMT",
+      "tag": "@nova/react-test-utils_v4.0.1",
+      "version": "4.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "5f93fa72307d69dcdda74167481db15811532afe",
+            "comment": "fix decorator to stop overriding parameters provided by the story"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/react-test-utils_v4.0.0",
+      "version": "4.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "add storybook decorator for nova components"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v1.3.0",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.3.1",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 May 2023 15:41:59 GMT",
       "tag": "@nova/react-test-utils_v3.1.3",
       "version": "3.1.3",

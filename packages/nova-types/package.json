@@ -1,7 +1,7 @@
 {
   "name": "@nova/types",
   "license": "MIT",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -10,7 +10,7 @@
     "just": "monorepo-scripts"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^29.2.0",
     "monorepo-scripts": "*"
   },
   "repository": {

@@ -2,7 +2,13 @@ import { useNovaGraphQL } from "./nova-graphql-provider";
 import invariant from "invariant";
 
 import type { GraphQLTaggedNode } from "./taggedNode";
-import type { KeyType, KeyTypeData, OperationType } from "./types";
+import type {
+  KeyType,
+  KeyTypeData,
+  OperationType,
+  PaginationFn,
+  RefetchFn,
+} from "./types";
 
 /**
  * Executes a GraphQL query.
@@ -135,6 +141,65 @@ export function useFragment<TKey extends KeyType>(
   return (
     useNovaGraphQL().useFragment?.(fragmentInput, fragmentRef) || fragmentRef
   );
+}
+
+/**
+ * Equivalent to `useFragment`, but allows refetching of its subtree of the overall query.
+ *
+ * @see {@link https://microsoft.github.io/graphitation/docs/apollo-react-relay-duct-tape/use-refetchable-fragment}
+ *
+ * @param fragmentInput The GraphQL fragment document created using the `graphql` tagged template function.
+ * @param fragmentRef The opaque fragment reference passed in by a parent component that has spread in this component's
+ *                    fragment.
+ * @returns The data corresponding to the field selections and a function to perform the refetch.
+ */
+export function useRefetchableFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey,
+): [data: KeyTypeData<TKey>, refetch: RefetchFn<TQuery["variables"]>] {
+  const graphql = useNovaGraphQL();
+  invariant(
+    graphql.useRefetchableFragment,
+    "Expected host to provide a useRefetchableFragment hook",
+  );
+  return graphql.useRefetchableFragment(fragmentInput, fragmentRef);
+}
+
+/**
+ * Equivalent to `useFragment`, but allows pagination of its subtree of the overall query.
+ *
+ * @see {@link https://microsoft.github.io/graphitation/docs/apollo-react-relay-duct-tape/use-pagination-fragment}
+ *
+ * @param fragmentInput The GraphQL fragment document created using the `graphql` tagged template function.
+ * @param fragmentRef The opaque fragment reference passed in by a parent component that has spread in this component's
+ *                    fragment.
+ * @returns The data corresponding to the field selections and functions to deal with pagination.
+ */
+export function usePaginationFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey,
+): {
+  data: KeyTypeData<TKey>;
+  loadNext: PaginationFn;
+  loadPrevious: PaginationFn;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  isLoadingNext: boolean;
+  isLoadingPrevious: boolean;
+  refetch: RefetchFn<TQuery["variables"]>;
+} {
+  const graphql = useNovaGraphQL();
+  invariant(
+    graphql.usePaginationFragment,
+    "Expected host to provide a usePaginationFragment hook",
+  );
+  return graphql.usePaginationFragment(fragmentInput, fragmentRef);
 }
 
 // https://github.com/facebook/relay/blob/master/website/docs/api-reference/types/GraphQLSubscriptionConfig.md

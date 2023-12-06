@@ -1,5 +1,6 @@
 module.exports = {
   pipeline: {
+    prepare: [],
     types: ["^types"],
     build: [],
     test: ["build"],

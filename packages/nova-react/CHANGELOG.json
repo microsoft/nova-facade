@@ -2,6 +2,63 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Tue, 10 Oct 2023 17:45:23 GMT",
+      "tag": "@nova/react_v1.5.0",
+      "version": "1.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "dratkins@microsoft.com",
+            "package": "@nova/react",
+            "commit": "6f2668efac7ec8a519ef5aae1007dd75563b3007",
+            "comment": "add useNovaUnmountEventing"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 19 Jul 2023 00:56:30 GMT",
+      "tag": "@nova/react_v1.4.0",
+      "version": "1.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "dragoshomner@yahoo.com",
+            "package": "@nova/react",
+            "commit": "560e2cb8833f468dcdb00d3e7cbfd0f21bbe5507",
+            "comment": "add useRefetchableFragment and usePaginationFragment"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react",
+            "comment": "Bump @nova/types to v1.4.0",
+            "commit": "560e2cb8833f468dcdb00d3e7cbfd0f21bbe5507"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/react_v1.3.0",
+      "version": "1.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "bump version of relay-compiler-language-graphitation"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react",
+            "comment": "Bump @nova/types to v1.3.1",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 11 May 2023 15:41:59 GMT",
       "tag": "@nova/react_v1.2.1",
       "version": "1.2.1",

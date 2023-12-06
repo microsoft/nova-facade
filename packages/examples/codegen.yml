@@ -1,0 +1,23 @@
+overwrite: true
+schema:
+  - "./src/schema.graphql"
+generates:
+  src/__generated__/schema.all.interface.ts:
+    plugins:
+      - add:
+          content:
+            - // THIS FILE WAS AUTOMATICALLY GENERATED AND SHOULD NOT BE EDITED
+            -
+      - "typescript"
+      - "typescript-resolvers"
+      - "@graphitation/graphql-codegen-typescript-typemap-plugin"
+
+    config:
+      avoidOptionals: true
+      preResolveTypes: true
+      skipTypeNameForRoot: true
+      exportFragmentSpreadSubTypes: true
+      # skipTypename: true
+      useTypeImports: true
+      allowParentTypeOverride: true
+      enumsAsTypes: true

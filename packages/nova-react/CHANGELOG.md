@@ -1,8 +1,34 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 11 May 2023 15:41:59 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Oct 2023 17:45:23 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.0
+
+Tue, 10 Oct 2023 17:45:23 GMT
+
+### Minor changes
+
+- add useNovaUnmountEventing (dratkins@microsoft.com)
+
+## 1.4.0
+
+Wed, 19 Jul 2023 00:56:30 GMT
+
+### Minor changes
+
+- add useRefetchableFragment and usePaginationFragment (dragoshomner@yahoo.com)
+- Bump @nova/types to v1.4.0
+
+## 1.3.0
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Minor changes
+
+- bump version of relay-compiler-language-graphitation (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/types to v1.3.1
 
 ## 1.2.1
 

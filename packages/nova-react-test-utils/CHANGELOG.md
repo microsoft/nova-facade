@@ -1,8 +1,43 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 11 May 2023 15:41:59 GMT and should not be manually modified.
+This log was last generated on Tue, 10 Oct 2023 17:45:23 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.0.3
+
+Tue, 10 Oct 2023 17:45:23 GMT
+
+### Patches
+
+- Bump @nova/react to v1.5.0
+
+## 4.0.2
+
+Wed, 19 Jul 2023 00:56:30 GMT
+
+### Patches
+
+- Bump @nova/react to v1.4.0
+- Bump @nova/types to v1.4.0
+
+## 4.0.1
+
+Thu, 18 May 2023 12:45:50 GMT
+
+### Patches
+
+- fix decorator to stop overriding parameters provided by the story (Stanislaw.Wilczynski@microsoft.com)
+
+## 4.0.0
+
+Wed, 17 May 2023 12:00:17 GMT
+
+### Major changes
+
+- add storybook decorator for nova components (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v1.3.0
+- Bump @nova/types to v1.3.1
 
 ## 3.1.3
 

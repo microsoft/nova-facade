@@ -2,6 +2,36 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Wed, 19 Jul 2023 00:56:30 GMT",
+      "tag": "@nova/types_v1.4.0",
+      "version": "1.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "dragoshomner@yahoo.com",
+            "package": "@nova/types",
+            "commit": "560e2cb8833f468dcdb00d3e7cbfd0f21bbe5507",
+            "comment": "add useRefetchableFragment and usePaginationFragment"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 17 May 2023 12:00:17 GMT",
+      "tag": "@nova/types_v1.3.1",
+      "version": "1.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/types",
+            "commit": "3d65a5bd2206326653affbe4f3f003219890e25b",
+            "comment": "bump deps"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 26 Apr 2023 08:47:37 GMT",
       "tag": "@nova/types_v1.3.0",
       "version": "1.3.0",

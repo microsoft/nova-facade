@@ -15,9 +15,19 @@ import {
   NovaGraphQLProvider,
 } from "@nova/react";
 
-export interface NovaMockEnvironment {
-  commanding: jest.Mocked<NovaCentralizedCommanding>;
-  eventing: jest.Mocked<NovaEventing>;
+type Environment = "test" | "storybook";
+
+type Commanding<T extends Environment> = T extends "test"
+  ? jest.Mocked<NovaCentralizedCommanding>
+  : NovaCentralizedCommanding;
+
+type Eventing<T extends Environment> = T extends "test"
+  ? jest.Mocked<NovaEventing>
+  : NovaEventing;
+
+export interface NovaMockEnvironment<T extends Environment = "test"> {
+  commanding: Commanding<T>;
+  eventing: Eventing<T>;
   graphql: NovaGraphQL & { mock: MockFunctions<unknown, GraphQLTaggedNode> };
   /**
    * A React component that will be used to wrap the NovaFacadeProvider children. This is used by the test-utils to
@@ -26,27 +36,29 @@ export interface NovaMockEnvironment {
   providerWrapper: ComponentType;
 }
 
-interface NovaMockEnvironmentProviderProps {
-  environment: NovaMockEnvironment;
+interface NovaMockEnvironmentProviderProps<T extends Environment> {
+  environment: NovaMockEnvironment<T>;
 }
 
-export const NovaMockEnvironmentProvider: React.FunctionComponent<NovaMockEnvironmentProviderProps> =
-  ({ children, environment }) => {
-    return (
-      <NovaEventingProvider
-        eventing={environment.eventing}
-        reactEventMapper={mapEventMetadata}
-      >
-        <NovaCentralizedCommandingProvider commanding={environment.commanding}>
-          <NovaGraphQLProvider graphql={environment.graphql}>
-            {React.createElement(
-              environment.providerWrapper,
-              undefined,
-              children,
-            )}
-          </NovaGraphQLProvider>
-        </NovaCentralizedCommandingProvider>
-      </NovaEventingProvider>
-    );
-  };
+export const NovaMockEnvironmentProvider = <T extends Environment = "test">({
+  children,
+  environment,
+}: React.PropsWithChildren<NovaMockEnvironmentProviderProps<T>>) => {
+  return (
+    <NovaEventingProvider
+      eventing={environment.eventing}
+      reactEventMapper={mapEventMetadata}
+    >
+      <NovaCentralizedCommandingProvider commanding={environment.commanding}>
+        <NovaGraphQLProvider graphql={environment.graphql}>
+          {React.createElement(
+            environment.providerWrapper,
+            undefined,
+            children,
+          )}
+        </NovaGraphQLProvider>
+      </NovaCentralizedCommandingProvider>
+    </NovaEventingProvider>
+  );
+};
 NovaMockEnvironmentProvider.displayName = "NovaMockEnvironmentProvider";
