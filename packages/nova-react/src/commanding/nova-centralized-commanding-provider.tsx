@@ -8,9 +8,10 @@ const NovaCommandingContext =
 
 interface NovaCentralizedCommandingProviderProps {
   commanding: NovaCentralizedCommanding;
+  children?: React.ReactNode | undefined;
 }
 
-export const NovaCentralizedCommandingProvider: React.FunctionComponent<React.PropsWithChildren<NovaCentralizedCommandingProviderProps>> =
+export const NovaCentralizedCommandingProvider: React.FunctionComponent<NovaCentralizedCommandingProviderProps> =
   ({ children, commanding }) => {
     return (
       <NovaCommandingContext.Provider value={commanding}>

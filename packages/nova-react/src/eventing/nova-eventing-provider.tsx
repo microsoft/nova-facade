@@ -24,6 +24,7 @@ interface NovaEventingProviderProps {
    * "mapEventMetadata".
    * */
   reactEventMapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
+  children?: React.ReactNode | undefined;
 }
 
 export interface ReactEventWrapper {
@@ -58,7 +59,7 @@ export interface NovaReactEventing {
 }
 
 export const NovaEventingProvider: React.FunctionComponent<
-  React.PropsWithChildren<NovaEventingProviderProps>
+  NovaEventingProviderProps
 > = ({ children, eventing, unmountEventing, reactEventMapper }) => {
   // Nova contexts provide a facade over framework functions
   // We don't need to trigger rerender in children when we are rerendered

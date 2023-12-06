@@ -7,9 +7,10 @@ const NovaGraphQLContext = React.createContext<NovaGraphQL | null>(null);
 
 interface NovaGraphQLProviderProps {
   graphql: NovaGraphQL;
+  children?: React.ReactNode | undefined;
 }
 
-export const NovaGraphQLProvider: React.FunctionComponent<React.PropsWithChildren<NovaGraphQLProviderProps>> =
+export const NovaGraphQLProvider: React.FunctionComponent<NovaGraphQLProviderProps> =
   ({ children, graphql }) => {
     return (
       <NovaGraphQLContext.Provider value={graphql}>
