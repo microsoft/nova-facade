@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 15 Dec 2023 17:59:51 GMT and should not be manually modified.
+This log was last generated on Fri, 15 Dec 2023 22:46:03 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.0
+
+Fri, 15 Dec 2023 22:46:03 GMT
+
+### Minor changes
+
+- Add support for $fragmentSpreads format (mark@thedutchies.com)
 
 ## 1.5.1
 

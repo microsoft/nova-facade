@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 15 Dec 2023 22:46:03 GMT",
+      "tag": "@nova/react_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/react",
+            "commit": "653e625fe46bf0c762adf9cdba9bec0656b9d26d",
+            "comment": "Add support for $fragmentSpreads format"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 15 Dec 2023 17:59:51 GMT",
       "tag": "@nova/react_v1.5.1",
       "version": "1.5.1",
