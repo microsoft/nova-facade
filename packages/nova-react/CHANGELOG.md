@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 10 Oct 2023 17:45:23 GMT and should not be manually modified.
+This log was last generated on Fri, 15 Dec 2023 17:59:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.1
+
+Fri, 15 Dec 2023 17:59:51 GMT
+
+### Patches
+
+- Fix typings for React 18 and add ^18 to peerDependencies (mark@thedutchies.com)
 
 ## 1.5.0
 

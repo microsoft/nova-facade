@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix typings for React 18 and add ^18 to peerDependencies",
-  "packageName": "@nova/react",
-  "email": "mark@thedutchies.com",
-  "dependentChangeType": "patch"
-}

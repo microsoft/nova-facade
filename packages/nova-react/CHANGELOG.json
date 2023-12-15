@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 15 Dec 2023 17:59:51 GMT",
+      "tag": "@nova/react_v1.5.1",
+      "version": "1.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/react",
+            "commit": "d295e57f2a584cdd3743914aa539673f98ca7b74",
+            "comment": "Fix typings for React 18 and add ^18 to peerDependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Oct 2023 17:45:23 GMT",
       "tag": "@nova/react_v1.5.0",
       "version": "1.5.0",
