@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 10 Oct 2023 17:45:23 GMT and should not be manually modified.
+This log was last generated on Fri, 15 Dec 2023 17:59:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.0.4
+
+Fri, 15 Dec 2023 17:59:51 GMT
+
+### Patches
+
+- Bump @nova/react to v1.5.1
 
 ## 4.0.3
 

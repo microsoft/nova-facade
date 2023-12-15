@@ -1,7 +1,7 @@
 {
   "name": "@nova/react",
   "license": "MIT",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -14,8 +14,8 @@
     "nova-graphql-compiler": "./src/graphql/cli.js"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "@types/react": "^17.0.2",
+    "react": "^17.0.2 || ^18",
+    "@types/react": "^17.0.2 || ^18",
     "@graphitation/graphql-js-tag": "^0.9.0"
   },
   "dependencies": {
