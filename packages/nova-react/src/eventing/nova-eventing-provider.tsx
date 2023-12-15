@@ -24,6 +24,7 @@ interface NovaEventingProviderProps {
    * "mapEventMetadata".
    * */
   reactEventMapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
+  children?: React.ReactNode | undefined;
 }
 
 export interface ReactEventWrapper {
