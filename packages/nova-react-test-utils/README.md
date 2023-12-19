@@ -132,6 +132,29 @@ You can also see that `satisfies NovaEnvironmentDecoratorParameters<TypeMap>` is
 
 ## FAQ
 
+#### I need to configure cache of the Apollo mock client as I am using @graphitation/apollo-react-relay-duct-tape together with watch fragments that rely on bein able to fetch data from cache. Is it configurable?
+
+Yes, if you are using through unit tests directly you can pass options to `createMockEnvironment`:
+
+```tsx
+const environment = createMockEnvironment(schema, {
+  cache: myCustomCacheConfig,
+});
+```
+
+and if you are using through storybook decorator you can pass options to `getNovaEnvironmentDecorator`:
+
+```tsx
+const meta: Meta<typeof FeedbackContainer> = {
+  component: FeedbackContainer,
+  decorators: [
+    getNovaEnvironmentDecorator(schema, {
+      cache: myCustomCacheConfig,
+    }),
+  ],
+};
+```
+
 #### How can I mock query/mutation/subscription?
 
 - [Query example](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client#query)
