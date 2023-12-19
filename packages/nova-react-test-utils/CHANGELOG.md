@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 15 Dec 2023 22:46:03 GMT and should not be manually modified.
+This log was last generated on Tue, 19 Dec 2023 18:33:33 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.1.0
+
+Tue, 19 Dec 2023 18:33:33 GMT
+
+### Minor changes
+
+- add possibility to pass options to mock client (Stanislaw.Wilczynski@microsoft.com)
 
 ## 4.0.5
 
