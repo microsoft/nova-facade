@@ -107,7 +107,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaEnvironmentDecorator(context);
+    } = getNovaEnvironmentForStory(context);
 
     // wait for next tick for apollo client to update state
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -124,13 +124,36 @@ export const LikeFailure: Story = {
 };
 ```
 
-This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentDecorator` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
+This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentForStory` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
 
 For more real life examples please check the [examples package](../examples/src/).
 
 You can also see that `satisfies NovaEnvironmentDecoratorParameters<TypeMap>` is used to strongly type parameters. The `TypeMap` type gives you strongly typed mock resolvers and can be generated using [typemap-plugin](https://github.com/microsoft/graphitation/tree/main/packages/graphql-codegen-typescript-typemap-plugin) that can be added to graphql codegen config file.
 
 ## FAQ
+
+#### I need to configure cache of the Apollo mock client as I am using @graphitation/apollo-react-relay-duct-tape together with watch fragments that rely on bein able to fetch data from cache. Is it configurable?
+
+Yes, if you are using through unit tests directly you can pass options to `createMockEnvironment`:
+
+```tsx
+const environment = createMockEnvironment(schema, {
+  cache: myCustomCacheConfig,
+});
+```
+
+and if you are using through storybook decorator you can pass options to `getNovaEnvironmentDecorator`:
+
+```tsx
+const meta: Meta<typeof FeedbackContainer> = {
+  component: FeedbackContainer,
+  decorators: [
+    getNovaEnvironmentDecorator(schema, {
+      cache: myCustomCacheConfig,
+    }),
+  ],
+};
+```
 
 #### How can I mock query/mutation/subscription?
 

@@ -36,6 +36,8 @@ type DefaultMockResolvers = Partial<{
   [key: string]: unknown;
 }>;
 
+type MockClientOptions = Parameters<typeof createMockClient>[1];
+
 export type NovaEnvironmentDecoratorParameters<
   T extends DefaultMockResolvers = DefaultMockResolvers,
 > = {
@@ -77,13 +79,14 @@ export const getNovaEnvironmentForStory = (
 
 export const getNovaEnvironmentDecorator: (
   schema: GraphQLSchema,
-) => MakeDecoratorResult = (schema) =>
+  options?: MockClientOptions,
+) => MakeDecoratorResult = (schema, options) =>
   makeDecorator({
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
       const environment = React.useMemo(
-        () => createNovaEnvironment(schema),
+        () => createNovaEnvironment(schema, options),
         [],
       );
       const parameters = settings.parameters as
@@ -113,8 +116,9 @@ export const getNovaEnvironmentDecorator: (
 
 function createNovaEnvironment(
   schema: GraphQLSchema,
+  options?: MockClientOptions,
 ): NovaMockEnvironment<"storybook"> {
-  const client = createMockClient(schema);
+  const client = createMockClient(schema, options);
   const env: NovaMockEnvironment<"storybook"> = {
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),

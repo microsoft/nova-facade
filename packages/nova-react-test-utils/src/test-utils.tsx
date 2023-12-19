@@ -13,6 +13,8 @@ import { generate as payloadGenerator } from "@graphitation/graphql-js-operation
 import type { GraphQLTaggedNode } from "@nova/react";
 import type { NovaGraphQL } from "@nova/types";
 
+type MockClientOptions = Parameters<typeof createMockClient>[1];
+
 type Generate<Schema, Node> = (
   operation: OperationDescriptor<Schema, Node>,
   mockResolvers?: Parameters<typeof payloadGenerator>[1],
@@ -34,8 +36,9 @@ export const MockPayloadGenerator: {
  */
 export function createMockEnvironment(
   schema: GraphQLSchema,
+  options?: MockClientOptions,
 ): NovaMockEnvironment {
-  const client = createMockClient(schema);
+  const client = createMockClient(schema, options);
   const env: NovaMockEnvironment = {
     commanding: {
       trigger: jest.fn(),

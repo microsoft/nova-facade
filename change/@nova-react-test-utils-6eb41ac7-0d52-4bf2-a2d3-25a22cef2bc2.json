@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add possibility to pass options to mock client",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
