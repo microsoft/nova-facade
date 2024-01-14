@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Move nova compiler to separate package",
+  "packageName": "@nova/graphql-compiler",
+  "email": "mark@thedutchies.com",
+  "dependentChangeType": "patch"
+}
