@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nova/react": "1.6.0",
+    "@nova/graphql-compiler": "1.0.0",
     "@nova/react-test-utils": "4.1.0",
     "@nova/types": "1.4.0",
     "graphql": "^15.5.0",
