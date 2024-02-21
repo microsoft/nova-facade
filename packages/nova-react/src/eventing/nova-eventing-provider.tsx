@@ -1,5 +1,10 @@
 import * as React from "react";
-import type { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
+import type {
+  NovaEvent,
+  NovaEventing,
+  EventWrapper,
+  Source,
+} from "@nova/types";
 import { InputType } from "@nova/types";
 import invariant from "invariant";
 
@@ -37,6 +42,10 @@ export interface ReactEventWrapper {
 
 export interface GeneratedEventWrapper {
   event: NovaEvent<unknown>;
+  /**
+   * Optional details about the originating event like input method and timestamp
+   */
+  source?: Source;
   /**
    * Optional timestamp in milliseconds since epoch format,
    * by default will use Date.now() if override not supplied.
@@ -142,7 +151,7 @@ const generateEventing =
     generateEvent: (eventWrapper: GeneratedEventWrapper) => {
       const mappedEvent = {
         event: eventWrapper.event,
-        source: {
+        source: eventWrapper.source ?? {
           inputType: InputType.programmatic,
           timeStamp: eventWrapper.timeStampOverride ?? Date.now(),
         },
