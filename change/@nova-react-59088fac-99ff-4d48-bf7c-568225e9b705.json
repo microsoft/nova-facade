@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Added optional source to GeneratedEventWrapper, will generate with source if source is passed with eventWrapper",
+  "packageName": "@nova/react",
+  "email": "kennetvuong@microsoft.com",
+  "dependentChangeType": "patch"
+}
