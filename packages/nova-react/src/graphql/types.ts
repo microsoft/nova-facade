@@ -3,7 +3,7 @@ export interface Variables {
 }
 
 export interface Context {
-  [name: string]: any
+  [name: string]: any;
 }
 
 export interface OperationType {
@@ -21,11 +21,13 @@ export interface _RefType<Ref extends string> {
   " $refType": Ref;
 }
 
-export type _FragmentRefs<Refs extends string> = {
-  " $fragmentRefs": FragmentRefs<Refs>;
-} | {
-  " $fragmentSpreads": FragmentRefs<Refs>;
-}
+export type _FragmentRefs<Refs extends string> =
+  | {
+      " $fragmentRefs": FragmentRefs<Refs>;
+    }
+  | {
+      " $fragmentSpreads": FragmentRefs<Refs>;
+    };
 
 // This is used in the actual artifacts to define the various fragment references a container holds.
 export type FragmentRefs<Refs extends string> = {
@@ -43,13 +45,15 @@ export type FragmentRef<Fragment> = Fragment extends _RefType<infer U>
 
 export type FragmentReference = unknown;
 
-export type KeyType<TData = unknown> = Readonly<{
-  " $data"?: TData;
-  " $fragmentRefs": FragmentReference;
-}> | Readonly<{
-  " $data"?: TData;
-  " $fragmentSpreads": FragmentReference;
-}>;
+export type KeyType<TData = unknown> =
+  | Readonly<{
+      " $data"?: TData;
+      " $fragmentRefs": FragmentReference;
+    }>
+  | Readonly<{
+      " $data"?: TData;
+      " $fragmentSpreads": FragmentReference;
+    }>;
 
 export type KeyTypeData<
   TKey extends KeyType<TData>,
