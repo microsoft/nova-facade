@@ -498,7 +498,7 @@ describe(usePaginationFragment, () => {
     void _;
   });
 
-  it("allows null to be passed as a fragment ref and returns null or undefined", () => {
+  it("allows fragment ref, null, or undefined to be passed as a fragment ref and returns data, null, or undefined", () => {
     const graphql: NovaGraphQL = {
       usePaginationFragment: jest.fn().mockImplementation(() => ({
         data: {},
@@ -535,7 +535,7 @@ describe(usePaginationFragment, () => {
     void _;
   });
 
-  it("allows null to be passed as a fragment ref and returns null or undefined", () => {
+  it("allows null or undefined to be passed as a fragment ref and returns null or undefined", () => {
     const graphql: NovaGraphQL = {
       usePaginationFragment: jest.fn().mockImplementation(() => ({
         data: {},
