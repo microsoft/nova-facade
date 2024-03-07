@@ -1,4 +1,4 @@
-const { spawnSync } = require("child_process");
+const { spawn } = require("cross-spawn");
 const { readFile, rm } = require("fs/promises");
 const path = require("path/posix");
 
@@ -11,7 +11,7 @@ describe("cli", () => {
     });
 
     // Run the compiler
-    spawnSync(
+    spawn.sync(
       "./src/cli.js",
       [
         "--schema",
