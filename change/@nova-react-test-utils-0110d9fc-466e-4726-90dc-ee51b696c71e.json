@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "use newer version of duct tape",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
