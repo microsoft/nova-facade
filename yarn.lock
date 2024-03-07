@@ -1284,12 +1284,24 @@
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-0.8.2.tgz#7f57e65e3ebe9afa68be62fefd5d85690629e2a0"
-  integrity sha512-zW3A2QaU8GhzrJPcx6+WI3csQSTQKdKayY7+farCB4eiWBIar4eANBLyz8hxpxGGEwbbnmT+esZD1UFM3fV02w==
+"@graphitation/apollo-react-relay-duct-tape-compiler@^1.4.0":
+  version "1.4.0"
+  resolved "https://domoreexp.pkgs.visualstudio.com/_packaging/npm-mirror/npm/registry/@graphitation/apollo-react-relay-duct-tape-compiler/-/apollo-react-relay-duct-tape-compiler-1.4.0.tgz#26df7100b6cf5e33a72cd22fbd48d85acbd2cc68"
+  integrity sha1-Jt9xALbPXjOnLNIvvUjYWsvSzGg=
+  dependencies:
+    "@graphitation/graphql-js-tag" "^0.9.1"
+    "@graphql-tools/optimize" "^1.1.1"
+    relay-compiler "^12.0.0"
+    relay-compiler-language-typescript "^15.0.1"
+    yargs "^16.2.0"
+
+"@graphitation/apollo-react-relay-duct-tape@^1.0.30":
+  version "1.0.30"
+  resolved "https://domoreexp.pkgs.visualstudio.com/_packaging/npm-mirror/npm/registry/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.0.30.tgz#a3c3211a675cab4832d55d5ad74fec65494cb9d9"
+  integrity sha1-o8MhGmdcq0gy1V1a10/sZUlMudk=
   dependencies:
     invariant "^2.2.4"
+    lodash "^4.17.15"
 
 "@graphitation/graphql-codegen-typescript-typemap-plugin@^0.1.5":
   version "0.1.5"
@@ -1309,6 +1321,13 @@
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.0.tgz#4e368c5b43809123866b0400f96e460386e43fb6"
   integrity sha512-TgRtUE6XurM6jz9FXdP+hxfEhzdWT/mljBCN03sFuEtyMpTfLjPYTd0QfqXbFd5fTnt1Yjfm2Vu0bB1Jz7cKEg==
+  dependencies:
+    invariant "^2.0.0"
+
+"@graphitation/graphql-js-tag@^0.9.1":
+  version "0.9.1"
+  resolved "https://domoreexp.pkgs.visualstudio.com/_packaging/npm-mirror/npm/registry/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.1.tgz#e40bef3a58ce553f1f40eab262e5ab263d5225bc"
+  integrity sha1-5AvvOljOVT8fQOqyYuWrJj1SJbw=
   dependencies:
     invariant "^2.0.0"
 
@@ -1621,6 +1640,13 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@graphql-tools/optimize/-/optimize-1.3.1.tgz#29407991478dbbedc3e7deb8c44f46acb4e9278b"
   integrity sha512-5j5CZSRGWVobt4bgRRg7zhjPiSimk+/zIuColih8E8DxuFOaJ+t0qu7eZS5KXWBkjcd4BPNuhUPpNlEmHPqVRQ==
+  dependencies:
+    tslib "^2.4.0"
+
+"@graphql-tools/optimize@^1.1.1":
+  version "1.4.0"
+  resolved "https://domoreexp.pkgs.visualstudio.com/_packaging/npm-mirror/npm/registry/@graphql-tools/optimize/-/optimize-1.4.0.tgz#20d6a9efa185ef8fc4af4fd409963e0907c6e112"
+  integrity sha1-INap76GF74/Er0/UCZY+CQfG4RI=
   dependencies:
     tslib "^2.4.0"
 
@@ -9284,7 +9310,7 @@ relay-compiler-language-graphitation@^0.8.2:
     relay-compiler-language-typescript ">=14.0.0"
     typescript ">=4.2.3"
 
-relay-compiler-language-typescript@>=14.0.0:
+relay-compiler-language-typescript@>=14.0.0, relay-compiler-language-typescript@^15.0.1:
   version "15.0.1"
   resolved "https://registry.yarnpkg.com/relay-compiler-language-typescript/-/relay-compiler-language-typescript-15.0.1.tgz#78e952cdf6d7c9f833f168c6f8765e985a791d3d"
   integrity sha512-hy760TxYhylNhSDkkxrQJvEqbhtknE8YtzmY+tRpgKGCq1Axi7eh3YjCLmfc3P2jumJXNEROQTkqqz8IbgU+tg==
