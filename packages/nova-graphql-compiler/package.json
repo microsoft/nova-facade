@@ -19,6 +19,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "cross-spawn": "^7.0.0",
     "monorepo-scripts": "*"
   },
   "repository": {
