@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add eventing interceptor",
+  "packageName": "@nova/react",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
