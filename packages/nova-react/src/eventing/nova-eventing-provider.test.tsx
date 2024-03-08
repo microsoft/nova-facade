@@ -28,6 +28,7 @@ describe("useNovaEventing", () => {
   let eventing: NovaEventing;
   let prevWrappedEventing: NovaReactEventing;
   let eventCallback: () => void;
+  const renderSpy = jest.fn();
   const initialChildren = "initial children";
   const updatedChildren = "updated children";
 
@@ -43,6 +44,7 @@ describe("useNovaEventing", () => {
     prevWrappedEventing = undefined as unknown as NovaReactEventing;
 
     TestComponent = ({ childrenText }) => {
+      renderSpy();
       const wrappedEventing: NovaReactEventing = useNovaEventing();
       expect(wrappedEventing).toBeDefined();
       expect(wrappedEventing).not.toBe(eventing);
@@ -110,6 +112,8 @@ describe("useNovaEventing", () => {
       initialChildren,
     );
 
+expect(renderSpy).toHaveBeenCalledTimes(1);
+
     wrapper.rerender(
       <NovaEventingProvider
         children={<TestComponent childrenText={updatedChildren} />}
@@ -120,6 +124,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       updatedChildren,
     );
+    expect(renderSpy).toHaveBeenCalledTimes(2);
   });
 
   test("Takes in children and eventing props, creates a stable wrapped NovaReactEventing instance from eventing across re-renders when children do not change.", () => {
@@ -137,6 +142,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
+    expect(renderSpy).toHaveBeenCalledTimes(1);
 
     wrapper.rerender(
       <NovaEventingProvider
@@ -148,6 +154,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
+    expect(renderSpy).toHaveBeenCalledTimes(1);
 
     // Update eventing instance to test useRef pathway. This will ensure the wrapped eventing instance
     // returned from useEventing is stable from one render to the next.
@@ -164,6 +171,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
+    expect(renderSpy).toHaveBeenCalledTimes(1);
 
     //Trigger a callback on the test child through eventing
     eventCallback();
@@ -186,6 +194,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
+    expect(renderSpy).toHaveBeenCalledTimes(1);
 
     //Trigger a callback on the test child through eventing
     eventCallback();
