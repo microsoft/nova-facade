@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 08 Mar 2024 17:52:20 GMT and should not be manually modified.
+This log was last generated on Fri, 08 Mar 2024 18:03:54 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.1.0
+
+Fri, 08 Mar 2024 18:03:54 GMT
+
+### Minor changes
+
+- add eventing interceptor (Stanislaw.Wilczynski@microsoft.com)
 
 ## 2.0.0
 

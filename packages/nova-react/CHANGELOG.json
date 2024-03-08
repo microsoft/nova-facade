@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 08 Mar 2024 18:03:54 GMT",
+      "tag": "@nova/react_v2.1.0",
+      "version": "2.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "9841ee63ecd602264c8fb14690ebef679bb1752b",
+            "comment": "add eventing interceptor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 08 Mar 2024 17:52:20 GMT",
       "tag": "@nova/react_v2.0.0",
       "version": "2.0.0",
