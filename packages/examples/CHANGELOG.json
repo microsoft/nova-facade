@@ -2,6 +2,39 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Fri, 08 Mar 2024 17:52:20 GMT",
+      "tag": "@nova/examples_v1.0.7",
+      "version": "1.0.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/examples",
+            "commit": "13ff3c8be5459586f430924692e8c92025239562",
+            "comment": "Add new @nova/graphql-compiler package to examples"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.0.0",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/graphql-compiler to v1.0.1",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.2.0",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 19 Dec 2023 18:33:33 GMT",
       "tag": "@nova/examples_v1.0.6",
       "version": "1.0.6",

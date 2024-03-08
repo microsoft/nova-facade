@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 08 Mar 2024 17:52:20 GMT",
+      "tag": "@nova/react-test-utils_v4.2.0",
+      "version": "4.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "13ff3c8be5459586f430924692e8c92025239562",
+            "comment": "use newer version of duct tape"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.0.0",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 19 Dec 2023 18:33:33 GMT",
       "tag": "@nova/react-test-utils_v4.1.0",
       "version": "4.1.0",

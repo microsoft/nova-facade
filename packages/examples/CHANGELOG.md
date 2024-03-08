@@ -1,8 +1,19 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 19 Dec 2023 18:33:33 GMT and should not be manually modified.
+This log was last generated on Fri, 08 Mar 2024 17:52:20 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.7
+
+Fri, 08 Mar 2024 17:52:20 GMT
+
+### Patches
+
+- Add new @nova/graphql-compiler package to examples (mark@thedutchies.com)
+- Bump @nova/react to v2.0.0
+- Bump @nova/graphql-compiler to v1.0.1
+- Bump @nova/react-test-utils to v4.2.0
 
 ## 1.0.6
 

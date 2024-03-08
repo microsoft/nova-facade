@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Move nova compiler to separate package",
-  "packageName": "@nova/react",
-  "email": "mark@thedutchies.com",
-  "dependentChangeType": "patch"
-}

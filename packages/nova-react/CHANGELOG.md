@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 15 Dec 2023 22:46:03 GMT and should not be manually modified.
+This log was last generated on Fri, 08 Mar 2024 17:52:20 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.0.0
+
+Fri, 08 Mar 2024 17:52:20 GMT
+
+### Major changes
+
+- Move nova compiler to separate package (mark@thedutchies.com)
 
 ## 1.6.0
 

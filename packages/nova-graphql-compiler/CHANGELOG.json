@@ -1,0 +1,28 @@
+{
+  "name": "@nova/graphql-compiler",
+  "entries": [
+    {
+      "date": "Fri, 08 Mar 2024 17:52:20 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "13ff3c8be5459586f430924692e8c92025239562",
+            "comment": "Move nova compiler to separate package"
+          }
+        ],
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "13ff3c8be5459586f430924692e8c92025239562",
+            "comment": "make test for compiler work on windows"
+          }
+        ]
+      }
+    }
+  ]
+}
