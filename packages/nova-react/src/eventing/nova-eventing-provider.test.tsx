@@ -391,7 +391,7 @@ describe("useUnmountEventing", () => {
   });
 });
 
-describe.only("NovaEventingInterceptor", () => {
+describe("NovaEventingInterceptor", () => {
   const originalError = console.error;
   beforeEach(() => {
     jest.clearAllMocks();
@@ -400,6 +400,8 @@ describe.only("NovaEventingInterceptor", () => {
   const realMapper = jest.requireActual(
     "./react-event-source-mapper",
   ).mapEventMetadata;
+
+  const mapEventMetadataMock = jest.fn().mockImplementation(realMapper);
 
   const bubbleMock = jest.fn();
 
@@ -455,7 +457,7 @@ describe.only("NovaEventingInterceptor", () => {
   }> = ({ interceptor = defaultInterceptor }) => (
     <NovaEventingProvider
       eventing={parentEventing}
-      reactEventMapper={realMapper}
+      reactEventMapper={mapEventMetadataMock}
     >
       <ComponentWithTwoEvents name="outside" />
       <NovaEventingInterceptor interceptor={interceptor}>
@@ -464,11 +466,12 @@ describe.only("NovaEventingInterceptor", () => {
     </NovaEventingProvider>
   );
 
-  it("intercepts the event and does not bubble it up", () => {
+  it("intercepts the event and does not bubble it up", async () => {
     const { getByText } = render(<InterceptorTestComponent />);
     const button = getByText("inside: Fire event to be intercepted");
     button.click();
     expect(callbackToBeCalledOnIntercept).toHaveBeenCalled();
+    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
     expect(bubbleMock).not.toHaveBeenCalled();
   });
 
