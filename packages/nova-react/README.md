@@ -74,3 +74,104 @@ For `babel-loader` (make sure template tags aren't stripped out by typescript by
   },
 },
 ```
+
+## Eventing
+
+Nova eventing exposes a clearly contracted, component driven way to surface actions that occur within in the boundaries of a component.
+These events are published in an independent package so that they can be easily consumed by code that is outside of the component tree.
+
+### Primary Use Cases for Events
+
+- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side
+- Bubbling an internal action that needs to be logged
+
+### Eventing Contract
+
+Eventing is primarily a contract between the component owner and host apps. The Event data object should contain all the appropriate context to allow the host apps to appropriately handle the event.
+
+If the host app needs additional data to perform an action, this should be discussed with the component team to add an event or extend the data sent.
+
+### Basic example
+
+```tsx
+import { NovaEventingProvider, reactEventMapper } from "@nova/react";
+
+const eventHandler = (eventWrapper: EventWrapper) => {
+  if (eventWrapper.event.eventType === "showProfile") {
+    // trigger some action to show profile
+  }
+  if (eventWrapper.originator === "MyComponent") {
+    return handleEventsForMyComponent(eventWrapper);
+  }
+};
+
+const AppEventingProvider = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <NovaEventingProvider
+      bubble={eventHandler}
+      reactEventMapper={
+        reactEventMapper
+      } /* you can also provide your own implementation of mapper */
+    >
+      {children}
+    </NovaEventingProvider>
+  );
+};
+```
+
+Then in some low level component
+
+```tsx
+import { useNovaEventing } from "@nova/react";
+
+const MyComponent = () => {
+  const eventing = useNovaEventing();
+
+  const handleClick = (event: React.SyntheticEvent) => {
+    eventing.bubble({
+      reactEvent: event,
+      event: {
+        eventType: "selectProfile",
+        originator: "MyComponent",
+        data: () => ({
+          userId: "123",
+        }),
+      },
+    });
+  };
+
+  return <button onClick={handleClick}>Select profile</button>;
+};
+```
+
+### Intercepting events
+
+As `NovaEventingProvider` is usually defined at the top level of the app, you may want to intercept events, which are more specific to your component and can be handled on lower level. This is not encouraged as it makes the handling not reusable by other component but if you are sure the event is specific and you want to handle it lower (like passing some arguments to your host app wrapper), you can use `NovaEventingInterceptor`:
+
+```tsx
+const MyComponentWrapper = () => {
+  const [userId, setUserId] = useState<string | null>(null);
+
+  const defaultInterceptor = (eventWrapper: EventWrapper) => {
+    if (
+      eventWrapper.event.originator === "MyComponent" &&
+      eventWrapper.event.eventType === "selectProfile"
+    ) {
+      const data = eventWrapper.event.data();
+      setUserId(data.userId);
+      return Promise.resolve(undefined);
+    } else {
+      return Promise.resolve(eventWrapper);
+    }
+  };
+
+  return (
+    <NovaEventingInterceptor intercept={defaultInterceptor}>
+      {userId && <Profile userId={userId} />}
+      <ComponentThatRenderMyComponentSomewhereInside />
+    </NovaEventingInterceptor>
+  );
+};
+```
+
+The `NovaEventingInterceptor` will intercept the event and if you can check it's properties to decide if is should be acted upon. If from `intercept` promise resolving to undefined is returned the event will not be passed to eventing higher up the tree. However, if to process the event further, one should return a promise resolving to the `eventWrapper` object. That also gives a possibility to alter the event and still pass it further up.

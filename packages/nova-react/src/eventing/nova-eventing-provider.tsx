@@ -6,10 +6,11 @@ import invariant from "invariant";
 // Context is initialized with an empty object and this is null-checked within the hooks
 const NovaEventingContext = React.createContext<INovaEventingContext>({});
 
-// Both properties are optional in the context for initialization state only, but eventing must be supplied in the props
+// All properties are optional in the context for initialization state only, but eventing must be supplied in the props
 interface INovaEventingContext {
   eventing?: NovaReactEventing;
   unmountEventing?: NovaReactEventing;
+  internal?: InternalEventingContext;
 }
 
 interface NovaEventingProviderProps {
@@ -58,6 +59,14 @@ export interface NovaReactEventing {
   generateEvent(eventWrapper: GeneratedEventWrapper): Promise<void>;
 }
 
+export interface InternalEventingContext {
+  eventingRef: React.MutableRefObject<NovaEventing>;
+  unmountEventingRef: React.MutableRefObject<NovaEventing>;
+  mapperRef: React.MutableRefObject<
+    (reactEventWrapper: ReactEventWrapper) => EventWrapper
+  >;
+}
+
 export const NovaEventingProvider: React.FunctionComponent<
   NovaEventingProviderProps
 > = ({ children, eventing, unmountEventing, reactEventMapper }) => {
@@ -91,7 +100,11 @@ export const NovaEventingProvider: React.FunctionComponent<
   );
 
   const contextValue = React.useMemo(
-    () => ({ eventing: reactEventing, unmountEventing: reactUnmountEventing }),
+    () => ({
+      eventing: reactEventing,
+      unmountEventing: reactUnmountEventing,
+      internal: { eventingRef, unmountEventingRef, mapperRef },
+    }),
     [reactEventing, reactUnmountEventing],
   );
 
@@ -111,6 +124,63 @@ export const useNovaEventing = (): NovaReactEventing => {
   );
   return eventing;
 };
+
+interface NovaEventingInterceptorProps {
+  interceptor: (event: EventWrapper) => Promise<EventWrapper | undefined>;
+  children?: React.ReactNode | undefined;
+}
+
+export const NovaEventingInterceptor: React.FunctionComponent<
+  NovaEventingInterceptorProps
+> = ({ children, interceptor }) => {
+  // Nova contexts provide a facade over framework functions
+  // We don't need to trigger rerender in children when we are rerendered
+  // or when the input functions change, we just need to make sure callbacks
+  // use the right functions
+  const interceptorRef = React.useRef(interceptor);
+  if (interceptorRef.current !== interceptor) {
+    interceptorRef.current = interceptor;
+  }
+
+  const { internal } = React.useContext(NovaEventingContext);
+
+  if (!internal) {
+    invariant(
+      internal,
+      "Nova Eventing provider must be initialized prior to creating NovaEventingInterceptor!",
+    );
+  }
+
+  const reactEventing = React.useMemo(
+    generateEventing(internal.eventingRef, internal.mapperRef, interceptorRef),
+    [],
+  );
+
+  const reactUnmountEventing = React.useMemo(
+    generateEventing(
+      internal.unmountEventingRef,
+      internal.mapperRef,
+      interceptorRef,
+    ),
+    [],
+  );
+
+  const contextValue = React.useMemo(
+    () => ({
+      eventing: reactEventing,
+      unmountEventing: reactUnmountEventing,
+      internal,
+    }),
+    [reactEventing, reactUnmountEventing],
+  );
+
+  return (
+    <NovaEventingContext.Provider value={contextValue}>
+      {children}
+    </NovaEventingContext.Provider>
+  );
+};
+NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
 
 /**
  * Used for eventing that should be triggered when the component is unmounted, such as within a useEffect cleanup function
@@ -133,13 +203,25 @@ const generateEventing =
     mapperRef: React.MutableRefObject<
       (reactEventWrapper: ReactEventWrapper) => EventWrapper
     >,
+    interceptorRef?: React.MutableRefObject<
+      (event: EventWrapper) => Promise<EventWrapper | undefined>
+    >,
   ) =>
   (): NovaReactEventing => ({
-    bubble: (eventWrapper: ReactEventWrapper) => {
+    bubble: async (eventWrapper: ReactEventWrapper) => {
       const mappedEvent: EventWrapper = mapperRef.current(eventWrapper);
-      return eventingRef.current.bubble(mappedEvent);
+      if (!interceptorRef) {
+        return eventingRef.current.bubble(mappedEvent);
+      }
+
+      let eventToBubble: EventWrapper | undefined = mappedEvent;
+      eventToBubble = await interceptorRef.current(mappedEvent);
+
+      return eventToBubble
+        ? eventingRef.current.bubble(eventToBubble)
+        : Promise.resolve();
     },
-    generateEvent: (eventWrapper: GeneratedEventWrapper) => {
+    generateEvent: async (eventWrapper: GeneratedEventWrapper) => {
       const mappedEvent = {
         event: eventWrapper.event,
         source: {
@@ -147,6 +229,15 @@ const generateEventing =
           timeStamp: eventWrapper.timeStampOverride ?? Date.now(),
         },
       };
-      return eventingRef.current.bubble(mappedEvent);
+      if (!interceptorRef) {
+        return eventingRef.current.bubble(mappedEvent);
+      }
+
+      let eventToBubble: EventWrapper | undefined = mappedEvent;
+      eventToBubble = await interceptorRef.current(mappedEvent);
+
+      return eventToBubble
+        ? eventingRef.current.bubble(eventToBubble)
+        : Promise.resolve();
     },
   });
