@@ -129,11 +129,14 @@ const MyComponent = () => {
 
   const handleClick = (event: React.SyntheticEvent) => {
     eventing.bubble({
-      eventType: "selectProfile",
-      originator: "MyComponent",
-      data: () => ({
-        userId: "123",
-      }),
+      reactEvent: event,
+      event: {
+        eventType: "selectProfile",
+        originator: "MyComponent",
+        data: () => ({
+          userId: "123",
+        }),
+      },
     });
   };
 
