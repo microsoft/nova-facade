@@ -15,7 +15,7 @@ import {
   useNovaEventing,
   useNovaUnmountEventing,
 } from "./nova-eventing-provider";
-import type { EventWrapper, NovaEventing } from "@nova/types";
+import type { EventWrapper, NovaEventing, Source } from "@nova/types";
 import { InputType } from "@nova/types";
 
 import * as ReactEventSourceMapper from "./react-event-source-mapper";
@@ -207,6 +207,7 @@ describe("useNovaEventing", () => {
 describe("NovaReactEventing exposes 'generateEvent'", () => {
   interface Props {
     overrideTimestamp?: boolean;
+    overrideSource?: Source;
     expectedTime: number;
     eventing: NovaEventing;
     mapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper;
@@ -214,7 +215,13 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
   const TestPassedContextComponent: React.FC<Props> = (
     props: Props,
   ): React.ReactElement | null => {
-    const { eventing, mapper, overrideTimestamp, expectedTime } = props;
+    const {
+      eventing,
+      mapper,
+      overrideTimestamp,
+      expectedTime,
+      overrideSource,
+    } = props;
     const facadeFromContext = useNovaEventing();
     const event = { originator: "test", type: "test" };
 
@@ -224,6 +231,11 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
       eventWrapper = {
         event,
         timeStampOverride: expectedTime,
+      };
+    } else if (overrideSource) {
+      eventWrapper = {
+        event,
+        source: overrideSource,
       };
     } else {
       eventWrapper = {
@@ -235,7 +247,7 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
 
     expect(eventing.bubble).toBeCalledWith({
       event,
-      source: {
+      source: overrideSource ?? {
         inputType: InputType.programmatic,
         timeStamp: expectedTime,
       },
@@ -282,6 +294,33 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
       <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
         <TestPassedContextComponent
           overrideTimestamp
+          expectedTime={overrideTime}
+          eventing={eventing}
+          mapper={mapper}
+        />
+      </NovaEventingProvider>,
+    );
+  });
+
+  it("and takes an override to set the source and calls the bubble function.", () => {
+    expect.assertions(2);
+
+    const eventing = {
+      bubble: jest.fn(),
+    } as unknown as NovaEventing;
+
+    const mapper = jest.fn();
+
+    const overrideTime = 9999999999;
+    const overrideSource = {
+      inputType: InputType.keyboard,
+      timeStamp: overrideTime,
+    };
+
+    render(
+      <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
+        <TestPassedContextComponent
+          overrideSource={overrideSource}
           expectedTime={overrideTime}
           eventing={eventing}
           mapper={mapper}
