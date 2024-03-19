@@ -19,8 +19,8 @@ import {
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type { FragmentRefs } from "./types";
 
-type NotNull<T> = null extends T ? false : true;
-type NotUndefined<T> = undefined extends T ? false : true;
+type IsNotNull<T> = null extends T ? false : true;
+type IsNotUndefined<T> = undefined extends T ? false : true;
 
 describe(useLazyLoadQuery, () => {
   it("ensures an implementation is supplied", () => {
@@ -218,8 +218,8 @@ describe(useFragment, () => {
 
       type ExpectedReturnType = typeof data;
 
-      const _: NotNull<ExpectedReturnType> = true;
-      const __: NotUndefined<ExpectedReturnType> = true;
+      const _: IsNotNull<ExpectedReturnType> = true;
+      const __: IsNotUndefined<ExpectedReturnType> = true;
       const ___: ExpectedReturnType = { someKey: "some-data" };
 
       // Workaround for TS complaining about unused variables
@@ -343,8 +343,8 @@ describe(useRefetchableFragment, () => {
 
     type ExpectedReturnType = (typeof result.current)[0];
 
-    const _: NotNull<ExpectedReturnType> = true;
-    const __: NotUndefined<ExpectedReturnType> = true;
+    const _: IsNotNull<ExpectedReturnType> = true;
+    const __: IsNotUndefined<ExpectedReturnType> = true;
     const ___: ExpectedReturnType = { someKey: "some-data " };
 
     // Workaround for TS complaining about unused variables
@@ -383,8 +383,8 @@ describe(useRefetchableFragment, () => {
 
     type ExpectedReturnType = (typeof result.current)[0];
 
-    const _: NotNull<ExpectedReturnType> = false;
-    const __: NotUndefined<ExpectedReturnType> = false;
+    const _: IsNotNull<ExpectedReturnType> = false;
+    const __: IsNotUndefined<ExpectedReturnType> = false;
     const ___: ExpectedReturnType = { someKey: "some-data " };
 
     // Workaround for TS complaining about unused variables
