@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Wed, 20 Mar 2024 16:54:24 GMT",
+      "tag": "@nova/react_v2.2.0",
+      "version": "2.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/react",
+            "commit": "78f7c8ca1ebe219c25d2c24e210a1425b8a540d4",
+            "comment": "Make fragment ref nullable"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 08 Mar 2024 18:03:54 GMT",
       "tag": "@nova/react_v2.1.0",
       "version": "2.1.0",
