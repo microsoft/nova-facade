@@ -60,7 +60,7 @@ import type {
 export function useLazyLoadQuery<TQuery extends OperationType>(
   query: GraphQLTaggedNode,
   variables: TQuery["variables"],
-  options?: { fetchPolicy?: "cache-first"; context?: TQuery["context"] }
+  options?: { fetchPolicy?: "cache-first"; context?: TQuery["context"] },
 ): { error?: Error; data?: TQuery["response"] } {
   const graphql = useNovaGraphQL();
   invariant(
@@ -134,10 +134,23 @@ export function useLazyLoadQuery<TQuery extends OperationType>(
  *                    fragment.
  * @returns The data corresponding to the field selections.
  */
+export function useFragment(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: null | undefined,
+): null | undefined;
 export function useFragment<TKey extends KeyType>(
   fragmentInput: GraphQLTaggedNode,
   fragmentRef: TKey,
-): KeyTypeData<TKey> {
+): KeyTypeData<TKey>;
+export function useFragment<TKey extends KeyType>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): KeyTypeData<TKey> | null | undefined;
+
+export function useFragment<TKey extends KeyType>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): KeyTypeData<TKey> | null | undefined {
   return (
     useNovaGraphQL().useFragment?.(fragmentInput, fragmentRef) || fragmentRef
   );
@@ -155,11 +168,40 @@ export function useFragment<TKey extends KeyType>(
  */
 export function useRefetchableFragment<
   TQuery extends OperationType,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: null | undefined,
+): [data: null | undefined, refetch: RefetchFn<TQuery["variables"]>];
+export function useRefetchableFragment<
+  TQuery extends OperationType,
   TKey extends KeyType,
 >(
   fragmentInput: GraphQLTaggedNode,
   fragmentRef: TKey,
-): [data: KeyTypeData<TKey>, refetch: RefetchFn<TQuery["variables"]>] {
+): [data: KeyTypeData<TKey>, refetch: RefetchFn<TQuery["variables"]>];
+export function useRefetchableFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): [
+  data: KeyTypeData<TKey> | null | undefined,
+  refetch: RefetchFn<TQuery["variables"]>,
+];
+
+export function useRefetchableFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): [
+  data: KeyTypeData<TKey> | null | undefined,
+  refetch: RefetchFn<TQuery["variables"]>,
+] {
   const graphql = useNovaGraphQL();
   invariant(
     graphql.useRefetchableFragment,
@@ -178,6 +220,24 @@ export function useRefetchableFragment<
  *                    fragment.
  * @returns The data corresponding to the field selections and functions to deal with pagination.
  */
+
+export function usePaginationFragment<
+  TQuery extends OperationType,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  TKey extends null | undefined,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: null | undefined,
+): {
+  data: null | undefined;
+  loadNext: PaginationFn;
+  loadPrevious: PaginationFn;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  isLoadingNext: boolean;
+  isLoadingPrevious: boolean;
+  refetch: RefetchFn<TQuery["variables"]>;
+};
 export function usePaginationFragment<
   TQuery extends OperationType,
   TKey extends KeyType,
@@ -186,6 +246,39 @@ export function usePaginationFragment<
   fragmentRef: TKey,
 ): {
   data: KeyTypeData<TKey>;
+  loadNext: PaginationFn;
+  loadPrevious: PaginationFn;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  isLoadingNext: boolean;
+  isLoadingPrevious: boolean;
+  refetch: RefetchFn<TQuery["variables"]>;
+};
+export function usePaginationFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): {
+  data: KeyTypeData<TKey> | null | undefined;
+  loadNext: PaginationFn;
+  loadPrevious: PaginationFn;
+  hasNext: boolean;
+  hasPrevious: boolean;
+  isLoadingNext: boolean;
+  isLoadingPrevious: boolean;
+  refetch: RefetchFn<TQuery["variables"]>;
+};
+
+export function usePaginationFragment<
+  TQuery extends OperationType,
+  TKey extends KeyType,
+>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): {
+  data: KeyTypeData<TKey> | null | undefined;
   loadNext: PaginationFn;
   loadPrevious: PaginationFn;
   hasNext: boolean;
