@@ -179,7 +179,7 @@ describe(useFragment, () => {
     expect(result.current).toBeUndefined();
   });
 
-  it("return type can be `null`, `undefined` or data", () => {
+  it("returns a value that can be `null`, `undefined` or data", () => {
     type SomeFragment$data = { someKey: string };
     type SomeFragment$key = {
       readonly " $data"?: SomeFragment$data;
@@ -189,21 +189,26 @@ describe(useFragment, () => {
     const fragment = {} as unknown as GraphQLTaggedNode;
     const opaqueFragmentRef = {} as unknown as SomeFragment$key | null;
 
-    () => {
-      const data = useFragment(fragment, opaqueFragmentRef);
+    const { result } = renderHook(
+      () => useFragment(fragment, opaqueFragmentRef),
+      {
+        wrapper: ({ children }) => (
+          <NovaGraphQLProvider graphql={{}}>{children}</NovaGraphQLProvider>
+        ),
+      },
+    );
 
-      type ExpectedReturnType = typeof data;
+    type ExpectedReturnType = typeof result.current;
 
-      const _: ExpectedReturnType = null;
-      const __: ExpectedReturnType = undefined;
-      const ___: ExpectedReturnType = { someKey: "some-data" };
+    const _: ExpectedReturnType = null;
+    const __: ExpectedReturnType = undefined;
+    const ___: ExpectedReturnType = { someKey: "some-data" };
 
-      // Workaround for TS complaining about unused variables
-      void _, __, ___;
-    };
+    // Workaround for TS complaining about unused variables
+    void _, __, ___;
   });
 
-  it("return type does not include `null` or `undefined`", () => {
+  it("returns a value that can not be `null` or `undefined` when the fragment ref is not `null` or `undefined`", () => {
     type SomeFragment$data = { someKey: string };
     type SomeFragment$key = {
       readonly " $data"?: SomeFragment$data;
@@ -213,18 +218,26 @@ describe(useFragment, () => {
     const fragment = {} as unknown as GraphQLTaggedNode;
     const opaqueFragmentRef = {} as unknown as SomeFragment$key;
 
-    () => {
-      const data = useFragment(fragment, opaqueFragmentRef);
+    const { result } = renderHook(
+      () => useFragment(fragment, opaqueFragmentRef),
+      {
+        wrapper: ({ children }) => (
+          <NovaGraphQLProvider graphql={{}}>{children}</NovaGraphQLProvider>
+        ),
+        initialProps: {
+          fragmentRef: opaqueFragmentRef,
+        },
+      },
+    );
 
-      type ExpectedReturnType = typeof data;
+    type ExpectedReturnType = typeof result.current;
 
-      const _: IsNotNull<ExpectedReturnType> = true;
-      const __: IsNotUndefined<ExpectedReturnType> = true;
-      const ___: ExpectedReturnType = { someKey: "some-data" };
+    const _: IsNotNull<ExpectedReturnType> = true;
+    const __: IsNotUndefined<ExpectedReturnType> = true;
+    const ___: ExpectedReturnType = { someKey: "some-data" };
 
-      // Workaround for TS complaining about unused variables
-      void _, __, ___;
-    };
+    // Workaround for TS complaining about unused variables
+    void _, __, ___;
   });
 });
 
@@ -288,6 +301,34 @@ describe(useRefetchableFragment, () => {
     ).toThrowErrorMatchingInlineSnapshot(
       `"Expected host to provide a useRefetchableFragment hook"`,
     );
+  });
+
+  it("supports passing null as reference to the fragment", () => {
+    const { result } = renderHook(
+      () => {
+        const fragment = {} as unknown as GraphQLTaggedNode;
+
+        return useRefetchableFragment(fragment, null);
+      },
+      {
+        wrapper: ({ children }) => (
+          <NovaGraphQLProvider
+            graphql={{
+              useRefetchableFragment: (_, ref) => [ref, jest.fn()],
+            }}
+          >
+            {children}
+          </NovaGraphQLProvider>
+        ),
+      },
+    );
+
+    const [data] = result.current;
+
+    const _: null | undefined = data;
+    void _;
+
+    expect(result.current[0]).toBeNull();
   });
 
   it("supports passing null as reference to the fragment", () => {

@@ -136,7 +136,7 @@ export function useLazyLoadQuery<TQuery extends OperationType>(
  */
 export function useFragment(
   fragmentInput: GraphQLTaggedNode,
-  fragmentRef: null | undefined, // This overload makes sure we do not get `unknown` as the return type.
+  fragmentRef: null | undefined,
 ): null | undefined;
 export function useFragment<TKey extends KeyType>(
   fragmentInput: GraphQLTaggedNode,
@@ -223,6 +223,7 @@ export function useRefetchableFragment<
 
 export function usePaginationFragment<
   TQuery extends OperationType,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   TKey extends null | undefined,
 >(
   fragmentInput: GraphQLTaggedNode,
