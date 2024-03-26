@@ -82,7 +82,7 @@ export type PaginationFn = (
   options?: RefetchOptions,
 ) => Disposable;
 
-type FetchPolicy =
+export type FetchPolicy =
   | "store-or-network"
   | "store-and-network"
   | "network-only"
