@@ -86,13 +86,7 @@ export type FetchPolicy =
   | "store-or-network"
   | "store-and-network"
   | "network-only"
-  | "store-only"
-  | "cache-first"
-  | "cache-only"
-  | "cache-and-network"
-  | "network-only"
-  | "no-cache"
-  | "standby";
+  | "store-only";
 
 type RefetchOptions = {
   onCompleted?: (error: Error | null) => void;
