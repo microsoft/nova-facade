@@ -8,6 +8,7 @@ import type {
   OperationType,
   PaginationFn,
   RefetchFn,
+  FetchPolicy
 } from "./types";
 
 /**
@@ -60,7 +61,7 @@ import type {
 export function useLazyLoadQuery<TQuery extends OperationType>(
   query: GraphQLTaggedNode,
   variables: TQuery["variables"],
-  options?: { fetchPolicy?: "cache-first"; context?: TQuery["context"] },
+  options?: { fetchPolicy?: FetchPolicy; context?: TQuery["context"] },
 ): { error?: Error; data?: TQuery["response"] } {
   const graphql = useNovaGraphQL();
   invariant(
