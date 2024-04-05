@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Use FetchPolicy in useLazyLoadQuery",
-  "packageName": "@nova/react",
-  "email": "iukondra@microsoft.com",
-  "dependentChangeType": "patch"
-}

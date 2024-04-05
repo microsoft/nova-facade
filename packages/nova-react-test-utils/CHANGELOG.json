@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 05 Apr 2024 04:20:11 GMT",
+      "tag": "@nova/react-test-utils_v4.2.3",
+      "version": "4.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.3.0",
+            "commit": "f3910ccefd16eca177975c8591f917f54ebf0a35"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 20 Mar 2024 16:54:24 GMT",
       "tag": "@nova/react-test-utils_v4.2.2",
       "version": "4.2.2",
