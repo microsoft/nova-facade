@@ -5,13 +5,12 @@ import { MockPayloadGenerator } from "./test-utils";
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
 
-import type { MakeDecoratorResult } from "@storybook/addons";
-import { makeDecorator } from "@storybook/addons";
+import { makeDecorator } from "@storybook/preview-api";
 import { action } from "@storybook/addon-actions";
 import type {
   ComposedStoryPlayContext,
   PlayFunctionContext,
-  PreparedStoryFn,
+  ComposedStoryFn,
 } from "@storybook/types";
 import type { ReactRenderer } from "@storybook/react";
 
@@ -38,6 +37,8 @@ type DefaultMockResolvers = Partial<{
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
+type MakeDecoratorResult = ReturnType<typeof makeDecorator>;
+
 export type NovaEnvironmentDecoratorParameters<
   T extends DefaultMockResolvers = DefaultMockResolvers,
 > = {
@@ -54,7 +55,7 @@ export type NovaEnvironmentDecoratorParameters<
 
 // This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
 export const prepareStoryContextForTest = (
-  story: PreparedStoryFn<ReactRenderer>,
+  story: ComposedStoryFn<ReactRenderer>,
   canvasElement?: HTMLElement,
 ): ComposedStoryPlayContext<ReactRenderer> => ({
   canvasElement,

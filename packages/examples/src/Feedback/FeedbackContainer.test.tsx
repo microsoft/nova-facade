@@ -29,7 +29,7 @@ describe("FeedbackContainer", () => {
 
   it("should show unlike button after clicking like button", async () => {
     const { container } = render(<Like />);
-    await Like.play({ canvasElement: container });
+    await act(async () => Like.play({ canvasElement: container }));
     const button = await screen.findByRole("button", { name: "Unlike" });
     expect(button).toBeInTheDocument();
   });

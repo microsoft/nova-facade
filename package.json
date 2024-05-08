@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "beachball": "2.31.12",
-    "lage": "2.3.1",
+    "lage": "2.7.15",
     "prettier": "^2.8.1"
   }
 }
