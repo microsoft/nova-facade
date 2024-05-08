@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
+import { userEvent, within, waitFor, expect } from "@storybook/test";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
 import {
@@ -85,6 +85,10 @@ export const LikeFailure: Story = {
       }),
     );
     await Like.play?.(context);
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      expect(operation).toBeDefined();
+    });
     mock.rejectMostRecentOperation(new Error("Like failed"));
   },
 };
