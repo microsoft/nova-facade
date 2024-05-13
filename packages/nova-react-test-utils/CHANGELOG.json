@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 13 May 2024 20:36:36 GMT",
+      "tag": "@nova/react-test-utils_v4.3.0",
+      "version": "4.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "fcac2f11d5f5ca1bc56ef41ed2507c66333ce356",
+            "comment": "bump storybook to latest 7.x"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Apr 2024 04:20:11 GMT",
       "tag": "@nova/react-test-utils_v4.2.3",
       "version": "4.2.3",

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "bump storybook to latest 7.x",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

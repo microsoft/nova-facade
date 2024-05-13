@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Fri, 05 Apr 2024 04:20:11 GMT and should not be manually modified.
+This log was last generated on Mon, 13 May 2024 20:36:36 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.1.0
+
+Mon, 13 May 2024 20:36:36 GMT
+
+### Minor changes
+
+- bump storybook to latest 7.x (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v4.3.0
 
 ## 1.0.10
 
