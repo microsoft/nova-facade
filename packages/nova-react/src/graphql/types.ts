@@ -89,7 +89,7 @@ export type FetchPolicy =
   | "store-only";
 
 type RefetchOptions = {
-  onCompleted?: (error: Error | null) => void;
+  onComplete?: (error: Error | null) => void;
   fetchPolicy?: FetchPolicy;
 };
 
