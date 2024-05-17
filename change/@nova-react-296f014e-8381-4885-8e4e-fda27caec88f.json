@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Fix RefetchOptions onComplete type",
+  "packageName": "@nova/react",
+  "email": "anjuguna@microsoft.com",
+  "dependentChangeType": "patch"
+}
