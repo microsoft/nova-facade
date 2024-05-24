@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 24 May 2024 22:25:18 GMT",
+      "tag": "@nova/react_v2.4.0",
+      "version": "2.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mwanginjuguna59@gmail.com",
+            "package": "@nova/react",
+            "commit": "7bd7084a2fdde714eca65243e344c2b2c7026f11",
+            "comment": "Fix RefetchOptions onComplete type"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 05 Apr 2024 04:20:11 GMT",
       "tag": "@nova/react_v2.3.0",
       "version": "2.3.0",
