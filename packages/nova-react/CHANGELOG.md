@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 05 Apr 2024 04:20:11 GMT and should not be manually modified.
+This log was last generated on Fri, 24 May 2024 22:25:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.4.0
+
+Fri, 24 May 2024 22:25:18 GMT
+
+### Minor changes
+
+- Fix RefetchOptions onComplete type (mwanginjuguna59@gmail.com)
 
 ## 2.3.0
 
