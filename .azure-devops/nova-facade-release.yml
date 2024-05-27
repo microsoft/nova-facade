@@ -1,7 +1,14 @@
 pr: none
 trigger:
   - main
-
+schedules:
+- cron: 0 0 * * Mon
+  displayName: Nova-Facade weekly pipeline validation
+  branches:
+    include: 
+    - main
+  always: true
+  
 variables:
   - group: InfoSec-SecurityResults
   - name: tags
