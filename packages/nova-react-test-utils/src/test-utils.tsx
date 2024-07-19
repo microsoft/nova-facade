@@ -11,7 +11,10 @@ import type { OperationDescriptor } from "@graphitation/graphql-js-operation-pay
 import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 
 import type { GraphQLTaggedNode } from "@nova/react";
-import type { NovaGraphQL } from "@nova/types";
+import type { EntityCommand, EventWrapper, NovaGraphQL } from "@nova/types";
+import { action } from "@storybook/addon-actions/*";
+import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
+import LiveResolverStore from "relay-runtime/lib/store/experimental-live-resolvers/LiveResolverStore";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
@@ -55,4 +58,27 @@ export function createMockEnvironment(
     ),
   };
   return env;
+}
+
+export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
+  const eventData =
+    typeof eventWrapper.event.data === "function"
+      ? eventWrapper.event.data()
+      : eventWrapper.event.data;
+  action(`${eventWrapper.event.originator}.${eventWrapper.event.type}`)(
+    eventData,
+  );
+  return Promise.resolve();
+}
+
+export function defaultTrigger(command: EntityCommand): Promise<void> {
+  action("trigger")(command);
+  return Promise.resolve();
+}
+
+export function createStore(): Store {
+  // Enable feature flags for Live Resolver support
+  RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true;
+
+  return new LiveResolverStore(new RecordSource());
 }

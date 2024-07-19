@@ -1,12 +1,15 @@
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
-import { MockPayloadGenerator } from "./test-utils";
+import {
+  defaultBubble,
+  defaultTrigger,
+  MockPayloadGenerator,
+} from "./test-utils";
 
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
 
 import { makeDecorator } from "@storybook/preview-api";
-import { action } from "@storybook/addon-actions";
 import type {
   ComposedStoryPlayContext,
   PlayFunctionContext,
@@ -19,7 +22,7 @@ import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
 import { createMockClient } from "@graphitation/apollo-mock-client";
 
-import type { EntityCommand, EventWrapper, NovaGraphQL } from "@nova/types";
+import type { NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
 
 // this has to be unique and different then name of the property added on story level to parameters
@@ -136,20 +139,4 @@ function createNovaEnvironment(
     },
   };
   return env;
-}
-
-function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
-  const eventData =
-    typeof eventWrapper.event.data === "function"
-      ? eventWrapper.event.data()
-      : eventWrapper.event.data;
-  action(`${eventWrapper.event.originator}.${eventWrapper.event.type}`)(
-    eventData,
-  );
-  return Promise.resolve();
-}
-
-function defaultTrigger(command: EntityCommand): Promise<void> {
-  action("trigger")(command);
-  return Promise.resolve();
 }
