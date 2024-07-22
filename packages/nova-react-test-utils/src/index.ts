@@ -9,3 +9,5 @@ export {
   getNovaEnvironmentForStory,
   prepareStoryContextForTest,
 } from "./storybook-nova-decorator-apollo";
+
+export { getNovaRelayEnvironmentDecorator } from "./storybook-nova-decorator-relay";

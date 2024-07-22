@@ -16,7 +16,6 @@ import {
 import { createMockEnvironment } from "relay-test-utils";
 import type { MockResolvers } from "relay-test-utils/lib/RelayMockPayloadGenerator";
 import {
-  createStore,
   defaultBubble,
   defaultTrigger,
   MockPayloadGenerator,
@@ -25,6 +24,8 @@ import type { DecoratorFunction } from "@storybook/types";
 import type { OperationType, GraphQLSingularResponse } from "relay-runtime";
 import * as ReactRelayHooks from "react-relay/hooks";
 import type { NovaGraphQL } from "@nova/types";
+import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
+import LiveResolverStore from "relay-runtime/lib/store/experimental-live-resolvers/LiveResolverStore";
 
 export type DefaultMockResolvers = Partial<{
   ID: string;
@@ -183,3 +184,10 @@ function createNovaRelayEnvironment(): NovaMockEnvironment<"storybook"> {
 
 export const novaRelayDecorator: DecoratorFunction =
   getNovaRelayEnvironmentDecorator();
+
+export function createStore(): Store {
+  // Enable feature flags for Live Resolver support
+  RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true;
+
+  return new LiveResolverStore(new RecordSource());
+}
