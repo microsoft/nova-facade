@@ -20,7 +20,7 @@ const config: StorybookConfig = {
         rules: [
           ...(config?.module?.rules ?? []),
           {
-            test: /.+?\.tsx?$/,
+            test: /.+\/relay\/.+\.tsx?$/,
             exclude: /node_modules/,
             use: [
               {

@@ -16,7 +16,7 @@ import {
 import { createMockEnvironment, MockPayloadGenerator } from "relay-test-utils";
 import type { MockResolvers } from "relay-test-utils/lib/RelayMockPayloadGenerator";
 import { defaultBubble, defaultTrigger } from "./test-utils";
-import type { DecoratorFunction } from "@storybook/types";
+import type { Addon_LegacyStoryFn, DecoratorFunction } from "@storybook/types";
 import type { OperationType, GraphQLSingularResponse } from "relay-runtime";
 import * as ReactRelayHooks from "react-relay/hooks";
 import type { NovaGraphQL } from "@nova/types";
@@ -83,16 +83,14 @@ export const getNovaRelayEnvironmentDecorator = () =>
     wrapper: (getStory, context, settings) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
-      console.log("env", environment);
       const parameters =
         settings.parameters as WithNovaEnvironment["novaEnvironment"];
-      const Renderer = getRenderer(parameters, context);
+      const Renderer = getRenderer(parameters, context, getStory);
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
         environment.graphql.mock.queueOperationResolver((operation) => {
-          console.log("operation", operation);
           if (parameters.generateFunction) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
@@ -108,7 +106,7 @@ export const getNovaRelayEnvironmentDecorator = () =>
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
-          <Renderer>{getStory(context) as React.ReactNode}</Renderer>
+          <Renderer />
         </NovaMockEnvironmentProvider>
       );
     },
@@ -122,24 +120,22 @@ function getRenderer(
     getReferenceEntry,
   }: WithNovaEnvironment["novaEnvironment"],
   context: Context,
+  getStory: Addon_LegacyStoryFn,
 ): React.FC<React.PropsWithChildren<unknown>> {
-  console.log(query);
   if (query) {
-    const Renderer: React.FC<React.PropsWithChildren<unknown>> = ({
-      children,
-    }) => {
-      const { data } = useLazyLoadQuery(query, variables);
+    const Renderer: React.FC<{}> = () => {
+      const data = useLazyLoadQuery(query, variables);
       const entries = getReferenceEntries
         ? getReferenceEntries(data)
         : [getReferenceEntry(data)];
       Object.assign(context.args, Object.fromEntries(entries));
-      return <>{children}</>;
+      return <>{getStory(context)}</>;
     };
     return Renderer;
   } else {
     // eslint-disable-next-line react/display-name
-    return ({ children }) => {
-      return <>{children}</>;
+    return () => {
+      return <>{getStory(context)}</>;
     };
   }
 }
