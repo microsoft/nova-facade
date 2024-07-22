@@ -15,20 +15,20 @@ const config: StorybookConfig = {
   webpackFinal: (config) => {
     return {
       ...config,
-      resolve: {
-        ...config.resolve,
-        alias: {
-          "relay-runtime/lib/store/experimental-live-resolvers/LiveResolverStore":
-            path.resolve(
-              __dirname,
-              "../../nova-react-test-utils/src/relay-runtime-live-types.d.ts",
-            ),
-        },
-      },
       module: {
         ...config.module,
         rules: [
           ...(config?.module?.rules ?? []),
+          {
+            test: /.+?\.tsx?$/,
+            exclude: /node_modules/,
+            use: [
+              {
+                loader:
+                  "@graphitation/embedded-document-artefact-loader/webpack",
+              },
+            ],
+          },
           {
             test: /\.(tsx|ts)$/,
             use: [

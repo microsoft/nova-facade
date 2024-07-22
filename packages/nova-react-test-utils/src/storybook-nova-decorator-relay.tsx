@@ -13,19 +13,14 @@ import {
   type OperationDescriptor,
 } from "react-relay";
 // In upstream we should probably start using MockPayloadGenerator from relay-test-utils instead of @graphitation one
-import { createMockEnvironment } from "relay-test-utils";
+import { createMockEnvironment, MockPayloadGenerator } from "relay-test-utils";
 import type { MockResolvers } from "relay-test-utils/lib/RelayMockPayloadGenerator";
-import {
-  defaultBubble,
-  defaultTrigger,
-  MockPayloadGenerator,
-} from "./test-utils";
+import { defaultBubble, defaultTrigger } from "./test-utils";
 import type { DecoratorFunction } from "@storybook/types";
 import type { OperationType, GraphQLSingularResponse } from "relay-runtime";
 import * as ReactRelayHooks from "react-relay/hooks";
 import type { NovaGraphQL } from "@nova/types";
 import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
-import LiveResolverStore from "relay-runtime/lib/store/experimental-live-resolvers/LiveResolverStore";
 
 export type DefaultMockResolvers = Partial<{
   ID: string;
@@ -88,6 +83,7 @@ export const getNovaRelayEnvironmentDecorator = () =>
     wrapper: (getStory, context, settings) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
+      console.log("env", environment);
       const parameters =
         settings.parameters as WithNovaEnvironment["novaEnvironment"];
       const Renderer = getRenderer(parameters, context);
@@ -96,6 +92,7 @@ export const getNovaRelayEnvironmentDecorator = () =>
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
         environment.graphql.mock.queueOperationResolver((operation) => {
+          console.log("operation", operation);
           if (parameters.generateFunction) {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
@@ -104,14 +101,7 @@ export const getNovaRelayEnvironmentDecorator = () =>
             // generateWithDefer is not exposed by @types/relay-test-utils currently
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            return MockPayloadGenerator.generateWithDefer(
-              operation,
-              mockResolvers,
-              {
-                generateDeferredPayload: true,
-                mockClientData: true,
-              },
-            );
+            return MockPayloadGenerator.generate(operation, mockResolvers);
           }
         });
       }
@@ -133,6 +123,7 @@ function getRenderer(
   }: WithNovaEnvironment["novaEnvironment"],
   context: Context,
 ): React.FC<React.PropsWithChildren<unknown>> {
+  console.log(query);
   if (query) {
     const Renderer: React.FC<React.PropsWithChildren<unknown>> = ({
       children,
@@ -189,5 +180,5 @@ export function createStore(): Store {
   // Enable feature flags for Live Resolver support
   RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true;
 
-  return new LiveResolverStore(new RecordSource());
+  return new Store(new RecordSource());
 }
