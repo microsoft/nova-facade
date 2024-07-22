@@ -1,4 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
+import path from "path";
+
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],
   addons: [
@@ -13,6 +15,16 @@ const config: StorybookConfig = {
   webpackFinal: (config) => {
     return {
       ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          "relay-runtime/lib/store/experimental-live-resolvers/LiveResolverStore":
+            path.resolve(
+              __dirname,
+              "../../nova-react-test-utils/src/relay-runtime-live-types.d.ts",
+            ),
+        },
+      },
       module: {
         ...config.module,
         rules: [

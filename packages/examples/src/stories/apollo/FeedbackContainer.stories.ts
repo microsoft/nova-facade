@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
-import { FeedbackContainer } from "./FeedbackContainer";
+import { FeedbackContainer } from "../../Feedback/FeedbackContainer";
 import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
 import {
   getNovaEnvironmentForStory,
   getNovaEnvironmentDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils";
-import { getSchema } from "../testing-utils/getSchema";
-import type { TypeMap } from "../__generated__/schema.all.interface";
+import { getSchema } from "../../testing-utils/getSchema";
+import type { TypeMap } from "../../__generated__/schema.all.interface";
 
 const schema = getSchema();
 
