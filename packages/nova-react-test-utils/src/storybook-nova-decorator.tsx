@@ -109,7 +109,7 @@ export const getNovaEnvironmentDecorator: (
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
-          {getStory(context)}
+          {getStory(context) as React.ReactNode}
         </NovaMockEnvironmentProvider>
       );
     },
