@@ -77,8 +77,10 @@ export const LikeFailure: Story = {
       graphql: { mock },
     } = getNovaEnvironmentForStory(context);
 
-    // wait for next tick for apollo client to update state
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
     await mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
