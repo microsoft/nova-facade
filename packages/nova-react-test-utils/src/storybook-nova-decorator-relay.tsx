@@ -21,6 +21,7 @@ import type { OperationType, GraphQLSingularResponse } from "relay-runtime";
 import * as ReactRelayHooks from "react-relay/hooks";
 import type { NovaGraphQL } from "@nova/types";
 import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
+import { novaGraphql } from "./novaRelayGraphql";
 
 export type DefaultMockResolvers = Partial<{
   ID: string;
@@ -124,7 +125,7 @@ function getRenderer(
 ): React.FC<React.PropsWithChildren<unknown>> {
   if (query) {
     const Renderer: React.FC<{}> = () => {
-      const data = useLazyLoadQuery(query, variables);
+      const { data } = useLazyLoadQuery(query, variables);
       const entries = getReferenceEntries
         ? getReferenceEntries(data)
         : [getReferenceEntry(data)];
@@ -148,7 +149,7 @@ function createNovaRelayEnvironment(): NovaMockEnvironment<"storybook"> {
   const env: NovaMockEnvironment<"storybook"> = {
     graphql: {
       // When we moved upstream we should probably copy this thing layer of type alignment that "@1js/relay-host" provides
-      ...(ReactRelayHooks as unknown as NovaGraphQL),
+      ...novaGraphql,
       // The getAllOperations result needs to be readonly
       mock: relayEnvironment.mock as unknown as NovaMockEnvironment["graphql"]["mock"],
     },
