@@ -97,10 +97,15 @@ export const getNovaRelayEnvironmentDecorator = () =>
             // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
             return parameters.generateFunction(operation, mockResolvers);
           } else {
-            // generateWithDefer is not exposed by @types/relay-test-utils currently
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            return MockPayloadGenerator.generate(operation, mockResolvers);
+            return MockPayloadGenerator.generateWithDefer(
+              // @ts-ignore
+              operation,
+              mockResolvers,
+              {
+                generateDeferredPayload: true,
+                mockClientData: true,
+              },
+            );
           }
         });
       }
@@ -148,7 +153,6 @@ function createNovaRelayEnvironment(): NovaMockEnvironment<"storybook"> {
   });
   const env: NovaMockEnvironment<"storybook"> = {
     graphql: {
-      // When we moved upstream we should probably copy this thing layer of type alignment that "@1js/relay-host" provides
       ...novaGraphql,
       // The getAllOperations result needs to be readonly
       mock: relayEnvironment.mock as unknown as NovaMockEnvironment["graphql"]["mock"],
