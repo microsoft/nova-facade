@@ -12,21 +12,17 @@ describe(useNovaGraphQL, () => {
     expect.assertions(1);
 
     const TestUndefinedContextComponent: React.FC = () => {
-      try {
-        useNovaGraphQL();
-      } catch (e) {
-        expect((e as Error).message).toMatch(
-          "Nova GraphQL provider must be initialized prior to consumption!",
-        );
-      }
+      useNovaGraphQL();
       return null;
     };
 
-    render(<TestUndefinedContextComponent />);
+    expect(() => render(<TestUndefinedContextComponent />)).toThrow(
+      "Nova GraphQL provider must be initialized prior to consumption!",
+    );
   });
 
   it("is able to access the GraphQL instance provided by the provider", () => {
-    expect.assertions(3);
+    expect.assertions(1);
 
     const graphql = {
       useLazyLoadQuery: jest.fn(),
@@ -34,14 +30,11 @@ describe(useNovaGraphQL, () => {
 
     const TestPassedContextComponent: React.FC = () => {
       const graphqlFromContext = useNovaGraphQL();
-      expect(graphqlFromContext).toBe(graphql);
-      expect(graphqlFromContext.useLazyLoadQuery).toBeDefined();
       // TODO figure out if this is needed
       if (!graphqlFromContext.useLazyLoadQuery) {
         return null;
       }
       graphqlFromContext.useLazyLoadQuery("foo", {});
-      expect(graphql.useLazyLoadQuery).toBeCalledTimes(1);
       return null;
     };
 
@@ -50,5 +43,8 @@ describe(useNovaGraphQL, () => {
         <TestPassedContextComponent />
       </NovaGraphQLProvider>,
     );
+
+    // twice due to strict mode
+    expect(graphql.useLazyLoadQuery).toBeCalledTimes(2);
   });
 });

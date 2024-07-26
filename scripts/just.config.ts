@@ -67,7 +67,7 @@ export const build = () => {
 
 export const test = () => {
   return jestTask({
-    config: path.join(__dirname, "config", "jest.config.js"),
+    config: path.join(__dirname, "config", "jest.config.ts"),
     watch: argv().watch,
     _: argv()._,
   });

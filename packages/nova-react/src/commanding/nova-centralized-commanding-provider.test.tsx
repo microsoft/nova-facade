@@ -21,21 +21,17 @@ describe(useNovaCentralizedCommanding, () => {
     expect.assertions(1);
 
     const TestUndefinedContextComponent: React.FC = () => {
-      try {
-        useNovaCentralizedCommanding();
-      } catch (e) {
-        expect((e as Error).message).toMatch(
-          "Nova Centralized Commanding provider must be initialized prior to consumption!",
-        );
-      }
+      useNovaCentralizedCommanding();
       return null;
     };
 
-    render(<TestUndefinedContextComponent />);
+    expect(() => render(<TestUndefinedContextComponent />)).toThrow(
+      "Nova Centralized Commanding provider must be initialized prior to consumption!",
+    );
   });
 
   it("is able to access the commanding instance provided by the provider", () => {
-    expect.assertions(2);
+    expect.assertions(1);
 
     const commanding = {
       trigger: jest.fn(),
@@ -43,18 +39,23 @@ describe(useNovaCentralizedCommanding, () => {
 
     const TestPassedContextComponent: React.FC = () => {
       const facadeFromContext = useNovaCentralizedCommanding();
-      expect(facadeFromContext).toBe(commanding);
-      facadeFromContext.trigger({
-        entity: {
-          type: EntityType.teams_activity,
-          action: EntityAction.default,
-        },
-        command: {
-          stateTransition: EntityStateTransition.new,
-          visibilityState: EntityVisibilityState.show,
-        },
-      });
-      expect(commanding.trigger).toBeCalledTimes(1);
+      const didTrigger = React.useRef(false);
+      React.useEffect(() => {
+        if (didTrigger.current) {
+          return;
+        }
+        facadeFromContext.trigger({
+          entity: {
+            type: EntityType.teams_activity,
+            action: EntityAction.default,
+          },
+          command: {
+            stateTransition: EntityStateTransition.new,
+            visibilityState: EntityVisibilityState.show,
+          },
+        });
+        didTrigger.current = true;
+      }, []);
       return null;
     };
 
@@ -63,5 +64,7 @@ describe(useNovaCentralizedCommanding, () => {
         <TestPassedContextComponent />
       </NovaCentralizedCommandingProvider>,
     );
+
+    expect(commanding.trigger).toBeCalledTimes(1);
   });
 });
