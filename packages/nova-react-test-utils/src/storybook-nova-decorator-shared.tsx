@@ -98,6 +98,12 @@ export function getRenderer(
   if (query) {
     const Renderer: React.FC<{}> = () => {
       const { data } = useLazyLoadQuery(query, variables);
+
+      // apollo does not suspend, but returns undefined data
+      if (!data) {
+        return <div>Loading...</div>;
+      }
+
       const entries = getReferenceEntries
         ? getReferenceEntries(data)
         : [getReferenceEntry(data)];

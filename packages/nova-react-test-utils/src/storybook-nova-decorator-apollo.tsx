@@ -112,7 +112,11 @@ function createNovaEnvironment(
       mock: client.mock as MockFunctions<any, any>,
     },
     providerWrapper: ({ children }) => (
-      <ApolloProvider client={client}>{children}</ApolloProvider>
+      <ApolloProvider client={client}>
+        <React.Suspense fallback={<div>Component suspended...</div>}>
+          {children}
+        </React.Suspense>
+      </ApolloProvider>
     ),
     commanding: {
       trigger: defaultTrigger,
