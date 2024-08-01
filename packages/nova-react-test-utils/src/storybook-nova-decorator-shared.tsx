@@ -5,8 +5,8 @@ import type {
   GraphQLSingularResponse,
   OperationDescriptor,
 } from "relay-runtime";
-import type { MockResolvers } from "relay-test-utils";
-import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
+import type { MockResolvers as RelayMockResolvers } from "relay-test-utils";
+import type { MockResolvers as GraphitationMockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
 import type { Addon_LegacyStoryFn } from "@storybook/types";
 import type { makeDecorator } from "@storybook/preview-api";
 
@@ -25,9 +25,22 @@ export type UnknownOperation = {
   response: unknown;
 };
 
+export type WithNovaRelayEnvironment<
+  TQuery extends OperationType = UnknownOperation,
+  TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+> = WithNovaEnvironment<TQuery, TypeMap, RelayMockResolvers>;
+
+export type WithNovaApolloEnvironment<
+  TQuery extends OperationType = UnknownOperation,
+  TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+> = WithNovaEnvironment<TQuery, TypeMap, GraphitationMockResolvers>;
+
 export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+  TMockResolvers =
+    | RelayMockResolvers<TypeMap>
+    | GraphitationMockResolvers<TypeMap>,
 > = {
   novaEnvironment: (
     | ({
@@ -56,9 +69,20 @@ export type WithNovaEnvironment<
   ) & {
     generateFunction?: (
       operation: OperationDescriptor,
-      mockResolvers?: MockResolvers | null,
+      mockResolvers?:
+        | RelayMockResolvers<TypeMap>
+        | GraphitationMockResolvers<TypeMap>,
     ) => GraphQLSingularResponse;
-  } & NovaEnvironmentDecoratorParameters<TypeMap>["novaEnvironment"];
+  } & (
+      | {
+          enableQueuedMockResolvers?: true;
+          resolvers?: TMockResolvers;
+        }
+      | {
+          enableQueuedMockResolvers?: false;
+          resolvers?: never;
+        }
+    );
 };
 
 export function getRenderer(

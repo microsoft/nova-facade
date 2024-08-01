@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
-import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
 import {
   getNovaEnvironmentForStory,
   getNovaEnvironmentDecorator,
@@ -9,6 +8,10 @@ import {
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
+import type {
+  UnknownOperation,
+  WithNovaApolloEnvironment,
+} from "@nova/react-test-utils/";
 
 const schema = getSchema();
 
@@ -29,7 +32,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Liked: Story = {
@@ -42,7 +45,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Like: Story = {
@@ -58,7 +61,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -71,7 +74,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -98,7 +101,7 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
 };
 
 const sampleFeedback = {

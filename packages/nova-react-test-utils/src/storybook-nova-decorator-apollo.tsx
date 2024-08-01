@@ -23,7 +23,10 @@ import { createMockClient } from "@graphitation/apollo-mock-client";
 
 import type { NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
-import type { WithNovaEnvironment } from "./storybook-nova-decorator-shared";
+import {
+  getRenderer,
+  WithNovaApolloEnvironment,
+} from "./storybook-nova-decorator-shared";
 
 // this has to be unique and different then name of the property added on story level to parameters
 // otherwise editing it within the decorator will override the mock resolvers
@@ -71,8 +74,10 @@ export const getNovaEnvironmentDecorator: (
         () => createNovaEnvironment(schema, options),
         [],
       );
-      const parameters = settings.parameters as
-        | WithNovaEnvironment["novaEnvironment"];
+      const parameters =
+        (settings.parameters as WithNovaApolloEnvironment["novaEnvironment"]) ||
+        {};
+      const Renderer = getRenderer(parameters, context, getStory);
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;
         environment.graphql.mock.queueOperationResolver((operation) => {
@@ -90,7 +95,7 @@ export const getNovaEnvironmentDecorator: (
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
-          {getStory(context)}
+          <Renderer />
         </NovaMockEnvironmentProvider>
       );
     },

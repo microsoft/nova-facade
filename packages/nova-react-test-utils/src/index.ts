@@ -3,7 +3,12 @@ export type { NovaMockEnvironment } from "./nova-mock-environment";
 export { MockPayloadGenerator, createMockEnvironment } from "./test-utils";
 export { getOperationName, getOperationType } from "./operation-utils";
 
-export type { NovaEnvironmentDecoratorParameters } from "./storybook-nova-decorator-apollo";
+export type {
+  WithNovaEnvironment,
+  WithNovaRelayEnvironment,
+  WithNovaApolloEnvironment,
+  UnknownOperation,
+} from "./storybook-nova-decorator-shared";
 export {
   getNovaEnvironmentDecorator,
   getNovaEnvironmentForStory,
