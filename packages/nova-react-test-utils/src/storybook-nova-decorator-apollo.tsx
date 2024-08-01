@@ -17,44 +17,22 @@ import type {
 } from "@storybook/types";
 import type { ReactRenderer } from "@storybook/react";
 
-import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
 import { createMockClient } from "@graphitation/apollo-mock-client";
 
 import type { NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
+import type { WithNovaEnvironment } from "./storybook-nova-decorator-shared";
 
 // this has to be unique and different then name of the property added on story level to parameters
 // otherwise editing it within the decorator will override the mock resolvers
 const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
-type DefaultMockResolvers = Partial<{
-  ID: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  [key: string]: unknown;
-}>;
-
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
 type MakeDecoratorResult = ReturnType<typeof makeDecorator>;
-
-export type NovaEnvironmentDecoratorParameters<
-  T extends DefaultMockResolvers = DefaultMockResolvers,
-> = {
-  novaEnvironment:
-    | {
-        enableQueuedMockResolvers?: true;
-        resolvers?: MockResolvers<T>;
-      }
-    | {
-        enableQueuedMockResolvers?: false;
-        resolvers?: never;
-      };
-};
 
 // This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
 export const prepareStoryContextForTest = (
@@ -94,7 +72,7 @@ export const getNovaEnvironmentDecorator: (
         [],
       );
       const parameters = settings.parameters as
-        | NovaEnvironmentDecoratorParameters["novaEnvironment"];
+        | WithNovaEnvironment["novaEnvironment"];
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;
         environment.graphql.mock.queueOperationResolver((operation) => {
