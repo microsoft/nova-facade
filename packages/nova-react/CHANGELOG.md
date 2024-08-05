@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 24 May 2024 22:25:18 GMT and should not be manually modified.
+This log was last generated on Mon, 05 Aug 2024 00:10:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.5.0
+
+Mon, 05 Aug 2024 00:10:12 GMT
+
+### Minor changes
+
+- bump react (Stanislaw.Wilczynski@microsoft.com)
 
 ## 2.4.0
 

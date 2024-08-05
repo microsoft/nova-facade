@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2024 00:10:12 GMT",
+      "tag": "@nova/react-test-utils_v4.4.0",
+      "version": "4.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94",
+            "comment": "bump react"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.5.0",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 May 2024 22:25:18 GMT",
       "tag": "@nova/react-test-utils_v4.3.1",
       "version": "4.3.1",

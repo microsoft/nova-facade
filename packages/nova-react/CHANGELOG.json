@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2024 00:10:12 GMT",
+      "tag": "@nova/react_v2.5.0",
+      "version": "2.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94",
+            "comment": "bump react"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 May 2024 22:25:18 GMT",
       "tag": "@nova/react_v2.4.0",
       "version": "2.4.0",
