@@ -12,7 +12,7 @@ import { createMockEnvironment, MockPayloadGenerator } from "relay-test-utils";
 import { defaultBubble, defaultTrigger } from "./test-utils";
 import type { DecoratorFunction } from "@storybook/types";
 import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
-import { novaGraphql } from "./novaRelayGraphql";
+import { novaGraphql } from "./nova-relay-graphql";
 import {
   getRenderer,
   type WithNovaEnvironment,
@@ -28,7 +28,8 @@ export const getNovaRelayEnvironmentDecorator = () =>
     wrapper: (getStory, context, settings) => {
       const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
       const parameters =
-        settings.parameters as WithNovaEnvironment["novaEnvironment"];
+        (settings.parameters as WithNovaEnvironment["novaEnvironment"]) || {};
+      console.log({ parameters, environment });
       const Renderer = getRenderer(parameters, context, getStory);
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;

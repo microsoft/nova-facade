@@ -5,7 +5,8 @@
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
-    "generate": "graphql-codegen --config codegen.yml && nova-graphql-compiler --schema ./src/schema.graphql --src ./src/apollo --watchman false",
+    "generate": "graphql-codegen --config codegen.yml && yarn generate:apollo && yarn generate:relay",
+    "generate:apollo": "nova-graphql-compiler --schema ./src/schema.graphql --src ./src/apollo --watchman false",
     "generate:relay": "relay-compiler",
     "lint": "monorepo-scripts lint",
     "prepare": "yarn generate",
