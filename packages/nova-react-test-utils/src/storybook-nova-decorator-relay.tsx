@@ -29,7 +29,6 @@ export const getNovaRelayEnvironmentDecorator = () =>
       const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
       const parameters =
         (settings.parameters as WithNovaEnvironment["novaEnvironment"]) || {};
-      console.log({ parameters, environment });
       const Renderer = getRenderer(parameters, context, getStory);
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;
