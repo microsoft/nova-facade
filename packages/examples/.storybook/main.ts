@@ -22,14 +22,9 @@ const config: StorybookConfig = {
         rules: [
           ...(config?.module?.rules ?? []),
           {
-            test: /.+\/relay\/.+\.tsx?$/,
+            test: /.+[\\/]relay[\\/].+\.tsx?$/,
             exclude: /node_modules/,
-            use: [
-              {
-                loader:
-                  "@graphitation/embedded-document-artefact-loader/webpack",
-              },
-            ],
+            loader: "@graphitation/embedded-document-artefact-loader/webpack",
           },
           {
             test: /\.(tsx|ts)$/,
