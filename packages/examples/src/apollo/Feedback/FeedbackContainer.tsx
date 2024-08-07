@@ -13,11 +13,9 @@ const FeedbackContainerQuery = graphql`
 `;
 
 export const FeedbackContainer = () => {
-  console.log("query", FeedbackContainerQuery);
   const output = useLazyLoadQuery<QueryType>(FeedbackContainerQuery, {
     id: "42",
   });
-  console.log("output", output);
   const { data, error } = output;
   if (data) {
     return <FeedbackComponent feedback={data.feedback} />;

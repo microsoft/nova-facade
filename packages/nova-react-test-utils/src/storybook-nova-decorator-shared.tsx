@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GraphQLTaggedNode, useLazyLoadQuery } from "@nova/react";
+import { type GraphQLTaggedNode, useLazyLoadQuery } from "@nova/react";
 import type {
   OperationType,
   GraphQLSingularResponse,
@@ -96,7 +96,7 @@ export function getRenderer(
   getStory: Addon_LegacyStoryFn,
 ): React.FC<React.PropsWithChildren<unknown>> {
   if (query) {
-    const Renderer: React.FC<{}> = () => {
+    const Renderer: React.FC<unknown> = () => {
       const { data } = useLazyLoadQuery(query, variables);
 
       // apollo does not suspend, but returns undefined data
@@ -112,7 +112,6 @@ export function getRenderer(
     };
     return Renderer;
   } else {
-    // eslint-disable-next-line react/display-name
     return () => {
       return <>{getStory(context)}</>;
     };

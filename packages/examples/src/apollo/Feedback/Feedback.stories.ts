@@ -2,7 +2,7 @@ import { graphql } from "@nova/react";
 import {
   getNovaEnvironmentDecorator,
   getNovaEnvironmentForStory,
-  WithNovaEnvironment,
+  type WithNovaEnvironment,
 } from "@nova/react-test-utils";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";

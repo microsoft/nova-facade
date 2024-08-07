@@ -15,7 +15,7 @@ import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
 import { novaGraphql } from "./novaRelayGraphql";
 import {
   getRenderer,
-  WithNovaEnvironment,
+  type WithNovaEnvironment,
 } from "./storybook-nova-decorator-shared";
 
 const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
@@ -26,7 +26,6 @@ export const getNovaRelayEnvironmentDecorator = () =>
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
       const parameters =
         settings.parameters as WithNovaEnvironment["novaEnvironment"];
@@ -42,6 +41,7 @@ export const getNovaRelayEnvironmentDecorator = () =>
             return parameters.generateFunction(operation, mockResolvers);
           } else {
             return MockPayloadGenerator.generateWithDefer(
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               operation,
               mockResolvers,

@@ -25,7 +25,7 @@ import type { NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
 import {
   getRenderer,
-  WithNovaApolloEnvironment,
+  type WithNovaApolloEnvironment,
 } from "./storybook-nova-decorator-shared";
 
 // this has to be unique and different then name of the property added on story level to parameters
@@ -95,7 +95,7 @@ export const getNovaEnvironmentDecorator: (
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
-          {getStory(context) as React.ReactNode}
+          <Renderer />
         </NovaMockEnvironmentProvider>
       );
     },
