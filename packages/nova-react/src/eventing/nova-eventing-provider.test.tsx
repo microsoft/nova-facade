@@ -33,6 +33,13 @@ describe("useNovaEventing", () => {
   const initialChildren = "initial children";
   const updatedChildren = "updated children";
 
+  // With React strict mode enabled, in development mode, the component will render twice, check https://react.dev/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development
+  // for more details. This will cause the renderSpy to be called twice on each render, but in prod mode this will only be called once.
+  // We add this wrapper to encapsulate the logic for artificially increasing the render count to account for strict mode.
+  const expectComponentToRenderTimes = (count: number) => {
+    expect(renderSpy).toHaveBeenCalledTimes(count * 2);
+  };
+
   beforeEach(() => {
     jest.clearAllMocks();
 
@@ -71,34 +78,26 @@ describe("useNovaEventing", () => {
     expect.assertions(1);
 
     const TestUndefinedContextComponent: React.FC = () => {
-      try {
-        useNovaEventing();
-      } catch (e) {
-        expect((e as Error).message).toMatch(
-          "Nova Eventing provider must be initialized prior to consumption of eventing!",
-        );
-      }
+      useNovaEventing();
       return null;
     };
 
-    render(<TestUndefinedContextComponent />);
+    expect(() => render(<TestUndefinedContextComponent />)).toThrow(
+      "Nova Eventing provider must be initialized prior to consumption of eventing!",
+    );
   });
 
   it("useNovaUnmountEventing throws without a provider", () => {
     expect.assertions(1);
 
     const TestUndefinedContextComponent: React.FC = () => {
-      try {
-        useNovaUnmountEventing();
-      } catch (e) {
-        expect((e as Error).message).toMatch(
-          "Nova Eventing provider must be initialized prior to consumption of unmountEventing!",
-        );
-      }
+      useNovaUnmountEventing();
       return null;
     };
 
-    render(<TestUndefinedContextComponent />);
+    expect(() => render(<TestUndefinedContextComponent />)).toThrow(
+      "Nova Eventing provider must be initialized prior to consumption of unmountEventing!",
+    );
   });
 
   test("Takes in children and eventing props, renders children, and updates children as expected.", () => {
@@ -113,7 +112,7 @@ describe("useNovaEventing", () => {
       initialChildren,
     );
 
-    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expectComponentToRenderTimes(1);
 
     wrapper.rerender(
       <NovaEventingProvider
@@ -125,7 +124,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       updatedChildren,
     );
-    expect(renderSpy).toHaveBeenCalledTimes(2);
+    expectComponentToRenderTimes(2);
   });
 
   test("Takes in children and eventing props, creates a stable wrapped NovaReactEventing instance from eventing across re-renders when children do not change.", () => {
@@ -143,7 +142,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
-    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expectComponentToRenderTimes(1);
 
     wrapper.rerender(
       <NovaEventingProvider
@@ -155,7 +154,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
-    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expectComponentToRenderTimes(1);
 
     // Update eventing instance to test useRef pathway. This will ensure the wrapped eventing instance
     // returned from useEventing is stable from one render to the next.
@@ -172,7 +171,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
-    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expectComponentToRenderTimes(1);
 
     //Trigger a callback on the test child through eventing
     eventCallback();
@@ -195,7 +194,7 @@ describe("useNovaEventing", () => {
     expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
       initialChildren,
     );
-    expect(renderSpy).toHaveBeenCalledTimes(1);
+    expectComponentToRenderTimes(1);
 
     //Trigger a callback on the test child through eventing
     eventCallback();
@@ -230,17 +229,23 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
         event,
       };
     }
+    const didGenerate = React.useRef(false);
+    React.useEffect(() => {
+      if (didGenerate.current) {
+        return;
+      }
+      facadeFromContext.generateEvent(eventWrapper);
+      expect(eventing.bubble).toBeCalledWith({
+        event,
+        source: {
+          inputType: InputType.programmatic,
+          timeStamp: expectedTime,
+        },
+      });
+      expect(mapper).toBeCalledTimes(0);
+      didGenerate.current = true;
+    }, []);
 
-    facadeFromContext.generateEvent(eventWrapper);
-
-    expect(eventing.bubble).toBeCalledWith({
-      event,
-      source: {
-        inputType: InputType.programmatic,
-        timeStamp: expectedTime,
-      },
-    });
-    expect(mapper).toBeCalledTimes(0);
     return null;
   };
 

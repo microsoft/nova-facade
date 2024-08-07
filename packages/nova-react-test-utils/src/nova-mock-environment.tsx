@@ -1,5 +1,5 @@
 import React from "react";
-import type { ComponentType } from "react";
+import type { ComponentType, PropsWithChildren } from "react";
 import type {
   NovaCentralizedCommanding,
   NovaGraphQL,
@@ -33,7 +33,7 @@ export interface NovaMockEnvironment<T extends Environment = "test"> {
    * A React component that will be used to wrap the NovaFacadeProvider children. This is used by the test-utils to
    * inject a ApolloProvider.
    */
-  providerWrapper: ComponentType;
+  providerWrapper: ComponentType<PropsWithChildren>;
 }
 
 interface NovaMockEnvironmentProviderProps<T extends Environment> {

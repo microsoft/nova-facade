@@ -1,7 +1,7 @@
 {
   "name": "@nova/react-test-utils",
   "license": "MIT",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -12,8 +12,8 @@
   },
   "peerDependencies": {
     "@storybook/react": "^7.6",
-    "react": "^17.0.2",
-    "react-relay": "^16 || ^17"
+    "react-relay": "^16 || ^17",
+    "react": "^17.0.2 || ^18"
   },
   "dependencies": {
     "@apollo/client": "^3.4.15",
@@ -21,7 +21,7 @@
     "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.0",
     "@graphitation/graphql-js-tag": "^0.9.0",
-    "@nova/react": "^2.4.0",
+    "@nova/react": "^2.5.0",
     "@nova/types": "^1.4.0",
     "@storybook/addon-actions": "^7.6.19",
     "@storybook/preview-api": "^7.6.19",
@@ -35,18 +35,18 @@
     "@graphitation/apollo-react-relay-duct-tape-compiler": "^1.4.0",
     "@storybook/react": "^7.6.19",
     "@storybook/types": "^7.6.19",
-    "@testing-library/react": "^12.0.0",
+    "@testing-library/react": "^15.0.0",
     "@types/jest": "^29.2.0",
-    "@types/react": "^17.0.2",
+    "@types/react": "^18.3.1",
     "@types/react-relay": "^16.0.6",
     "@types/relay-test-utils": "^17.0.0",
-    "@types/react-test-renderer": "^17.0.1",
+    "@types/react-test-renderer": "^18.3.0",
     "monorepo-scripts": "*",
-    "react": "^17.0.2",
+    "react": "^18.3.1",
     "react-relay": "^17.0.0",
     "relay-runtime": "^17.0.0",
     "relay-test-utils": "^17.0.0",
-    "react-test-renderer": "^17.0.2"
+    "react-test-renderer": "^18.3.1"
   },
   "repository": {
     "type": "git",

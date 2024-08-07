@@ -2,6 +2,33 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Mon, 05 Aug 2024 00:10:12 GMT",
+      "tag": "@nova/examples_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94",
+            "comment": "bump react"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.5.0",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.4.0",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 24 May 2024 22:25:18 GMT",
       "tag": "@nova/examples_v1.1.1",
       "version": "1.1.1",

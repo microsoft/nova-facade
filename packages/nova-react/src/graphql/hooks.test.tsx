@@ -3,8 +3,7 @@
  */
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { render, screen, renderHook } from "@testing-library/react";
 
 import { NovaGraphQLProvider } from "./nova-graphql-provider";
 import type { NovaGraphQL } from "@nova/types";
@@ -161,8 +160,8 @@ describe(useFragment, () => {
     const fragment = {} as unknown as GraphQLTaggedNode;
 
     const { result, rerender } = renderHook<
-      { fragmentRef: null | undefined },
-      null | undefined
+      null | undefined,
+      { fragmentRef: null | undefined }
     >(({ fragmentRef }) => useFragment(fragment, fragmentRef), {
       wrapper: ({ children }) => (
         <NovaGraphQLProvider graphql={{}}>{children}</NovaGraphQLProvider>
