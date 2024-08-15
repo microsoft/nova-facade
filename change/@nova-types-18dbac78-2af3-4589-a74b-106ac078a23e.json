@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "update useMutation hook to support onCompleted",
+  "packageName": "@nova/types",
+  "email": "132382266+DarynaAkhmedova@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
