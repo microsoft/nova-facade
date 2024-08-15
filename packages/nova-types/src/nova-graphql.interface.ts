@@ -71,6 +71,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
       variables: { [name: string]: unknown };
       context?: { [name: string]: unknown };
       optimisticResponse?: unknown | null;
+      onCompleted?: (response: unknown) => void;
     }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
     boolean,
   ];
