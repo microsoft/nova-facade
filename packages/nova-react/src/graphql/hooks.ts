@@ -331,6 +331,7 @@ interface MutationCommitterOptions<TMutationPayload extends OperationType> {
    */
   context?: TMutationPayload["context"];
   optimisticResponse?: Partial<TMutationPayload["response"]> | null;
+  onCompleted?: (response: TMutationPayload["response"]) => void;
 }
 
 type MutationCommitter<TMutationPayload extends OperationType> = (
