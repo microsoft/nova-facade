@@ -5,7 +5,10 @@ import type {
   NovaGraphQL,
   NovaEventing,
 } from "@nova/types";
-import type { MockFunctions } from "@graphitation/apollo-mock-client";
+import type { MockFunctions as ApolloMockFunctions } from "@graphitation/apollo-mock-client";
+import type { MockEnvironment } from "relay-test-utils";
+
+type RelayMockFunctions = MockEnvironment["mock"];
 
 import type { GraphQLTaggedNode } from "@nova/react";
 import {
@@ -14,6 +17,7 @@ import {
   NovaEventingProvider,
   NovaGraphQLProvider,
 } from "@nova/react";
+import type { Variant } from "./shared-utils";
 
 type Environment = "test" | "storybook";
 
@@ -25,25 +29,43 @@ type Eventing<T extends Environment> = T extends "test"
   ? jest.Mocked<NovaEventing>
   : NovaEventing;
 
-export interface NovaMockEnvironment<T extends Environment = "test"> {
+export type NovaMockEnvironment<
+  V extends Variant = "apollo",
+  T extends Environment = "test",
+> = {
   commanding: Commanding<T>;
   eventing: Eventing<T>;
-  graphql: NovaGraphQL & { mock: MockFunctions<unknown, GraphQLTaggedNode> };
   /**
    * A React component that will be used to wrap the NovaFacadeProvider children. This is used by the test-utils to
    * inject a ApolloProvider.
    */
   providerWrapper: ComponentType<PropsWithChildren>;
+} & (V extends "apollo"
+  ? {
+      type: "apollo";
+      graphql: NovaGraphQL & {
+        mock: ApolloMockFunctions<unknown, GraphQLTaggedNode>;
+      };
+    }
+  : {
+      type: "relay";
+      graphql: NovaGraphQL & { mock: RelayMockFunctions };
+    });
+
+interface NovaMockEnvironmentProviderProps<
+  V extends Variant,
+  T extends Environment,
+> {
+  environment: NovaMockEnvironment<V, T>;
 }
 
-interface NovaMockEnvironmentProviderProps<T extends Environment> {
-  environment: NovaMockEnvironment<T>;
-}
-
-export const NovaMockEnvironmentProvider = <T extends Environment = "test">({
+export const NovaMockEnvironmentProvider = <
+  V extends Variant = "apollo",
+  T extends Environment = "test",
+>({
   children,
   environment,
-}: React.PropsWithChildren<NovaMockEnvironmentProviderProps<T>>) => {
+}: React.PropsWithChildren<NovaMockEnvironmentProviderProps<V, T>>) => {
   return (
     <NovaEventingProvider
       eventing={environment.eventing}

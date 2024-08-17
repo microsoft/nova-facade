@@ -1,21 +1,11 @@
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
-import {
-  defaultBubble,
-  defaultTrigger,
-  MockPayloadGenerator,
-} from "./test-utils";
+import { MockPayloadGenerator } from "./test-utils";
 
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
 
 import { makeDecorator } from "@storybook/preview-api";
-import type {
-  ComposedStoryPlayContext,
-  PlayFunctionContext,
-  ComposedStoryFn,
-} from "@storybook/types";
-import type { ReactRenderer } from "@storybook/react";
 
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
@@ -24,9 +14,11 @@ import { createMockClient } from "@graphitation/apollo-mock-client";
 import type { NovaGraphQL } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
 import {
+  getDecorator,
   getRenderer,
-  type WithNovaApolloEnvironment,
+  type WithNovaEnvironment,
 } from "./storybook-nova-decorator-shared";
+import { defaultTrigger, defaultBubble } from "./shared-utils";
 
 // this has to be unique and different then name of the property added on story level to parameters
 // otherwise editing it within the decorator will override the mock resolvers
@@ -37,29 +29,20 @@ type MockClientOptions = Parameters<typeof createMockClient>[1];
 
 type MakeDecoratorResult = ReturnType<typeof makeDecorator>;
 
-// This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
-export const prepareStoryContextForTest = (
-  story: ComposedStoryFn<ReactRenderer>,
-  canvasElement?: HTMLElement,
-): ComposedStoryPlayContext<ReactRenderer> => ({
-  canvasElement,
-  id: story.id,
-  parameters: story.parameters,
-});
+export const getNovaApolloDecorator: (
+  schema: GraphQLSchema,
+  options?: MockClientOptions,
+) => MakeDecoratorResult = (schema, options) => {
+  const environment = createNovaEnvironment(schema, options);
+  const initializeGenerator = (parameters: WithNovaEnvironment["novaEnvironment"]) => {
+    const mockResolvers = parameters?.resolvers;
+    environment.graphql.mock.queueOperationResolver((operation) => {
+      const payload = MockPayloadGenerator.generate(operation, mockResolvers);
+      return payload;
+    });
+  };
 
-// This function should be used inside `play` function of a story to get the nova environment for that story.
-export const getNovaEnvironmentForStory = (
-  context: PlayFunctionContext<ReactRenderer>,
-) => {
-  const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
-    | NovaMockEnvironment<"storybook">
-    | undefined;
-  if (!env) {
-    throw new Error(
-      `No environment found for story "${context.storyId}". Did you forget to add the "withNovaEnvironment" decorator or pass proper context to "play" function inside your unit test?`,
-    );
-  }
-  return env;
+  return getDecorator(environment, initializeGenerator);
 };
 
 export const getNovaEnvironmentDecorator: (
@@ -75,8 +58,7 @@ export const getNovaEnvironmentDecorator: (
         [],
       );
       const parameters =
-        (settings.parameters as WithNovaApolloEnvironment["novaEnvironment"]) ||
-        {};
+        (settings.parameters as WithNovaEnvironment["novaEnvironment"]) || {};
       const Renderer = getRenderer(parameters, context, getStory);
       if (parameters?.enableQueuedMockResolvers ?? true) {
         const mockResolvers = parameters?.resolvers;
@@ -104,19 +86,16 @@ export const getNovaEnvironmentDecorator: (
 function createNovaEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
-): NovaMockEnvironment<"storybook"> {
+): NovaMockEnvironment<"apollo", "storybook"> {
   const client = createMockClient(schema, options);
-  const env: NovaMockEnvironment<"storybook"> = {
+  const env: NovaMockEnvironment<"apollo", "storybook"> = {
+    type: "apollo",
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
       mock: client.mock as MockFunctions<any, any>,
     },
     providerWrapper: ({ children }) => (
-      <ApolloProvider client={client}>
-        <React.Suspense fallback={<div>Component suspended...</div>}>
-          {children}
-        </React.Suspense>
-      </ApolloProvider>
+      <ApolloProvider client={client}>{children}</ApolloProvider>
     ),
     commanding: {
       trigger: defaultTrigger,

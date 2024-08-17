@@ -11,8 +11,7 @@ import type { OperationDescriptor } from "@graphitation/graphql-js-operation-pay
 import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 
 import type { GraphQLTaggedNode } from "@nova/react";
-import type { EntityCommand, EventWrapper, NovaGraphQL } from "@nova/types";
-import { action } from "@storybook/addon-actions";
+import type { NovaGraphQL } from "@nova/types";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
@@ -41,6 +40,7 @@ export function createMockEnvironment(
 ): NovaMockEnvironment {
   const client = createMockClient(schema, options);
   const env: NovaMockEnvironment = {
+    type: "apollo",
     commanding: {
       trigger: jest.fn(),
     },
@@ -56,20 +56,4 @@ export function createMockEnvironment(
     ),
   };
   return env;
-}
-
-export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
-  const eventData =
-    typeof eventWrapper.event.data === "function"
-      ? eventWrapper.event.data()
-      : eventWrapper.event.data;
-  action(`${eventWrapper.event.originator}.${eventWrapper.event.type}`)(
-    eventData,
-  );
-  return Promise.resolve();
-}
-
-export function defaultTrigger(command: EntityCommand): Promise<void> {
-  action("trigger")(command);
-  return Promise.resolve();
 }

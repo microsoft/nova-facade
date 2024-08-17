@@ -1,14 +1,21 @@
 import * as React from "react";
 import { type GraphQLTaggedNode, useLazyLoadQuery } from "@nova/react";
 import type {
-  OperationType,
-  GraphQLSingularResponse,
-  OperationDescriptor,
-} from "relay-runtime";
-import type { MockResolvers as RelayMockResolvers } from "relay-test-utils";
-import type { MockResolvers as GraphitationMockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
-import type { Addon_LegacyStoryFn } from "@storybook/types";
-import type { makeDecorator } from "@storybook/preview-api";
+  MockResolvers,
+  OperationDescriptor as ApolloOperationDescription,
+} from "@graphitation/graphql-js-operation-payload-generator";
+import type {
+  Addon_LegacyStoryFn,
+  ComposedStoryFn,
+  ComposedStoryPlayContext,
+  PlayFunctionContext,
+} from "@storybook/types";
+import { makeDecorator } from "@storybook/preview-api";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
+import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
+import type { ReactRenderer } from "@storybook/react";
+import type { OperationType } from "relay-runtime";
+import type { Variant } from "./shared-utils";
 
 type Context = Parameters<Parameters<typeof makeDecorator>[0]["wrapper"]>[1];
 
@@ -25,22 +32,9 @@ export type UnknownOperation = {
   response: unknown;
 };
 
-export type WithNovaRelayEnvironment<
-  TQuery extends OperationType = UnknownOperation,
-  TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
-> = WithNovaEnvironment<TQuery, TypeMap, RelayMockResolvers>;
-
-export type WithNovaApolloEnvironment<
-  TQuery extends OperationType = UnknownOperation,
-  TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
-> = WithNovaEnvironment<TQuery, TypeMap, GraphitationMockResolvers>;
-
 export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
-  TMockResolvers =
-    | RelayMockResolvers<TypeMap>
-    | GraphitationMockResolvers<TypeMap>,
 > = {
   novaEnvironment: (
     | ({
@@ -66,17 +60,11 @@ export type WithNovaEnvironment<
         getReferenceEntry?: never;
         getReferenceEntries?: never;
       }
-  ) & {
-    generateFunction?: (
-      operation: OperationDescriptor,
-      mockResolvers?:
-        | RelayMockResolvers<TypeMap>
-        | GraphitationMockResolvers<TypeMap>,
-    ) => GraphQLSingularResponse;
-  } & (
+  ) &
+    (
       | {
           enableQueuedMockResolvers?: true;
-          resolvers?: TMockResolvers;
+          resolvers?: MockResolvers<TypeMap>;
         }
       | {
           enableQueuedMockResolvers?: false;
@@ -117,3 +105,58 @@ export function getRenderer(
     };
   }
 }
+
+const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
+  "novaEnvironmentAssignedParameterValue";
+
+export const getDecorator = <V extends Variant = "apollo">(
+  environment: NovaMockEnvironment<V, "storybook">,
+  initializeGenerator: (
+    parameters: WithNovaEnvironment["novaEnvironment"],
+  ) => void,
+) => {
+  return makeDecorator({
+    name: "withNovaEnvironment",
+    parameterName: "novaEnvironment",
+    wrapper: (getStory, context, settings) => {
+      const parameters =
+        settings.parameters as WithNovaEnvironment["novaEnvironment"];
+      const Renderer = getRenderer(parameters, context, getStory);
+      if (parameters.enableQueuedMockResolvers) {
+        initializeGenerator(parameters);
+      }
+
+      context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
+      return (
+        <NovaMockEnvironmentProvider environment={environment}>
+          <Renderer />
+        </NovaMockEnvironmentProvider>
+      );
+    },
+  });
+};
+
+// This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
+export const prepareStoryContextForTest = (
+  story: ComposedStoryFn<ReactRenderer>,
+  canvasElement?: HTMLElement,
+): ComposedStoryPlayContext<ReactRenderer> => ({
+  canvasElement,
+  id: story.id,
+  parameters: story.parameters,
+});
+
+// This function should be used inside `play` function of a story to get the nova environment for that story.
+export const getNovaEnvironmentForStory = <V extends Variant>(
+  context: PlayFunctionContext<ReactRenderer>,
+) => {
+  const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
+    | NovaMockEnvironment<V, "storybook">
+    | undefined;
+  if (!env) {
+    throw new Error(
+      `No environment found for story "${context.storyId}". Did you forget to add the "withNovaEnvironment" decorator or pass proper context to "play" function inside your unit test?`,
+    );
+  }
+  return env;
+};

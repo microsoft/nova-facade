@@ -5,14 +5,12 @@ export { getOperationName, getOperationType } from "./operation-utils";
 
 export type {
   WithNovaEnvironment,
-  WithNovaRelayEnvironment,
-  WithNovaApolloEnvironment,
   UnknownOperation,
 } from "./storybook-nova-decorator-shared";
+export { getNovaEnvironmentDecorator } from "./storybook-nova-decorator-apollo";
 export {
-  getNovaEnvironmentDecorator,
   getNovaEnvironmentForStory,
   prepareStoryContextForTest,
-} from "./storybook-nova-decorator-apollo";
+} from "./storybook-nova-decorator-shared";
 
 export { getNovaRelayEnvironmentDecorator } from "./storybook-nova-decorator-relay";
