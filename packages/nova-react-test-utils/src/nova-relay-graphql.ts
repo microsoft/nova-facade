@@ -50,7 +50,6 @@ export const novaGraphql: Required<NovaGraphQL<ConcreteRequest>> = {
     variables: Variables,
     options,
   ) => {
-    console.log("useLazyLoadQuery", document, variables, options);
     return {
       data: useLazyLoadQuery(document, variables, options),
       error: undefined,

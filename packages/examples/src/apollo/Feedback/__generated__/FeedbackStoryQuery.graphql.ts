@@ -8,11 +8,6 @@ export type FeedbackStoryQueryVariables = {
 };
 export type FeedbackStoryQueryResponse = {
     readonly feedback: {
-        readonly id: string;
-        readonly message: {
-            readonly text: string;
-        };
-        readonly doesViewerLike: boolean;
         readonly " $fragmentRefs": FragmentRefs<"Feedback_feedbackFragment">;
     };
 };

@@ -21,15 +21,11 @@ const meta: Meta<typeof FeedbackComponent> = {
       query: graphql`
         query FeedbackStoryQuery($id: ID!) @relay_test_operation {
           feedback(id: $id) {
-            id
-            message {
-              text
-            }
-            doesViewerLike
             ...Feedback_feedbackFragment
           }
         }
       `,
+      variables: { id: "42" },
       getReferenceEntry: (data) => ["feedback", data?.feedback],
     },
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,

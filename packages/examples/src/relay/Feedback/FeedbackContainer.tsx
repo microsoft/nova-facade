@@ -11,17 +11,42 @@ const FeedbackContainerQuery = graphql`
   }
 `;
 
-export const FeedbackContainer = () => {
-  const { data, error } = useLazyLoadQuery<QueryType>(FeedbackContainerQuery, {
+const FeedbackContainerInner = () => {
+  const { data } = useLazyLoadQuery<QueryType>(FeedbackContainerQuery, {
     id: "42",
   });
   if (data) {
     return <FeedbackComponent feedback={data.feedback} />;
   } else {
-    if (!error) {
-      return <div>Loading...</div>;
-    } else {
-      return <div>Error: {error.message}</div>;
-    }
+    return <div>No data</div>;
   }
+};
+
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { error: Error | undefined }
+> {
+  constructor(props: { children: React.ReactNode }) {
+    super(props);
+    this.state = { error: undefined };
+  }
+  static getDerivedStateFromError(error: Error) {
+    return { error };
+  }
+  render() {
+    if (this.state.error) {
+      return <div>Error: {this.state.error.message}</div>;
+    }
+    return this.props.children;
+  }
+}
+
+export const FeedbackContainer = () => {
+  return (
+    <ErrorBoundary>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <FeedbackContainerInner />
+      </React.Suspense>
+    </ErrorBoundary>
+  );
 };

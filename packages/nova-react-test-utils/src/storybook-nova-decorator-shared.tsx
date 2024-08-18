@@ -1,9 +1,6 @@
 import * as React from "react";
 import { type GraphQLTaggedNode, useLazyLoadQuery } from "@nova/react";
-import type {
-  MockResolvers,
-  OperationDescriptor as ApolloOperationDescription,
-} from "@graphitation/graphql-js-operation-payload-generator";
+import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
 import type {
   Addon_LegacyStoryFn,
   ComposedStoryFn,
@@ -83,11 +80,9 @@ export function getRenderer(
   context: Context,
   getStory: Addon_LegacyStoryFn,
 ): React.FC<React.PropsWithChildren<unknown>> {
-  console.log({query, variables, getReferenceEntries, getReferenceEntry});
   if (query) {
     const Renderer: React.FC<unknown> = () => {
       const { data } = useLazyLoadQuery(query, variables);
-      console.log({data, query, variables});
 
       // apollo does not suspend, but returns undefined data
       if (!data) {
@@ -121,10 +116,10 @@ export const getDecorator = <V extends Variant = "apollo">(
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
-      const parameters =
-        settings.parameters as WithNovaEnvironment["novaEnvironment"];
+      const parameters = (settings.parameters ??
+        {}) as WithNovaEnvironment["novaEnvironment"];
       const Renderer = getRenderer(parameters, context, getStory);
-      if (parameters.enableQueuedMockResolvers) {
+      if (parameters.enableQueuedMockResolvers ?? true) {
         initializeGenerator(parameters);
       }
 
