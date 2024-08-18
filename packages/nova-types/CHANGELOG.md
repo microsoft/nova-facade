@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Wed, 19 Jul 2023 00:56:30 GMT and should not be manually modified.
+This log was last generated on Fri, 16 Aug 2024 09:50:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.0
+
+Fri, 16 Aug 2024 09:50:08 GMT
+
+### Minor changes
+
+- update useMutation hook to support onCompleted (132382266+DarynaAkhmedova@users.noreply.github.com)
 
 ## 1.4.0
 

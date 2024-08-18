@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Mon, 05 Aug 2024 00:10:12 GMT and should not be manually modified.
+This log was last generated on Fri, 16 Aug 2024 09:50:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 4.4.1
+
+Fri, 16 Aug 2024 09:50:08 GMT
+
+### Patches
+
+- Bump @nova/react to v2.6.0
+- Bump @nova/types to v1.5.0
 
 ## 4.4.0
 
