@@ -1,77 +1,54 @@
-// This file is a implementation of relay based Nova decorator that contains the set of features from both @nova/react-test-utils
-// and @imchhh/storybook-addon-relay. We will push it upstream but have it here for now to allow teams leveraging it
-import { makeDecorator } from "@storybook/preview-api";
-import {
-  NovaMockEnvironmentProvider,
-  type NovaMockEnvironment,
-} from "@nova/react-test-utils";
+import { type NovaMockEnvironment } from "@nova/react-test-utils";
 import * as React from "react";
 import { RelayEnvironmentProvider } from "react-relay";
-// In upstream we should probably start using MockPayloadGenerator from relay-test-utils instead of @graphitation one
-import { createMockEnvironment, MockPayloadGenerator } from "relay-test-utils";
-import { defaultBubble, defaultTrigger } from "./test-utils";
-import type { DecoratorFunction } from "@storybook/types";
-import { RecordSource, RelayFeatureFlags, Store } from "relay-runtime";
+import { createMockEnvironment } from "relay-test-utils";
+import {
+  type MockResolvers,
+  generate as payloadGenerator,
+} from "@graphitation/graphql-js-operation-payload-generator";
+import { type OperationDescriptor as RelayOperationDescriptor } from "relay-runtime";
 import { novaGraphql } from "./nova-relay-graphql";
 import {
-  getRenderer,
+  getDecorator,
   type WithNovaEnvironment,
 } from "./storybook-nova-decorator-shared";
+import { defaultBubble, defaultTrigger } from "./shared-utils";
+import { type GraphQLSchema, parse as parseGraphQL } from "graphql";
 
-const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
-  "novaEnvironmentAssignedParameterValue";
+type RelayEnvironmentOptions = Parameters<typeof createMockEnvironment>[0];
 
-export const getNovaRelayEnvironmentDecorator = () =>
-  makeDecorator({
-    name: "withNovaEnvironment",
-    parameterName: "novaEnvironment",
-    wrapper: (getStory, context, settings) => {
-      const environment = React.useMemo(() => createNovaRelayEnvironment(), []);
-      const parameters =
-        (settings.parameters as WithNovaEnvironment["novaEnvironment"]) || {};
-      const Renderer = getRenderer(parameters, context, getStory);
-      if (parameters?.enableQueuedMockResolvers ?? true) {
-        const mockResolvers = parameters?.resolvers;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
-        environment.graphql.mock.queueOperationResolver((operation) => {
-          if (parameters.generateFunction) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore - here again typings between apollo and relay are not compatible, we will need to figure it out upstream
-            return parameters.generateFunction(operation, mockResolvers);
-          } else {
-            return MockPayloadGenerator.generateWithDefer(
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-ignore
-              operation,
-              mockResolvers,
-              {
-                generateDeferredPayload: true,
-                mockClientData: true,
-              },
-            );
-          }
-        });
-      }
-      context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
-      return (
-        <NovaMockEnvironmentProvider environment={environment}>
-          <Renderer />
-        </NovaMockEnvironmentProvider>
+export const getNovaRelayDecorator = (
+  schema: GraphQLSchema,
+  options?: RelayEnvironmentOptions,
+) => {
+  const environment = createNovaRelayEnvironment(options);
+  const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
+  const initializeGenerator = (
+    parameters: WithNovaEnvironment["novaEnvironment"],
+  ) => {
+    const mockResolvers = parameters?.resolvers;
+    environment.graphql.mock.queueOperationResolver((operation) => {
+      const payload = relayMockPayloadGenerator.generate(
+        operation,
+        mockResolvers,
       );
-    },
-  });
+      console.log({ operation, payload });
+      return payload;
+    });
+  };
 
-function createNovaRelayEnvironment(): NovaMockEnvironment<"storybook"> {
-  // When we move upstream, decorator should accept the environment as a parameter to be able to override the store
-  const relayEnvironment = createMockEnvironment({
-    store: createStore(),
-  });
-  const env: NovaMockEnvironment<"storybook"> = {
+  return getDecorator(environment, initializeGenerator);
+};
+
+function createNovaRelayEnvironment(
+  options?: RelayEnvironmentOptions,
+): NovaMockEnvironment<"relay", "storybook"> {
+  const relayEnvironment = createMockEnvironment(options);
+  const env: NovaMockEnvironment<"relay", "storybook"> = {
+    type: "relay",
     graphql: {
       ...novaGraphql,
-      // The getAllOperations result needs to be readonly
-      mock: relayEnvironment.mock as unknown as NovaMockEnvironment["graphql"]["mock"],
+      mock: relayEnvironment.mock,
     },
     providerWrapper: ({ children }: React.PropsWithChildren<unknown>) => (
       <RelayEnvironmentProvider environment={relayEnvironment}>
@@ -90,12 +67,36 @@ function createNovaRelayEnvironment(): NovaMockEnvironment<"storybook"> {
   return env;
 }
 
-export const novaRelayDecorator: DecoratorFunction =
-  getNovaRelayEnvironmentDecorator();
+export class RelayMockPayloadGenerator {
+  public gqlSchema: GraphQLSchema;
 
-export function createStore(): Store {
-  // Enable feature flags for Live Resolver support
-  RelayFeatureFlags.ENABLE_RELAY_RESOLVERS = true;
+  constructor(gqlSchema: GraphQLSchema) {
+    this.gqlSchema = gqlSchema;
+  }
 
-  return new Store(new RecordSource());
+  public generate(
+    operation: RelayOperationDescriptor,
+    mockResolvers?: MockResolvers,
+    generateId?: () => number,
+  ): ReturnType<typeof payloadGenerator> {
+    if (!operation.request.node.params.text) {
+      throw new Error("Expected operation descriptor to have operation text");
+    }
+    const { data } = payloadGenerator(
+      {
+        schema: this.gqlSchema,
+        request: {
+          variables: operation.request.variables,
+          node: parseGraphQL(operation.request.node.params.text),
+        },
+      },
+      mockResolvers,
+      false,
+      generateId,
+    );
+    // Create a copy of the data which creates objects with prototypes,
+    // because graphql-js doesn't do this and it makes it impossible for
+    // relay to use Object.prototype methods on the data.
+    return { data: JSON.parse(JSON.stringify(data)) };
+  }
 }

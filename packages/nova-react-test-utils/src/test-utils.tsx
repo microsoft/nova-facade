@@ -18,6 +18,7 @@ type MockClientOptions = Parameters<typeof createMockClient>[1];
 type Generate<Schema, Node> = (
   operation: OperationDescriptor<Schema, Node>,
   mockResolvers?: Parameters<typeof payloadGenerator>[1],
+  generateId?: () => number,
 ) => ReturnType<typeof payloadGenerator>;
 
 export const MockPayloadGenerator: {

@@ -1,7 +1,7 @@
 import { graphql } from "@nova/react";
 import {
   getNovaEnvironmentForStory,
-  getNovaRelayEnvironmentDecorator,
+  getNovaRelayDecorator,
   type WithNovaEnvironment,
 } from "@nova/react-test-utils";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -9,10 +9,13 @@ import { userEvent, within } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
+import { getSchema } from "../../testing-utils/getSchema";
+
+const schema = getSchema();
 
 const meta: Meta<typeof FeedbackComponent> = {
   component: FeedbackComponent,
-  decorators: [getNovaRelayEnvironmentDecorator()],
+  decorators: [getNovaRelayDecorator(schema)],
   parameters: {
     novaEnvironment: {
       query: graphql`

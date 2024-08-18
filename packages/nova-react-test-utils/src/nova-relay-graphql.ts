@@ -16,15 +16,8 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
   return [
     ({
       variables,
-      optimisticResponse,
-      context: _context,
-    }: {
-      variables: { [name: string]: unknown };
-      context?: { [name: string]: unknown };
-      optimisticResponse?: unknown | null;
+      optimisticResponse, // TODO: use provided on completed
     }) => {
-      // TODO(mapol): Figure out why these types don't match up with @nova/react
-      // https://msfast.visualstudio.com/FAST%20Experiences/_workitems/edit/634001
       const relayCompatibleOptimisticResponse =
         typeof optimisticResponse === "object"
           ? optimisticResponse ?? undefined
@@ -57,10 +50,7 @@ export const novaGraphql: Required<NovaGraphQL<ConcreteRequest>> = {
     variables: Variables,
     options,
   ) => {
-    // The relay version of useLazyLoadQuery returns the data directly or suspends.
-    // TODO(mapol): We should perhaps figure out a way for Nova components to follow the api that does return an error.
-    // Sync with Nova folks to figure out what the long term plan of this API is.
-    // https://msfast.visualstudio.com/FAST%20Experiences/_workitems/edit/634006
+    console.log("useLazyLoadQuery", document, variables, options);
     return {
       data: useLazyLoadQuery(document, variables, options),
       error: undefined,

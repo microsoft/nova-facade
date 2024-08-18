@@ -10,7 +10,7 @@ import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type {
   UnknownOperation,
-  WithNovaApolloEnvironment,
+  WithNovaEnvironment,
 } from "@nova/react-test-utils/";
 
 const schema = getSchema();
@@ -32,7 +32,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Liked: Story = {
@@ -45,7 +45,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Like: Story = {
@@ -61,7 +61,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -74,11 +74,11 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaEnvironmentForStory(context);
+    } = getNovaEnvironmentForStory<"apollo">(context); // TODO: should this be generic or should we have separate functions? Maybe we should check the type?
 
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
@@ -103,7 +103,7 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaApolloEnvironment<UnknownOperation, TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 const sampleFeedback = {

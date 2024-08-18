@@ -13,4 +13,4 @@ export {
   prepareStoryContextForTest,
 } from "./storybook-nova-decorator-shared";
 
-export { getNovaRelayEnvironmentDecorator } from "./storybook-nova-decorator-relay";
+export { getNovaRelayDecorator, RelayMockPayloadGenerator } from "./storybook-nova-decorator-relay";
