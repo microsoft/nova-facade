@@ -215,3 +215,11 @@ The `prepareStoryContextForTest` is needed to make sure the context passed to `p
 #### How can I use the test utils (both in stories and tests) for components which don't fire graphql operations but rely on graphql fragments only?
 
 If your component, doesn't make any graphql operations and only calls `useFragment` you can still use the `NovaMockEnvironmentProvider` but won't benefit immediately from the apollo-mock-client, as it only intercepts real operations. But that also means that you can pass the fragment value through component props. If you are using Typescript, the data masking of the compiler will prevent you from having properly typed fragments. At this point in time, `MockPayloadGenerator` doesn't support yet generating mock data for fragments, but it is planned to be added in the future. For now you can either hardcode fragment value or wrap your component in additional layer which will trigger the graphql query.
+
+
+## TODO BEFORE MERGING
+
+- get proper split between apollo and relay
+- figure out how exports map work in package.json and if we should add relay/apollo paths
+- update docs
+- sort out dependencies, figure out which ones should be dev deps and normal deps (probably some more should be normal deps to have proper typings shipped to 1JS)
