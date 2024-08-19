@@ -23,7 +23,7 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
           ? optimisticResponse ?? undefined
           : undefined;
 
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         mutationFn({
           variables,
           optimisticResponse: relayCompatibleOptimisticResponse,
@@ -35,7 +35,7 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
             });
           },
           onError: (error) => {
-            resolve({ errors: [error], data: undefined });
+            reject({ errors: [error], data: undefined });
           },
         });
       });

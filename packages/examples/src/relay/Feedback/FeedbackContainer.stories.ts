@@ -96,7 +96,7 @@ export const LikeFailure: Story = {
       const operation = mock.getMostRecentOperation();
       expect(operation).toBeDefined();
     });
-    mock.rejectMostRecentOperation(new Error("Like failed"));
+    await mock.rejectMostRecentOperation(new Error("Like failed"));
   },
 };
 
