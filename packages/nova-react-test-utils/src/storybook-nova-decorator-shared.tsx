@@ -147,11 +147,11 @@ export const prepareStoryContextForTest = (
 });
 
 // This function should be used inside `play` function of a story to get the nova environment for that story.
-export const getNovaEnvironmentForStory = <V extends Variant>(
+export const getNovaEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
 ) => {
   const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
-    | NovaMockEnvironment<V, "storybook">
+    | NovaMockEnvironment<Variant, "storybook">
     | undefined;
   if (!env) {
     throw new Error(

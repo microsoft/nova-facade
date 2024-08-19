@@ -7,10 +7,14 @@ export type {
   WithNovaEnvironment,
   UnknownOperation,
 } from "./storybook-nova-decorator-shared";
-export { getNovaEnvironmentDecorator } from "./storybook-nova-decorator-apollo";
 export {
-  getNovaEnvironmentForStory,
-  prepareStoryContextForTest,
-} from "./storybook-nova-decorator-shared";
+  getNovaApolloDecorator,
+  getNovaApolloEnvironmentForStory,
+} from "./storybook-nova-decorator-apollo";
+export { prepareStoryContextForTest } from "./storybook-nova-decorator-shared";
 
-export { getNovaRelayDecorator, RelayMockPayloadGenerator } from "./storybook-nova-decorator-relay";
+export {
+  getNovaRelayDecorator,
+  RelayMockPayloadGenerator,
+  getNovaRelayEnvironmentForStory,
+} from "./storybook-nova-decorator-relay";

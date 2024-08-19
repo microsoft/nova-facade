@@ -1,6 +1,6 @@
 import { graphql } from "@nova/react";
 import {
-  getNovaEnvironmentDecorator,
+  getNovaApolloDecorator,
   type WithNovaEnvironment,
 } from "@nova/react-test-utils";
 import type { Meta, StoryObj } from "@storybook/react";
@@ -12,7 +12,7 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 
 const meta: Meta<typeof FeedbackComponent> = {
   component: FeedbackComponent,
-  decorators: [getNovaEnvironmentDecorator(getSchema())],
+  decorators: [getNovaApolloDecorator(getSchema())],
   parameters: {
     novaEnvironment: {
       query: graphql`

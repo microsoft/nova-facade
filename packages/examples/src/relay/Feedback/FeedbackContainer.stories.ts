@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  getNovaEnvironmentForStory,
   getNovaRelayDecorator,
+  getNovaRelayEnvironmentForStory,
   RelayMockPayloadGenerator,
 } from "@nova/react-test-utils";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
@@ -80,7 +80,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaEnvironmentForStory<"relay">(context);
+    } = getNovaRelayEnvironmentForStory(context);
 
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();

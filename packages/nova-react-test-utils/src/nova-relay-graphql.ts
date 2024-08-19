@@ -16,7 +16,8 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
   return [
     ({
       variables,
-      optimisticResponse, // TODO: use provided on completed
+      optimisticResponse,
+      onCompleted,
     }) => {
       const relayCompatibleOptimisticResponse =
         typeof optimisticResponse === "object"
@@ -28,6 +29,7 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
           variables,
           optimisticResponse: relayCompatibleOptimisticResponse,
           onCompleted: (data, errors) => {
+            onCompleted?.(data);
             resolve({
               errors:
                 errors?.map((error) => new Error(error.message)) ?? undefined,

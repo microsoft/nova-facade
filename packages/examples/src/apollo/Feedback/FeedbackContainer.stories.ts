@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  getNovaEnvironmentForStory,
-  getNovaEnvironmentDecorator,
+  getNovaApolloDecorator,
   MockPayloadGenerator,
+  getNovaApolloEnvironmentForStory,
 } from "@nova/react-test-utils";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
@@ -17,7 +17,7 @@ const schema = getSchema();
 
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
-  decorators: [getNovaEnvironmentDecorator(schema)],
+  decorators: [getNovaApolloDecorator(schema)],
 };
 
 export default meta;
@@ -78,7 +78,7 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaEnvironmentForStory<"apollo">(context); // TODO: should this be generic or should we have separate functions? Maybe we should check the type?
+    } = getNovaApolloEnvironmentForStory(context);
 
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();

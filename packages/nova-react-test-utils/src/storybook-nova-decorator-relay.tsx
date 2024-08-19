@@ -1,4 +1,4 @@
-import type {  NovaMockEnvironment } from "@nova/react-test-utils";
+import type { NovaMockEnvironment } from "@nova/react-test-utils";
 import * as React from "react";
 import { RelayEnvironmentProvider } from "react-relay";
 import { createMockEnvironment } from "relay-test-utils";
@@ -10,10 +10,13 @@ import type { OperationDescriptor as RelayOperationDescriptor } from "relay-runt
 import { novaGraphql } from "./nova-relay-graphql";
 import {
   getDecorator,
+  getNovaEnvironmentForStory,
   type WithNovaEnvironment,
 } from "./storybook-nova-decorator-shared";
 import { defaultBubble, defaultTrigger } from "./shared-utils";
 import { type GraphQLSchema, parse as parseGraphQL } from "graphql";
+import type { ReactRenderer } from "@storybook/react";
+import type { PlayFunctionContext } from "@storybook/types";
 
 type RelayEnvironmentOptions = Parameters<typeof createMockEnvironment>[0];
 
@@ -100,3 +103,13 @@ export class RelayMockPayloadGenerator {
     return { data: JSON.parse(JSON.stringify(data)) };
   }
 }
+
+export const getNovaRelayEnvironmentForStory = (
+  context: PlayFunctionContext<ReactRenderer>,
+): NovaMockEnvironment<"relay", "storybook"> => {
+  const env = getNovaEnvironmentForStory(context);
+  if (env.type !== "relay") {
+    throw new Error("Expected relay environment to be present on context");
+  }
+  return env;
+};
