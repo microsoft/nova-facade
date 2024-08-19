@@ -1,4 +1,4 @@
-import { type NovaMockEnvironment } from "@nova/react-test-utils";
+import type {  NovaMockEnvironment } from "@nova/react-test-utils";
 import * as React from "react";
 import { RelayEnvironmentProvider } from "react-relay";
 import { createMockEnvironment } from "relay-test-utils";
@@ -6,7 +6,7 @@ import {
   type MockResolvers,
   generate as payloadGenerator,
 } from "@graphitation/graphql-js-operation-payload-generator";
-import { type OperationDescriptor as RelayOperationDescriptor } from "relay-runtime";
+import type { OperationDescriptor as RelayOperationDescriptor } from "relay-runtime";
 import { novaGraphql } from "./nova-relay-graphql";
 import {
   getDecorator,
