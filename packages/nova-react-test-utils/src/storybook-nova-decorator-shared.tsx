@@ -107,20 +107,23 @@ const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
 export const getDecorator = <V extends Variant = "apollo">(
-  environment: NovaMockEnvironment<V, "storybook">,
+  createEnvironment: () => NovaMockEnvironment<V, "storybook">,
   initializeGenerator: (
     parameters: WithNovaEnvironment["novaEnvironment"],
+    environment: NovaMockEnvironment<V, "storybook">,
   ) => void,
 ) => {
   return makeDecorator({
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
+      // Environment needs to be created within makeDecorator wrapper to ensure it is created for each story separately and the environment is not shared between stories.
+      const environment = React.useMemo(() => createEnvironment(), []);
       const parameters = (settings.parameters ??
         {}) as WithNovaEnvironment["novaEnvironment"];
       const Renderer = getRenderer(parameters, context, getStory);
       if (parameters.enableQueuedMockResolvers ?? true) {
-        initializeGenerator(parameters);
+        initializeGenerator(parameters, environment);
       }
 
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;

@@ -21,10 +21,11 @@ export const getNovaRelayDecorator = (
   schema: GraphQLSchema,
   options?: RelayEnvironmentOptions,
 ) => {
-  const environment = createNovaRelayEnvironment(options);
+  const createEnvironment = () => createNovaRelayEnvironment(options);
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
+    environment: NovaMockEnvironment<"relay", "storybook">,
   ) => {
     const mockResolvers = parameters?.resolvers;
     environment.graphql.mock.queueOperationResolver((operation) => {
@@ -32,12 +33,11 @@ export const getNovaRelayDecorator = (
         operation,
         mockResolvers,
       );
-      console.log({ operation, payload });
       return payload;
     });
   };
 
-  return getDecorator(environment, initializeGenerator);
+  return getDecorator(createEnvironment, initializeGenerator);
 };
 
 function createNovaRelayEnvironment(

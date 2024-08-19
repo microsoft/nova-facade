@@ -1,6 +1,5 @@
 import { graphql } from "@nova/react";
 import {
-  getNovaEnvironmentForStory,
   getNovaRelayDecorator,
   type WithNovaEnvironment,
 } from "@nova/react-test-utils";
@@ -77,20 +76,6 @@ export const Like: Story = {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     await userEvent.click(likeButton);
-
-    const env = getNovaEnvironmentForStory(context);
-    env.graphql.mock.resolveMostRecentOperation(() => {
-      return {
-        data: {
-          feedbackLike: {
-            feedback: {
-              id: sampleFeedback.id,
-              doesViewerLike: true,
-            },
-          },
-        },
-      };
-    });
   },
 };
 

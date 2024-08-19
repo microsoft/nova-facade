@@ -33,8 +33,11 @@ export const getNovaApolloDecorator: (
   schema: GraphQLSchema,
   options?: MockClientOptions,
 ) => MakeDecoratorResult = (schema, options) => {
-  const environment = createNovaEnvironment(schema, options);
-  const initializeGenerator = (parameters: WithNovaEnvironment["novaEnvironment"]) => {
+  const createEnvironment = () => createNovaEnvironment(schema, options);
+  const initializeGenerator = (
+    parameters: WithNovaEnvironment["novaEnvironment"],
+    environment: NovaMockEnvironment<"apollo", "storybook">,
+  ) => {
     const mockResolvers = parameters?.resolvers;
     environment.graphql.mock.queueOperationResolver((operation) => {
       const payload = MockPayloadGenerator.generate(operation, mockResolvers);
@@ -42,7 +45,7 @@ export const getNovaApolloDecorator: (
     });
   };
 
-  return getDecorator(environment, initializeGenerator);
+  return getDecorator(createEnvironment, initializeGenerator);
 };
 
 export const getNovaEnvironmentDecorator: (
