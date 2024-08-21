@@ -4,7 +4,7 @@ The Nova Facade is a set of interfaces that represent the core framework depende
 
 This package provides test utilities for components written with the React specific implementation. The purpose of these utilities is to expose capabilities of [MockPayloadGenerator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator), [Apollo mock client](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client) and [relay-test-utils](https://github.com/facebook/relay/tree/main/packages/relay-test-utils) in Nova context.
 
-The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. For storybooks, the package provides two different decorators, `getNovaApolloDecorator` and `getNovaRelayDecorators`, which should be picked based on whether or not the component is based on Apollo or Relay.
+The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. 
 
 ## Unit tests
 
@@ -50,7 +50,7 @@ The `environment.eventing.bubble` is simple `jest.fn()` so you can assert on it.
 ## Storybook
 
 Similarly to unit tests this package provides decorators for storybook stories using
-either Apollo or Relay.
+either Apollo or Relay. The package exposes two decorators, `getNovaApolloDecorator` and `getNovaRelayDecorators`, which should be picked based on whether or not the component is based on Apollo or Relay.
 
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
