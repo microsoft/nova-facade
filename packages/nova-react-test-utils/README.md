@@ -2,7 +2,9 @@
 
 The Nova Facade is a set of interfaces that represent the core framework dependencies of a data-backed UI component in a large application. This allows high value components to be written in a host agnostic fashion and used within any host that implements the Nova contracts.
 
-This package provides test utilities for components written with the React specific implementation. The purpose of these utilities is to expose capabilities of [MockPayloadGenerator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator) and [Apollo mock client](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client) in Nova context.
+This package provides test utilities for components written with the React specific implementation. The purpose of these utilities is to expose capabilities of [MockPayloadGenerator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator), [Apollo mock client](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client) and [relay-test-utils](https://github.com/facebook/relay/tree/main/packages/relay-test-utils) in Nova context.
+
+The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. For storybooks, the package provides two different decorators, `getNovaApolloDecorator` and `getNovaRelayDecorators`, which should be picked based on whether or not the component is based on Apollo or Relay.
 
 ## Unit tests
 
@@ -47,13 +49,17 @@ The `environment.eventing.bubble` is simple `jest.fn()` so you can assert on it.
 
 ## Storybook
 
-Similarly to unit tests this package provide a decorator for storybook stories.
+Similarly to unit tests this package provides decorators for storybook stories using
+either Apollo or Relay.
 
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
-import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
+import type { 
+  UnknownOperation,
+  WithNovaEnvironment,
+} from "@nova/react-test-utils";
 import {
-  getNovaEnvironmentDecorator,
+  getNovaApolloDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils";
 
@@ -61,7 +67,7 @@ const schema = getSchema();
 
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
-  decorators: [getNovaEnvironmentDecorator(schema)],
+  decorators: [getNovaApolloDecorator(schema)],
 };
 
 export default meta;
@@ -74,15 +80,15 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 ```
 
 Let's break that example down:
 
-`getNovaEnvironmentDecorator` is a function that returns a decorator for storybook stories. It takes a schema as an argument. The schema is a GraphQL schema that is later used to generate mock data for the GraphQL mock. Basically what the decorator does, is that it wraps the rendered story inside `NovaMockEnvironmentProvider`. The difference between this setup and one for unit tests is that we no longer rely on Jest mocks for eventing and commanding. Instead `eventing.bubble` and `commanding.trigger` are implemented using `action` from [Storybook actions addon](https://storybook.js.org/docs/react/essentials/actions), so that whenever a component fires an event/trigger a command the information about the actions is rendered within Storybook actions addon panel.
+`getNovaApolloDecorator` is a function that returns a decorator for storybook stories. It takes a schema as an argument. The schema is a GraphQL schema that is later used to generate mock data for the GraphQL mock. Basically what the decorator does, is that it wraps the rendered story inside `NovaMockEnvironmentProvider`. The difference between this setup and one for unit tests is that we no longer rely on Jest mocks for eventing and commanding. Instead `eventing.bubble` and `commanding.trigger` are implemented using `action` from [Storybook actions addon](https://storybook.js.org/docs/react/essentials/actions), so that whenever a component fires an event/trigger a command the information about the actions is rendered within Storybook actions addon panel.
 
-The decorator is customized by [parameters](https://storybook.js.org/docs/react/writing-stories/parameters#page-top). The name of the parameter is `novaEnvironment` and it is of type `NovaEnvironmentDecoratorParameters`. It has two properties:
+The decorator is customized by [parameters](https://storybook.js.org/docs/react/writing-stories/parameters#page-top). The name of the parameter is `novaEnvironment` and it is of type `WithNovaEnvironment`. It has the following properties:
 
 - `resolvers` - an optional property that allows user to customize resolvers used for data generation. These resolvers are passed to MockPayloadGenerator, invoked inside the decorator as in:
 
@@ -126,9 +132,40 @@ export const LikeFailure: Story = {
 
 This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentForStory` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
 
-For more real life examples please check the [examples package](../examples/src/).
+In addition, if your component only defines a GraphQL fragment and does not perform a query, the following properties can be used:
 
-You can also see that `satisfies NovaEnvironmentDecoratorParameters<TypeMap>` is used to strongly type parameters. The `TypeMap` type gives you strongly typed mock resolvers and can be generated using [typemap-plugin](https://github.com/microsoft/graphitation/tree/main/packages/graphql-codegen-typescript-typemap-plugin) that can be added to graphql codegen config file.
+- `query` - if your component contains only a fragment and does not perform a query itself, you should supply the query which will generate the data that the fragment specifies. If `query` is specified, the decorator will render a wrapping component which executes the query using `useLazyLoadQuery` and uses the `getReferenceEntry` / `getReferenceEntries` property to send the data as a prop to the component.
+- `getReferenceEntry` / `getReferenceEntries` - if you specify `query`, this property is used to determine the prop name which the generated data from `useLazyLoadQuery` should be assigned to.
+- `variables` - the variables supplied to the `query`.
+
+Here's an example of a story for a component which only contains a fragment:
+
+```tsx
+const meta: Meta<typeof FeedbackComponent> = {
+  component: FeedbackComponent,
+  decorators: [getNovaApolloDecorator(getSchema())],
+  parameters: {
+    novaEnvironment: {
+      query: graphql`
+        query FeedbackStoryQuery($id: ID!) @relay_test_operation {
+          feedback(id: $id) {
+            ...Feedback_feedbackFragment
+          }
+        }
+        ${Feedback_feedbackFragment}
+      `,
+      variables: { id: "42" },
+      getReferenceEntry: (data) => ["feedback", data?.feedback],
+    },
+  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+};
+```
+
+In this example, a wrapping component will execute the `query` with `useLazyLoadQuery` and passes the result to the `FeedbackComponent` via the `feedback` prop.
+
+For Relay examples and more real life examples please check the [examples package](../examples/src/).
+
+You can also see that `satisfies NovaEnvironmentDecoratorParameters<Operation, TypeMap>` is used to strongly type parameters. The `Operation` is used to make the `getReferenceEntry` / `getReferenceEntries` prop strongly typed. If no `query` is defined it can be set to the `UnknownOperation` type exported from the package. The operation types are generated by the GraphQL compiler (either [apollo-react-relay-duct-tape-compiler](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape-compiler) or [relay-compiler](https://github.com/facebook/relay/tree/main/packages/relay-compiler)). The `TypeMap` type gives you strongly typed mock resolvers and can be generated using [typemap-plugin](https://github.com/microsoft/graphitation/tree/main/packages/graphql-codegen-typescript-typemap-plugin) that can be added to graphql codegen config file.
 
 ## FAQ
 
