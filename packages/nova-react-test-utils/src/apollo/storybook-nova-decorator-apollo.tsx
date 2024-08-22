@@ -1,5 +1,5 @@
 import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
-import { MockPayloadGenerator } from "./test-utils";
+import { ApolloMockPayloadGenerator } from "./test-utils";
 
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
@@ -35,7 +35,7 @@ export const getNovaApolloDecorator: (
   ) => {
     const mockResolvers = parameters?.resolvers;
     environment.graphql.mock.queueOperationResolver((operation) => {
-      const payload = MockPayloadGenerator.generate(operation, mockResolvers);
+      const payload = ApolloMockPayloadGenerator.generate(operation, mockResolvers);
       return payload;
     });
   };

@@ -6,17 +6,28 @@ export type {
   UnknownOperation,
 } from "./shared/storybook-nova-decorator-shared";
 
-
-export { MockPayloadGenerator, createMockEnvironment } from "./apollo/test-utils";
-export { getOperationName, getOperationType } from "./apollo/operation-utils";
+export {
+  ApolloMockPayloadGenerator,
+  createNovaApolloEnvironment,
+} from "./apollo/test-utils";
+export {
+  getApolloOperationName,
+  getApolloOperationType,
+} from "./apollo/operation-utils";
 export {
   getNovaApolloDecorator,
   getNovaApolloEnvironmentForStory,
 } from "./apollo/storybook-nova-decorator-apollo";
 
-
 export {
   getNovaRelayDecorator,
-  RelayMockPayloadGenerator,
   getNovaRelayEnvironmentForStory,
 } from "./relay/storybook-nova-decorator-relay";
+export {
+  RelayMockPayloadGenerator,
+  createNovaRelayMockEnvironment,
+} from "./relay/test-utils";
+export {
+  getRelayOperationName,
+  getRelayOperationType,
+} from "./relay/operation-utils";

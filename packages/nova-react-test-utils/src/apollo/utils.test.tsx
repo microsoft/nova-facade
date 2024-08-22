@@ -6,10 +6,10 @@ import type { EntityCommand, EventWrapper } from "@nova/types";
 
 import { graphql, useLazyLoadQuery } from "@nova/react";
 
-import { createMockEnvironment, MockPayloadGenerator } from "./test-utils";
+import { createNovaApolloEnvironment, ApolloMockPayloadGenerator } from "./test-utils";
 import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "../shared/nova-mock-environment";
-import { getOperationName, getOperationType } from "./operation-utils";
+import { getApolloOperationName, getApolloOperationType } from "./operation-utils";
 
 const schema = buildASTSchema(
   parse(`
@@ -47,11 +47,11 @@ const QuerySubject: React.FC = () => {
   return data ? <span>{data.user.name}</span> : null;
 };
 
-describe(createMockEnvironment, () => {
+describe(createNovaApolloEnvironment, () => {
   let environment: NovaMockEnvironment;
 
   beforeEach(() => {
-    environment = createMockEnvironment(schema);
+    environment = createNovaApolloEnvironment(schema);
   });
 
   it("wraps the user specified children in an Apollo provider", () => {
@@ -97,7 +97,7 @@ describe(createMockEnvironment, () => {
 
       await act(async () =>
         environment.graphql.mock.resolveMostRecentOperation((operation) =>
-          MockPayloadGenerator.generate(operation),
+          ApolloMockPayloadGenerator.generate(operation),
         ),
       );
 
@@ -118,7 +118,7 @@ describe(createMockEnvironment, () => {
       });
 
       expect(
-        getOperationName(environment.graphql.mock.getMostRecentOperation()),
+        getApolloOperationName(environment.graphql.mock.getMostRecentOperation()),
       ).toEqual("MockTestQuery");
     });
 
@@ -132,7 +132,7 @@ describe(createMockEnvironment, () => {
       });
 
       expect(
-        getOperationType(environment.graphql.mock.getMostRecentOperation()),
+        getApolloOperationType(environment.graphql.mock.getMostRecentOperation()),
       ).toEqual("query");
     });
   });

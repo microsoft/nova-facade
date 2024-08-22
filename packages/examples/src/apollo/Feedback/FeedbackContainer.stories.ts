@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
   getNovaApolloDecorator,
-  MockPayloadGenerator,
+  ApolloMockPayloadGenerator,
   getNovaApolloEnvironmentForStory,
 } from "@nova/react-test-utils";
 import { getSchema } from "../../testing-utils/getSchema";
@@ -85,7 +85,7 @@ export const LikeFailure: Story = {
       await expect(operation).toBeDefined();
     });
     await mock.resolveMostRecentOperation((operation) =>
-      MockPayloadGenerator.generate(operation, {
+      ApolloMockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
       }),
     );

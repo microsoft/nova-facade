@@ -21,7 +21,7 @@ type Generate<Schema, Node> = (
   generateId?: () => number,
 ) => ReturnType<typeof payloadGenerator>;
 
-export const MockPayloadGenerator: {
+export const ApolloMockPayloadGenerator: {
   /**
    * Given an operation descriptor generates a payload to satisfy the request. For details on the API see
    * {@see https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator}
@@ -35,7 +35,7 @@ export const MockPayloadGenerator: {
  * Creates a Nova environment object that can be used with the NovaMockEnvironmentProvider and has mocks instantiated
  * for each piece of the facade interface. Check README for details.
  */
-export function createMockEnvironment(
+export function createNovaApolloEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
 ): NovaMockEnvironment {
