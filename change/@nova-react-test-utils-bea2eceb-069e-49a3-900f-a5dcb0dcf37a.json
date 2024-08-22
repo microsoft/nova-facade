@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "Add relay support and align naming",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
