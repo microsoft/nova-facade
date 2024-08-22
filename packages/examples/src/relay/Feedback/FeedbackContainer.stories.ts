@@ -3,6 +3,8 @@ import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
   getNovaRelayDecorator,
   getNovaRelayEnvironmentForStory,
+  getRelayOperationName,
+  getRelayOperationType,
   RelayMockPayloadGenerator,
 } from "@nova/react-test-utils";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
@@ -86,16 +88,26 @@ export const LikeFailure: Story = {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
     });
-    await mock.resolveMostRecentOperation((operation) =>
-      MockPayloadGenerator.generate(operation, {
+    const operation = mock.getMostRecentOperation();
+    const operationName = getRelayOperationName(operation);
+    const operationType = getRelayOperationType(operation);
+    expect(operationName).toEqual("FeedbackContainerQuery");
+    expect(operationType).toEqual("query");
+    await mock.resolveMostRecentOperation((operation) => {
+      return MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
-      }),
-    );
+      });
+    });
     await Like.play?.(context);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       expect(operation).toBeDefined();
     });
+    const nextOperation = mock.getMostRecentOperation();
+    const nextOperationName = getRelayOperationName(nextOperation);
+    const nextOperationType = getRelayOperationType(nextOperation);
+    expect(nextOperationName).toEqual("FeedbackComponent_LikeMutation");
+    expect(nextOperationType).toEqual("mutation");
     await mock.rejectMostRecentOperation(new Error("Like failed"));
   },
 };

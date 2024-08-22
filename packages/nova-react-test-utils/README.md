@@ -4,7 +4,7 @@ The Nova Facade is a set of interfaces that represent the core framework depende
 
 This package provides test utilities for components written with the React specific implementation. The purpose of these utilities is to expose capabilities of [MockPayloadGenerator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator), [Apollo mock client](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client) and [relay-test-utils](https://github.com/facebook/relay/tree/main/packages/relay-test-utils) in Nova context.
 
-The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. 
+The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components.
 
 ## Unit tests
 
@@ -54,7 +54,7 @@ either Apollo or Relay. The package exposes two decorators, `getNovaApolloDecora
 
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
-import type { 
+import type {
   UnknownOperation,
   WithNovaEnvironment,
 } from "@nova/react-test-utils";
@@ -252,10 +252,3 @@ The `prepareStoryContextForTest` is needed to make sure the context passed to `p
 #### How can I use the test utils (both in stories and tests) for components which don't fire graphql operations but rely on graphql fragments only?
 
 If your component, doesn't make any graphql operations and only calls `useFragment` you can still use the `NovaMockEnvironmentProvider` but won't benefit immediately from the apollo-mock-client, as it only intercepts real operations. But that also means that you can pass the fragment value through component props. If you are using Typescript, the data masking of the compiler will prevent you from having properly typed fragments. At this point in time, `MockPayloadGenerator` doesn't support yet generating mock data for fragments, but it is planned to be added in the future. For now you can either hardcode fragment value or wrap your component in additional layer which will trigger the graphql query.
-
-
-## TODO BEFORE MERGING
-
-- get proper split between apollo and relay
-- update docs
-- sort out dependencies, figure out which ones should be dev deps and normal deps (probably some more should be normal deps to have proper typings shipped to 1JS)
