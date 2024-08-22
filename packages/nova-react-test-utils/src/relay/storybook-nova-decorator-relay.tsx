@@ -12,8 +12,8 @@ import {
   getDecorator,
   getNovaEnvironmentForStory,
   type WithNovaEnvironment,
-} from "./storybook-nova-decorator-shared";
-import { defaultBubble, defaultTrigger } from "./shared-utils";
+} from "../shared/storybook-nova-decorator-shared";
+import { defaultBubble, defaultTrigger } from "../shared/shared-utils";
 import { type GraphQLSchema, parse as parseGraphQL } from "graphql";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";

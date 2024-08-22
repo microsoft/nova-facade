@@ -1,4 +1,4 @@
-import type { NovaMockEnvironment } from "./nova-mock-environment";
+import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 import { MockPayloadGenerator } from "./test-utils";
 
 import type { GraphQLSchema } from "graphql";
@@ -14,8 +14,8 @@ import {
   getDecorator,
   getNovaEnvironmentForStory,
   type WithNovaEnvironment,
-} from "./storybook-nova-decorator-shared";
-import { defaultTrigger, defaultBubble } from "./shared-utils";
+} from "../shared/storybook-nova-decorator-shared";
+import { defaultTrigger, defaultBubble } from "../shared/shared-utils";
 import type { makeDecorator } from "@storybook/preview-api";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";

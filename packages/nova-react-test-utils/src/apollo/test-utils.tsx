@@ -1,5 +1,5 @@
 import React from "react";
-import type { NovaMockEnvironment } from "./nova-mock-environment";
+import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 
 import { ApolloProvider } from "@apollo/client";
 import type { GraphQLSchema } from "graphql";
