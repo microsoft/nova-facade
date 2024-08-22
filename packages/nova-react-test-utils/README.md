@@ -259,4 +259,3 @@ If your component, doesn't make any graphql operations and only calls `useFragme
 - get proper split between apollo and relay
 - update docs
 - sort out dependencies, figure out which ones should be dev deps and normal deps (probably some more should be normal deps to have proper typings shipped to 1JS)
-- figure out how exports map work in package.json and if we should add relay/apollo paths
