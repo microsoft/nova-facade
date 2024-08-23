@@ -1,6 +1,6 @@
 import { composeStories } from "@storybook/react";
 import * as stories from "./FeedbackContainer.stories";
-import { act, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
 import { prepareStoryContextForTest } from "@nova/react-test-utils/relay";
@@ -30,8 +30,12 @@ describe("FeedbackContainer", () => {
 
   it("should show unlike button after clicking like button", async () => {
     const { container } = render(<Like />);
-    await act(async () => Like.play({ canvasElement: container }));
+    await executePlayFunction(
+      Like,
+      prepareStoryContextForTest(Like, container),
+    );
     const button = await screen.findByRole("button", { name: "Unlike" });
+    expect(button).toBeEnabled();
     expect(button).toBeInTheDocument();
   });
 

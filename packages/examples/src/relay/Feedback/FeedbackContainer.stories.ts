@@ -93,6 +93,7 @@ export const LikeFailure: Story = {
     },
   } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async (context) => {
+    const container = within(context.canvasElement);
     const {
       graphql: { mock },
     } = getNovaEnvironmentForStory(context);
@@ -111,7 +112,8 @@ export const LikeFailure: Story = {
         Feedback: () => sampleFeedback,
       });
     });
-    await Like.play?.(context);
+    const likeButton = await container.findByRole("button", { name: "Like" });
+    userEvent.click(likeButton);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       expect(operation).toBeDefined();
