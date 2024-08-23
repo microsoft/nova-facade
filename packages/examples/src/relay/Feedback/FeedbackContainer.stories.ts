@@ -52,24 +52,37 @@ export const Liked: Story = {
   } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
+const likeResolvers = {
+  Feedback: () => sampleFeedback,
+  FeedbackLikeMutationResult: () => ({
+    feedback: {
+      ...sampleFeedback,
+      doesViewerLike: true,
+    },
+  }),
+};
+
 export const Like: Story = {
   parameters: {
     novaEnvironment: {
-      resolvers: {
-        Feedback: () => sampleFeedback,
-        FeedbackLikeMutationResult: () => ({
-          feedback: {
-            ...sampleFeedback,
-            doesViewerLike: true,
-          },
-        }),
-      },
+      resolvers: likeResolvers,
     },
   } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
-  play: async ({ canvasElement }) => {
-    const container = within(canvasElement);
+  play: async (context) => {
+    const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     userEvent.click(likeButton);
+    const {
+      graphql: { mock },
+    } = getNovaEnvironmentForStory(context);
+
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
+    await mock.resolveMostRecentOperation((operation) => {
+      return MockPayloadGenerator.generate(operation, likeResolvers);
+    });
   },
 };
 

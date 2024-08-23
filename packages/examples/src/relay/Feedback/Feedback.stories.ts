@@ -1,16 +1,20 @@
 import { graphql } from "@nova/react";
 import {
   getNovaDecorator,
+  getNovaEnvironmentForStory,
+  MockPayloadGenerator as PayloadGenerator,
   type WithNovaEnvironment,
 } from "@nova/react-test-utils/relay";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { userEvent, waitFor, within, expect } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import { getSchema } from "../../testing-utils/getSchema";
 
 const schema = getSchema();
+
+const MockPayloadGenerator = new PayloadGenerator(schema);
 
 const meta: Meta<typeof FeedbackComponent> = {
   component: FeedbackComponent,
@@ -58,24 +62,38 @@ export const Liked: Story = {
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
 };
 
+const likeResolvers = {
+  Feedback: () => sampleFeedback,
+  FeedbackLikeMutationResult: () => ({
+    feedback: {
+      ...sampleFeedback,
+      doesViewerLike: true,
+    },
+  }),
+};
+
 export const Like: Story = {
   parameters: {
     novaEnvironment: {
-      resolvers: {
-        Feedback: () => sampleFeedback,
-        FeedbackLikeMutationResult: () => ({
-          feedback: {
-            ...sampleFeedback,
-            doesViewerLike: true,
-          },
-        }),
-      },
+      resolvers: likeResolvers,
     },
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
   play: async (context) => {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     await userEvent.click(likeButton);
+
+    const {
+      graphql: { mock },
+    } = getNovaEnvironmentForStory(context);
+
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
+    await mock.resolveMostRecentOperation((operation) => {
+      return MockPayloadGenerator.generate(operation, likeResolvers);
+    });
   },
 };
 
