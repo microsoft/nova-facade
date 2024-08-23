@@ -11,14 +11,14 @@
     "just": "monorepo-scripts"
   },
   "peerDependencies": {
-    "@storybook/addon-actions": "^7.6",
-    "@storybook/preview-api": "^7.6",
-    "@storybook/react": "^7.6",
+    "@storybook/addon-actions": "^7.6 || ^8",
+    "@storybook/preview-api": "^7.6 || ^8",
+    "@storybook/react": "^7.6 || ^8",
+    "@storybook/types": "^7.6 || ^8",
     "react": "^17.0.2 || ^18",
     "@apollo/client": "^3.4",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
     "@graphitation/apollo-mock-client": "^0.11.0",
-    "relay-compiler": "^12.0.0",
-    "relay-compiler-language-graphitation": "^0.8.2",
     "react-relay": "^16 || ^17",
     "relay-runtime": "^16 || ^17",
     "relay-test-utils": "^16 || ^17",
@@ -26,8 +26,45 @@
     "@types/relay-runtime": "^16 || ^17",
     "@types/relay-test-utils": "^16 || ^17"
   },
+  "peerDependenciesMeta": {
+    "@apollo/client": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+    },
+    "@graphitation/apollo-react-relay-duct-tape": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+    },
+    "@graphitation/apollo-mock-client": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+    },
+    "react-relay": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "relay-runtime": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "relay-test-utils": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "@types/react-relay": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "@types/relay-runtime": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "@types/relay-test-utils": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    }
+  },
   "dependencies": {
-    "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.0",
     "@graphitation/graphql-js-tag": "^0.9.0",
     "@nova/react": "^2.6.0",
@@ -37,6 +74,7 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
     "@graphitation/apollo-mock-client": "^0.11.0",
     "@storybook/addon-actions": "^7.6.19",
     "@storybook/preview-api": "^7.6.19",
