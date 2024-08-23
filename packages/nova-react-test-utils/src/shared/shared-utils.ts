@@ -1,5 +1,6 @@
 import type { EntityCommand, EventWrapper } from "@nova/types";
 import { action } from "@storybook/addon-actions";
+import type { makeDecorator } from "@storybook/preview-api";
 
 export type Variant = "apollo" | "relay";
 
@@ -18,3 +19,5 @@ export function defaultTrigger(command: EntityCommand): Promise<void> {
   action("trigger")(command);
   return Promise.resolve();
 }
+
+export type MakeDecoratorResult = ReturnType<typeof makeDecorator>;

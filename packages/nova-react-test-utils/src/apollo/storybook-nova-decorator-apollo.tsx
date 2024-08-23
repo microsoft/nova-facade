@@ -15,27 +15,30 @@ import {
   getNovaEnvironmentForStory,
   type WithNovaEnvironment,
 } from "../shared/storybook-nova-decorator-shared";
+import type { MakeDecoratorResult } from "../shared/shared-utils";
 import { defaultTrigger, defaultBubble } from "../shared/shared-utils";
-import type { makeDecorator } from "@storybook/preview-api";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
-type MakeDecoratorResult = ReturnType<typeof makeDecorator>;
+type Options = MockClientOptions & {
+  generateFunction?: typeof ApolloMockPayloadGenerator.generate;
+};
 
 export const getNovaApolloDecorator: (
   schema: GraphQLSchema,
-  options?: MockClientOptions,
-) => MakeDecoratorResult = (schema, options) => {
-  const createEnvironment = () => createNovaEnvironment(schema, options);
+  options?: Options,
+) => MakeDecoratorResult = (schema, { generateFunction, ...rest } = {}) => {
+  const createEnvironment = () => createNovaEnvironment(schema, rest);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: NovaMockEnvironment<"apollo", "storybook">,
   ) => {
     const mockResolvers = parameters?.resolvers;
+    const generate = generateFunction ?? ApolloMockPayloadGenerator.generate;
     environment.graphql.mock.queueOperationResolver((operation) => {
-      const payload = ApolloMockPayloadGenerator.generate(operation, mockResolvers);
+      const payload = generate(operation, mockResolvers);
       return payload;
     });
   };

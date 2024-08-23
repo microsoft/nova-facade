@@ -3,6 +3,7 @@ import {
   getDecorator,
   getNovaEnvironmentForStory,
 } from "../shared/storybook-nova-decorator-shared";
+import type { MakeDecoratorResult } from "../shared/shared-utils";
 import { defaultBubble, defaultTrigger } from "../shared/shared-utils";
 import type { WithNovaEnvironment } from "../shared/storybook-nova-decorator-shared";
 
@@ -19,22 +20,26 @@ import type { PlayFunctionContext } from "@storybook/types";
 
 type RelayEnvironmentOptions = Parameters<typeof createMockEnvironment>[0];
 
-export const getNovaRelayDecorator = (
+type Options = RelayEnvironmentOptions & {
+  generateFunction?: typeof RelayMockPayloadGenerator.prototype.generate;
+};
+
+export const getNovaRelayDecorator: (
   schema: GraphQLSchema,
-  options?: RelayEnvironmentOptions,
-) => {
-  const createEnvironment = () => createNovaRelayEnvironment(options);
+  options?: Options,
+) => MakeDecoratorResult = (schema, { generateFunction, ...rest } = {}) => {
+  const createEnvironment = () => createNovaRelayEnvironment(rest);
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: NovaMockEnvironment<"relay", "storybook">,
   ) => {
     const mockResolvers = parameters?.resolvers;
+    const generate =
+      generateFunction ??
+      relayMockPayloadGenerator.generate.bind(relayMockPayloadGenerator);
     environment.graphql.mock.queueOperationResolver((operation) => {
-      const payload = relayMockPayloadGenerator.generate(
-        operation,
-        mockResolvers,
-      );
+      const payload = generate(operation, mockResolvers);
       return payload;
     });
   };
