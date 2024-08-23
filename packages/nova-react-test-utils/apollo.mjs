@@ -1,1 +1,1 @@
-export * from "./src/apollo";
+export * from "./lib/apollo";
