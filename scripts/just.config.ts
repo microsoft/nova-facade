@@ -11,11 +11,11 @@ import * as path from "path";
 import * as fs from "fs";
 import * as glob from "fast-glob";
 
-export const types = tscTask({ emitDeclarationOnly: true })
+export const types = tscTask({ emitDeclarationOnly: true });
 
 export const build = () => {
   const baseEsbuildOptions: EsbuildBuildOptions = {
-    entryPoints: glob.sync(["src/**/*.{ts,tsx}", "./apollo.ts", "./relay.ts", "!src/**/__tests__/**"]),
+    entryPoints: glob.sync(["src/**/*.{ts,tsx}", "!src/**/__tests__/**"]),
     outdir: "lib",
     target: "es6",
   };
