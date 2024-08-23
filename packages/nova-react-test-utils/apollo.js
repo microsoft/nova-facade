@@ -1,1 +1,1 @@
-module.exports = require("lib/apollo");
+module.exports = require("./lib/apollo");

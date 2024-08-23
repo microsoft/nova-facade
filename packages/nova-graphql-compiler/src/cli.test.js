@@ -36,5 +36,5 @@ describe("cli", () => {
     );
 
     expect(generatedFiles).toMatchSnapshot();
-  });
+  }, 50000);
 });

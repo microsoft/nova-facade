@@ -1,1 +1,1 @@
-module.exports = require("lib/relay");
+module.exports = require("./lib/relay");
