@@ -1,27 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  getNovaRelayDecorator,
-  getNovaRelayEnvironmentForStory,
-  getRelayOperationName,
-  getRelayOperationType,
-  RelayMockPayloadGenerator,
-} from "@nova/react-test-utils";
+  getNovaDecorator,
+  getNovaEnvironmentForStory,
+  getOperationName,
+  getOperationType,
+  MockPayloadGenerator as PayloadGenerator,
+} from "@nova/react-test-utils/relay";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type {
   UnknownOperation,
   WithNovaEnvironment,
-} from "@nova/react-test-utils";
+} from "@nova/react-test-utils/relay";
 import { getSchema } from "../../testing-utils/getSchema";
 
 const schema = getSchema();
 
-const MockPayloadGenerator = new RelayMockPayloadGenerator(schema);
+const MockPayloadGenerator = new PayloadGenerator(schema);
 
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
-  decorators: [getNovaRelayDecorator(schema)],
+  decorators: [getNovaDecorator(schema)],
 };
 
 export default meta;
@@ -82,15 +82,15 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaRelayEnvironmentForStory(context);
+    } = getNovaEnvironmentForStory(context);
 
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
     });
     const operation = mock.getMostRecentOperation();
-    const operationName = getRelayOperationName(operation);
-    const operationType = getRelayOperationType(operation);
+    const operationName = getOperationName(operation);
+    const operationType = getOperationType(operation);
     expect(operationName).toEqual("FeedbackContainerQuery");
     expect(operationType).toEqual("query");
     await mock.resolveMostRecentOperation((operation) => {
@@ -104,8 +104,8 @@ export const LikeFailure: Story = {
       expect(operation).toBeDefined();
     });
     const nextOperation = mock.getMostRecentOperation();
-    const nextOperationName = getRelayOperationName(nextOperation);
-    const nextOperationType = getRelayOperationType(nextOperation);
+    const nextOperationName = getOperationName(nextOperation);
+    const nextOperationType = getOperationType(nextOperation);
     expect(nextOperationName).toEqual("FeedbackComponent_LikeMutation");
     expect(nextOperationType).toEqual("mutation");
     await mock.rejectMostRecentOperation(new Error("Like failed"));

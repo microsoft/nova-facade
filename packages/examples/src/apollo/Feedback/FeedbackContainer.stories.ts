@@ -1,23 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  getNovaApolloDecorator,
-  ApolloMockPayloadGenerator,
-  getNovaApolloEnvironmentForStory,
-} from "@nova/react-test-utils";
+  getNovaDecorator,
+  MockPayloadGenerator,
+  getNovaEnvironmentForStory,
+} from "@nova/react-test-utils/apollo";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import type {
   UnknownOperation,
   WithNovaEnvironment,
-} from "@nova/react-test-utils";
+} from "@nova/react-test-utils/apollo";
 
 const schema = getSchema();
 
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
-  decorators: [getNovaApolloDecorator(schema)],
+  decorators: [getNovaDecorator(schema)],
 };
 
 export default meta;
@@ -78,14 +78,14 @@ export const LikeFailure: Story = {
   play: async (context) => {
     const {
       graphql: { mock },
-    } = getNovaApolloEnvironmentForStory(context);
+    } = getNovaEnvironmentForStory(context);
 
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
     });
     await mock.resolveMostRecentOperation((operation) =>
-      ApolloMockPayloadGenerator.generate(operation, {
+      MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
       }),
     );

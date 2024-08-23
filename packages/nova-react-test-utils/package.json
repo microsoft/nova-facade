@@ -2,7 +2,7 @@
   "name": "@nova/react-test-utils",
   "license": "MIT",
   "version": "4.4.1",
-  "main": "./src/index.ts",
+  "main": "./src/relay/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
     "lint": "monorepo-scripts lint",
@@ -64,14 +64,14 @@
   "sideEffects": false,
   "access": "public",
   "publishConfig": {
-    "main": "./lib/index",
-    "types": "./lib/index.d.ts",
-    "module": "./lib/index.mjs",
+    "main": "./lib/relay/index",
+    "types": "./lib/relay/index.d.ts",
+    "module": "./lib/relay/index.mjs",
     "exports": {
       ".": {
-        "types": "./lib/index.d.ts",
-        "import": "./lib/index.mjs",
-        "require": "./lib/index.js"
+        "import": "./lib/relay/index.mjs",
+        "require": "./lib/relay/index.js",
+        "types": "./lib/relay/index.d.ts"
       }
     }
   }
