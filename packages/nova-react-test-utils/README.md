@@ -249,6 +249,8 @@ it("should show an error if the like button fails", async () => {
 
 The `prepareStoryContextForTest` is needed to make sure the context passed to `play` function during unit tests execution contains the `novaEnvironment`.
 
-#### How can I use the test utils (both in stories and tests) for components which don't fire graphql operations but rely on graphql fragments only?
+#### Can I swap out the graphitation MockPayloadGenerator for something else?
 
-If your component, doesn't make any graphql operations and only calls `useFragment` you can still use the `NovaMockEnvironmentProvider` but won't benefit immediately from the apollo-mock-client, as it only intercepts real operations. But that also means that you can pass the fragment value through component props. If you are using Typescript, the data masking of the compiler will prevent you from having properly typed fragments. At this point in time, `MockPayloadGenerator` doesn't support yet generating mock data for fragments, but it is planned to be added in the future. For now you can either hardcode fragment value or wrap your component in additional layer which will trigger the graphql query.
+Yes, in `getNovaDecorator` you can supply a `generateFunction` which will be used to
+generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
+`MockPayloadGenerator` supplied by `relay-test-utils`.
