@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  UnknownOperation,
-  WithNovaEnvironment,
+  type UnknownOperation,
+  type WithNovaEnvironment,
   getNovaDecorator,
   MockPayloadGenerator,
   getNovaEnvironmentForStory,

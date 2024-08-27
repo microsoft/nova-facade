@@ -55,8 +55,8 @@ either Apollo or Relay. The package exposes two decorators, `getNovaApolloDecora
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
 import type {
-  UnknownOperation,
-  WithNovaEnvironment,
+  type UnknownOperation,
+  type WithNovaEnvironment,
   getNovaDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils/apollo";

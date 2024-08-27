@@ -1,6 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
+  type UnknownOperation,
+  type WithNovaEnvironment,
   getNovaDecorator,
   getNovaEnvironmentForStory,
   getOperationName,
@@ -9,10 +11,6 @@ import {
 } from "@nova/react-test-utils/relay";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
-import type {
-  UnknownOperation,
-  WithNovaEnvironment,
-} from "@nova/react-test-utils/relay";
 import { getSchema } from "../../testing-utils/getSchema";
 
 const schema = getSchema();
