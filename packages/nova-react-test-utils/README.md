@@ -50,7 +50,7 @@ The `environment.eventing.bubble` is simple `jest.fn()` so you can assert on it.
 ## Storybook
 
 Similarly to unit tests this package provides decorators for storybook stories using
-either Apollo or Relay. The package exposes two decorators, `getNovaApolloDecorator` and `getNovaRelayDecorators`, which should be picked based on whether or not the component is based on Apollo or Relay.
+either Apollo or Relay. The package exposes two implementation of same `getNovaDecorator` one for Relay and one for Apollo. One should be picked based on whether or not the component is using Apollo or Relay as GraphQL client.
 
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
@@ -99,7 +99,7 @@ environment.graphql.mock.queueOperationResolver((operation) =>
 
 By default, the resolvers are queued, instead of being called manually, so that users can interact with running story, without loss of functionality and to not have to specify any after render action (only doable by `play` function) if the component is static.
 
-- `enableQueuedMockResolvers` - the property (true by default) controls if default resolvers are queued. If set to false, user can no longer specify custom resolvers, but has all the capabilities of apollo-mock-client available manually inside play function. Check this example:
+- `enableQueuedMockResolvers` - the property (true by default) controls if default resolvers are queued. If set to false, user can no longer specify custom resolvers, but has all the capabilities of `apollo-mock-client/relay-test-utils` available manually inside play function. Check this example:
 
 ```tsx
 export const LikeFailure: Story = {
@@ -113,8 +113,10 @@ export const LikeFailure: Story = {
       graphql: { mock },
     } = getNovaEnvironmentForStory(context);
 
-    // wait for next tick for apollo client to update state
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
     await mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
@@ -128,7 +130,7 @@ export const LikeFailure: Story = {
 };
 ```
 
-This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentForStory` function. Later similarly to examples for unit test, full customization power of apollo-mock-client is available.
+This time resolvers are not queued up front so inside [play](https://storybook.js.org/docs/react/writing-stories/play-function#page-top) one needs to manually resolve/reject graphql operations. To get the environment created for this specific story one can use `getNovaEnvironmentForStory` function. Later similarly to examples for unit test, full customization power of `apollo-mock-client/relay-test-utils` is available.
 
 In addition, if your component only defines a GraphQL fragment and does not perform a query, the following properties can be used:
 
@@ -177,7 +179,7 @@ const environment = createMockEnvironment(schema, {
 });
 ```
 
-and if you are using through storybook decorator you can pass options to `getNovaEnvironmentDecorator`:
+and if you are using through storybook decorator you can pass options to `getNovaDecorator`:
 
 ```tsx
 const meta: Meta<typeof FeedbackContainer> = {
@@ -190,19 +192,44 @@ const meta: Meta<typeof FeedbackContainer> = {
 };
 ```
 
+#### I need to configure Relay store to support some custom setup I have in my repository. Is it possible?
+
+Similarly as with configuring Apollo cache, one can pass options to `createMockEnvironment`:
+
+```tsx
+const environment = createMockEnvironment(schema, {
+  store: myCustomStoreConfig,
+});
+```
+
+and if you are using through storybook decorator you can pass options to `getNovaDecorator`:
+
+```tsx
+const meta: Meta<typeof FeedbackContainer> = {
+  component: FeedbackContainer,
+  decorators: [
+    getNovaDecorator(schema, {
+      store: myCustomStoreConfig,
+    }),
+  ],
+};
+```
+
+The second parameter of `getNovaDecorator` is an `options` object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
+
 #### How can I mock query/mutation/subscription?
 
-- [Query example](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client#query)
-- [Mutation example](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client#query) - that one also contains mocking of error case
+- [Query example](../examples/src/relay/Feedback/FeedbackContainer.stories.ts#L30)
+- [Mutation example](../examples/src/relay/Feedback/FeedbackContainer.stories.ts#L87) - that one also contains mocking of error case
 - [Subscription example](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client#subscription)
 
 #### What if my test triggers multiple operations? How can I mock them? If I have multiple operations which one does `resolveMostRecentOperation` refer to?
 
-You have multiple options there. As [Apollo mock client](https://github.com/microsoft/graphitation/blob/main/packages/apollo-mock-client) is flexible you can go various ways to achieve desired result:
+You have multiple options there. As `apollo-mock-client/relay-test-utils` are flexible you can go various ways to achieve desired result:
 
-- You can rely on always resolving most recent operation. As Apollo Mock Client operates as a stack, most recent operation is always the one that was triggered most recently. If you fire query 2 after query 1, first call of `resolveMostRecentOperation` will refer to query 2. So for each operation you trigger you can call `resolveMostRecentOperation` to resolve it.
+- You can rely on always resolving most recent operation. As mock libraries operate as a stack, most recent operation is always the one that was triggered most recently. If you fire query 2 after query 1, first call of `resolveMostRecentOperation` will refer to query 2. So for each operation you trigger you can call `resolveMostRecentOperation` to resolve it.
 - You can also use `queueOperationResolver` to queue a resolver that will be applied for any upcoming operation. That way you can specify mocks for multiple queries at once.
-- In case of more complex scenario, check the public API of [Apollo mock client](https://github.com/microsoft/graphitation/blob/651f972b990be69f8018f86a93f42f78296e1bfe/packages/apollo-mock-client/src/index.ts#L35) - it exposes utilities like `findOperation`, `getAllOperations` and `resolveOperation`.
+- In case of more complex scenario, check the public API of [Apollo mock client](https://github.com/microsoft/graphitation/blob/651f972b990be69f8018f86a93f42f78296e1bfe/packages/apollo-mock-client/src/index.ts#L35) or [Relay test utils](https://github.com/facebook/relay/blob/4e39b05c8598fca11423136b964635646e805a68/packages/relay-test-utils/RelayModernMockEnvironment.js#L93) - they expose utilities like `findOperation`, `getAllOperations` and `resolveOperation`.
 - Additionally this package also exposes `getOperationName, getOperationType` utilities that allow you to filter operations by name and type.
 
 ```tsx
@@ -221,7 +248,7 @@ graphql.mock.queueOperationResolver((operation) => {
 
 #### Can I reuse the setup I made for stories somehow in unit tests?
 
-Sure, please check [unit tests file](../examples/src/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://github.com/storybookjs/testing-react) to treat storybook as the single source of truth for all the config/setup needed to test your component.
+Sure, please check [unit tests file](../examples/src/relay/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://storybook.js.org/docs/writing-tests/import-stories-in-tests/stories-in-unit-tests) to treat storybook as the single source of truth for all the config/setup needed to test your component.
 
 Here is also an example:
 
@@ -249,6 +276,6 @@ The `prepareStoryContextForTest` is needed to make sure the context passed to `p
 
 #### Can I swap out the graphitation MockPayloadGenerator for something else?
 
-Yes, in `getNovaDecorator` you can supply a `generateFunction` which will be used to
+Yes, in `getNovaDecorator` in `options` param you can supply a `generateFunction` which will be used to
 generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
 `MockPayloadGenerator` supplied by `relay-test-utils`.
