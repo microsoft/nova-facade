@@ -4,7 +4,7 @@ The Nova Facade is a set of interfaces that represent the core framework depende
 
 This package provides test utilities for components written with the React specific implementation. The purpose of these utilities is to expose capabilities of [MockPayloadGenerator](https://github.com/microsoft/graphitation/tree/main/packages/graphql-js-operation-payload-generator), [Apollo mock client](https://github.com/microsoft/graphitation/tree/main/packages/apollo-mock-client) and [relay-test-utils](https://github.com/facebook/relay/tree/main/packages/relay-test-utils) in Nova context.
 
-The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components.
+The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. Two variants of each utility and decorator are exposed under both `@nova/react-test-utils/apollo` and `@nova/react-test-utils/relay`, which should be picked based on which GraphQL runtime you want your tests and storybooks to use. If importing directly from `@nova/react-test-utils`, Relay variants will be imported by default.
 
 ## Unit tests
 
@@ -57,8 +57,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type {
   UnknownOperation,
   WithNovaEnvironment,
-} from "@nova/react-test-utils";
-import {
   getNovaDecorator,
   MockPayloadGenerator,
 } from "@nova/react-test-utils/apollo";
@@ -233,7 +231,7 @@ import * as stories from "./FeedbackContainer.stories";
 import { act, render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
-import { prepareStoryContextForTest } from "@nova/react-test-utils";
+import { prepareStoryContextForTest } from "@nova/react-test-utils/apollo";
 
 const { LikeFailure } = composeStories(stories);
 
