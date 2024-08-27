@@ -11,7 +11,7 @@ import { FeedbackContainer } from "./FeedbackContainer";
 import type {
   UnknownOperation,
   WithNovaEnvironment,
-} from "@nova/react-test-utils/apollo";
+} from "@nova/react-test-utils";
 
 const schema = getSchema();
 

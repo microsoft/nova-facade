@@ -15,7 +15,7 @@ import {
   createMockEnvironment,
   MockPayloadGenerator,
   NovaMockEnvironmentProvider,
-} from "@nova/react-test-utils";
+} from "@nova/react-test-utils/apollo";
 import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -59,15 +59,15 @@ import type {
   WithNovaEnvironment,
 } from "@nova/react-test-utils";
 import {
-  getNovaApolloDecorator,
+  getNovaDecorator,
   MockPayloadGenerator,
-} from "@nova/react-test-utils";
+} from "@nova/react-test-utils/apollo";
 
 const schema = getSchema();
 
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
-  decorators: [getNovaApolloDecorator(schema)],
+  decorators: [getNovaDecorator(schema)],
 };
 
 export default meta;
@@ -86,7 +86,7 @@ export const Primary: Story = {
 
 Let's break that example down:
 
-`getNovaApolloDecorator` is a function that returns a decorator for storybook stories. It takes a schema as an argument. The schema is a GraphQL schema that is later used to generate mock data for the GraphQL mock. Basically what the decorator does, is that it wraps the rendered story inside `NovaMockEnvironmentProvider`. The difference between this setup and one for unit tests is that we no longer rely on Jest mocks for eventing and commanding. Instead `eventing.bubble` and `commanding.trigger` are implemented using `action` from [Storybook actions addon](https://storybook.js.org/docs/react/essentials/actions), so that whenever a component fires an event/trigger a command the information about the actions is rendered within Storybook actions addon panel.
+`getNovaDecorator` is a function that returns a decorator for storybook stories. It takes a schema as an argument. The schema is a GraphQL schema that is later used to generate mock data for the GraphQL mock. Basically what the decorator does, is that it wraps the rendered story inside `NovaMockEnvironmentProvider`. The difference between this setup and one for unit tests is that we no longer rely on Jest mocks for eventing and commanding. Instead `eventing.bubble` and `commanding.trigger` are implemented using `action` from [Storybook actions addon](https://storybook.js.org/docs/react/essentials/actions), so that whenever a component fires an event/trigger a command the information about the actions is rendered within Storybook actions addon panel.
 
 The decorator is customized by [parameters](https://storybook.js.org/docs/react/writing-stories/parameters#page-top). The name of the parameter is `novaEnvironment` and it is of type `WithNovaEnvironment`. It has the following properties:
 
@@ -143,7 +143,7 @@ Here's an example of a story for a component which only contains a fragment:
 ```tsx
 const meta: Meta<typeof FeedbackComponent> = {
   component: FeedbackComponent,
-  decorators: [getNovaApolloDecorator(getSchema())],
+  decorators: [getNovaDecorator(getSchema())],
   parameters: {
     novaEnvironment: {
       query: graphql`
@@ -185,7 +185,7 @@ and if you are using through storybook decorator you can pass options to `getNov
 const meta: Meta<typeof FeedbackContainer> = {
   component: FeedbackContainer,
   decorators: [
-    getNovaEnvironmentDecorator(schema, {
+    getNovaDecorator(schema, {
       cache: myCustomCacheConfig,
     }),
   ],
