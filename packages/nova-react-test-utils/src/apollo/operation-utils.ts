@@ -1,8 +1,6 @@
 import { getOperationDefinition as _getOperationDefinition } from "@apollo/client/utilities";
 import type { DocumentNode } from "graphql";
-
 import type { OperationDescriptor } from "@graphitation/graphql-js-operation-payload-generator";
-
 import type { GraphQLTaggedNode } from "@nova/react";
 
 function getOperationDefinition(

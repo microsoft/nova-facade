@@ -33,49 +33,48 @@ export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
 > = {
-  novaEnvironment: (
-    | ({
-        query: GraphQLTaggedNode;
-        variables?: TQuery["variables"];
-      } & (
+  novaEnvironment:
+    | (
         | {
-            getReferenceEntry: (
-              queryResult: TQuery["response"],
-            ) => [string, unknown];
-            getReferenceEntries?: never;
+            query: GraphQLTaggedNode;
+            variables?: TQuery["variables"];
+            referenceEntries: Record<
+              string,
+              (queryResult: TQuery["response"]) => unknown
+            >;
           }
         | {
-            getReferenceEntries: (
-              queryResult: TQuery["response"],
-            ) => Array<[string, unknown]>;
-            getReferenceEntry?: never;
+            query?: never;
+            variables?: never;
+            referenceEntries?: never;
           }
-      ))
-    | {
-        query?: never;
-        variables?: never;
-        getReferenceEntry?: never;
-        getReferenceEntries?: never;
-      }
-  ) &
-    (
-      | {
-          enableQueuedMockResolvers?: true;
-          resolvers?: MockResolvers<TypeMap>;
-        }
-      | {
-          enableQueuedMockResolvers?: false;
-          resolvers?: never;
-        }
-    );
+      ) &
+        (
+          | {
+              enableQueuedMockResolvers?: true;
+              resolvers?: MockResolvers<TypeMap>;
+            }
+          | {
+              enableQueuedMockResolvers?: false;
+              resolvers?: never;
+            }
+        );
 };
+
+export type WithoutFragmentRefs<T> = T extends {
+  component: infer C;
+  parameters: { novaEnvironment: { referenceEntries: infer D } };
+}
+  ? C extends React.ComponentType<infer P>
+    ? Omit<P, keyof D>
+    : never
+  : never;
 
 export function getRenderer(
   {
     query,
     variables = {},
-    getReferenceEntries,
-    getReferenceEntry,
+    referenceEntries,
   }: WithNovaEnvironment["novaEnvironment"],
   context: Context,
   getStory: Addon_LegacyStoryFn,
@@ -89,9 +88,9 @@ export function getRenderer(
         return <div>Loading...</div>;
       }
 
-      const entries = getReferenceEntries
-        ? getReferenceEntries(data)
-        : [getReferenceEntry(data)];
+      const entries = Object.entries(referenceEntries).map(
+        ([key, getValue]) => [key, getValue(data)] as const,
+      );
       Object.assign(context.args, Object.fromEntries(entries));
       return <>{getStory(context)}</>;
     };

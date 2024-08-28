@@ -13,10 +13,10 @@ import { FeedbackContainer } from "./FeedbackContainer";
 
 const schema = getSchema();
 
-const meta: Meta<typeof FeedbackContainer> = {
+const meta = {
   component: FeedbackContainer,
   decorators: [getNovaDecorator(schema)],
-};
+} satisfies Meta<typeof FeedbackContainer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

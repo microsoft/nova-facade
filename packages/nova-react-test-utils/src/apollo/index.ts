@@ -4,6 +4,7 @@ export { prepareStoryContextForTest } from "../shared/storybook-nova-decorator-s
 export type {
   WithNovaEnvironment,
   UnknownOperation,
+  WithoutFragmentRefs,
 } from "../shared/storybook-nova-decorator-shared";
 
 export {

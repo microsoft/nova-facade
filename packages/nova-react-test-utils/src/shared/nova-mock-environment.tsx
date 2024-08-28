@@ -7,9 +7,6 @@ import type {
 } from "@nova/types";
 import type { MockFunctions as ApolloMockFunctions } from "@graphitation/apollo-mock-client";
 import type { MockEnvironment } from "relay-test-utils";
-
-type RelayMockFunctions = MockEnvironment["mock"];
-
 import type { GraphQLTaggedNode } from "@nova/react";
 import {
   mapEventMetadata,
@@ -19,6 +16,7 @@ import {
 } from "@nova/react";
 import type { Variant } from "./shared-utils";
 
+type RelayMockFunctions = MockEnvironment["mock"];
 type Environment = "test" | "storybook";
 
 type Commanding<T extends Environment> = T extends "test"
