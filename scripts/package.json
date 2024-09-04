@@ -8,6 +8,7 @@
     "monorepo-scripts": "bin/monorepo-scripts.js"
   },
   "devDependencies": {
+    "@graphitation/embedded-document-artefact-loader": "^0.8.0",
     "@graphql-tools/jest-transform": "^1.2.2",
     "@testing-library/react": "^15.0.0",
     "@types/node": "^16.11.6",

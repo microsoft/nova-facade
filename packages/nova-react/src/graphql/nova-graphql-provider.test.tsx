@@ -30,7 +30,6 @@ describe(useNovaGraphQL, () => {
 
     const TestPassedContextComponent: React.FC = () => {
       const graphqlFromContext = useNovaGraphQL();
-      // TODO figure out if this is needed
       if (!graphqlFromContext.useLazyLoadQuery) {
         return null;
       }

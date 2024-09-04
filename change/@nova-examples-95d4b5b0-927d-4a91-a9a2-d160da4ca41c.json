@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add relay examples using new decorator",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}

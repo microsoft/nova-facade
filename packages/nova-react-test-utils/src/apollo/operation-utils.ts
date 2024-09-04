@@ -1,8 +1,6 @@
 import { getOperationDefinition as _getOperationDefinition } from "@apollo/client/utilities";
 import type { DocumentNode } from "graphql";
-
 import type { OperationDescriptor } from "@graphitation/graphql-js-operation-payload-generator";
-
 import type { GraphQLTaggedNode } from "@nova/react";
 
 function getOperationDefinition(
@@ -23,7 +21,7 @@ function getOperationDefinition(
  * @param operation An operation descriptor obtained from a mock environment.
  * @returns The name of the operation.
  */
-export function getOperationName(
+export function getApolloOperationName(
   operation: OperationDescriptor<unknown, GraphQLTaggedNode>,
 ) {
   const name = getOperationDefinition(operation).name?.value;
@@ -39,7 +37,7 @@ export function getOperationName(
  * @param operation An operation descriptor obtained from a mock environment.
  * @returns The type of the operation.
  */
-export function getOperationType(
+export function getApolloOperationType(
   operation: OperationDescriptor<unknown, GraphQLTaggedNode>,
 ): "query" | "mutation" | "subscription" {
   return getOperationDefinition(operation).operation;
