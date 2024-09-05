@@ -22,7 +22,7 @@ jobs:
   - job: compliance
     displayName: Compliance checks
     pool:
-      name: 1ES-Teams-Windows-2019-Compliant
+      name: 1ES-Teams-Windows-2022-DomoreexpGithub
     steps:
       - template: ./steps/service-tree.yml
         parameters:
