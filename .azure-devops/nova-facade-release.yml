@@ -33,7 +33,7 @@ jobs:
     variables:
       - group: oss-secrets
     dependsOn: Compliance
-    pool: "1ES-Teams-Ubuntu-Latest-Compliant"
+    pool: "1ES-Teams-Ubuntu-LC-DomoreexpGithub"
     steps:
       - template: ./steps/service-tree.yml
         parameters:
