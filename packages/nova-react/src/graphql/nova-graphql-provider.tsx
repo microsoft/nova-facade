@@ -7,6 +7,7 @@ const NovaGraphQLContext = React.createContext<NovaGraphQL | null>(null);
 
 interface NovaGraphQLProviderProps {
   graphql: NovaGraphQL;
+  children?: React.ReactNode | undefined;
 }
 
 export const NovaGraphQLProvider: React.FunctionComponent<NovaGraphQLProviderProps> =

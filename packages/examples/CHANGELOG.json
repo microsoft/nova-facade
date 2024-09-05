@@ -2,6 +2,297 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 05 Sep 2024 20:13:44 GMT",
+      "tag": "@nova/examples_v1.3.0",
+      "version": "1.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "68c1e47fe294b0adbd32eb4cf746ee5ed06e2d0a",
+            "comment": "add relay examples using new decorator"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v5.0.0",
+            "commit": "68c1e47fe294b0adbd32eb4cf746ee5ed06e2d0a"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Aug 2024 09:50:08 GMT",
+      "tag": "@nova/examples_v1.2.1",
+      "version": "1.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.6.0",
+            "commit": "f12fa1131abf734080876344593b5a0537a74b10"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.4.1",
+            "commit": "f12fa1131abf734080876344593b5a0537a74b10"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/types to v1.5.0",
+            "commit": "f12fa1131abf734080876344593b5a0537a74b10"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 05 Aug 2024 00:10:12 GMT",
+      "tag": "@nova/examples_v1.2.0",
+      "version": "1.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94",
+            "comment": "bump react"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.5.0",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.4.0",
+            "commit": "ea871bbe03efb4188fdf59c314e8ab4faaf1da94"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 24 May 2024 22:25:18 GMT",
+      "tag": "@nova/examples_v1.1.1",
+      "version": "1.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.4.0",
+            "commit": "7bd7084a2fdde714eca65243e344c2b2c7026f11"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.3.1",
+            "commit": "7bd7084a2fdde714eca65243e344c2b2c7026f11"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 13 May 2024 20:36:36 GMT",
+      "tag": "@nova/examples_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "fcac2f11d5f5ca1bc56ef41ed2507c66333ce356",
+            "comment": "bump storybook to latest 7.x"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.3.0",
+            "commit": "fcac2f11d5f5ca1bc56ef41ed2507c66333ce356"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 05 Apr 2024 04:20:11 GMT",
+      "tag": "@nova/examples_v1.0.10",
+      "version": "1.0.10",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.3.0",
+            "commit": "f3910ccefd16eca177975c8591f917f54ebf0a35"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.2.3",
+            "commit": "f3910ccefd16eca177975c8591f917f54ebf0a35"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 20 Mar 2024 16:54:24 GMT",
+      "tag": "@nova/examples_v1.0.9",
+      "version": "1.0.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.2.0",
+            "commit": "78f7c8ca1ebe219c25d2c24e210a1425b8a540d4"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.2.2",
+            "commit": "78f7c8ca1ebe219c25d2c24e210a1425b8a540d4"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 08 Mar 2024 18:03:54 GMT",
+      "tag": "@nova/examples_v1.0.8",
+      "version": "1.0.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.1.0",
+            "commit": "9841ee63ecd602264c8fb14690ebef679bb1752b"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.2.1",
+            "commit": "9841ee63ecd602264c8fb14690ebef679bb1752b"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 08 Mar 2024 17:52:20 GMT",
+      "tag": "@nova/examples_v1.0.7",
+      "version": "1.0.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/examples",
+            "commit": "13ff3c8be5459586f430924692e8c92025239562",
+            "comment": "Add new @nova/graphql-compiler package to examples"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.0.0",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/graphql-compiler to v1.0.1",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.2.0",
+            "commit": "3e47ea96149face212b49286191f51ace11ed724"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 19 Dec 2023 18:33:33 GMT",
+      "tag": "@nova/examples_v1.0.6",
+      "version": "1.0.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.1.0",
+            "commit": "5192c332d08317ef4c8db57e864aac1c0ff732ac"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 15 Dec 2023 22:46:03 GMT",
+      "tag": "@nova/examples_v1.0.5",
+      "version": "1.0.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v1.6.0",
+            "commit": "653e625fe46bf0c762adf9cdba9bec0656b9d26d"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.0.5",
+            "commit": "653e625fe46bf0c762adf9cdba9bec0656b9d26d"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 15 Dec 2023 17:59:51 GMT",
+      "tag": "@nova/examples_v1.0.4",
+      "version": "1.0.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v1.5.1",
+            "commit": "d295e57f2a584cdd3743914aa539673f98ca7b74"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.0.4",
+            "commit": "d295e57f2a584cdd3743914aa539673f98ca7b74"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 10 Oct 2023 17:45:23 GMT",
+      "tag": "@nova/examples_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v1.5.0",
+            "commit": "6f2668efac7ec8a519ef5aae1007dd75563b3007"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v4.0.3",
+            "commit": "6f2668efac7ec8a519ef5aae1007dd75563b3007"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 19 Jul 2023 00:56:30 GMT",
       "tag": "@nova/examples_v1.0.2",
       "version": "1.0.2",

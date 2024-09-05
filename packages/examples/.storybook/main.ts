@@ -1,6 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
+
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(ts|tsx)"],
+  stories: ["../src/**/*.stories.@(ts|tsx)"],
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
@@ -8,7 +9,9 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/react-webpack5",
-    options: {},
+    options: {
+      strictMode: true,
+    },
   },
   webpackFinal: (config) => {
     return {
@@ -17,6 +20,11 @@ const config: StorybookConfig = {
         ...config.module,
         rules: [
           ...(config?.module?.rules ?? []),
+          {
+            test: /.+[\\/]relay[\\/].+\.tsx?$/,
+            exclude: /node_modules/,
+            loader: "@graphitation/embedded-document-artefact-loader/webpack",
+          },
           {
             test: /\.(tsx|ts)$/,
             use: [

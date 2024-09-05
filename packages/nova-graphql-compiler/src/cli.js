@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-
-const path = require("path");
 const yargs = require("yargs");
 
 const { relayCompiler } = require("relay-compiler");

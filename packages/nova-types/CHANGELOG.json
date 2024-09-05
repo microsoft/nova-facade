@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Fri, 16 Aug 2024 09:50:08 GMT",
+      "tag": "@nova/types_v1.5.0",
+      "version": "1.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "132382266+DarynaAkhmedova@users.noreply.github.com",
+            "package": "@nova/types",
+            "commit": "f12fa1131abf734080876344593b5a0537a74b10",
+            "comment": "update useMutation hook to support onCompleted"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 19 Jul 2023 00:56:30 GMT",
       "tag": "@nova/types_v1.4.0",
       "version": "1.4.0",

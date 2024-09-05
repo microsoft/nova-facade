@@ -1,21 +1,22 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
-import { FeedbackContainer } from "./FeedbackContainer";
-import type { NovaEnvironmentDecoratorParameters } from "@nova/react-test-utils";
+import { userEvent, within, waitFor, expect } from "@storybook/test";
 import {
-  getNovaEnvironmentForStory,
-  getNovaEnvironmentDecorator,
+  type UnknownOperation,
+  type WithNovaEnvironment,
+  getNovaDecorator,
   MockPayloadGenerator,
-} from "@nova/react-test-utils";
-import { getSchema } from "../testing-utils/getSchema";
-import type { TypeMap } from "../__generated__/schema.all.interface";
+  getNovaEnvironmentForStory,
+} from "@nova/react-test-utils/apollo";
+import { getSchema } from "../../testing-utils/getSchema";
+import type { TypeMap } from "../../__generated__/schema.all.interface";
+import { FeedbackContainer } from "./FeedbackContainer";
 
 const schema = getSchema();
 
-const meta: Meta<typeof FeedbackContainer> = {
+const meta = {
   component: FeedbackContainer,
-  decorators: [getNovaEnvironmentDecorator(schema)],
-};
+  decorators: [getNovaDecorator(schema)],
+} satisfies Meta<typeof FeedbackContainer>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -29,7 +30,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Liked: Story = {
@@ -42,7 +43,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 export const Like: Story = {
@@ -58,7 +59,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -71,20 +72,26 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async (context) => {
     const {
       graphql: { mock },
     } = getNovaEnvironmentForStory(context);
 
-    // wait for next tick for apollo client to update state
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
     await mock.resolveMostRecentOperation((operation) =>
       MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
       }),
     );
     await Like.play?.(context);
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      expect(operation).toBeDefined();
+    });
     mock.rejectMostRecentOperation(new Error("Like failed"));
   },
 };
@@ -94,7 +101,7 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaEnvironmentDecoratorParameters<TypeMap>,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
 };
 
 const sampleFeedback = {

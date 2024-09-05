@@ -1,8 +1,89 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 19 Jul 2023 00:56:30 GMT and should not be manually modified.
+This log was last generated on Fri, 16 Aug 2024 09:50:08 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.0
+
+Fri, 16 Aug 2024 09:50:08 GMT
+
+### Minor changes
+
+- update useMutation hook to support onCompleted (132382266+DarynaAkhmedova@users.noreply.github.com)
+- Bump @nova/types to v1.5.0
+
+## 2.5.0
+
+Mon, 05 Aug 2024 00:10:12 GMT
+
+### Minor changes
+
+- bump react (Stanislaw.Wilczynski@microsoft.com)
+
+## 2.4.0
+
+Fri, 24 May 2024 22:25:18 GMT
+
+### Minor changes
+
+- Fix RefetchOptions onComplete type (mwanginjuguna59@gmail.com)
+
+## 2.3.0
+
+Fri, 05 Apr 2024 04:20:11 GMT
+
+### Minor changes
+
+- Use FetchPolicy in useLazyLoadQuery (iukondra@microsoft.com)
+
+## 2.2.0
+
+Wed, 20 Mar 2024 16:54:24 GMT
+
+### Minor changes
+
+- Make fragment ref nullable (mark@thedutchies.com)
+
+## 2.1.0
+
+Fri, 08 Mar 2024 18:03:54 GMT
+
+### Minor changes
+
+- add eventing interceptor (Stanislaw.Wilczynski@microsoft.com)
+
+## 2.0.0
+
+Fri, 08 Mar 2024 17:52:20 GMT
+
+### Major changes
+
+- Move nova compiler to separate package (mark@thedutchies.com)
+
+## 1.6.0
+
+Fri, 15 Dec 2023 22:46:03 GMT
+
+### Minor changes
+
+- Add support for $fragmentSpreads format (mark@thedutchies.com)
+
+## 1.5.1
+
+Fri, 15 Dec 2023 17:59:51 GMT
+
+### Patches
+
+- Fix typings for React 18 and add ^18 to peerDependencies (mark@thedutchies.com)
+
+## 1.5.0
+
+Tue, 10 Oct 2023 17:45:23 GMT
+
+### Minor changes
+
+- add useNovaUnmountEventing (dratkins@microsoft.com)
 
 ## 1.4.0
 
