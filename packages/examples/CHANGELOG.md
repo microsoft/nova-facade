@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Fri, 16 Aug 2024 09:50:08 GMT and should not be manually modified.
+This log was last generated on Thu, 05 Sep 2024 20:13:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.0
+
+Thu, 05 Sep 2024 20:13:44 GMT
+
+### Minor changes
+
+- add relay examples using new decorator (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v5.0.0
 
 ## 1.2.1
 

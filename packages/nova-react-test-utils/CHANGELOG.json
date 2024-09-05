@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 05 Sep 2024 20:13:44 GMT",
+      "tag": "@nova/react-test-utils_v5.0.0",
+      "version": "5.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "68c1e47fe294b0adbd32eb4cf746ee5ed06e2d0a",
+            "comment": "Add relay support and align naming"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 Aug 2024 09:50:08 GMT",
       "tag": "@nova/react-test-utils_v4.4.1",
       "version": "4.4.1",

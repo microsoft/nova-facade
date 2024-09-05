@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 05 Sep 2024 20:13:44 GMT",
+      "tag": "@nova/react_v2.6.0",
+      "version": "2.6.0",
+      "comments": {
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "68c1e47fe294b0adbd32eb4cf746ee5ed06e2d0a",
+            "comment": "remove some todo from test code"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 Aug 2024 09:50:08 GMT",
       "tag": "@nova/react_v2.6.0",
       "version": "2.6.0",

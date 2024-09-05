@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Thu, 05 Sep 2024 20:13:44 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.1",
+      "version": "1.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "68c1e47fe294b0adbd32eb4cf746ee5ed06e2d0a",
+            "comment": "increase test timeout"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 08 Mar 2024 17:52:20 GMT",
       "tag": "@nova/graphql-compiler_v1.0.1",
       "version": "1.0.1",
