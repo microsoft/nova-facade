@@ -9,6 +9,7 @@ import type { OperationDescriptor } from "@graphitation/graphql-js-operation-pay
 import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 import type { GraphQLTaggedNode } from "@nova/react";
 import type { NovaGraphQL } from "@nova/types";
+import { jest } from "@jest/globals";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
