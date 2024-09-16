@@ -57,7 +57,7 @@
   "dependencies": {
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.0",
     "@graphitation/graphql-js-tag": "^0.9.0",
-    "@jest/globals": ">27.0.0",
+    "@jest/types": ">27.0.0",
     "@nova/react": "^2.6.0",
     "@nova/types": "^1.5.0",
     "@types/react": "^17 || ^18",
@@ -96,6 +96,23 @@
   },
   "sideEffects": false,
   "access": "public",
+  "exports": {
+    ".": {
+      "import": "./lib/relay/index.mjs",
+      "require": "./lib/relay/index.js",
+      "types": "./lib/relay/index.d.ts"
+    },
+    "./relay": {
+      "import": "./lib/relay/index.mjs",
+      "require": "./lib/relay/index.js",
+      "types": "./lib/relay/index.d.ts"
+    },
+    "./apollo": {
+      "import": "./lib/apollo/index.mjs",
+      "require": "./lib/apollo/index.js",
+      "types": "./lib/apollo/index.d.ts"
+    }
+  },
   "publishConfig": {
     "main": "./lib/relay/index",
     "types": "./lib/relay/index.d.ts",
@@ -105,6 +122,16 @@
         "import": "./lib/relay/index.mjs",
         "require": "./lib/relay/index.js",
         "types": "./lib/relay/index.d.ts"
+      },
+      "./relay": {
+        "import": "./lib/relay/index.mjs",
+        "require": "./lib/relay/index.js",
+        "types": "./lib/relay/index.d.ts"
+      },
+      "./apollo": {
+        "import": "./lib/apollo/index.mjs",
+        "require": "./lib/apollo/index.js",
+        "types": "./lib/apollo/index.d.ts"
       }
     }
   }
