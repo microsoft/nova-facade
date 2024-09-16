@@ -15,6 +15,7 @@ import {
   NovaGraphQLProvider,
 } from "@nova/react";
 import type { Variant } from "./shared-utils";
+import type { jest } from "@jest/globals";
 
 type RelayMockFunctions = MockEnvironment["mock"];
 type Environment = "test" | "storybook";

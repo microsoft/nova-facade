@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 16 Sep 2024 16:02:38 GMT",
+      "tag": "@nova/react-test-utils_v5.1.0",
+      "version": "5.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3d8bdd5959cac257ef61ada5bd05488c5922f57c",
+            "comment": "fix issues with dependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Sep 2024 08:14:42 GMT",
       "tag": "@nova/react-test-utils_v5.0.0",
       "version": "5.0.0",
