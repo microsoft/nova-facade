@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 05 Sep 2024 20:13:44 GMT and should not be manually modified.
+This log was last generated on Mon, 16 Sep 2024 16:02:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.1.0
+
+Mon, 16 Sep 2024 16:02:38 GMT
+
+### Minor changes
+
+- fix issues with dependencies (Stanislaw.Wilczynski@microsoft.com)
 
 ## 5.0.0
 
