@@ -9,7 +9,6 @@ import type { OperationDescriptor as RelayOperationDescriptor } from "relay-runt
 import { novaGraphql } from "./nova-relay-graphql";
 import { createMockEnvironment } from "relay-test-utils";
 import { RelayEnvironmentProvider } from "react-relay";
-import { jest } from "@jest/globals";
 
 export class RelayMockPayloadGenerator {
   public gqlSchema: GraphQLSchema;
