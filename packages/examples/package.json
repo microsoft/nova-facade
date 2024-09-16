@@ -30,7 +30,6 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.0",
-    "@graphitation/apollo-mock-client": "^0.11.0",
     "@graphitation/embedded-document-artefact-loader": "^0.8.0",
     "@graphitation/graphql-codegen-typescript-typemap-plugin": "^0.1.5",
     "@graphitation/graphql-js-tag": "^0.9.0",

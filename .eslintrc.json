@@ -2,7 +2,8 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2019,
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "env": {
     "browser": true,
@@ -18,7 +19,8 @@
         "disallowTypeAnnotations": true,
         "prefer": "type-imports"
       }
-    ]
+    ],
+    "@typescript-eslint/no-unsafe-member-access": "error"
   },
   "extends": ["plugin:@typescript-eslint/recommended", "prettier"]
 }
