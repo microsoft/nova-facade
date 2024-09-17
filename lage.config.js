@@ -3,7 +3,7 @@ module.exports = {
     prepare: [],
     types: ["^types"],
     build: [],
-    test: ["build"],
+    test: ["^build", "^types"],
     lint: [],
   },
   npmClient: "yarn",
