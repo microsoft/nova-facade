@@ -1,4 +1,13 @@
 import path from "path";
+import fs from "fs";
+
+const getTsConfigPath = () => {
+  if (fs.existsSync(path.join(process.cwd(), "tsconfig.jest.json"))) {
+    return "<rootDir>/tsconfig.jest.json";
+  } else {
+    return "<rootDir>/tsconfig.json";
+  }
+};
 
 export default {
   rootDir: process.cwd(),
@@ -14,10 +23,7 @@ export default {
     "^.+\\.tsx?$": [
       "ts-jest",
       {
-        tsconfig: {
-          // prevents error about graphql import not being used when artifacts are loaded
-          noUnusedLocals: false,
-        },
+        tsconfig: getTsConfigPath(),
       },
     ],
   },
