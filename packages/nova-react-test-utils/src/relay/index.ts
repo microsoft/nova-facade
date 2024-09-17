@@ -5,6 +5,8 @@ export type {
   WithNovaEnvironment,
   UnknownOperation,
   WithoutFragmentRefs,
+  MockResolvers,
+  DefaultMockResolvers,
 } from "../shared/storybook-nova-decorator-shared";
 
 export {
