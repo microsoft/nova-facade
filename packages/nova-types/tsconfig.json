@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "Bundler",
     "composite": true,
     "tsBuildInfoFile": ".tsbuildinfo",
     "rootDir": "src",

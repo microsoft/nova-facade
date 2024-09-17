@@ -1,12 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "Bundler",
     "jsx": "react",
     "composite": true,
     "tsBuildInfoFile": ".tsbuildinfo",
     "rootDir": "src",
-    "outDir": "lib",
-    "moduleResolution": "Bundler"
+    "outDir": "lib"
   },
   "include": ["src"],
   "references": []

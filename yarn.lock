@@ -1476,17 +1476,17 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.2.tgz#d8bae93ac8b815b2bd7a98078cf91e2724ef11e5"
   integrity sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==
 
-"@graphitation/apollo-mock-client@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.0.tgz#1074cbfb106659b68fdb3d155d215e4e6019794c"
-  integrity sha512-0tXP37d8Mf5x0rd5vLQph2Tx2cZ8tR4wogicNBmVSleJR3SSEKDia+h7ZZ5r0P/dq6xsYpOazISpBRyuNREaYQ==
+"@graphitation/apollo-mock-client@^0.11.4":
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.4.tgz#0161072e0c2a1530b98e638c75b8965a74123dd7"
+  integrity sha512-Hjm8vdC7osN8ub4FaiqDibubkUIgfirOqEwukJ45v9+IZoNs+1moCFSGOKis9Q7uLRqbPWEEzW0O5qI/dTkB+g==
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape@^1.0.30":
-  version "1.0.30"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.0.30.tgz#a3c3211a675cab4832d55d5ad74fec65494cb9d9"
-  integrity sha512-G5wdpzCOO2g6We3XY2NJyz3lh4IZQAuKo1RI3Kwp7SMxN02nfQGOS2ZVHLxuK+Mh1fwGWzlmr7tw+kk+sZwV3g==
+"@graphitation/apollo-react-relay-duct-tape@^1.1.0":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.1.5.tgz#4fb2453ac603aee92a0d3e4d2e111a365ea3f6c2"
+  integrity sha512-N54f1w4ah7kQkBga8RCihsZfZdb0UYaE3p8S9RbJvPhPGc7buYUBKfWZN0lRSiTZJQYWV2hRji7XHKSyFe0m/w==
   dependencies:
     invariant "^2.2.4"
     lodash "^4.17.15"
@@ -1498,21 +1498,23 @@
   dependencies:
     source-map-js "^1.0.2"
 
-"@graphitation/graphql-codegen-typescript-typemap-plugin@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-codegen-typescript-typemap-plugin/-/graphql-codegen-typescript-typemap-plugin-0.1.5.tgz#853bc16eb14a31987f5e826d1ff3bb5bc13f9cb0"
-  integrity sha512-YbfBwcKDPTji9JunMW9gfdB7r6gECtMeHrUzKEwxMlSQUQHoULhLZjUxOBF7RvIdqfDdXcxYtRr9Uup0kmXarA==
+"@graphitation/graphql-codegen-typescript-typemap-plugin@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-codegen-typescript-typemap-plugin/-/graphql-codegen-typescript-typemap-plugin-0.1.6.tgz#ff71d083943b5f892b05d73de5272f53018b7c75"
+  integrity sha512-FkQq+jdXTxoVUMYiz+ppWf1+nj5SrShpMcf1dM33Uw6WnzmlnquyOLnUUe/xiE5eVRX8kzG5vyOjDOSERey8/A==
   dependencies:
     change-case-all "1.0.14"
 
-"@graphitation/graphql-js-operation-payload-generator@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.12.1.tgz#e1d6911a6ac55fd6131dbe1808a43ee3b37b443c"
-  integrity sha512-N1S3FsL0GwkcCT8iB6MC0iP72GLiXswIuzAdJ/DppdwWwHGELJzxAHPFl02vGNYoXQKpF7/bjNvFly7+rJzy0A==
+"@graphitation/graphql-js-operation-payload-generator@^0.12.5":
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.12.5.tgz#784caa384ee090f4b4bbaba0bc615223c0d800d0"
+  integrity sha512-3vGpWS9k9ZOfmpqnurgf+RZPWmKE6n6541TsgWwEgTIv8lKu3OBxQwdWWMziad52vFO55DFr157jn2vnT9/eIA==
   dependencies:
     deepmerge "^4.2.2"
+    graphql "^15.0.0"
+    invariant "^2.2.4"
 
-"@graphitation/graphql-js-tag@^0.9.0":
+"@graphitation/graphql-js-tag@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.1.tgz#e40bef3a58ce553f1f40eab262e5ab263d5225bc"
   integrity sha512-qBV+2JGFRtASwM4Tnsfd6WkMSdvKJjm4IKeyUp7gNCxvl12cumXVbR7QxRY2qLRZHk6Pd2LZGqqS6iJAn19/nQ==
@@ -6982,7 +6984,7 @@ graphql-ws@5.12.0:
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.12.0.tgz#d06fe38916334b4a4c827f73268cbf4359a32ed7"
   integrity sha512-PA3ImUp8utrpEjoxBMhvxsjkStvFEdU0E1gEBREt8HZIWkxOUymwJBhFnBL7t/iHhUq1GVPeZevPinkZFENxTw==
 
-graphql@^15.5.0:
+graphql@^15.0.0, graphql@^15.5.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.6.0.tgz#e69323c6a9780a1a4b9ddf7e35ca8904bb04df02"
   integrity sha512-WJR872Zlc9hckiEPhXgyUftXH48jp2EjO5tgBBOyNMRJZ9fviL2mJBD6CAysk6N5S0r9BTs09Qk39nnJBkvOXQ==
@@ -10930,7 +10932,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
-typescript@>=4.2.3:
+typescript@>=4.2.3, typescript@<5:
   version "4.9.5"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.9.5.tgz#095979f9bcc0d09da324d58d03ce8f8374cbe65a"
   integrity sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==
