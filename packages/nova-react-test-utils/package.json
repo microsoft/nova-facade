@@ -17,8 +17,8 @@
     "@storybook/types": ">7.6",
     "react": "^17 || ^18",
     "@apollo/client": "^3.4",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
-    "@graphitation/apollo-mock-client": "^0.11.0",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.1.0",
+    "@graphitation/apollo-mock-client": "^0.11.4",
     "react-relay": ">16",
     "relay-runtime": ">16",
     "relay-test-utils": ">16",
@@ -55,9 +55,9 @@
     }
   },
   "dependencies": {
-    "@graphitation/graphql-js-operation-payload-generator": "^0.12.0",
-    "@graphitation/graphql-js-tag": "^0.9.0",
-    "@jest/globals": ">27.0.0",
+    "@graphitation/graphql-js-operation-payload-generator": "^0.12.5",
+    "@graphitation/graphql-js-tag": "^0.9.1",
+    "@jest/types": ">27.0.0",
     "@nova/react": "^2.6.0",
     "@nova/types": "^1.5.0",
     "@types/react": "^17 || ^18",
@@ -69,8 +69,8 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.0.30",
-    "@graphitation/apollo-mock-client": "^0.11.0",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.1.0",
+    "@graphitation/apollo-mock-client": "^0.11.4",
     "@storybook/addon-actions": "^7.6.19",
     "@storybook/preview-api": "^7.6.19",
     "@storybook/react": "^7.6.19",
@@ -96,6 +96,23 @@
   },
   "sideEffects": false,
   "access": "public",
+  "exports": {
+    ".": {
+      "import": "./lib/relay/index.mjs",
+      "require": "./lib/relay/index.js",
+      "types": "./lib/relay/index.d.ts"
+    },
+    "./relay": {
+      "import": "./lib/relay/index.mjs",
+      "require": "./lib/relay/index.js",
+      "types": "./lib/relay/index.d.ts"
+    },
+    "./apollo": {
+      "import": "./lib/apollo/index.mjs",
+      "require": "./lib/apollo/index.js",
+      "types": "./lib/apollo/index.d.ts"
+    }
+  },
   "publishConfig": {
     "main": "./lib/relay/index",
     "types": "./lib/relay/index.d.ts",
@@ -105,6 +122,16 @@
         "import": "./lib/relay/index.mjs",
         "require": "./lib/relay/index.js",
         "types": "./lib/relay/index.d.ts"
+      },
+      "./relay": {
+        "import": "./lib/relay/index.mjs",
+        "require": "./lib/relay/index.js",
+        "types": "./lib/relay/index.d.ts"
+      },
+      "./apollo": {
+        "import": "./lib/apollo/index.mjs",
+        "require": "./lib/apollo/index.js",
+        "types": "./lib/apollo/index.d.ts"
       }
     }
   }

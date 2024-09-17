@@ -16,6 +16,7 @@ import type { Variant } from "./shared-utils";
 
 type Context = Parameters<Parameters<typeof makeDecorator>[0]["wrapper"]>[1];
 
+export type { MockResolvers };
 export type DefaultMockResolvers = Partial<{
   ID: string;
   Boolean: boolean;
