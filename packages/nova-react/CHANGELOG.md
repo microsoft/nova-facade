@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 16 Aug 2024 09:50:08 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.1
+
+Tue, 17 Sep 2024 19:04:51 GMT
+
+### Patches
+
+- use bundler module resolution (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/types to v1.5.1
 
 ## 2.6.0
 

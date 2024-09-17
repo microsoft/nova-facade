@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Tue, 17 Sep 2024 19:04:51 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "37d880dba44bec32143175bea17d4eb31ff57637",
+            "comment": "fix TS version"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Sep 2024 20:13:44 GMT",
       "tag": "@nova/graphql-compiler_v1.0.1",
       "version": "1.0.1",

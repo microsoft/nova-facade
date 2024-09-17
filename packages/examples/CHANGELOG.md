@@ -1,8 +1,20 @@
 # Change Log - @nova/examples
 
-This log was last generated on Mon, 16 Sep 2024 16:02:38 GMT and should not be manually modified.
+This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.2
+
+Tue, 17 Sep 2024 19:04:51 GMT
+
+### Patches
+
+- use bundler module resolution (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v2.6.1
+- Bump @nova/graphql-compiler to v1.0.2
+- Bump @nova/react-test-utils to v5.2.0
+- Bump @nova/types to v1.5.1
 
 ## 1.3.1
 

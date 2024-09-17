@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix TS version",
-  "packageName": "@nova/graphql-compiler",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

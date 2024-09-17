@@ -2,6 +2,33 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 17 Sep 2024 19:04:51 GMT",
+      "tag": "@nova/react-test-utils_v5.2.0",
+      "version": "5.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "37d880dba44bec32143175bea17d4eb31ff57637",
+            "comment": "fix issues with dependencies"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.6.1",
+            "commit": "37d880dba44bec32143175bea17d4eb31ff57637"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.5.1",
+            "commit": "37d880dba44bec32143175bea17d4eb31ff57637"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 16 Sep 2024 16:02:38 GMT",
       "tag": "@nova/react-test-utils_v5.1.0",
       "version": "5.1.0",

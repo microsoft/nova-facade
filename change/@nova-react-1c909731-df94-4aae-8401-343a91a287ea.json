@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "use bundler module resolution",
-  "packageName": "@nova/react",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

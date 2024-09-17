@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 17 Sep 2024 19:04:51 GMT",
+      "tag": "@nova/types_v1.5.1",
+      "version": "1.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/types",
+            "commit": "37d880dba44bec32143175bea17d4eb31ff57637",
+            "comment": "use bundler module resolution"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 Aug 2024 09:50:08 GMT",
       "tag": "@nova/types_v1.5.0",
       "version": "1.5.0",

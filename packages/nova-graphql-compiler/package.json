@@ -1,7 +1,7 @@
 {
   "name": "@nova/graphql-compiler",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./src/cli.js",
   "scripts": {
     "lint": "monorepo-scripts lint",
