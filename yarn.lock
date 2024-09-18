@@ -1482,10 +1482,10 @@
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape@^1.1.0":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.1.5.tgz#4fb2453ac603aee92a0d3e4d2e111a365ea3f6c2"
-  integrity sha512-N54f1w4ah7kQkBga8RCihsZfZdb0UYaE3p8S9RbJvPhPGc7buYUBKfWZN0lRSiTZJQYWV2hRji7XHKSyFe0m/w==
+"@graphitation/apollo-react-relay-duct-tape@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.2.0.tgz#38835312de42cdab593ad13847a6fd5c73c7bc5a"
+  integrity sha512-FMPd5vG2XIeC3G3MvZU0/LgbnFfWydnRXO5iKIPwp51SuPe4n3UxZLqu2N4OzqsQe0Af7nZw9mgVNbacvZGutQ==
   dependencies:
     invariant "^2.2.4"
     lodash "^4.17.15"

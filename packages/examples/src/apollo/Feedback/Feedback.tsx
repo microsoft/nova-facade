@@ -77,25 +77,16 @@ export const FeedbackComponent = (props: Props) => {
                 },
               },
             },
-            // TODO: onCompleted callback is not implemented in duct tape but it should be, using "then" instead temporarily
-            // onCompleted: (response) => {
-            //   if (response.feedbackLike.feedback.doesViewerLike) {
-            //     feedbackTelemetry("FeedbackLiked");
-            //   } else {
-            //     feedbackTelemetry("FeedbackUnliked");
-            //   }
-            // },
-          })
-            .then((response) => {
-              if (response.data?.feedbackLike.feedback.doesViewerLike) {
+            onCompleted: (response) => {
+              if (response.feedbackLike.feedback.doesViewerLike) {
                 feedbackTelemetry("FeedbackLiked");
               } else {
                 feedbackTelemetry("FeedbackUnliked");
               }
-            })
-            .catch(() => {
-              setErrorMessage("Something went wrong");
-            });
+            },
+          }).catch(() => {
+            setErrorMessage("Something went wrong");
+          });
         }}
       >
         {feedback.doesViewerLike ? "Unlike" : "Like"}
