@@ -8,6 +8,7 @@ export type {
   MockResolvers,
   DefaultMockResolvers,
 } from "../shared/storybook-nova-decorator-shared";
+export { EventingProvider } from "../shared/eventing-provider";
 
 export {
   RelayMockPayloadGenerator as MockPayloadGenerator,
