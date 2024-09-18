@@ -1,15 +1,18 @@
 import { graphql } from "@nova/react";
 import {
+  EventingProvider,
   getNovaDecorator,
   type WithNovaEnvironment,
   type WithoutFragmentRefs,
 } from "@nova/react-test-utils/apollo";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import { expect, userEvent, within } from "@storybook/test";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
+import * as React from "react";
+import type { events } from "../../events/events";
 
 const meta = {
   component: FeedbackComponent,
@@ -31,8 +34,6 @@ const meta = {
     },
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
 } satisfies Meta<typeof FeedbackComponent>;
-
-
 
 export default meta;
 type Story = StoryObj<WithoutFragmentRefs<typeof meta>>;
@@ -80,6 +81,45 @@ export const Like: Story = {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     await userEvent.click(likeButton);
+  },
+};
+
+const FeedbackWithDeleteDialog = (props: Story["args"]) => {
+  const [open, setOpen] = React.useState(false);
+  const [text, setText] = React.useState("");
+  return (
+    <EventingProvider<typeof events>
+      eventMap={{
+        onDeleteFeedback: (eventWrapper) => {
+          setOpen(true);
+          setText(eventWrapper.event.data().feedbackText);
+          return Promise.resolve();
+        },
+      }}
+    >
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore we know feedback is passed through decorator */}
+      <FeedbackComponent {...props} />
+
+      <dialog open={open}>
+        <button onClick={() => setOpen(false)}>Cancel</button>
+        Are you sure you want to delete feedback "{text}"
+      </dialog>
+    </EventingProvider>
+  );
+};
+
+export const WithDeleteDialog: Story = {
+  ...Primary,
+  render: (args) => <FeedbackWithDeleteDialog {...args} />,
+  play: async (context) => {
+    const container = within(context.canvasElement);
+    const deleteButton = await container.findByRole("button", {
+      name: "Delete feedback",
+    });
+    await userEvent.click(deleteButton);
+    const dialog = await container.findByRole("dialog");
+    await expect(dialog).toBeInTheDocument();
   },
 };
 

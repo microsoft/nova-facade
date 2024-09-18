@@ -5,6 +5,7 @@ import {
   MockPayloadGenerator as PayloadGenerator,
   type WithoutFragmentRefs,
   type WithNovaEnvironment,
+  EventingProvider,
 } from "@nova/react-test-utils/relay";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, waitFor, within, expect } from "@storybook/test";
@@ -12,6 +13,8 @@ import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import { getSchema } from "../../testing-utils/getSchema";
+import * as React from "react";
+import type { events } from "../../events/events";
 
 const schema = getSchema();
 
@@ -97,6 +100,44 @@ export const Like: Story = {
     await mock.resolveMostRecentOperation((operation) => {
       return MockPayloadGenerator.generate(operation, likeResolvers);
     });
+  },
+};
+
+const FeedbackWithDeleteDialog = (props: Story["args"]) => {
+  const [open, setOpen] = React.useState(false);
+  const [text, setText] = React.useState("");
+  return (
+    <EventingProvider<typeof events>
+      eventMap={{
+        onDeleteFeedback: (eventWrapper) => {
+          setOpen(true);
+          setText(eventWrapper.event.data().feedbackText);
+          return Promise.resolve();
+        },
+      }}
+    >
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-ignore we know feedback is passed through decorator */}
+      <FeedbackComponent {...props} />
+      <dialog open={open}>
+        <button onClick={() => setOpen(false)}>Cancel</button>
+        Are you sure you want to delete feedback "{text}"
+      </dialog>
+    </EventingProvider>
+  );
+};
+
+export const WithDeleteDialog: Story = {
+  ...Primary,
+  render: (args) => <FeedbackWithDeleteDialog {...args} />,
+  play: async (context) => {
+    const container = within(context.canvasElement);
+    const deleteButton = await container.findByRole("button", {
+      name: "Delete feedback",
+    });
+    await userEvent.click(deleteButton);
+    const dialog = await container.findByRole("dialog");
+    await expect(dialog).toBeInTheDocument();
   },
 };
 

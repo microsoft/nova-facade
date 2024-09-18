@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "showcase EventingProvider",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}

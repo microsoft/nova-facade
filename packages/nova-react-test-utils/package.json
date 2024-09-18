@@ -17,7 +17,7 @@
     "@storybook/types": ">7.6",
     "react": "^17 || ^18",
     "@apollo/client": "^3.4",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.1.0",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.2.0",
     "@graphitation/apollo-mock-client": "^0.11.4",
     "react-relay": ">16",
     "relay-runtime": ">16",
@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.1.0",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.2.0",
     "@graphitation/apollo-mock-client": "^0.11.4",
     "@storybook/addon-actions": "^7.6.19",
     "@storybook/preview-api": "^7.6.19",

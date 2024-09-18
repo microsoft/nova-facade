@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "implement EventingProvider utility",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
