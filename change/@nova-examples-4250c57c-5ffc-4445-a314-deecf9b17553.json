@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "improve handling of jest config and remove RTL clean hack",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
