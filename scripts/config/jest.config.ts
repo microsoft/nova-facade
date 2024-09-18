@@ -28,5 +28,4 @@ export default {
     ],
   },
   setupFiles: [path.join(__dirname, "jest.setup.ts")],
-  setupFilesAfterEnv: [path.join(__dirname, "jest.setupAfterEnv.ts")],
 };
