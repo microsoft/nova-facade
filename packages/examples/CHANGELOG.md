@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
+This log was last generated on Wed, 18 Sep 2024 18:00:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.3
+
+Wed, 18 Sep 2024 18:00:28 GMT
+
+### Patches
+
+- improve handling of jest config and remove RTL clean hack (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.3.2
 

@@ -3,7 +3,7 @@ import type {
   ComposedStoryPlayContext,
   ComposedStoryFn,
 } from "@storybook/types";
-import { act, waitFor } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react/pure";
 
 type PlayFunctionThatReturnsPromise = (
   options: ComposedStoryPlayContext<ReactRenderer>,
