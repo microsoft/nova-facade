@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
+This log was last generated on Wed, 18 Sep 2024 22:06:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.3.0
+
+Wed, 18 Sep 2024 22:06:51 GMT
+
+### Minor changes
+
+- implement EventingProvider utility (Stanislaw.Wilczynski@microsoft.com)
 
 ## 5.2.0
 

@@ -1,7 +1,7 @@
 {
   "name": "@nova/react-test-utils",
   "license": "MIT",
-  "version": "5.2.0",
+  "version": "5.3.0",
   "main": "./src/relay/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",

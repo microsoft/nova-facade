@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Wed, 18 Sep 2024 22:06:51 GMT",
+      "tag": "@nova/examples_v1.3.4",
+      "version": "1.3.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "3fd09307e6d676411d0bfe93b89d496a897ed8e4",
+            "comment": "showcase EventingProvider"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v5.3.0",
+            "commit": "3fd09307e6d676411d0bfe93b89d496a897ed8e4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 18 Sep 2024 18:00:28 GMT",
       "tag": "@nova/examples_v1.3.3",
       "version": "1.3.3",

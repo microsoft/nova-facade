@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Wed, 18 Sep 2024 18:00:28 GMT and should not be manually modified.
+This log was last generated on Wed, 18 Sep 2024 22:06:51 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.3.4
+
+Wed, 18 Sep 2024 22:06:51 GMT
+
+### Patches
+
+- showcase EventingProvider (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v5.3.0
 
 ## 1.3.3
 

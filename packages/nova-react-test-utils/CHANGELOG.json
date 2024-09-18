@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Wed, 18 Sep 2024 22:06:51 GMT",
+      "tag": "@nova/react-test-utils_v5.3.0",
+      "version": "5.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3fd09307e6d676411d0bfe93b89d496a897ed8e4",
+            "comment": "implement EventingProvider utility"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Sep 2024 19:04:51 GMT",
       "tag": "@nova/react-test-utils_v5.2.0",
       "version": "5.2.0",
