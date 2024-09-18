@@ -119,12 +119,10 @@ const FeedbackWithDeleteDialog = (props: Story["args"]) => {
       {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
       {/* @ts-ignore we know feedback is passed through decorator */}
       <FeedbackComponent {...props} />
-      {
-        <dialog open={open}>
-          <button onClick={() => setOpen(false)}>Cancel</button>
-          Are you sure you want to delete feedback "{text}"
-        </dialog>
-      }
+      <dialog open={open}>
+        <button onClick={() => setOpen(false)}>Cancel</button>
+        Are you sure you want to delete feedback "{text}"
+      </dialog>
     </EventingProvider>
   );
 };
