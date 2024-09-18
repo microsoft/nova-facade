@@ -66,8 +66,11 @@ export const build = () => {
 };
 
 export const test = () => {
+  const config = fs.existsSync(path.join(process.cwd(), "jest.config.ts"))
+    ? path.join(process.cwd(), "jest.config.ts") // if it exists prioritize using package local config
+    : path.join(__dirname, "config", "jest.config.ts");
   return jestTask({
-    config: path.join(__dirname, "config", "jest.config.ts"),
+    config,
     watch: argv().watch,
     _: argv()._,
   });
