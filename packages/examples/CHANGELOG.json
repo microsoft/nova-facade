@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 19 Sep 2024 14:05:02 GMT",
+      "tag": "@nova/examples_v1.4.0",
+      "version": "1.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "5199008c312bfc9835430c44f7b5632c1a0c2e65",
+            "comment": "showcase pure relay examples"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v5.3.1",
+            "commit": "5199008c312bfc9835430c44f7b5632c1a0c2e65"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 18 Sep 2024 22:06:51 GMT",
       "tag": "@nova/examples_v1.3.4",
       "version": "1.3.4",
