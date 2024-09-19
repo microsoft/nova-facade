@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "showcase pure relay examples",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}

@@ -93,6 +93,8 @@ export const LikeFailure: Story = {
       expect(operation).toBeDefined();
     });
     mock.rejectMostRecentOperation(new Error("Like failed"));
+    const container = within(context.canvasElement);
+    await container.findByText("Something went wrong");
   },
 };
 
