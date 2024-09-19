@@ -82,10 +82,14 @@ export function getRenderer(
 ): React.FC<React.PropsWithChildren<unknown>> {
   if (query) {
     const Renderer: React.FC<unknown> = () => {
-      const { data } = useLazyLoadQuery(query, variables);
+      const { data, error } = useLazyLoadQuery(query, variables);
 
       // apollo does not suspend, but returns undefined data
       if (!data) {
+        if (error) {
+          // apollo returns an error, while Relay throws, let's align the behavior
+          throw error;
+        }
         return <div>Loading...</div>;
       }
 
@@ -95,7 +99,7 @@ export function getRenderer(
       Object.assign(context.args, Object.fromEntries(entries));
       return <>{getStory(context)}</>;
     };
-    return Renderer;
+    return () => <Renderer />;
   } else {
     return () => {
       return <>{getStory(context)}</>;
