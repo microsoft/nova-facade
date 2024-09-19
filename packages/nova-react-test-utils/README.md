@@ -214,6 +214,10 @@ It is helpful if your event changes something on integration side of your compon
 
 ## FAQ
 
+#### I am not using Nova directly, but I am using Relay. Can I still use this package?
+
+Yes, you can. The Storybook decorator is designed to work with any Relay component, not just those that use Nova. The only change is that your components use Relay hooks for data fetching and instead of import `graphql` from `@nova/react` you can use `graphql` from `react-relay`. Check [the pure Relay examples](../examples/src/relay/pure-relay/Feedback.tsx).
+
 #### I need to configure cache of the Apollo mock client as I am using @graphitation/apollo-react-relay-duct-tape together with watch fragments that rely on bein able to fetch data from cache. Is it configurable?
 
 Yes, if you are using through unit tests directly you can pass options to `createMockEnvironment`:

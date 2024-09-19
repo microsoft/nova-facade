@@ -122,6 +122,7 @@ export const LikeFailure: Story = {
     expect(nextOperationName).toEqual("FeedbackComponent_LikeMutation");
     expect(nextOperationType).toEqual("mutation");
     await mock.rejectMostRecentOperation(new Error("Like failed"));
+    await container.findByText("Something went wrong");
   },
 };
 
