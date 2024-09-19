@@ -98,6 +98,24 @@ export const LikeFailure: Story = {
   },
 };
 
+export const QueryFailure: Story = {
+  parameters: {
+    novaEnvironment: {
+      enableQueuedMockResolvers: false,
+    },
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  play: async (context) => {
+    const {
+      graphql: { mock },
+    } = getNovaEnvironmentForStory(context);
+    await waitFor(async () => {
+      const operation = mock.getMostRecentOperation();
+      await expect(operation).toBeDefined();
+    });
+    await mock.rejectMostRecentOperation(new Error("Query failed"));
+  },
+};
+
 export const Loading: Story = {
   parameters: {
     novaEnvironment: {

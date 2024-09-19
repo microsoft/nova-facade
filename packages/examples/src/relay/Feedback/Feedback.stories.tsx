@@ -103,6 +103,25 @@ export const Like: Story = {
   },
 };
 
+export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
+  {
+    parameters: {
+      novaEnvironment: {
+        enableQueuedMockResolvers: false,
+      },
+    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+    play: async (context) => {
+      const {
+        graphql: { mock },
+      } = getNovaEnvironmentForStory(context);
+      await waitFor(async () => {
+        const operation = mock.getMostRecentOperation();
+        await expect(operation).toBeDefined();
+      });
+      await mock.rejectMostRecentOperation(new Error("Query failed"));
+    },
+  };
+
 const FeedbackWithDeleteDialog = (props: Story["args"]) => {
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");

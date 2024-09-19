@@ -2,11 +2,12 @@ import { graphql } from "@nova/react";
 import {
   EventingProvider,
   getNovaDecorator,
+  getNovaEnvironmentForStory,
   type WithNovaEnvironment,
   type WithoutFragmentRefs,
 } from "@nova/react-test-utils/apollo";
 import type { Meta, StoryObj } from "@storybook/react";
-import { expect, userEvent, within } from "@storybook/test";
+import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
@@ -83,6 +84,25 @@ export const Like: Story = {
     await userEvent.click(likeButton);
   },
 };
+
+export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
+  {
+    parameters: {
+      novaEnvironment: {
+        enableQueuedMockResolvers: false,
+      },
+    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+    play: async (context) => {
+      const {
+        graphql: { mock },
+      } = getNovaEnvironmentForStory(context);
+      await waitFor(async () => {
+        const operation = mock.getMostRecentOperation();
+        await expect(operation).toBeDefined();
+      });
+      await mock.rejectMostRecentOperation(new Error("Query failed"));
+    },
+  };
 
 const FeedbackWithDeleteDialog = (props: Story["args"]) => {
   const [open, setOpen] = React.useState(false);
