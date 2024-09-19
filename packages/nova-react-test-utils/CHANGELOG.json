@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 19 Sep 2024 14:05:02 GMT",
+      "tag": "@nova/react-test-utils_v5.3.1",
+      "version": "5.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "5199008c312bfc9835430c44f7b5632c1a0c2e65",
+            "comment": "adjust types to work well with relay graphql tag"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 18 Sep 2024 22:06:51 GMT",
       "tag": "@nova/react-test-utils_v5.3.0",
       "version": "5.3.0",
