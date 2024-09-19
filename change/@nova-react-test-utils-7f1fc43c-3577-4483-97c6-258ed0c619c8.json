@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "adjust types to work well with relay graphql tag",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
