@@ -1,5 +1,6 @@
 import * as React from "react";
 import { type GraphQLTaggedNode, useLazyLoadQuery } from "@nova/react";
+import { type GraphQLTaggedNode as RelayGraphQLTaggedNode } from "relay-runtime";
 import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-generator";
 import type {
   Addon_LegacyStoryFn,
@@ -37,7 +38,7 @@ export type WithNovaEnvironment<
   novaEnvironment:
     | (
         | {
-            query: GraphQLTaggedNode;
+            query: GraphQLTaggedNode | RelayGraphQLTaggedNode;
             variables?: TQuery["variables"];
             referenceEntries: Record<
               string,
@@ -82,7 +83,11 @@ export function getRenderer(
 ): React.FC<React.PropsWithChildren<unknown>> {
   if (query) {
     const Renderer: React.FC<unknown> = () => {
-      const { data } = useLazyLoadQuery(query, variables);
+      const { data } = useLazyLoadQuery(
+        // There are no consequences of the cast, we do it only to make sure pure relay components can also leverage the decorator
+        query as GraphQLTaggedNode,
+        variables,
+      );
 
       // apollo does not suspend, but returns undefined data
       if (!data) {
