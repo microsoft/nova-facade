@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "throw error from apollo in decorator",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
