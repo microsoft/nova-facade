@@ -1,12 +1,12 @@
 import type { StoryObj } from "@storybook/react";
 import type { Simplify, RequiredKeysOf } from "type-fest";
 
-type RequiredArgs<T> = T extends { args: infer A }
+type RequiredArgs<T> = T extends { args?: infer A }
   ? A extends object
     ? Pick<A, RequiredKeysOf<A>>
     : never
   : never;
-type OptionalArgs<T> = T extends { args: infer A }
+type OptionalArgs<T> = T extends { args?: infer A }
   ? A extends object
     ? Omit<A, RequiredKeysOf<A>>
     : never

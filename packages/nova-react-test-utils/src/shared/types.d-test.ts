@@ -19,15 +19,25 @@ type Props = {
   requiredProp: string;
   optionalProp?: string;
 };
-const Component: React.FC<Props> = (_: Props) => null;
 
 type OptionalProps = {
   propPassedThroughDecorator: unknown;
   optionalProp?: string;
 };
 
+type OptionalPropsOnly = {
+  propPassedThroughDecorator?: unknown;
+  optionalProp?: string;
+};
+
+const Component: React.FC<Props> = (_: Props) => null;
+
 const ComponentWithOptionalProps: React.FC<OptionalProps> = (
   _: OptionalProps,
+) => null;
+
+const ComponentWithOptionalPropsOnly: React.FC<OptionalPropsOnly> = (
+  _: OptionalPropsOnly,
 ) => null;
 
 const parameters = {
@@ -66,6 +76,11 @@ const metaForComponentWithOptionalProps = {
   parameters,
 } satisfies Meta<typeof ComponentWithOptionalProps>;
 
+const metaForComponentWithOptionalPropsOnly = {
+  component: ComponentWithOptionalPropsOnly,
+  parameters,
+} satisfies Meta<typeof ComponentWithOptionalPropsOnly>;
+
 type StoryObjForMeta = StoryObj<typeof meta>;
 type StoryObjWithoutFragmentRefsForMeta = StoryObjWithoutFragmentRefs<
   typeof meta
@@ -102,6 +117,14 @@ const StoryWithoutArgsForMetaWithArgs: StoryObjWithoutFragmentRefs<
   typeof metaWithArgs
 > = {};
 
+const StoryForComponentWithOptionalPropsOnly: StoryObjWithoutFragmentRefs<
+  typeof metaForComponentWithOptionalPropsOnly
+> = {
+  args: {
+    optionalProp: "optional",
+  },
+};
+
 type WithoutDecoratorParamsItShouldBeNever = Expect<
   Equal<never, StoryObjWithoutFragmentRefs<typeof metaWithoutDecoratorParams>>
 >;
@@ -127,3 +150,12 @@ type VerifyTypeContainsRequiredPropAndDoesntContainOneFromReferenceEntries =
       { requiredProp: string; optionalProp?: string }
     >
   >;
+
+type VerifyArgsTypeWhenComponentHasRequiredPropsOnly = Expect<
+  Equal<
+    StoryObjWithoutFragmentRefs<
+      typeof metaForComponentWithOptionalPropsOnly
+    >["args"],
+    { optionalProp?: string } | undefined
+  >
+>;
