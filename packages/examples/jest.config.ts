@@ -7,14 +7,6 @@ export default {
     // Needed to load relay compiler generated artifacts.
     ".+[\\\\/]relay[\\\\/].+\\.tsx?$":
       "@graphitation/embedded-document-artefact-loader/ts-jest",
-    "^.+\\.tsx?$": [
-      "ts-jest",
-      {
-        tsconfig: {
-          // prevents error about graphql import not being used when artifacts are loaded
-          noUnusedLocals: false,
-        },
-      },
-    ],
+    "^.+\\.tsx?$": ["ts-jest"],
   },
 };
