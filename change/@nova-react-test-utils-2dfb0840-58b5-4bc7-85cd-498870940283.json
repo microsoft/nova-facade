@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "improve type for StoryObj",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
