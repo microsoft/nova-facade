@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 20 Sep 2024 16:18:05 GMT",
+      "tag": "@nova/react-test-utils_v5.4.1",
+      "version": "5.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "d75653a1025ebff415b45cd9cafc2403680aa306",
+            "comment": "fix a type"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 20 Sep 2024 13:39:06 GMT",
       "tag": "@nova/react-test-utils_v5.4.0",
       "version": "5.4.0",

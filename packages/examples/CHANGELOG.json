@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Fri, 20 Sep 2024 16:18:05 GMT",
+      "tag": "@nova/examples_v1.5.2",
+      "version": "1.5.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v5.4.1",
+            "commit": "d75653a1025ebff415b45cd9cafc2403680aa306"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 20 Sep 2024 13:39:06 GMT",
       "tag": "@nova/examples_v1.5.1",
       "version": "1.5.1",
