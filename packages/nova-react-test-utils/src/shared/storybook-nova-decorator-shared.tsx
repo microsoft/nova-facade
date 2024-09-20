@@ -63,15 +63,6 @@ export type WithNovaEnvironment<
         );
 };
 
-export type WithoutFragmentRefs<T> = T extends {
-  component: infer C;
-  parameters: { novaEnvironment: { referenceEntries: infer D } };
-}
-  ? C extends React.ComponentType<infer P>
-    ? Omit<P, keyof D>
-    : never
-  : never;
-
 export function getRenderer(
   {
     query,
