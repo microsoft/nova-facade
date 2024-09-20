@@ -11,7 +11,7 @@ import type {
 import { makeDecorator } from "@storybook/preview-api";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
-import type { ReactRenderer } from "@storybook/react";
+import type { ReactRenderer, StoryObj } from "@storybook/react";
 import type { OperationType } from "relay-runtime";
 import type { Variant } from "./shared-utils";
 
@@ -63,12 +63,14 @@ export type WithNovaEnvironment<
         );
 };
 
-export type WithoutFragmentRefs<T> = T extends {
+export type StoryObjWithoutFragmentRefs<T> = T extends {
   component: infer C;
   parameters: { novaEnvironment: { referenceEntries: infer D } };
 }
   ? C extends React.ComponentType<infer P>
-    ? Omit<P, keyof D>
+    ? Omit<StoryObj<T>, "args"> & {
+        args?: Omit<P, keyof D>;
+      }
     : never
   : never;
 
