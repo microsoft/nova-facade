@@ -65,7 +65,8 @@
     "@types/relay-test-utils": ">16",
     "graphql": "^15.5.0",
     "invariant": "^2.2.4",
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "type-fest": "~2.19"
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",

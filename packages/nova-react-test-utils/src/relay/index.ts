@@ -4,11 +4,11 @@ export { prepareStoryContextForTest } from "../shared/storybook-nova-decorator-s
 export type {
   WithNovaEnvironment,
   UnknownOperation,
-  StoryObjWithoutFragmentRefs,
   MockResolvers,
   DefaultMockResolvers,
 } from "../shared/storybook-nova-decorator-shared";
 export { EventingProvider } from "../shared/eventing-provider";
+export type { StoryObjWithoutFragmentRefs } from "../shared/types";
 
 export {
   RelayMockPayloadGenerator as MockPayloadGenerator,
