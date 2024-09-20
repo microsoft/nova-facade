@@ -21,6 +21,15 @@ type Props = {
 };
 const Component: React.FC<Props> = (_: Props) => null;
 
+type OptionalProps = {
+  propPassedThroughDecorator: unknown;
+  optionalProp?: string;
+};
+
+const ComponentWithOptionalProps: React.FC<OptionalProps> = (
+  _: OptionalProps,
+) => null;
+
 const parameters = {
   novaEnvironment: {
     query: {
@@ -52,9 +61,32 @@ const metaWithoutDecoratorParams = {
   },
 } satisfies Meta<typeof Component>;
 
+const metaForComponentWithOptionalProps = {
+  component: ComponentWithOptionalProps,
+  parameters,
+} satisfies Meta<typeof ComponentWithOptionalProps>;
+
 type StoryObjForMeta = StoryObj<typeof meta>;
 type StoryObjWithoutFragmentRefsForMeta = StoryObjWithoutFragmentRefs<
   typeof meta
+>;
+
+type PlayFunctionContextForOptionalProps = Parameters<
+  NonNullable<
+    StoryObjWithoutFragmentRefs<
+      typeof metaForComponentWithOptionalProps
+    >["play"]
+  >
+>[number]["args"];
+
+type PlatFunctionArgs = Expect<
+  Equal<
+    {
+      propPassedThroughDecorator: unknown;
+      optionalProp?: string;
+    },
+    PlayFunctionContextForOptionalProps
+  >
 >;
 
 // @ts-expect-error - it should expect args that have requiredProp on it

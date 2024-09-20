@@ -1,15 +1,15 @@
 import type { StoryObj } from "@storybook/react";
-import type { Simplify } from "type-fest";
-
-type RequiredProps<T> = {
-  [K in keyof T]-?: Record<string, never> extends Pick<T, K> ? never : K;
-}[keyof T];
+import type { Simplify, RequiredKeysOf } from "type-fest";
 
 type RequiredArgs<T> = T extends { args: infer A }
-  ? Pick<A, RequiredProps<A>>
+  ? A extends object
+    ? Pick<A, RequiredKeysOf<A>>
+    : never
   : never;
 type OptionalArgs<T> = T extends { args: infer A }
-  ? Omit<A, RequiredProps<A>>
+  ? A extends object
+    ? Omit<A, RequiredKeysOf<A>>
+    : never
   : never;
 
 type OmitFromArgs<T, Z> = Omit<T, "args"> &
