@@ -10,6 +10,7 @@ import type {
   RefetchFn,
   FetchPolicy
 } from "./types";
+import type { Disposable } from 'relay-runtime';
 
 /**
  * Executes a GraphQL query.
@@ -332,14 +333,12 @@ interface MutationCommitterOptions<TMutationPayload extends OperationType> {
   context?: TMutationPayload["context"];
   optimisticResponse?: Partial<TMutationPayload["response"]> | null;
   onCompleted?: (response: TMutationPayload["response"]) => void;
+  onError?: (error: Error) => void;
 }
 
 type MutationCommitter<TMutationPayload extends OperationType> = (
   options: MutationCommitterOptions<TMutationPayload>,
-) => Promise<{
-  errors?: readonly Error[];
-  data?: TMutationPayload["response"];
-}>;
+) => Disposable;
 
 export function useMutation<TMutationPayload extends OperationType>(
   mutation: GraphQLTaggedNode,
@@ -347,4 +346,19 @@ export function useMutation<TMutationPayload extends OperationType>(
   const graphql = useNovaGraphQL();
   invariant(graphql.useMutation, "Expected host to provide a useMutation hook");
   return graphql.useMutation(mutation);
+}
+
+type MutationCommitter_depricated<TMutationPayload extends OperationType> = (
+  options: MutationCommitterOptions<TMutationPayload>,
+) => Promise<{
+  errors?: readonly Error[];
+  data?: TMutationPayload["response"];
+}>;
+
+export function useMutation_depricated<TMutationPayload extends OperationType>(
+  mutation: GraphQLTaggedNode,
+): [MutationCommitter_depricated<TMutationPayload>, boolean] {
+  const graphql = useNovaGraphQL();
+  invariant(graphql.useMutation_depricated, "Expected host to provide a useMutation hook");
+  return graphql.useMutation_depricated(mutation);
 }

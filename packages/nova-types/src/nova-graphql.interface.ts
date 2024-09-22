@@ -9,6 +9,7 @@
  * In case the host application uses Apollo Client, these hooks can be provided by using the
  * `@graphitation/apollo-react-relay-duct-tape` package. See https://github.com/microsoft/graphitation for details.
  */
+import type { Disposable } from 'relay-runtime';
 
 export interface NovaGraphQL<GraphQLDocument = any> {
   useFragment?: (
@@ -65,6 +66,19 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   }) => void;
 
   useMutation?: (
+    mutation: GraphQLDocument,
+  ) => [
+    (options: {
+      variables: { [name: string]: unknown };
+      context?: { [name: string]: unknown };
+      optimisticResponse?: unknown | null;
+      onCompleted?: (response: unknown) => void;
+      onError?: (error: Error) => void;
+    }) => Disposable,
+    boolean,
+  ];
+
+  useMutation_depricated?: (
     mutation: GraphQLDocument,
   ) => [
     (options: {

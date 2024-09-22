@@ -12,6 +12,7 @@
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18",
+    "relay-runtime": "12.0.0",
     "@types/react": "^17.0.2 || ^18",
     "@graphitation/graphql-js-tag": "^0.9.0"
   },
