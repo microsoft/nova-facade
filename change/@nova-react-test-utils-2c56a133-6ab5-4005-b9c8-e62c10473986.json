@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "don't unmount on RTL rerender",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
