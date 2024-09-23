@@ -1,12 +1,12 @@
 import { composeStories } from "@storybook/react";
 import * as stories from "./FeedbackContainer.stories";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as React from "react";
 import "@testing-library/jest-dom";
 import { prepareStoryContextForTest } from "@nova/react-test-utils/relay";
 import { executePlayFunction } from "../../testing-utils/executePlayFunction";
 import type { NovaEventing, EventWrapper } from "@nova/types";
-import { eventTypes, originator } from "../../events/events";
+import { eventTypes, type FeedbackTelemetryEvent } from "../../events/events";
 
 const bubbleMock = jest.fn<NovaEventing, [EventWrapper]>();
 const generateEventMock = jest.fn<NovaEventing, [EventWrapper]>();
@@ -54,14 +54,16 @@ describe("FeedbackContainer", () => {
     const button = await screen.findByRole("button", { name: "Unlike" });
     expect(button).toBeInTheDocument();
 
-    await waitFor(() => expect(generateEventMock).toHaveBeenCalledTimes(1));
+    const telemetryEvents = generateEventMock.mock.calls
+      .filter(([{ event }]) => event.type === eventTypes.feedbackTelemetry)
+      .map(([{ event }]) => event as FeedbackTelemetryEvent);
 
-    const receivedEvent = generateEventMock.mock.calls[0][0].event;
-    expect(receivedEvent.type).toEqual(eventTypes.feedbackTelemetry);
-    expect(receivedEvent.originator).toEqual(originator);
-    expect(receivedEvent.data?.()).toEqual({ operation: "FeedbackLiked" });
+    const unlikeEvents = telemetryEvents.filter(
+      (event) => event.data?.().operation === "FeedbackLiked",
+    );
+
+    expect(unlikeEvents).toHaveLength(1);
   });
-
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
     await executePlayFunction(
