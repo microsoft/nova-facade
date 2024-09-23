@@ -1,9 +1,11 @@
 import { graphql, useFragment, useMutation } from "react-relay";
-import { useNovaEventing } from "@nova/react";
 import * as React from "react";
 import type { FeedbackComponent_RelayLikeMutation } from "./__generated__/FeedbackComponent_RelayLikeMutation.graphql";
 import type { Feedback_feedbackRelayFragment$key } from "./__generated__/Feedback_feedbackRelayFragment.graphql";
-import { events } from "../../events/events";
+import {
+  useOnDeleteFeedback,
+  useFeedbackTelemetry,
+} from "../../events/helpers";
 
 type Props = {
   feedback: Feedback_feedbackRelayFragment$key;
@@ -41,6 +43,12 @@ export const FeedbackComponent = (props: Props) => {
   );
 
   const feedbackTelemetry = useFeedbackTelemetry();
+
+  React.useEffect(() => {
+    return () => {
+      feedbackTelemetry("FeedbackComponentUnmounted");
+    };
+  }, []);
 
   return (
     <div
@@ -91,29 +99,5 @@ export const FeedbackComponent = (props: Props) => {
       </button>
       <button onClick={onDeleteFeedback}>Delete feedback</button>
     </div>
-  );
-};
-
-const useOnDeleteFeedback = (feedbackId: string, feedbackText: string) => {
-  const eventing = useNovaEventing();
-
-  return React.useCallback(
-    (reactEvent: React.SyntheticEvent) => {
-      const event = events.onDeleteFeedback({ feedbackId, feedbackText });
-      void eventing.bubble({ event, reactEvent });
-    },
-    [eventing, feedbackId, feedbackText],
-  );
-};
-
-const useFeedbackTelemetry = () => {
-  const eventing = useNovaEventing();
-
-  return React.useCallback(
-    (operation: "FeedbackLiked" | "FeedbackUnliked") => {
-      const event = events.feedbackTelemetry({ operation });
-      void eventing.generateEvent({ event });
-    },
-    [eventing],
   );
 };

@@ -6,7 +6,7 @@ type DeleteFeedbackRequest = {
 };
 
 type FeedbackTelemetryRequest = {
-  operation: "FeedbackLiked" | "FeedbackUnliked";
+  operation: "FeedbackLiked" | "FeedbackUnliked" | "FeedbackComponentUnmounted";
 };
 
 export const originator = "Feedback" as const;

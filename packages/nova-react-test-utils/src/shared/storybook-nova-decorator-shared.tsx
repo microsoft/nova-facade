@@ -63,45 +63,42 @@ export type WithNovaEnvironment<
         );
 };
 
-export function getRenderer(
-  {
-    query,
-    variables = {},
-    referenceEntries,
-  }: WithNovaEnvironment["novaEnvironment"],
-  context: Context,
-  getStory: Addon_LegacyStoryFn,
-): React.FC<React.PropsWithChildren<unknown>> {
+type RendererProps = {
+  params: WithNovaEnvironment["novaEnvironment"];
+  context: Context;
+  getStory: Addon_LegacyStoryFn;
+};
+
+const Renderer: React.FC<RendererProps> = ({
+  params: { query, variables = {}, referenceEntries = {} },
+  context,
+  getStory,
+}) => {
   if (query) {
-    const Renderer: React.FC<unknown> = () => {
-      const { data, error } = useLazyLoadQuery(
-        // There are no consequences of the cast, we do it only to make sure pure relay components can also leverage the decorator
-        query as GraphQLTaggedNode,
-        variables,
-      );
+    const { data, error } = useLazyLoadQuery(
+      // There are no consequences of the cast, we do it only to make sure pure relay components can also leverage the decorator
+      query as GraphQLTaggedNode,
+      variables,
+    );
 
-      // apollo does not suspend, but returns undefined data
-      if (!data) {
-        if (error) {
-          // apollo returns an error, while Relay throws, let's align the behavior
-          throw error;
-        }
-        return <div>Loading...</div>;
+    // apollo does not suspend, but returns undefined data
+    if (!data) {
+      if (error) {
+        // apollo returns an error, while Relay throws, let's align the behavior
+        throw error;
       }
+      return <div>Loading...</div>;
+    }
 
-      const entries = Object.entries(referenceEntries).map(
-        ([key, getValue]) => [key, getValue(data)] as const,
-      );
-      Object.assign(context.args, Object.fromEntries(entries));
-      return <>{getStory(context)}</>;
-    };
-    return () => <Renderer />;
+    const entries = Object.entries(referenceEntries).map(
+      ([key, getValue]) => [key, getValue(data)] as const,
+    );
+    Object.assign(context.args, Object.fromEntries(entries));
+    return <>{getStory(context)}</>;
   } else {
-    return () => {
-      return <>{getStory(context)}</>;
-    };
+    return <>{getStory(context)}</>;
   }
-}
+};
 
 const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
@@ -121,7 +118,6 @@ export const getDecorator = <V extends Variant = "apollo">(
       const environment = React.useMemo(() => createEnvironment(), []);
       const parameters = (settings.parameters ??
         {}) as WithNovaEnvironment["novaEnvironment"];
-      const Renderer = getRenderer(parameters, context, getStory);
       if (parameters.enableQueuedMockResolvers ?? true) {
         initializeGenerator(parameters, environment);
       }
@@ -129,7 +125,7 @@ export const getDecorator = <V extends Variant = "apollo">(
       context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
         <NovaMockEnvironmentProvider environment={environment}>
-          <Renderer />
+          <Renderer params={parameters} context={context} getStory={getStory} />
         </NovaMockEnvironmentProvider>
       );
     },
