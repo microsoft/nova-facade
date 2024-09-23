@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 23 Sep 2024 17:25:14 GMT",
+      "tag": "@nova/react-test-utils_v5.4.2",
+      "version": "5.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "d8c4944fde4e5b7b3a3d69fed31a5226071e49ee",
+            "comment": "don't unmount on RTL rerender"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 20 Sep 2024 16:18:05 GMT",
       "tag": "@nova/react-test-utils_v5.4.1",
       "version": "5.4.1",

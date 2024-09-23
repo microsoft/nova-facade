@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 20 Sep 2024 16:18:05 GMT and should not be manually modified.
+This log was last generated on Mon, 23 Sep 2024 17:25:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.4.2
+
+Mon, 23 Sep 2024 17:25:14 GMT
+
+### Patches
+
+- don't unmount on RTL rerender (Stanislaw.Wilczynski@microsoft.com)
 
 ## 5.4.1
 

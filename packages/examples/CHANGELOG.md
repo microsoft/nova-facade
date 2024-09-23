@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Fri, 20 Sep 2024 16:18:05 GMT and should not be manually modified.
+This log was last generated on Mon, 23 Sep 2024 17:25:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.3
+
+Mon, 23 Sep 2024 17:25:14 GMT
+
+### Patches
+
+- add test for RTL rerender (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v5.4.2
 
 ## 1.5.2
 
