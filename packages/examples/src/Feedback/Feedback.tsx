@@ -1,4 +1,4 @@
-import { graphql, useFragment, useMutation_depricated } from "@nova/react";
+import { graphql, useFragment, useMutation_deprecated } from "@nova/react";
 import * as React from "react";
 import type { FeedbackComponent_LikeMutation } from "./__generated__/FeedbackComponent_LikeMutation.graphql";
 import type { Feedback_feedbackFragment$key } from "./__generated__/Feedback_feedbackFragment.graphql";
@@ -20,7 +20,7 @@ export const Feedback_feedbackFragment = graphql`
 export const FeedbackComponent = (props: Props) => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const feedback = useFragment(Feedback_feedbackFragment, props.feedback);
-  const [like, isPending] = useMutation_depricated<FeedbackComponent_LikeMutation>(
+  const [like, isPending] = useMutation_deprecated<FeedbackComponent_LikeMutation>(
     graphql`
       mutation FeedbackComponent_LikeMutation($input: FeedbackLikeInput!) {
         feedbackLike(input: $input) {

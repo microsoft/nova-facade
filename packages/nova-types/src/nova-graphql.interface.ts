@@ -78,7 +78,7 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     boolean,
   ];
 
-  useMutation_depricated?: (
+  useMutation_deprecated?: (
     mutation: GraphQLDocument,
   ) => [
     (options: {
