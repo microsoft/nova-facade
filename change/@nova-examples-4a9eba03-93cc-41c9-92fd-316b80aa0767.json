@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Use useMutation_deprecated in FeedbackComponent",
+  "packageName": "@nova/examples",
+  "email": "132382266+DarynaAkhmedova@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}

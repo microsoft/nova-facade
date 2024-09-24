@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "Align useMutation with Relay",
+  "packageName": "@nova/types",
+  "email": "132382266+DarynaAkhmedova@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
