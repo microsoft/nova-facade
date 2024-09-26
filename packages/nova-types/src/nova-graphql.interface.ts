@@ -1,23 +1,3 @@
-export interface OperationType {
-  readonly variables: { [name: string]: any };
-  readonly context?: { [name: string]: any };
-  readonly response: any;
-  readonly rawResponse?: unknown;
-}
-
-export interface PayloadError {
-  message: string;
-  locations?:
-      | Array<{
-          line: number;
-          column: number;
-      }>
-      | undefined;
-  path?: Array<string | number>;
-  severity?: "CRITICAL" | "ERROR" | "WARNING" | undefined;
-}
-
-
 /**
  * Describes the GraphQL contract a Nova component can expect to be provided by the host application. Refer to the equally
  * named React hooks provided by the `@nova/react-facade` package for their functional details.
@@ -109,6 +89,25 @@ export interface NovaGraphQL<GraphQLDocument = any> {
   ];
 }
 
-type Disposable = {
+export type Disposable = {
   dispose(): void;
 };
+
+export interface OperationType {
+  readonly variables: { [name: string]: any };
+  readonly context?: { [name: string]: any };
+  readonly response: any;
+  readonly rawResponse?: unknown;
+}
+
+export interface PayloadError {
+  message: string;
+  locations?:
+      | Array<{
+          line: number;
+          column: number;
+      }>
+      | undefined;
+  path?: Array<string | number>;
+  severity?: "CRITICAL" | "ERROR" | "WARNING" | undefined;
+}

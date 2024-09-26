@@ -3,7 +3,6 @@ import invariant from "invariant";
 
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type {
-  Disposable,
   KeyType,
   KeyTypeData,
   OperationType,
@@ -12,6 +11,7 @@ import type {
   RefetchFn,
   FetchPolicy
 } from "./types";
+import type { Disposable } from "@nova/types";
 
 /**
  * Executes a GraphQL query.

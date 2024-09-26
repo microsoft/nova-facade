@@ -2,7 +2,7 @@
  * relay-compiler-language-typescript support for fragment references
 */
 
-export type { OperationType, PayloadError } from "@nova/types";
+export type { OperationType, PayloadError, Disposable } from "@nova/types";
 
 export interface _RefType<Ref extends string> {
   " $refType": Ref;
@@ -78,8 +78,4 @@ export type FetchPolicy =
 type RefetchOptions = {
   onComplete?: (error: Error | null) => void;
   fetchPolicy?: FetchPolicy;
-};
-
-export type Disposable = {
-  dispose(): void;
 };
