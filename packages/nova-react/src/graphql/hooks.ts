@@ -3,6 +3,7 @@ import invariant from "invariant";
 
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type {
+  Disposable,
   KeyType,
   KeyTypeData,
   OperationType,
@@ -10,7 +11,6 @@ import type {
   RefetchFn,
   FetchPolicy
 } from "./types";
-import type { Disposable } from 'relay-runtime';
 
 /**
  * Executes a GraphQL query.
@@ -359,6 +359,6 @@ export function useMutation_deprecated<TMutationPayload extends OperationType>(
   mutation: GraphQLTaggedNode,
 ): [MutationCommitter_deprecated<TMutationPayload>, boolean] {
   const graphql = useNovaGraphQL();
-  invariant(graphql.useMutation_deprecated, "Expected host to provide a useMutation hook");
+  invariant(graphql.useMutation_deprecated, "Expected host to provide a useMutation_deprecated hook");
   return graphql.useMutation_deprecated(mutation);
 }

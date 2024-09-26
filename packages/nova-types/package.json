@@ -9,12 +9,8 @@
     "types": "monorepo-scripts types",
     "just": "monorepo-scripts"
   },
-  "dependencies": {
-    "relay-runtime": "12.0.0"
-  },
   "devDependencies": {
     "@types/jest": "^29.2.0",
-    "@types/relay-runtime": "^17.0.4",
     "monorepo-scripts": "*"
   },
   "repository": {

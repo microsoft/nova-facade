@@ -122,7 +122,11 @@ function createNovaEnvironment(
   const client = createMockClient(schema, options);
   const env: NovaMockEnvironment<"storybook"> = {
     graphql: {
-      ...(GraphQLHooks as NovaGraphQL),
+      ...(GraphQLHooks as unknown as NovaGraphQL),
+      useMutation_deprecated: GraphQLHooks.useMutation,
+      useMutation() {
+        throw new Error("Not supported yet in Apollo");
+      },
       mock: client.mock as MockFunctions<any, any>,
     },
     providerWrapper: ({ children }) => (

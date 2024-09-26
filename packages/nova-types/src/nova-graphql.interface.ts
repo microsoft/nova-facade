@@ -9,8 +9,6 @@
  * In case the host application uses Apollo Client, these hooks can be provided by using the
  * `@graphitation/apollo-react-relay-duct-tape` package. See https://github.com/microsoft/graphitation for details.
  */
-import type { Disposable } from 'relay-runtime';
-
 export interface NovaGraphQL<GraphQLDocument = any> {
   useFragment?: (
     fragmentInput: GraphQLDocument,
@@ -84,9 +82,13 @@ export interface NovaGraphQL<GraphQLDocument = any> {
     (options: {
       variables: { [name: string]: unknown };
       context?: { [name: string]: unknown };
-      optimisticResponse?: unknown | null;
+      optimisticResponse?: Partial<any["response"]> | null;
       onCompleted?: (response: unknown) => void;
     }) => Promise<{ errors?: readonly Error[]; data?: unknown }>,
     boolean,
   ];
 }
+
+type Disposable = {
+  dispose(): void;
+};

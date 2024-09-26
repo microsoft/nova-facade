@@ -93,6 +93,6 @@ type RefetchOptions = {
   fetchPolicy?: FetchPolicy;
 };
 
-type Disposable = {
+export type Disposable = {
   dispose(): void;
 };
