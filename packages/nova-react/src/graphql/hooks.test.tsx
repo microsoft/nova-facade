@@ -14,12 +14,18 @@ import {
   usePaginationFragment,
   useRefetchableFragment,
   useSubscription,
+  useMutation,
 } from "./hooks";
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type { FragmentRefs } from "./types";
+import type { useMutation as relayUseMutation, GraphQLTaggedNode as RelayGraphQLTaggedNode } from "react-relay";
 
 type IsNotNull<T> = null extends T ? false : true;
 type IsNotUndefined<T> = undefined extends T ? false : true;
+
+// This is used to verify type compatibility with Relay useMutation hook
+declare function useMutationRelay(mutation: RelayGraphQLTaggedNode): ReturnType<typeof useMutation>;
+export const typeVerification: typeof relayUseMutation = useMutationRelay;
 
 describe(useLazyLoadQuery, () => {
   it("ensures an implementation is supplied", () => {

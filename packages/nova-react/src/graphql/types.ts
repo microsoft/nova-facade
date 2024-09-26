@@ -1,21 +1,8 @@
-export interface Variables {
-  [name: string]: any;
-}
-
-export interface Context {
-  [name: string]: any;
-}
-
-export interface OperationType {
-  readonly variables: Variables;
-  readonly context?: Context;
-  readonly response: unknown;
-  readonly rawResponse?: unknown;
-}
-
 /**
  * relay-compiler-language-typescript support for fragment references
- */
+*/
+
+export type { OperationType, PayloadError } from "@nova/types";
 
 export interface _RefType<Ref extends string> {
   " $refType": Ref;

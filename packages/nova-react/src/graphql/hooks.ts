@@ -8,6 +8,7 @@ import type {
   KeyTypeData,
   OperationType,
   PaginationFn,
+  PayloadError,
   RefetchFn,
   FetchPolicy
 } from "./types";
@@ -325,15 +326,22 @@ export function useSubscription<TSubscriptionPayload extends OperationType>(
   graphql.useSubscription(config);
 }
 
-interface MutationCommitterOptions<TMutationPayload extends OperationType> {
+interface MutationCommitterOptionsBase<TMutationPayload extends OperationType> {
   variables: TMutationPayload["variables"];
   /**
    * Should be avoided when possible as it will not be compatible with Relay APIs.
    */
   context?: TMutationPayload["context"];
   optimisticResponse?: Partial<TMutationPayload["response"]> | null;
-  onCompleted?: (response: TMutationPayload["response"]) => void;
   onError?: (error: Error) => void;
+}
+
+interface MutationCommitterOptions<TMutationPayload extends OperationType> extends MutationCommitterOptionsBase<TMutationPayload> {
+  onCompleted?: ((response: TMutationPayload["response"], errors: PayloadError[] | null) => void | null) | undefined;
+}
+
+interface MutationCommitterOptions_deprecated<TMutationPayload extends OperationType> extends MutationCommitterOptionsBase<TMutationPayload> {
+  onCompleted?: (response: TMutationPayload["response"]) => void;
 }
 
 type MutationCommitter<TMutationPayload extends OperationType> = (
@@ -349,7 +357,7 @@ export function useMutation<TMutationPayload extends OperationType>(
 }
 
 type MutationCommitter_deprecated<TMutationPayload extends OperationType> = (
-  options: MutationCommitterOptions<TMutationPayload>,
+  options: MutationCommitterOptions_deprecated<TMutationPayload>,
 ) => Promise<{
   errors?: readonly Error[];
   data?: TMutationPayload["response"];
