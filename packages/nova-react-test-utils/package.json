@@ -100,13 +100,16 @@
   "access": "public",
   "exports": {
     ".": {
-      "import": "./src/relay/index.ts"
+      "import": "./src/relay/index.ts",
+      "require": "./lib/relay/index.js"
     },
     "./relay": {
-      "import": "./src/relay/index.ts"
+      "import": "./src/relay/index.ts",
+      "require": "./lib/relay/index.js"
     },
     "./apollo": {
-      "import": "./src/apollo/index.ts"
+      "import": "./src/apollo/index.ts",
+      "require": "./lib/apollo/index.js"
     }
   },
   "publishConfig": {
