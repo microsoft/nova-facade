@@ -1,5 +1,4 @@
 import React from "react";
-import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 import { ApolloProvider } from "@apollo/client";
 import type { GraphQLSchema } from "graphql";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
@@ -9,6 +8,7 @@ import type { OperationDescriptor } from "@graphitation/graphql-js-operation-pay
 import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 import type { GraphQLTaggedNode } from "@nova/react";
 import type { NovaGraphQL } from "@nova/types";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 

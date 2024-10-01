@@ -4,6 +4,8 @@ import type { makeDecorator } from "@storybook/preview-api";
 
 export type Variant = "apollo" | "relay";
 
+export type Environment = "test" | "storybook";
+
 export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
   const eventData =
     typeof eventWrapper.event.data === "function"

@@ -1,4 +1,3 @@
-import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 import { ApolloMockPayloadGenerator } from "./test-utils";
 import type { GraphQLSchema } from "graphql";
 import * as React from "react";
@@ -16,6 +15,7 @@ import type { MakeDecoratorResult } from "../shared/shared-utils";
 import { defaultTrigger, defaultBubble } from "../shared/shared-utils";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
@@ -30,7 +30,7 @@ export const getNovaApolloDecorator: (
   const createEnvironment = () => createNovaEnvironment(schema, rest);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
-    environment: NovaMockEnvironment<"apollo", "storybook">,
+    environment: NovaMockEnvironment<"storybook">,
   ) => {
     const mockResolvers = parameters?.resolvers;
     const generate = generateFunction ?? ApolloMockPayloadGenerator.generate;
@@ -46,9 +46,9 @@ export const getNovaApolloDecorator: (
 function createNovaEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
-): NovaMockEnvironment<"apollo", "storybook"> {
+): NovaMockEnvironment<"storybook"> {
   const client = createMockClient(schema, options);
-  const env: NovaMockEnvironment<"apollo", "storybook"> = {
+  const env: NovaMockEnvironment<"storybook"> = {
     type: "apollo",
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
@@ -69,10 +69,16 @@ function createNovaEnvironment(
 
 export const getNovaApolloEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
-): NovaMockEnvironment<"apollo", "storybook"> => {
+): NovaMockEnvironment<"storybook"> => {
   const env = getNovaEnvironmentForStory(context);
-  if (env.type !== "apollo") {
+  if (!isApolloEnvironment(env)) {
     throw new Error("Expected relay environment to be present on context");
   }
   return env;
+};
+
+const isApolloEnvironment = (
+  env: ReturnType<typeof getNovaEnvironmentForStory>,
+): env is NovaMockEnvironment<"storybook"> => {
+  return env.type === "apollo";
 };

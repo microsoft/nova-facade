@@ -13,7 +13,6 @@ import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
 import type { ReactRenderer } from "@storybook/react";
 import type { OperationType } from "relay-runtime";
-import type { Variant } from "./shared-utils";
 
 type Context = Parameters<Parameters<typeof makeDecorator>[0]["wrapper"]>[1];
 
@@ -103,11 +102,11 @@ const Renderer: React.FC<RendererProps> = ({
 const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
-export const getDecorator = <V extends Variant = "apollo">(
-  createEnvironment: () => NovaMockEnvironment<V, "storybook">,
+export const getDecorator = <E extends NovaMockEnvironment<"storybook">>(
+  createEnvironment: () => E,
   initializeGenerator: (
     parameters: WithNovaEnvironment["novaEnvironment"],
-    environment: NovaMockEnvironment<V, "storybook">,
+    environment: E,
   ) => void,
 ) => {
   return makeDecorator({
@@ -147,7 +146,7 @@ export const getNovaEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
 ) => {
   const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
-    | NovaMockEnvironment<Variant, "storybook">
+    | NovaMockEnvironment<"storybook">
     | undefined;
   if (!env) {
     throw new Error(

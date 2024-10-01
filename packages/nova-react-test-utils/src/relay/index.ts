@@ -1,5 +1,5 @@
-export { NovaMockEnvironmentProvider } from "../shared/nova-mock-environment";
-export type { NovaMockEnvironment } from "../shared/nova-mock-environment";
+export { NovaMockEnvironmentProvider } from "./nova-mock-environment";
+export type { NovaMockEnvironment } from "./nova-mock-environment";
 export { prepareStoryContextForTest } from "../shared/storybook-nova-decorator-shared";
 export type {
   WithNovaEnvironment,

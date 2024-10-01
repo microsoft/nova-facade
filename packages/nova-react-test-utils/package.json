@@ -52,6 +52,10 @@
     "@types/react-relay": {
       "optional": true,
       "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "@types/relay-test-utils": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
     }
   },
   "dependencies": {
@@ -62,7 +66,6 @@
     "@nova/types": "^1.5.1",
     "@types/react": "^17 || ^18",
     "@types/relay-runtime": ">16",
-    "@types/relay-test-utils": ">16",
     "graphql": "^15.5.0",
     "invariant": "^2.2.4",
     "tslib": "^2.2.0",
@@ -79,6 +82,7 @@
     "@testing-library/react": "^15.0.0",
     "@types/jest": "^29.2.0",
     "@types/react-relay": "^16.0.0",
+    "@types/relay-test-utils": "^17.0.0",
     "@types/react-test-renderer": "^18.3.0",
     "monorepo-scripts": "*",
     "react": "^18.3.1",
@@ -96,19 +100,13 @@
   "access": "public",
   "exports": {
     ".": {
-      "import": "./lib/relay/index.mjs",
-      "require": "./lib/relay/index.js",
-      "types": "./lib/relay/index.d.ts"
+      "import": "./src/relay/index.ts"
     },
     "./relay": {
-      "import": "./lib/relay/index.mjs",
-      "require": "./lib/relay/index.js",
-      "types": "./lib/relay/index.d.ts"
+      "import": "./src/relay/index.ts"
     },
     "./apollo": {
-      "import": "./lib/apollo/index.mjs",
-      "require": "./lib/apollo/index.js",
-      "types": "./lib/apollo/index.d.ts"
+      "import": "./src/apollo/index.ts"
     }
   },
   "publishConfig": {
