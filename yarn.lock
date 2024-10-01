@@ -3861,7 +3861,7 @@
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-17.0.4.tgz#428526fc3e6dfb6e0a5730c38ad521cb1eea189b"
   integrity sha512-fB77br4lXlBYM/HpI6VI6KCrj5pw0LiAnkZOkffjirNYso+dzXGWkeIm0G0MGszD8WY1et+r1Uj2TA6rscBXNQ==
 
-"@types/relay-test-utils@>16":
+"@types/relay-test-utils@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-17.0.0.tgz#a427470f26f808b4962c8d0a66c2d9af25db156e"
   integrity sha512-q+Nq3RpJ4fKcRfJQTK/IvKg4cmrJkbboR8V4hxlEW5MkMTNqGCOJ4xlKagSTsLycovw3Eea6fNmmBSaMlKRwCw==
