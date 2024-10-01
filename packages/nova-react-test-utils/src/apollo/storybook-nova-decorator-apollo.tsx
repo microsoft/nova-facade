@@ -71,13 +71,13 @@ export const getNovaApolloEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
 ): NovaMockEnvironment<"storybook"> => {
   const env = getNovaEnvironmentForStory(context);
-  if (!isApolloEnvironment(env)) {
+  if (!isApolloMockEnv(env)) {
     throw new Error("Expected relay environment to be present on context");
   }
   return env;
 };
 
-const isApolloEnvironment = (
+const isApolloMockEnv = (
   env: ReturnType<typeof getNovaEnvironmentForStory>,
 ): env is NovaMockEnvironment<"storybook"> => {
   return env.type === "apollo";
