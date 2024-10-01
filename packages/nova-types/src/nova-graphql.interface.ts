@@ -94,10 +94,10 @@ export type Disposable = {
 };
 
 export interface OperationType {
-  readonly variables: { [name: string]: any };
-  readonly context?: { [name: string]: any };
-  readonly response: any;
-  readonly rawResponse?: unknown;
+  readonly variables: { [name: string]: unknown };
+  readonly context?: { [name: string]: unknown };
+  readonly response: unknown;
+  readonly rawResponse?: unknown | undefined;
 }
 
 export interface PayloadError {

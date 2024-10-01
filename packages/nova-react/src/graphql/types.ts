@@ -79,3 +79,7 @@ type RefetchOptions = {
   onComplete?: (error: Error | null) => void;
   fetchPolicy?: FetchPolicy;
 };
+
+type Disposable = {
+  dispose(): void;
+};

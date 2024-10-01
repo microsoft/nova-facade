@@ -326,7 +326,7 @@ export function useSubscription<TSubscriptionPayload extends OperationType>(
   graphql.useSubscription(config);
 }
 
-interface MutationCommitterOptionsBase<TMutationPayload extends OperationType> {
+interface MutationCommitterOptions<TMutationPayload extends OperationType> {
   variables: TMutationPayload["variables"];
   /**
    * Should be avoided when possible as it will not be compatible with Relay APIs.
@@ -334,13 +334,17 @@ interface MutationCommitterOptionsBase<TMutationPayload extends OperationType> {
   context?: TMutationPayload["context"];
   optimisticResponse?: Partial<TMutationPayload["response"]> | null;
   onError?: (error: Error) => void;
-}
-
-interface MutationCommitterOptions<TMutationPayload extends OperationType> extends MutationCommitterOptionsBase<TMutationPayload> {
   onCompleted?: ((response: TMutationPayload["response"], errors: PayloadError[] | null) => void | null) | undefined;
 }
 
-interface MutationCommitterOptions_deprecated<TMutationPayload extends OperationType> extends MutationCommitterOptionsBase<TMutationPayload> {
+interface MutationCommitterOptions_deprecated<TMutationPayload extends OperationType> {
+  variables: TMutationPayload["variables"];
+  /**
+   * Should be avoided when possible as it will not be compatible with Relay APIs.
+   */
+  context?: TMutationPayload["context"];
+  optimisticResponse?: Partial<TMutationPayload["response"]> | null;
+  onError?: (error: Error) => void;
   onCompleted?: (response: TMutationPayload["response"]) => void;
 }
 
