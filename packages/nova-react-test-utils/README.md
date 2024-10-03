@@ -252,7 +252,7 @@ const meta = {
 } satisfies Meta<typeof FeedbackContainer>;
 ```
 
-#### I need to configure Relay store to support some custom setup I have in my repository. Is it possible?
+#### I need to configure Relay environment to support some custom setup I have in my repository. Is it possible?
 
 Similarly as with configuring Apollo cache, one can pass options to `createMockEnvironment`:
 
@@ -262,14 +262,16 @@ const environment = createMockEnvironment(schema, {
 });
 ```
 
-and if you are using through storybook decorator you can pass options to `getNovaDecorator`:
+and if you are using through storybook decorator you can pass options to `getNovaDecorator`. However, in case of storybook environment we need to make sure that for example `store` is unique for each story, so we need to pass a function that will return the options:
 
 ```tsx
 const meta = {
   component: FeedbackContainer,
   decorators: [
     getNovaDecorator(schema, {
-      store: myCustomStoreConfig,
+      getEnvironmentOptions: () => ({
+        store: myCustomStoreConfig,
+      }),
     }),
   ],
 } satisfies Meta<typeof FeedbackContainer>;
