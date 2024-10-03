@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 03 Oct 2024 12:19:11 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Oct 2024 12:29:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.5
+
+Thu, 03 Oct 2024 12:29:24 GMT
+
+### Patches
+
+- Bump @nova/react-test-utils to v5.5.1
 
 ## 1.5.4
 

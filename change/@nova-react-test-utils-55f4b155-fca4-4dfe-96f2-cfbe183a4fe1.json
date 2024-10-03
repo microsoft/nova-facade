@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "refactor for better dependency separation",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

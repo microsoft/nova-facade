@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 03 Oct 2024 12:29:24 GMT",
+      "tag": "@nova/react-test-utils_v5.5.1",
+      "version": "5.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "f87954bbe00abba0ce6cfae10abb6b2bec657b8b",
+            "comment": "refactor for better dependency separation"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Oct 2024 12:19:11 GMT",
       "tag": "@nova/react-test-utils_v5.5.0",
       "version": "5.5.0",
