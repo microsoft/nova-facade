@@ -1,5 +1,4 @@
 import * as React from "react";
-import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
 import { type GraphQLSchema, parse as parseGraphQL } from "graphql";
 import {
   type MockResolvers,
@@ -9,6 +8,7 @@ import type { OperationDescriptor as RelayOperationDescriptor } from "relay-runt
 import { novaGraphql } from "./nova-relay-graphql";
 import { createMockEnvironment } from "relay-test-utils";
 import { RelayEnvironmentProvider } from "react-relay";
+import type { NovaMockEnvironment } from "./nova-mock-environment";
 
 export class RelayMockPayloadGenerator {
   public gqlSchema: GraphQLSchema;
@@ -54,7 +54,7 @@ export function createNovaRelayMockEnvironment(
   options?: RelayEnvironmentOptions,
 ) {
   const relayEnvironment = createMockEnvironment(options);
-  const env: NovaMockEnvironment<"relay", "test"> = {
+  const env: NovaMockEnvironment<"test"> = {
     commanding: {
       trigger: jest.fn(),
     },

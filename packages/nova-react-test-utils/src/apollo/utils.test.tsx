@@ -4,10 +4,18 @@ import type { ReactTestRenderer } from "react-test-renderer";
 import { act, create as createTestRenderer } from "react-test-renderer";
 import type { EntityCommand, EventWrapper } from "@nova/types";
 import { graphql, useLazyLoadQuery } from "@nova/react";
-import { createNovaApolloEnvironment, ApolloMockPayloadGenerator } from "./test-utils";
-import type { NovaMockEnvironment } from "../shared/nova-mock-environment";
-import { NovaMockEnvironmentProvider } from "../shared/nova-mock-environment";
-import { getApolloOperationName, getApolloOperationType } from "./operation-utils";
+import {
+  createNovaApolloEnvironment,
+  ApolloMockPayloadGenerator,
+} from "./test-utils";
+import {
+  getApolloOperationName,
+  getApolloOperationType,
+} from "./operation-utils";
+import {
+  type NovaMockEnvironment,
+  NovaMockEnvironmentProvider,
+} from "./nova-mock-environment";
 
 const schema = buildASTSchema(
   parse(`
@@ -116,7 +124,9 @@ describe(createNovaApolloEnvironment, () => {
       });
 
       expect(
-        getApolloOperationName(environment.graphql.mock.getMostRecentOperation()),
+        getApolloOperationName(
+          environment.graphql.mock.getMostRecentOperation(),
+        ),
       ).toEqual("MockTestQuery");
     });
 
@@ -130,7 +140,9 @@ describe(createNovaApolloEnvironment, () => {
       });
 
       expect(
-        getApolloOperationType(environment.graphql.mock.getMostRecentOperation()),
+        getApolloOperationType(
+          environment.graphql.mock.getMostRecentOperation(),
+        ),
       ).toEqual("query");
     });
   });

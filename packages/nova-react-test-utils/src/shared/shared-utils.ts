@@ -2,7 +2,9 @@ import type { EntityCommand, EventWrapper } from "@nova/types";
 import { action } from "@storybook/addon-actions";
 import type { makeDecorator } from "@storybook/preview-api";
 
-export type Variant = "apollo" | "relay";
+export type GraphQLClientVariant = "apollo" | "relay";
+
+export type TestingEnvironmentVariant = "test" | "storybook";
 
 export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
   const eventData =
