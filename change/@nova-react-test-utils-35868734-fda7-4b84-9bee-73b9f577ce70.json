@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "fix issue with store being shared between stories",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

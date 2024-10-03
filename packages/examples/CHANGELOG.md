@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Mon, 23 Sep 2024 17:25:14 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Oct 2024 12:19:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.4
+
+Thu, 03 Oct 2024 12:19:11 GMT
+
+### Patches
+
+- use custom store is some stories (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v5.5.0
 
 ## 1.5.3
 

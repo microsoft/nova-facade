@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 03 Oct 2024 12:19:11 GMT",
+      "tag": "@nova/examples_v1.5.4",
+      "version": "1.5.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "0ff8fb479a6f9e211eed2d5dd7c298cbb4ce81f3",
+            "comment": "use custom store is some stories"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v5.5.0",
+            "commit": "0ff8fb479a6f9e211eed2d5dd7c298cbb4ce81f3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 23 Sep 2024 17:25:14 GMT",
       "tag": "@nova/examples_v1.5.3",
       "version": "1.5.3",
