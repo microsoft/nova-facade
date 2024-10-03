@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 03 Oct 2024 12:19:11 GMT",
+      "tag": "@nova/react-test-utils_v5.5.0",
+      "version": "5.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "0ff8fb479a6f9e211eed2d5dd7c298cbb4ce81f3",
+            "comment": "fix issue with store being shared between stories"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 23 Sep 2024 17:25:14 GMT",
       "tag": "@nova/react-test-utils_v5.4.2",
       "version": "5.4.2",
