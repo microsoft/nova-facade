@@ -17,14 +17,21 @@ import type { FeedbackStoryRelayQuery } from "./__generated__/FeedbackStoryRelay
 import { getSchema } from "../../testing-utils/getSchema";
 import * as React from "react";
 import type { events } from "../../events/events";
+import { RecordSource, Store } from "relay-runtime";
 
 const schema = getSchema();
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
+const novaDecorator = getNovaDecorator(schema, {
+  getEnvironmentOptions: () => ({
+    store: new Store(new RecordSource()),
+  }),
+});
+
 const meta = {
   component: FeedbackComponent,
-  decorators: [getNovaDecorator(schema)],
+  decorators: [novaDecorator],
   parameters: {
     novaEnvironment: {
       query: graphql`

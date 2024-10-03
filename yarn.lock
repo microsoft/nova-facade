@@ -3856,7 +3856,7 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/relay-runtime@*", "@types/relay-runtime@>16":
+"@types/relay-runtime@*", "@types/relay-runtime@>16", "@types/relay-runtime@^17.0.0":
   version "17.0.4"
   resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-17.0.4.tgz#428526fc3e6dfb6e0a5730c38ad521cb1eea189b"
   integrity sha512-fB77br4lXlBYM/HpI6VI6KCrj5pw0LiAnkZOkffjirNYso+dzXGWkeIm0G0MGszD8WY1et+r1Uj2TA6rscBXNQ==

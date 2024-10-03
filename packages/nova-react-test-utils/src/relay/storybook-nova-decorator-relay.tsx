@@ -14,18 +14,21 @@ import type { GraphQLSchema } from "graphql";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
+import type { EnvironmentConfig } from "relay-runtime";
 
-type RelayEnvironmentOptions = Parameters<typeof createMockEnvironment>[0];
-
-type Options = RelayEnvironmentOptions & {
+type Options = { getEnvironmentOptions?: () => Partial<EnvironmentConfig> } & {
   generateFunction?: typeof RelayMockPayloadGenerator.prototype.generate;
 };
 
 export const getNovaRelayDecorator: (
   schema: GraphQLSchema,
   options?: Options,
-) => MakeDecoratorResult = (schema, { generateFunction, ...rest } = {}) => {
-  const createEnvironment = () => createNovaRelayEnvironment(rest);
+) => MakeDecoratorResult = (
+  schema,
+  { generateFunction, getEnvironmentOptions } = {},
+) => {
+  const createEnvironment = () =>
+    createNovaRelayEnvironment(getEnvironmentOptions?.());
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
@@ -45,7 +48,7 @@ export const getNovaRelayDecorator: (
 };
 
 function createNovaRelayEnvironment(
-  options?: RelayEnvironmentOptions,
+  options?: Partial<EnvironmentConfig>,
 ): NovaMockEnvironment<"storybook"> {
   const relayEnvironment = createMockEnvironment(options);
   const env: NovaMockEnvironment<"storybook"> = {
