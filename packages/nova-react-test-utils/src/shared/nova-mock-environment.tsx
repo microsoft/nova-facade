@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import type { ComponentType, PropsWithChildren } from "react";
 import type {
   NovaCentralizedCommanding,

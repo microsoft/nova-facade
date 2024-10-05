@@ -1,5 +1,5 @@
 import { useNovaGraphQL } from "./nova-graphql-provider";
-import invariant from "invariant";
+import * as invariant from "invariant";
 
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type {
@@ -8,7 +8,7 @@ import type {
   OperationType,
   PaginationFn,
   RefetchFn,
-  FetchPolicy
+  FetchPolicy,
 } from "./types";
 
 /**

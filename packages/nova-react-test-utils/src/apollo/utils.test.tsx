@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { buildASTSchema, parse } from "graphql";
 import type { ReactTestRenderer } from "react-test-renderer";
 import { act, create as createTestRenderer } from "react-test-renderer";
