@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
+This log was last generated on Mon, 07 Oct 2024 17:16:09 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.2
+
+Mon, 07 Oct 2024 17:16:09 GMT
+
+### Patches
+
+- change to * as imports (sjwilczynski@gmail.com)
 
 ## 2.6.1
 

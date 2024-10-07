@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "change to * as imports",
-  "packageName": "@nova/react",
-  "email": "sjwilczynski@gmail.com",
-  "dependentChangeType": "patch"
-}
