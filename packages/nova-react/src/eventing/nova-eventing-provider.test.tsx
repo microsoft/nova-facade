@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import React from "react";
+import * as React from "react";
 import { render, waitFor } from "@testing-library/react";
 import type {
   GeneratedEventWrapper,

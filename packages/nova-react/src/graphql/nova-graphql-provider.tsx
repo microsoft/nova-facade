@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import type { NovaGraphQL } from "@nova/types";
-import invariant from "invariant";
+import * as invariant from "invariant";
 
 // Initializing default with null to make sure providers are correctly placed in the tree
 const NovaGraphQLContext = React.createContext<NovaGraphQL | null>(null);

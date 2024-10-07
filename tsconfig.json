@@ -7,8 +7,6 @@
     "declarationMap": true,
     "strict": true,
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
   }

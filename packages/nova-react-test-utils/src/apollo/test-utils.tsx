@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { ApolloProvider } from "@apollo/client";
 import type { GraphQLSchema } from "graphql";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
