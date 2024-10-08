@@ -1,5 +1,5 @@
 import { useNovaGraphQL } from "./nova-graphql-provider";
-import * as invariant from "invariant";
+import invariant from "invariant";
 
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type {

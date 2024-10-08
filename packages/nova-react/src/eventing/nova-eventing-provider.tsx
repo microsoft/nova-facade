@@ -1,7 +1,7 @@
 import * as React from "react";
 import type { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
 import { InputType } from "@nova/types";
-import * as invariant from "invariant";
+import invariant from "invariant";
 
 // Context is initialized with an empty object and this is null-checked within the hooks
 const NovaEventingContext = React.createContext<INovaEventingContext>({});
