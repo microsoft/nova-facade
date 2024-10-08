@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "bring back default import for invariant",
+  "packageName": "@nova/react",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
