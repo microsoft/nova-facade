@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Mon, 07 Oct 2024 17:16:09 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Oct 2024 17:30:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.3
+
+Tue, 08 Oct 2024 17:30:41 GMT
+
+### Patches
+
+- bring back default import for invariant (Stanislaw.Wilczynski@microsoft.com)
 
 ## 2.6.2
 
