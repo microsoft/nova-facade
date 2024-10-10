@@ -73,7 +73,7 @@ extends:
             displayName: 📒 Generate Manifest
             inputs:
               BuildDropPath: $(System.DefaultWorkingDirectory)
-          - task: PublishPipelineArtifact@1
+          - task: 1ES.PublishPipelineArtifact@1
             displayName: 📒 Publish Manifest
             inputs:
               artifactName: SBom-$(System.JobAttempt)
