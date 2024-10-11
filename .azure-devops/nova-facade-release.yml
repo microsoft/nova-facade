@@ -29,8 +29,13 @@ extends:
   parameters:
     pool:
       name: Azure-Pipelines-1ESPT-ExDShared
-      image: windows-2022
-      os: windows
+      image: ubuntu-latest
+      os: linux
+    sdl:
+      sourceAnalysisPool:
+        name: Azure-Pipelines-1ESPT-ExDShared
+        image: windows-2022
+        os: windows
     customBuildTags:
       - ES365AIMigrationTooling
     stages:
@@ -47,9 +52,8 @@ extends:
             templateContext:
               outputs:
                 - output: pipelineArtifact
-                  targetPath: $(System.DefaultWorkingDirectory)
+                  targetPath: $(System.DefaultWorkingDirectory)/_manifest
                   sbomPackageName: SBom-$(System.JobAttempt)
-                  sbomBuildDropPath: $(System.DefaultWorkingDirectory)/_manifest
             variables:
               - group: oss-secrets
             dependsOn: Compliance
