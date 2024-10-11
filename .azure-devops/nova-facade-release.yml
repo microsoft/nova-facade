@@ -44,6 +44,12 @@ extends:
                   serviceTreeID: $(serviceTreeID)
               - template: /.azure-devops/steps/compliance-steps.yml@self
           - job: Release
+            templateContext:
+              outputs:
+                - output: pipelineArtifact
+                  targetPath: $(System.DefaultWorkingDirectory)
+                  sbomPackageName: SBom-$(System.JobAttempt)
+                  sbomBuildDropPath: $(System.DefaultWorkingDirectory)/_manifest
             variables:
               - group: oss-secrets
             dependsOn: Compliance
