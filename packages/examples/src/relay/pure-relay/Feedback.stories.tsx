@@ -51,12 +51,21 @@ const meta = {
           feedback(id: $id) {
             ...Feedback_feedbackRelayFragment
           }
+          viewData {
+            ...Feedback_viewDataRelayFragment
+          }
         }
       `,
       variables: { id: "42" },
       referenceEntries: {
         feedback: (data) => data?.feedback,
+        viewData: (data) => data?.viewData,
       },
+      resolvers: {
+        ViewData: () => ({
+          viewDataField: "View data field",
+        }),
+      }
     },
   } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
 } satisfies Meta<typeof FeedbackComponent>;
