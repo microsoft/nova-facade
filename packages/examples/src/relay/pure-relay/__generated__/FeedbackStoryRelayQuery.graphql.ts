@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8ca401641ed05d5f1f3a338005137520>>
+ * @generated SignedSource<<050a0ed2102143b53c8840d20b61987f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest, Query } from 'relay-runtime';
+import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FeedbackStoryRelayQuery$variables = {
   id: string;
@@ -17,6 +17,9 @@ export type FeedbackStoryRelayQuery$data = {
   readonly feedback: {
     readonly " $fragmentSpreads": FragmentRefs<"Feedback_feedbackRelayFragment">;
   };
+  readonly viewData: {
+    readonly " $fragmentSpreads": FragmentRefs<"Feedback_viewDataRelayFragment">;
+  } | null | undefined;
 };
 export type FeedbackStoryRelayQuery = {
   response: FeedbackStoryRelayQuery$data;
@@ -60,6 +63,27 @@ return {
           }
         ],
         "storageKey": null
+      },
+      {
+        "kind": "ClientExtension",
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ViewData",
+            "kind": "LinkedField",
+            "name": "viewData",
+            "plural": false,
+            "selections": [
+              {
+                "args": null,
+                "kind": "FragmentSpread",
+                "name": "Feedback_viewDataRelayFragment"
+              }
+            ],
+            "storageKey": null
+          }
+        ]
       }
     ],
     "type": "Query",
@@ -113,6 +137,29 @@ return {
           }
         ],
         "storageKey": null
+      },
+      {
+        "kind": "ClientExtension",
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "ViewData",
+            "kind": "LinkedField",
+            "name": "viewData",
+            "plural": false,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "viewDataField",
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ]
       }
     ]
   },
@@ -150,6 +197,18 @@ return {
           "nullable": false,
           "plural": false,
           "type": "String"
+        },
+        "viewData": {
+          "enumValues": null,
+          "nullable": true,
+          "plural": false,
+          "type": "ViewData"
+        },
+        "viewData.viewDataField": {
+          "enumValues": null,
+          "nullable": true,
+          "plural": false,
+          "type": "String"
         }
       }
     },
@@ -160,6 +219,6 @@ return {
 };
 })();
 
-(node as any).hash = "6089c0fe5f98406204254d9b33a6e061";
+(node as any).hash = "87e89c4f3d23c32eb214ba7503cdd52d";
 
 export default node;

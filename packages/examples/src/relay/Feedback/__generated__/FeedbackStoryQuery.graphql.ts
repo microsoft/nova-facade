@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<25ffc163fef147c94d952bb9a33226e3>>
+ * @generated SignedSource<<ecbf088f2f06fab1604b02511fe435f7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest, Query } from 'relay-runtime';
+import { ConcreteRequest } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type FeedbackStoryQuery$variables = {
   id: string;

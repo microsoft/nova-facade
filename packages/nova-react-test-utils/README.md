@@ -279,6 +279,56 @@ const meta = {
 
 The second parameter of `getNovaDecorator` is an `options` object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
 
+### (Pure relay or Nova with Relay) How can I make sure the mock data is generated for client extensions?
+
+The current default generator doesn't support client extensions. However, you can use the `generateFunction` option to provide your own generator. Here is an example of how you can use the `MockPayloadGenerator` from `relay-test-utils` to generate data for client extensions:
+
+```tsx
+import { MockPayloadGenerator } from "relay-test-utils";
+import { getNovaDecorator } from "@nova/react-test-utils/relay";
+
+const novaDecorator = getNovaDecorator(schema, {
+  generateFunction: (operation, mockResolvers) => {
+    const result = MockPayloadGenerator.generate(
+      operation,
+      mockResolvers ?? null,
+      {
+        mockClientData: true, // this makes sure data for client extensions is generated
+      },
+    );
+
+    return result;
+  },
+});
+```
+
+### (Pure relay or Nova with Relay) How can I make sure the mock data is generated with deferred payloads?
+
+The current default generator doesn't return deferred payloads. However, similarly as in example above you can use the `generateFunction` option to provide your own generator which does.
+
+```tsx
+import { MockPayloadGenerator } from "relay-test-utils";
+import { getNovaDecorator } from "@nova/react-test-utils/relay";
+
+const novaDecorator = getNovaDecorator(schema, {
+  getEnvironmentOptions: () => ({
+    store: new Store(new RecordSource()),
+  }),
+  generateFunction: (operation, mockResolvers) => {
+    const result = MockPayloadGenerator.generateWithDefer(
+      operation,
+      mockResolvers ?? null,
+      {
+        mockClientData: true,
+        generateDeferredPayload: true, // this makes sure mock data is array of deferred payloads, not a single response
+      },
+    );
+
+    return result;
+  },
+});
+```
+
 #### How can I mock query/mutation/subscription?
 
 - [Query example](../examples/src/relay/Feedback/FeedbackContainer.stories.ts#L30)
@@ -306,7 +356,7 @@ graphql.mock.queueOperationResolver((operation) => {
     return MockPayloadGenerator.generate(operation);
   }
 });
-```
+````
 
 #### Can I reuse the setup I made for stories somehow in unit tests?
 

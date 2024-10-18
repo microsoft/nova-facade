@@ -2,13 +2,13 @@ import { graphql } from "react-relay";
 import {
   getNovaDecorator,
   getNovaEnvironmentForStory,
-  MockPayloadGenerator as PayloadGenerator,
   type WithNovaEnvironment,
   EventingProvider,
   getOperationName,
   getOperationType,
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
+import { MockPayloadGenerator } from "relay-test-utils";
 import type { Meta } from "@storybook/react";
 import { userEvent, waitFor, within, expect } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
@@ -21,12 +21,24 @@ import { RecordSource, Store } from "relay-runtime";
 
 const schema = getSchema();
 
-const MockPayloadGenerator = new PayloadGenerator(schema);
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
     store: new Store(new RecordSource()),
   }),
+  // We add this to verify scenario of using relay's MockPayloadGenerator
+  generateFunction: (operation, mockResolvers) => {
+    const result = MockPayloadGenerator.generateWithDefer(
+      operation,
+      mockResolvers ?? null,
+      {
+        mockClientData: true,
+        generateDeferredPayload: true,
+      },
+    );
+
+    return result;
+  },
 });
 
 const meta = {
@@ -39,12 +51,21 @@ const meta = {
           feedback(id: $id) {
             ...Feedback_feedbackRelayFragment
           }
+          viewData {
+            ...Feedback_viewDataRelayFragment
+          }
         }
       `,
       variables: { id: "42" },
       referenceEntries: {
         feedback: (data) => data?.feedback,
+        viewData: (data) => data?.viewData,
       },
+      resolvers: {
+        ViewData: () => ({
+          viewDataField: "View data field",
+        }),
+      }
     },
   } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
 } satisfies Meta<typeof FeedbackComponent>;
@@ -106,7 +127,7 @@ export const Like: Story = {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
     });
-    await mock.resolveMostRecentOperation((operation) => {
+    mock.resolveMostRecentOperation((operation) => {
       return MockPayloadGenerator.generate(operation, likeResolvers);
     });
   },
@@ -127,7 +148,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         const operation = mock.getMostRecentOperation();
         await expect(operation).toBeDefined();
       });
-      await mock.rejectMostRecentOperation(new Error("Query failed"));
+      mock.rejectMostRecentOperation(new Error("Query failed"));
     },
   };
 
@@ -152,7 +173,7 @@ export const LikeFailure: Story = {
     const operationType = getOperationType(operation);
     expect(operationName).toEqual("FeedbackStoryRelayQuery");
     expect(operationType).toEqual("query");
-    await mock.resolveMostRecentOperation((operation) => {
+    mock.resolveMostRecentOperation((operation) => {
       return MockPayloadGenerator.generate(operation, {
         Feedback: () => sampleFeedback,
       });
@@ -168,7 +189,7 @@ export const LikeFailure: Story = {
     const nextOperationType = getOperationType(nextOperation);
     expect(nextOperationName).toEqual("FeedbackComponent_RelayLikeMutation");
     expect(nextOperationType).toEqual("mutation");
-    await mock.rejectMostRecentOperation(new Error("Like failed"));
+    mock.rejectMostRecentOperation(new Error("Like failed"));
     await container.findByText("Something went wrong");
   },
 };

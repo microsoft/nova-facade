@@ -49,12 +49,19 @@ export type MutationFeedbackLikeArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  clientExtension: Maybe<Scalars['String']>;
   feedback: Feedback;
+  viewData: Maybe<ViewData>;
 };
 
 
 export type QueryFeedbackArgs = {
   id: Scalars['ID'];
+};
+
+export type ViewData = {
+  __typename?: 'ViewData';
+  viewDataField: Maybe<Scalars['String']>;
 };
 
 
@@ -136,6 +143,7 @@ export type ResolversTypes = {
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  ViewData: ResolverTypeWrapper<ViewData>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -149,6 +157,7 @@ export type ResolversParentTypes = {
   Mutation: {};
   Query: {};
   String: Scalars['String'];
+  ViewData: ViewData;
 };
 
 export type FeedbackResolvers<ContextType = any, ParentType = ResolversParentTypes['Feedback']> = {
@@ -173,7 +182,14 @@ export type MutationResolvers<ContextType = any, ParentType = ResolversParentTyp
 };
 
 export type QueryResolvers<ContextType = any, ParentType = ResolversParentTypes['Query']> = {
+  clientExtension: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   feedback: Resolver<ResolversTypes['Feedback'], ParentType, ContextType, RequireFields<QueryFeedbackArgs, 'id'>>;
+  viewData: Resolver<Maybe<ResolversTypes['ViewData']>, ParentType, ContextType>;
+};
+
+export type ViewDataResolvers<ContextType = any, ParentType = ResolversParentTypes['ViewData']> = {
+  viewDataField: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
@@ -182,6 +198,7 @@ export type Resolvers<ContextType = any> = {
   Message: MessageResolvers<ContextType>;
   Mutation: MutationResolvers<ContextType>;
   Query: QueryResolvers<ContextType>;
+  ViewData: ViewDataResolvers<ContextType>;
 };
 
 
@@ -195,4 +212,5 @@ export type TypeMap = {
   "Mutation": Mutation;
   "Query": Query;
   "String": Scalars["String"];
+  "ViewData": ViewData;
 };

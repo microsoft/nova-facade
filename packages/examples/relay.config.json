@@ -1,5 +1,14 @@
 {
-  "src": "./src/relay",
-  "schema": "./src/schema.graphql",
-  "language": "typescript"
+  "sources": {
+    "src/relay": "examples"
+  },
+  "projects": {
+    "examples": {
+      "language": "typescript",
+      "schema": "src/schema.graphql",
+      "schemaExtensions": [
+        "src/clientExtensions.graphql"
+      ]
+    }
+  }
 }

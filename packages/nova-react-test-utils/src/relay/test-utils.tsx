@@ -19,7 +19,7 @@ export class RelayMockPayloadGenerator {
 
   public generate(
     operation: RelayOperationDescriptor,
-    mockResolvers?: MockResolvers,
+    mockResolvers?: MockResolvers | null,
     generateId?: () => number,
   ): ReturnType<typeof payloadGenerator> {
     if (!operation.request.node.params.text) {

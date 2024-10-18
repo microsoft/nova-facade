@@ -6,9 +6,11 @@ import {
   useOnDeleteFeedback,
   useFeedbackTelemetry,
 } from "../../events/helpers";
+import type { Feedback_viewDataRelayFragment$key } from "./__generated__/Feedback_viewDataRelayFragment.graphql";
 
 type Props = {
   feedback: Feedback_feedbackRelayFragment$key;
+  viewData: Feedback_viewDataRelayFragment$key;
 };
 
 export const Feedback_feedbackRelayFragment = graphql`
@@ -21,9 +23,16 @@ export const Feedback_feedbackRelayFragment = graphql`
   }
 `;
 
+export const Feedback_viewDataRelayFragment = graphql`
+  fragment Feedback_viewDataRelayFragment on ViewData {
+    viewDataField
+  }
+`;
+
 export const FeedbackComponent = (props: Props) => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const feedback = useFragment(Feedback_feedbackRelayFragment, props.feedback);
+  const viewData = useFragment(Feedback_viewDataRelayFragment, props.viewData);
   const [like, isPending] = useMutation<FeedbackComponent_RelayLikeMutation>(
     graphql`
       mutation FeedbackComponent_RelayLikeMutation($input: FeedbackLikeInput!) {
@@ -63,6 +72,7 @@ export const FeedbackComponent = (props: Props) => {
         <div style={{ color: "red" }}>{errorMessage}</div>
       )}
       Feedback: {feedback.message.text}
+      <div>{viewData.viewDataField}</div>
       <button
         id="likeButton"
         disabled={isPending}
