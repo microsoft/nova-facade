@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<ec9f51ebd08605a5f52af517498c42f9>>
+ * @generated SignedSource<<1c15be7b18f58b4ef9382754b9ba1ad7>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConcreteRequest, Mutation } from 'relay-runtime';
+import { ConcreteRequest } from 'relay-runtime';
 export type FeedbackLikeInput = {
   doesViewerLike: boolean;
   feedbackId: string;

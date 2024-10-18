@@ -9,15 +9,34 @@ import { novaGraphql } from "./nova-relay-graphql";
 import { RelayMockPayloadGenerator } from "./test-utils";
 import * as React from "react";
 import { RelayEnvironmentProvider } from "react-relay";
-import { createMockEnvironment } from "relay-test-utils";
+import {
+  createMockEnvironment,
+  type MockPayloadGenerator,
+} from "relay-test-utils";
 import type { GraphQLSchema } from "graphql";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import type { EnvironmentConfig } from "relay-runtime";
 
+// We need this as `generateWithDefer` is overloaded and we want to get most relaxed return type
+type OverloadedReturnType<T> = 
+    T extends { (...args: any[]) : infer R; (...args: any[]) : infer R } ? R  :
+    T extends (...args: any[]) => infer R ? R : any
+
+type GraphitationGenerateArgs = Parameters<
+  RelayMockPayloadGenerator["generate"]
+>;
+
+// We put very relaxed constraints on the return type here, because we want users to be able to use
+// Relay's payload generator for example for having returned deferred payloads or mocking client extensions,
+// which doesn't work with graphitation's payload generator.
+type RelayGenerateReturn =
+  | ReturnType<(typeof MockPayloadGenerator)["generate"]>
+  | OverloadedReturnType<(typeof MockPayloadGenerator)["generateWithDefer"]>;
+
 type Options = { getEnvironmentOptions?: () => Partial<EnvironmentConfig> } & {
-  generateFunction?: typeof RelayMockPayloadGenerator.prototype.generate;
+  generateFunction?: (...args: GraphitationGenerateArgs) => RelayGenerateReturn;
 };
 
 export const getNovaRelayDecorator: (
