@@ -302,6 +302,12 @@ const novaDecorator = getNovaDecorator(schema, {
 });
 ```
 
+#### Can I swap out the graphitation MockPayloadGenerator for something else?
+
+Yes, in `getNovaDecorator` in `options` param you can supply a `generateFunction` which will be used to
+generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
+`MockPayloadGenerator` supplied by `relay-test-utils`.
+
 ### (Pure relay or Nova with Relay) How can I make sure the mock data is generated with deferred payloads?
 
 The current default generator doesn't return deferred payloads. However, similarly as in example above you can use the `generateFunction` option to provide your own generator which does.
@@ -385,9 +391,3 @@ it("should show an error if the like button fails", async () => {
 ```
 
 The `prepareStoryContextForTest` is needed to make sure the context passed to `play` function during unit tests execution contains the `novaEnvironment`.
-
-#### Can I swap out the graphitation MockPayloadGenerator for something else?
-
-Yes, in `getNovaDecorator` in `options` param you can supply a `generateFunction` which will be used to
-generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
-`MockPayloadGenerator` supplied by `relay-test-utils`.
