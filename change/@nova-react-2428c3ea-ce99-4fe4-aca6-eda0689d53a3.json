@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "bump graphitation packages",
+  "packageName": "@nova/react",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
