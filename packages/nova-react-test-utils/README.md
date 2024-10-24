@@ -356,7 +356,7 @@ graphql.mock.queueOperationResolver((operation) => {
     return MockPayloadGenerator.generate(operation);
   }
 });
-````
+```
 
 #### Can I reuse the setup I made for stories somehow in unit tests?
 
