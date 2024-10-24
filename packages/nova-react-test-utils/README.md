@@ -277,9 +277,15 @@ const meta = {
 } satisfies Meta<typeof FeedbackContainer>;
 ```
 
-The second parameter of `getNovaDecorator` is an `options` object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
+The second parameter of `getNovaDecorator` is an `getEnvironmentOptions` callback that should return object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
 
-### (Pure relay or Nova with Relay) How can I make sure the mock data is generated for client extensions?
+#### Can I swap out the graphitation MockPayloadGenerator for something else?
+
+Yes, in `getNovaDecorator` in `options` param you can supply a `generateFunction` which will be used to
+generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
+`MockPayloadGenerator` supplied by `relay-test-utils`.
+
+#### (Pure relay or Nova with Relay) How can I make sure the mock data is generated for client extensions?
 
 The current default generator doesn't support client extensions. However, you can use the `generateFunction` option to provide your own generator. Here is an example of how you can use the `MockPayloadGenerator` from `relay-test-utils` to generate data for client extensions:
 
@@ -302,13 +308,7 @@ const novaDecorator = getNovaDecorator(schema, {
 });
 ```
 
-#### Can I swap out the graphitation MockPayloadGenerator for something else?
-
-Yes, in `getNovaDecorator` in `options` param you can supply a `generateFunction` which will be used to
-generate data instead of the `MockPayloadGenerator`. Use this if you want to use the
-`MockPayloadGenerator` supplied by `relay-test-utils`.
-
-### (Pure relay or Nova with Relay) How can I make sure the mock data is generated with deferred payloads?
+#### (Pure relay or Nova with Relay) How can I make sure the mock data is generated with deferred payloads?
 
 The current default generator doesn't return deferred payloads. However, similarly as in example above you can use the `generateFunction` option to provide your own generator which does.
 
@@ -317,9 +317,6 @@ import { MockPayloadGenerator } from "relay-test-utils";
 import { getNovaDecorator } from "@nova/react-test-utils/relay";
 
 const novaDecorator = getNovaDecorator(schema, {
-  getEnvironmentOptions: () => ({
-    store: new Store(new RecordSource()),
-  }),
   generateFunction: (operation, mockResolvers) => {
     const result = MockPayloadGenerator.generateWithDefer(
       operation,
