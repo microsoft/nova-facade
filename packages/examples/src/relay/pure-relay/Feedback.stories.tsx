@@ -21,7 +21,6 @@ import { RecordSource, Store } from "relay-runtime";
 
 const schema = getSchema();
 
-
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
     store: new Store(new RecordSource()),
@@ -65,7 +64,7 @@ const meta = {
         ViewData: () => ({
           viewDataField: "View data field",
         }),
-      }
+      },
     },
   } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
 } satisfies Meta<typeof FeedbackComponent>;
@@ -174,9 +173,13 @@ export const LikeFailure: Story = {
     expect(operationName).toEqual("FeedbackStoryRelayQuery");
     expect(operationType).toEqual("query");
     mock.resolveMostRecentOperation((operation) => {
-      return MockPayloadGenerator.generate(operation, {
-        Feedback: () => sampleFeedback,
-      });
+      return MockPayloadGenerator.generate(
+        operation,
+        {
+          Feedback: () => sampleFeedback,
+        },
+        { mockClientData: true },
+      );
     });
     const likeButton = await container.findByRole("button", { name: "Like" });
     userEvent.click(likeButton);
