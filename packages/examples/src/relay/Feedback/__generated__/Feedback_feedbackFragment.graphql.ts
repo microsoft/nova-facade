@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9a9e9576834b9673626fc27f4e27f924>>
+ * @generated SignedSource<<63e21ec3b051b3e4642bf81fc2a9e0e3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { Fragment, ReaderFragment } from 'relay-runtime';
+import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Feedback_feedbackFragment$data = {
   readonly doesViewerLike: boolean;
