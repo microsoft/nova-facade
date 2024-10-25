@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "relax types for overrding generator",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
