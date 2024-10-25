@@ -1121,10 +1121,10 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.17.8", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
-  version "7.24.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.5.tgz#230946857c053a36ccc66e1dd03b17dd0c4ed02c"
-  integrity sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.17.8", "@babel/runtime@^7.25.0", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+  version "7.25.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.25.7.tgz#7ffb53c37a8f247c8c4d335e89cdf16a2e0d0fb6"
+  integrity sha512-FjoyLe754PMiYsFaN5C94ttGiOmBNYTf6pLr4xXHAT5uctHb092PBszndLDR5XA/jghQvn4n7JMHl7dmTgbm9w==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -1475,48 +1475,49 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.2.tgz#d8bae93ac8b815b2bd7a98078cf91e2724ef11e5"
   integrity sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==
 
-"@graphitation/apollo-mock-client@^0.11.4":
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.4.tgz#0161072e0c2a1530b98e638c75b8965a74123dd7"
-  integrity sha512-Hjm8vdC7osN8ub4FaiqDibubkUIgfirOqEwukJ45v9+IZoNs+1moCFSGOKis9Q7uLRqbPWEEzW0O5qI/dTkB+g==
+"@graphitation/apollo-mock-client@^0.11.9":
+  version "0.11.9"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.9.tgz#4c4d49312fd39109ac52cf426b64616c8f14e736"
+  integrity sha512-fvTYAhaH+xVcOtP2Ozehqwm2iZoSWBV84ig57OB2n/K8jR1uX7A3q8IHOrVH7D4FvakGqWNX0UC8AZxAzbey/A==
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.2.0.tgz#38835312de42cdab593ad13847a6fd5c73c7bc5a"
-  integrity sha512-FMPd5vG2XIeC3G3MvZU0/LgbnFfWydnRXO5iKIPwp51SuPe4n3UxZLqu2N4OzqsQe0Af7nZw9mgVNbacvZGutQ==
+"@graphitation/apollo-react-relay-duct-tape@^1.3.0":
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape/-/apollo-react-relay-duct-tape-1.3.2.tgz#dfab269cd4de961d72d09b337813493b41b1fdc8"
+  integrity sha512-vElGIdxWziW4C+u7AwsT6u0U3aWEyJxWi76z6lhVrCqLTl8+CmrmHINHUnyC/PSgmpHv2QPjC+U2VxLph/6W4Q==
   dependencies:
     invariant "^2.2.4"
     lodash "^4.17.15"
 
-"@graphitation/embedded-document-artefact-loader@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@graphitation/embedded-document-artefact-loader/-/embedded-document-artefact-loader-0.8.0.tgz#437bbcea273e423625efce47349fdcd7fda245e6"
-  integrity sha512-R1BkXsl8Mm5bCQFcAPna6AQh2KGsWnqc2OwowVb9oObi6HFSooEY15RMXmttOGE/bsYQWgFlV/Lg9bOTPFZPhQ==
+"@graphitation/embedded-document-artefact-loader@^0.8.5":
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/@graphitation/embedded-document-artefact-loader/-/embedded-document-artefact-loader-0.8.5.tgz#435f4103c99d2ba7aaf6155b10bfa2bd8adb05e2"
+  integrity sha512-cq55AyXn+gQevSUZVYzMNqMiuFp90dbjOf5EQqx7g56ZthfsjZIW8v/oD8YLB1sJAhjE77gmdEMRfsAcEIJk8Q==
   dependencies:
-    source-map-js "^1.0.2"
+    source-map-js "^1.2.1"
 
-"@graphitation/graphql-codegen-typescript-typemap-plugin@^0.1.6":
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-codegen-typescript-typemap-plugin/-/graphql-codegen-typescript-typemap-plugin-0.1.6.tgz#ff71d083943b5f892b05d73de5272f53018b7c75"
-  integrity sha512-FkQq+jdXTxoVUMYiz+ppWf1+nj5SrShpMcf1dM33Uw6WnzmlnquyOLnUUe/xiE5eVRX8kzG5vyOjDOSERey8/A==
+"@graphitation/graphql-codegen-typescript-typemap-plugin@^0.1.9":
+  version "0.1.9"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-codegen-typescript-typemap-plugin/-/graphql-codegen-typescript-typemap-plugin-0.1.9.tgz#41e7d7212d5a7847f4149a9c89c614fb4612b26b"
+  integrity sha512-FI8wyg+QbhlKp2lds6LuvYp947pwNdAS9fjCl8CXKJaaFb2UPzuFJigq0VeZceoC8Yyr9QcX9DzHPPBDv0B5Tg==
   dependencies:
     change-case-all "1.0.14"
 
-"@graphitation/graphql-js-operation-payload-generator@^0.12.5":
-  version "0.12.5"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.12.5.tgz#784caa384ee090f4b4bbaba0bc615223c0d800d0"
-  integrity sha512-3vGpWS9k9ZOfmpqnurgf+RZPWmKE6n6541TsgWwEgTIv8lKu3OBxQwdWWMziad52vFO55DFr157jn2vnT9/eIA==
+"@graphitation/graphql-js-operation-payload-generator@^0.12.9":
+  version "0.12.9"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-operation-payload-generator/-/graphql-js-operation-payload-generator-0.12.9.tgz#1f4dbac3a34074646fbfd998889353f30daa1840"
+  integrity sha512-yWONTbNbGPZrChOekADiDw920oNqcnghPHJ/XZhvfgzmxmTX3a9Mfh5Tjr7LIIhrRPtjGwXOgV2DepMdkgTV2w==
   dependencies:
+    "@types/relay-test-utils" ">=17.0.0"
     deepmerge "^4.2.2"
     graphql "^15.0.0"
     invariant "^2.2.4"
 
-"@graphitation/graphql-js-tag@^0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.1.tgz#e40bef3a58ce553f1f40eab262e5ab263d5225bc"
-  integrity sha512-qBV+2JGFRtASwM4Tnsfd6WkMSdvKJjm4IKeyUp7gNCxvl12cumXVbR7QxRY2qLRZHk6Pd2LZGqqS6iJAn19/nQ==
+"@graphitation/graphql-js-tag@^0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.4.tgz#f0512c0c6014e652bf9ed0912670bb751fa08b57"
+  integrity sha512-MlAlNZNP1WCKoD2FGeSDULnnBILfn/gdtbITe33fjQNsqgPyfcSaCTdQrWLkVuflwpZEhbb0AP1iudXiN4jG4A==
   dependencies:
     invariant "^2.0.0"
 
@@ -3856,15 +3857,15 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/relay-runtime@*", "@types/relay-runtime@>16", "@types/relay-runtime@^17.0.0":
-  version "17.0.4"
-  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-17.0.4.tgz#428526fc3e6dfb6e0a5730c38ad521cb1eea189b"
-  integrity sha512-fB77br4lXlBYM/HpI6VI6KCrj5pw0LiAnkZOkffjirNYso+dzXGWkeIm0G0MGszD8WY1et+r1Uj2TA6rscBXNQ==
+"@types/relay-runtime@*", "@types/relay-runtime@>16", "@types/relay-runtime@^18.0.0":
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-18.0.0.tgz#d48dd4552ab480281a679c47d98fc02e304460f6"
+  integrity sha512-LK9NAw/WsdiMtQU+SxnhFd2bA6HfRsjniAENdznA8BKbGGvcMi0K8Gyq/XtoNmCMR9jxzO9rqFTksKkiXgsGYg==
 
-"@types/relay-test-utils@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-17.0.0.tgz#a427470f26f808b4962c8d0a66c2d9af25db156e"
-  integrity sha512-q+Nq3RpJ4fKcRfJQTK/IvKg4cmrJkbboR8V4hxlEW5MkMTNqGCOJ4xlKagSTsLycovw3Eea6fNmmBSaMlKRwCw==
+"@types/relay-test-utils@>=17.0.0", "@types/relay-test-utils@^18.0.0":
+  version "18.0.0"
+  resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-18.0.0.tgz#a3d86503bc6d27c039e721514c78259541658f23"
+  integrity sha512-sg++buiunZkj0MkL1/Q6w4p19ut3USC5BQnWJ1D4Bp4pNOrck4nhVDIyklm/ilVyM0wCbvROa5wL+nsYVo4Frw==
   dependencies:
     "@types/react" "*"
     "@types/react-relay" "*"
@@ -9682,16 +9683,16 @@ react-refresh@^0.14.0:
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
   integrity sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==
 
-react-relay@^17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-17.0.0.tgz#1f8b6aefaa73b8af8378300d419289a57a6f94c9"
-  integrity sha512-Kn0CMiKZtWc+EisFPmzuZ53RtDeLlJO+EUVJwqxNkOs5g1jDjVi1v+k48kHeTyim2X43Rr0S2aeailllci5SgQ==
+react-relay@^18.0.0:
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-18.1.0.tgz#fd19a6b786c251f4005423403d67cc3d5cc42c42"
+  integrity sha512-kqRbWid1A+B5HyvS05zwQacBhgWbIAlclTOO4CEWTwq0Sz00rZP1S9Bfcrl0ViImNKZHNa8+2I27409v9Sw1bQ==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "17.0.0"
+    relay-runtime "18.1.0"
 
 react-remove-scroll-bar@^2.3.3:
   version "2.3.6"
@@ -9907,10 +9908,10 @@ relay-compiler@^12.0.0:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-relay-compiler@^17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-17.0.0.tgz#5013e83267f45d78e24232ae7da90ed5ad3c1116"
-  integrity sha512-U2e/R0o40HJOQ13pwkvToqWqk6J3ASMyHmcxixVMZKfcwcpsTTOiKob215ZRh+4bqPwkNy97+V9CuzJ5hJmGtw==
+relay-compiler@^18.0.0:
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-18.1.0.tgz#ae6f82a3c967d6e2bb35c4e7971acae0b6a36e47"
+  integrity sha512-DGWIORIij0TIys/Xd5W/iToqTv7UcN6fqCPDqwYhLnfU7ukdK8rpk7f6RCYvhyZG71e7a1b3TLGOQY8A3XE3yg==
 
 relay-runtime@12.0.0:
   version "12.0.0"
@@ -9921,24 +9922,24 @@ relay-runtime@12.0.0:
     fbjs "^3.0.0"
     invariant "^2.2.4"
 
-relay-runtime@17.0.0, relay-runtime@^17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-17.0.0.tgz#771084ea3b44f2f1eb578da861511a5558c4e07b"
-  integrity sha512-7b2R3G3DP7VHq7/1ltwQfYn3KkTHIB2NNt3KijIZoNQ73avwpOXBEL0MelSXwq8L+K8lcgAW5VAT7o0LUhnJPQ==
+relay-runtime@18.1.0, relay-runtime@^18.0.0:
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-18.1.0.tgz#62f03669e70d499b6b7d688fa61780b312843bf9"
+  integrity sha512-C3Ct6mty9ZD93KnzHLP4mFw9T3zqPL5VwFaNPRvVgdJYSwQT2dfzWz1336fWwMgAXIQGZIqIjedeamjy6P4ZkA==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
 
-relay-test-utils@^17.0.0:
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-17.0.0.tgz#898a9bae9614a8b641eff04e597e4637322bd94f"
-  integrity sha512-u6mv7P1bmMP1Ex5uxSaUu0pJMXEs/0c8Y3LPHyfPTQ9LghMd6OtPP/45C2Z8vczMxhDIZivQM+8KwrjC25CwEg==
+relay-test-utils@^18.0.0:
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-18.1.0.tgz#3fcfcc3af13ffc9dc854d373934e32a30f0212b4"
+  integrity sha512-gm0mnVsZq5vyRerGI0DQJDKAVBjuQJUPCHAtc1DQDjmUG/9xxadmCidCCqzjPBFyhYqj3kPKC86yJIMNpnpt0g==
   dependencies:
-    "@babel/runtime" "^7.0.0"
+    "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
-    relay-runtime "17.0.0"
+    relay-runtime "18.1.0"
 
 remark-external-links@^8.0.0:
   version "8.0.0"
@@ -10351,10 +10352,10 @@ source-list-map@^2.0.0:
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"
   integrity sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==
 
-source-map-js@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
-  integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+source-map-js@^1.0.2, source-map-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
+  integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
 
 source-map-support@0.5.13:
   version "0.5.13"

@@ -1,0 +1,7 @@
+extend type Query {
+  clientExtension: String
+  viewData: ViewData
+}
+type ViewData {
+  viewDataField: String
+}
