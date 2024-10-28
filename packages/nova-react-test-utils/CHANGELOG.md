@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 25 Oct 2024 16:58:53 GMT and should not be manually modified.
+This log was last generated on Mon, 28 Oct 2024 16:18:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.6.0
+
+Mon, 28 Oct 2024 16:18:07 GMT
+
+### Minor changes
+
+- make types for reference entries stronger and error message more friendly (Stanislaw.Wilczynski@microsoft.com)
 
 ## 5.5.4
 

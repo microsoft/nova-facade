@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "make types for reference entries stronger and error message more friendly",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

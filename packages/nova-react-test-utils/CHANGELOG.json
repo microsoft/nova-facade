@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 28 Oct 2024 16:18:07 GMT",
+      "tag": "@nova/react-test-utils_v5.6.0",
+      "version": "5.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "2824e713bae967fff46fadb7bfb8e292569ab322",
+            "comment": "make types for reference entries stronger and error message more friendly"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 25 Oct 2024 16:58:53 GMT",
       "tag": "@nova/react-test-utils_v5.5.4",
       "version": "5.5.4",
