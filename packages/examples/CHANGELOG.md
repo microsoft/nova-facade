@@ -1,8 +1,18 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 08 Oct 2024 17:30:41 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Oct 2024 16:58:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.8
+
+Fri, 25 Oct 2024 16:58:53 GMT
+
+### Patches
+
+- add example of overriding generate function (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v2.6.4
+- Bump @nova/react-test-utils to v5.5.4
 
 ## 1.5.7
 

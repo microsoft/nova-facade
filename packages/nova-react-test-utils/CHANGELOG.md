@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 08 Oct 2024 17:30:41 GMT and should not be manually modified.
+This log was last generated on Fri, 25 Oct 2024 16:58:53 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.5.4
+
+Fri, 25 Oct 2024 16:58:53 GMT
+
+### Patches
+
+- relax types for overrding generator (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v2.6.4
 
 ## 5.5.3
 

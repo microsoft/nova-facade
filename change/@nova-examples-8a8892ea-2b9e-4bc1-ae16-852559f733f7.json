@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "add example of overriding generate function",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
