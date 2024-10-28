@@ -8,7 +8,12 @@ type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
   : false;
 
 import type { StoryObj, Meta } from "@storybook/react";
-import type { StoryObjWithoutFragmentRefs } from "./types";
+import type {
+  ComponentTypeError,
+  ParametersError,
+  ReferenceEntriesError,
+  StoryObjWithoutFragmentRefs,
+} from "./types";
 import type {
   UnknownOperation,
   WithNovaEnvironment,
@@ -30,6 +35,11 @@ type OptionalPropsOnly = {
   optionalProp?: string;
 };
 
+type MultiplePropsFromDecorator = {
+  propPassedThroughDecorator: unknown;
+  anotherPropPassedThroughDecorator: unknown;
+};
+
 const Component: React.FC<Props> = (_: Props) => null;
 
 const ComponentWithOptionalProps: React.FC<OptionalProps> = (
@@ -40,6 +50,10 @@ const ComponentWithOptionalPropsOnly: React.FC<OptionalPropsOnly> = (
   _: OptionalPropsOnly,
 ) => null;
 
+const ComponentWithMultiplePropsFromDecorator: React.FC<
+  MultiplePropsFromDecorator
+> = (_: MultiplePropsFromDecorator) => null;
+
 const parameters = {
   novaEnvironment: {
     query: {
@@ -47,6 +61,31 @@ const parameters = {
     },
     referenceEntries: {
       propPassedThroughDecorator: (data) => data,
+    },
+  },
+} satisfies WithNovaEnvironment<UnknownOperation>;
+
+const parametersWithMultiplePropsCorrect = {
+  novaEnvironment: {
+    query: {
+      __brand: "GraphQLTaggedNode" as const,
+    },
+    referenceEntries: {
+      propPassedThroughDecorator: (data) => data,
+      anotherPropPassedThroughDecorator: (data) => data,
+    },
+  },
+} satisfies WithNovaEnvironment<UnknownOperation>;
+
+const parametersWithMultiplePropsWithRefEntryTypo = {
+  novaEnvironment: {
+    query: {
+      __brand: "GraphQLTaggedNode" as const,
+    },
+    referenceEntries: {
+      propPassedThroughDecorator: (data) => data,
+      anothPropPassedThroughDecorator: (data) => data,
+      someRandomProp: (data) => data,
     },
   },
 } satisfies WithNovaEnvironment<UnknownOperation>;
@@ -80,6 +119,20 @@ const metaForComponentWithOptionalPropsOnly = {
   component: ComponentWithOptionalPropsOnly,
   parameters,
 } satisfies Meta<typeof ComponentWithOptionalPropsOnly>;
+
+const metaWithoutComponent = {
+  parameters,
+} satisfies Meta<typeof ComponentWithOptionalPropsOnly>;
+
+const metaForMultiplePropsFromDecorator = {
+  component: ComponentWithMultiplePropsFromDecorator,
+  parameters: parametersWithMultiplePropsCorrect,
+} satisfies Meta<typeof ComponentWithMultiplePropsFromDecorator>;
+
+const metaWithIncorrectRefEntry = {
+  component: ComponentWithMultiplePropsFromDecorator,
+  parameters: parametersWithMultiplePropsWithRefEntryTypo,
+} satisfies Meta<typeof ComponentWithMultiplePropsFromDecorator>;
 
 type StoryObjForMeta = StoryObj<typeof meta>;
 type StoryObjWithoutFragmentRefsForMeta = StoryObjWithoutFragmentRefs<
@@ -125,8 +178,29 @@ const StoryForComponentWithOptionalPropsOnly: StoryObjWithoutFragmentRefs<
   },
 };
 
-type WithoutDecoratorParamsItShouldBeNever = Expect<
-  Equal<never, StoryObjWithoutFragmentRefs<typeof metaWithoutDecoratorParams>>
+const StoryForComponentWithMultiplePropsFromDecorator: StoryObjWithoutFragmentRefs<
+  typeof metaForMultiplePropsFromDecorator
+> = {};
+
+type WithoutDecoratorParamsItShouldBeParametersError = Expect<
+  Equal<
+    ParametersError,
+    StoryObjWithoutFragmentRefs<typeof metaWithoutDecoratorParams>
+  >
+>;
+
+type WithoutComponentItShouldBeComponentError = Expect<
+  Equal<
+    ComponentTypeError,
+    StoryObjWithoutFragmentRefs<typeof metaWithoutComponent>
+  >
+>;
+
+type WithTypoInRefEntryItShouldBeReferenceEntriesError = Expect<
+  Equal<
+    ReferenceEntriesError<"anothPropPassedThroughDecorator" | "someRandomProp">,
+    StoryObjWithoutFragmentRefs<typeof metaWithIncorrectRefEntry>
+  >
 >;
 
 type VerifyTypeMatchesWithNoArgsOnMeta = Expect<
