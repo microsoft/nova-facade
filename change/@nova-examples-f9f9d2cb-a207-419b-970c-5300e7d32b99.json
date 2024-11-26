@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "migrate to Storybook 8",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 26 Nov 2024 14:29:27 GMT",
+      "tag": "@nova/react-test-utils_v5.7.0",
+      "version": "5.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "410fb36d1cf0c7056695d3e2ef19028e82a4c27b",
+            "comment": "support Storybook 8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 28 Oct 2024 16:18:07 GMT",
       "tag": "@nova/react-test-utils_v5.6.0",
       "version": "5.6.0",

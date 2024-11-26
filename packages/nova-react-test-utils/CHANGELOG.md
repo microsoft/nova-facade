@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Mon, 28 Oct 2024 16:18:07 GMT and should not be manually modified.
+This log was last generated on Tue, 26 Nov 2024 14:29:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 5.7.0
+
+Tue, 26 Nov 2024 14:29:27 GMT
+
+### Minor changes
+
+- support Storybook 8 (Stanislaw.Wilczynski@microsoft.com)
 
 ## 5.6.0
 

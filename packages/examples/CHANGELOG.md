@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Mon, 28 Oct 2024 16:18:07 GMT and should not be manually modified.
+This log was last generated on Tue, 26 Nov 2024 14:29:27 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.5.10
+
+Tue, 26 Nov 2024 14:29:27 GMT
+
+### Patches
+
+- migrate to Storybook 8 (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v5.7.0
 
 ## 1.5.9
 
