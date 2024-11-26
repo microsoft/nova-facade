@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "support Storybook 8",
+  "packageName": "@nova/react-test-utils",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
