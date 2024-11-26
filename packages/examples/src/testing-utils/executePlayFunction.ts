@@ -1,12 +1,12 @@
 import type { ReactRenderer } from "@storybook/react";
 import type {
-  ComposedStoryPlayContext,
+  PlayFunctionContext,
   ComposedStoryFn,
 } from "@storybook/types";
 import { act, waitFor } from "@testing-library/react/pure";
 
 type PlayFunctionThatReturnsPromise = (
-  options: ComposedStoryPlayContext<ReactRenderer>,
+  options: Partial<PlayFunctionContext<ReactRenderer>>,
 ) => Promise<void>;
 
 // This function is a workaround for the issues with React 18 that if someone
@@ -20,7 +20,7 @@ type PlayFunctionThatReturnsPromise = (
 // be true.
 export const executePlayFunction = async (
   Story: ComposedStoryFn<ReactRenderer>,
-  options: ComposedStoryPlayContext<ReactRenderer>,
+  options: Partial<PlayFunctionContext<ReactRenderer>>,
 ) => {
   let playFunctionCompleted = false;
   const playFunction = Story.play as PlayFunctionThatReturnsPromise;
