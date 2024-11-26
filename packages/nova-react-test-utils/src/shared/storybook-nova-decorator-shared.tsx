@@ -5,7 +5,6 @@ import type { MockResolvers } from "@graphitation/graphql-js-operation-payload-g
 import type {
   Addon_LegacyStoryFn,
   ComposedStoryFn,
-  ComposedStoryPlayContext,
   PlayFunctionContext,
 } from "@storybook/types";
 import { makeDecorator } from "@storybook/preview-api";
@@ -134,8 +133,8 @@ export const getDecorator = <E extends NovaMockEnvironment<"storybook">>(
 // This function is used to create play function context for a story used inside unit test, leveraging composeStories/composeStory.
 export const prepareStoryContextForTest = (
   story: ComposedStoryFn<ReactRenderer>,
-  canvasElement?: HTMLElement,
-): ComposedStoryPlayContext<ReactRenderer> => ({
+  canvasElement: HTMLElement,
+): Partial<PlayFunctionContext<ReactRenderer>> => ({
   canvasElement,
   id: story.id,
   parameters: story.parameters,
