@@ -82,14 +82,23 @@ These events are published in an independent package so that they can be easily 
 
 ### Primary Use Cases for Events
 
-- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side
-- Bubbling an internal action that needs to be logged
+- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side.
+- Bubbling an internal action that needs to be logged.
 
 ### Eventing Contract
 
 Eventing is primarily a contract between the component owner and host apps. The Event data object should contain all the appropriate context to allow the host apps to appropriately handle the event.
 
 If the host app needs additional data to perform an action, this should be discussed with the component team to add an event or extend the data sent.
+
+### Eventing methods
+
+Nova eventing provides two methods to propagate events:
+
+- `bubble` - to propagate events that are happening as a result of user interaction and have React event associated with them
+- `generateEvent` - to generate events that are not related to user interactions, but triggered programmatically (like informing host app that component completed rendering)
+
+The guidance is to always use `bubble` as that way event automatically gets additional metadata. `generateEvent` should be used only when there is no user interaction involved.
 
 ### Basic example
 
@@ -127,7 +136,18 @@ import { useNovaEventing } from "@nova/react";
 const MyComponent = () => {
   const eventing = useNovaEventing();
 
+  React.useEffect(() => {
+    // use `generateEvent` for events not related to user interactions
+    eventing.generateEvent({
+      event: {
+        eventType: "onRenderComplete",
+        originator: "MyComponent",
+      },
+    });
+  }, [eventing]);
+
   const handleClick = (event: React.SyntheticEvent) => {
+    // use bubble for events triggered by user
     eventing.bubble({
       reactEvent: event,
       event: {
