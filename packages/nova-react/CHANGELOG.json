@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Tue, 07 Jan 2025 12:18:31 GMT",
+      "tag": "@nova/react_v2.6.4",
+      "version": "2.6.4",
+      "comments": {
+        "none": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react",
+            "commit": "e5a56b004cebcc6a3310c7483f2d2326ed6ecc5e",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 25 Oct 2024 16:58:53 GMT",
       "tag": "@nova/react_v2.6.4",
       "version": "2.6.4",
