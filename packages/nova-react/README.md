@@ -82,14 +82,23 @@ These events are published in an independent package so that they can be easily 
 
 ### Primary Use Cases for Events
 
-- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side - in such cases one should rely on `bubble` method, requiring dev to pass related React (click, keyboard) event
-- Bubbling an internal action that needs to be logged - if such event (like informing the host app that for example component completed rendering) one should rely on `generateEvent` method, which does not require passing React event
+- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side.
+- Bubbling an internal action that needs to be logged.
 
 ### Eventing Contract
 
 Eventing is primarily a contract between the component owner and host apps. The Event data object should contain all the appropriate context to allow the host apps to appropriately handle the event.
 
 If the host app needs additional data to perform an action, this should be discussed with the component team to add an event or extend the data sent.
+
+### Eventing methods
+
+Nova eventing provides two methods to propagate events:
+
+- `bubble` - to propagate events that are happening as a result of user interaction and have React event associated with them
+- `generateEvent` - to generate events that are not related to user interactions, but triggered programmatically (like informing host app that component completed rendering)
+
+The guidance is to always use `bubble` as that way event automatically gets additional metadata. `generateEvent` should be used only when there is no user interaction involved.
 
 ### Basic example
 
