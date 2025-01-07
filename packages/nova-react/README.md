@@ -82,8 +82,8 @@ These events are published in an independent package so that they can be easily 
 
 ### Primary Use Cases for Events
 
-- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side
-- Bubbling an internal action that needs to be logged
+- Bubbling a button click that should perform some sort of navigation or external action, like opening a modal on host app side - in such cases one should rely on `bubble` method, requiring dev to pass related React (click, keyboard) event
+- Bubbling an internal action that needs to be logged - if such event (like informing the host app that for example component completed rendering) one should rely on `generateEvent` method, which does not require passing React event
 
 ### Eventing Contract
 
@@ -127,7 +127,18 @@ import { useNovaEventing } from "@nova/react";
 const MyComponent = () => {
   const eventing = useNovaEventing();
 
+  React.useEffect(() => {
+    // use `generateEvent` for events not related to user interactions
+    eventing.generateEvent({
+      event: {
+        eventType: "onRenderComplete",
+        originator: "MyComponent",
+      },
+    });
+  }, [eventing]);
+
   const handleClick = (event: React.SyntheticEvent) => {
+    // use bubble for events triggered by user
     eventing.bubble({
       reactEvent: event,
       event: {
