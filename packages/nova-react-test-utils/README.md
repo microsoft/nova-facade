@@ -177,7 +177,7 @@ You can also see that `satisfies WithNovaEnvironment<Operation, TypeMap>` is use
 
 Additionally, `StoryObjWithoutFragmentRefs` utility type is provided which is just a small wrapper over `StoryObj` type from Storybook that makes sure that `args` don't require you to pass props that are supplied using `referenceEntries` parameter.
 
-### EventingProvider
+### EventingInterceptor
 
 This utility is meant to override default behavior for `bubble` which logs all nova events to Storybook actions tab. Instead you can granularly override the handler per event to customize your story. Check example below:
 
@@ -188,13 +188,17 @@ const FeedbackWithDeleteDialog = (
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");
   return (
-    <EventingProvider<typeof events> // this should be an events object that has definitions for all your events for good TS auto-completion
+    <EventingInterceptor<typeof events> // this should be an events object that has definitions for all your events for good TS auto-completion
       eventMap={{
         onDeleteFeedback: (eventWrapper) => {
           // custom handler for this specific event
           setOpen(true);
           setText(eventWrapper.event.data().feedbackText);
-          return Promise.resolve();
+          return Promise.resolve(undefined); // return undefined if you want to stop processing event further
+        },
+        feedbackTelemetry: (eventWrapper) => {
+          console.log("Telemetry event", eventWrapper.event.data());
+          return Promise.resolve(eventWrapper); // return eventWrapper if you want to pass event further, for default bubble to log it in actions tab
         },
       }}
     >
@@ -203,7 +207,7 @@ const FeedbackWithDeleteDialog = (
         <button onClick={() => setOpen(false)}>Cancel</button>
         Are you sure you want to delete feedback "{text}"
       </dialog>
-    </EventingProvider>
+    </EventingInterceptor>
   );
 };
 
@@ -221,7 +225,7 @@ export const WithDeleteDialog: Story = {
 };
 ```
 
-It is helpful if your event changes something on integration side of your component and you want simulate that behavior in Storybook.
+It is helpful if your event changes something on integration side of your component and you want simulate that behavior in Storybook. Implementation wise `EventingInterceptor` uses [eventing interceptor](../nova-react/README.md#intercepting-events) under the hood, so that you can always use the default handler if needed.
 
 ## FAQ
 
