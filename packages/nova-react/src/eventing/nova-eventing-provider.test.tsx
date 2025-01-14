@@ -645,8 +645,9 @@ describe("Multiple NovaEventingInterceptors", () => {
       "toBeInterceptedInSecondInterceptor: Fire event to be intercepted",
     );
     button.click();
-    expect(callbackToBeCalledOnSecondIntercept).toHaveBeenCalled();
+
     await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+    expect(callbackToBeCalledOnSecondIntercept).toHaveBeenCalled();
     expect(bubbleMock).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
   });
@@ -657,9 +658,10 @@ describe("Multiple NovaEventingInterceptors", () => {
       "toBeInterceptedInFirstInterceptor: Fire event without intercept",
     );
     button.click();
+
+    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
     expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
-    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
   });
 
   it("intercepts the event in first interceptor and does not bubble it up", async () => {
@@ -670,9 +672,8 @@ describe("Multiple NovaEventingInterceptors", () => {
     button.click();
 
     await waitFor(() => expect(bubbleMock).not.toHaveBeenCalled());
-    expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
-
+    expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).toHaveBeenCalled();
   });
 });
