@@ -90,12 +90,12 @@ export const NovaEventingProvider: React.FunctionComponent<
   }
 
   const reactEventing = React.useMemo(
-    generateEventing(eventingRef, mapperRef),
+    generateReactEventing(eventingRef, mapperRef),
     [],
   );
 
   const reactUnmountEventing = React.useMemo(
-    generateEventing(unmountEventingRef, mapperRef),
+    generateReactEventing(unmountEventingRef, mapperRef),
     [],
   );
 
@@ -142,27 +142,53 @@ export const NovaEventingInterceptor: React.FunctionComponent<
     interceptorRef.current = interceptor;
   }
 
-  const { internal } = React.useContext(NovaEventingContext);
+  const { internal: rootInternal } = React.useContext(NovaEventingContext);
 
-  if (!internal) {
+  if (!rootInternal) {
     invariant(
-      internal,
+      rootInternal,
       "Nova Eventing provider must be initialized prior to creating NovaEventingInterceptor!",
     );
   }
 
   const reactEventing = React.useMemo(
-    generateEventing(internal.eventingRef, internal.mapperRef, interceptorRef),
+    generateReactEventing(
+      rootInternal.eventingRef,
+      rootInternal.mapperRef,
+      interceptorRef,
+    ),
     [],
   );
 
   const reactUnmountEventing = React.useMemo(
-    generateEventing(
-      internal.unmountEventingRef,
-      internal.mapperRef,
+    generateReactEventing(
+      rootInternal.unmountEventingRef,
+      rootInternal.mapperRef,
       interceptorRef,
     ),
     [],
+  );
+
+  const eventing = React.useMemo(
+    generateEventing(rootInternal.eventingRef, interceptorRef),
+    [],
+  );
+
+  const unmountEventing = React.useMemo(
+    generateEventing(rootInternal.unmountEventingRef, interceptorRef),
+    [],
+  );
+
+  const eventingRef = React.useRef(eventing);
+  const unmountEventingRef = React.useRef(unmountEventing);
+
+  const internal: InternalEventingContext = React.useMemo(
+    () => ({
+      ...rootInternal,
+      eventingRef,
+      unmountEventingRef,
+    }),
+    [eventingRef, unmountEventingRef],
   );
 
   const contextValue = React.useMemo(
@@ -171,7 +197,7 @@ export const NovaEventingInterceptor: React.FunctionComponent<
       unmountEventing: reactUnmountEventing,
       internal,
     }),
-    [reactEventing, reactUnmountEventing],
+    [reactEventing, reactUnmountEventing, internal],
   );
 
   return (
@@ -197,7 +223,7 @@ export const useNovaUnmountEventing = (): NovaReactEventing => {
   return unmountEventing;
 };
 
-const generateEventing =
+const generateReactEventing =
   (
     eventingRef: React.MutableRefObject<NovaEventing>,
     mapperRef: React.MutableRefObject<
@@ -235,6 +261,28 @@ const generateEventing =
 
       let eventToBubble: EventWrapper | undefined = mappedEvent;
       eventToBubble = await interceptorRef.current(mappedEvent);
+
+      return eventToBubble
+        ? eventingRef.current.bubble(eventToBubble)
+        : Promise.resolve();
+    },
+  });
+
+const generateEventing =
+  (
+    eventingRef: React.MutableRefObject<NovaEventing>,
+    interceptorRef?: React.MutableRefObject<
+      (event: EventWrapper) => Promise<EventWrapper | undefined>
+    >,
+  ) =>
+  (): NovaEventing => ({
+    bubble: async (eventWrapper: EventWrapper) => {
+      if (!interceptorRef) {
+        return eventingRef.current.bubble(eventWrapper);
+      }
+
+      let eventToBubble: EventWrapper | undefined = eventWrapper;
+      eventToBubble = await interceptorRef.current(eventWrapper);
 
       return eventToBubble
         ? eventingRef.current.bubble(eventToBubble)

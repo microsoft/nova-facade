@@ -533,3 +533,146 @@ describe("NovaEventingInterceptor", () => {
     expect(bubbleCall.event.data()).toBe("addedData");
   });
 });
+
+describe("Multiple NovaEventingInterceptors", () => {
+  const originalError = console.error;
+  beforeEach(() => {
+    jest.clearAllMocks();
+    console.error = originalError;
+  });
+  const realMapper = jest.requireActual(
+    "./react-event-source-mapper",
+  ).mapEventMetadata;
+
+  const mapEventMetadataMock = jest.fn().mockImplementation(realMapper);
+
+  const bubbleMock = jest.fn();
+
+  const parentEventing = {
+    bubble: bubbleMock,
+    generateEvent: bubbleMock,
+  } as unknown as NovaEventing;
+
+  const callbackToBeCalledOnFirstIntercept = jest.fn();
+  const callbackToBeCalledOnSecondIntercept = jest.fn();
+
+  const evenOriginatorToBeInterceptedFirst = "toBeInterceptedFirst";
+  const evenOriginatorToBeInterceptedSecond = "toBeInterceptedSecond";
+
+  const firstInterceptor = (eventWrapper: EventWrapper) => {
+    console.log("received event", eventWrapper.event.originator);
+    if (eventWrapper.event.originator === evenOriginatorToBeInterceptedFirst) {
+      callbackToBeCalledOnFirstIntercept();
+      return Promise.resolve(undefined);
+    } else {
+      return Promise.resolve(eventWrapper);
+    }
+  };
+
+  const secondInterceptor = (eventWrapper: EventWrapper) => {
+    if (eventWrapper.event.originator === evenOriginatorToBeInterceptedSecond) {
+      callbackToBeCalledOnSecondIntercept();
+      return Promise.resolve(undefined);
+    } else {
+      console.log("bubbling up event", eventWrapper.event.originator);
+      return Promise.resolve(eventWrapper);
+    }
+  };
+
+  const ComponentWithTwoEvents = ({
+    name,
+    eventOriginatorToBeIntercepted,
+  }: {
+    name: string;
+    eventOriginatorToBeIntercepted: string;
+  }) => {
+    const eventing = useNovaEventing();
+    const onInterceptClick = (event: React.SyntheticEvent) => {
+      eventing.bubble({
+        reactEvent: event,
+        event: {
+          originator: eventOriginatorToBeIntercepted,
+          type: "TypeToBeIntercepted",
+        },
+      });
+    };
+
+    const onNonInterceptClick = (event: React.SyntheticEvent) => {
+      eventing.bubble({
+        reactEvent: event,
+        event: {
+          originator: "notToBeIntercepted",
+          type: "TypeNotToBeIntercepted",
+        },
+      });
+    };
+    return (
+      <>
+        Component with two events
+        <button onClick={onInterceptClick}>
+          {name}: Fire event to be intercepted
+        </button>
+        <button onClick={onNonInterceptClick}>
+          {name}: Fire event without intercept
+        </button>
+      </>
+    );
+  };
+
+  const MultipleInterceptorsTestComponent: React.FC = () => (
+    <NovaEventingProvider
+      eventing={parentEventing}
+      reactEventMapper={mapEventMetadataMock}
+    >
+      <NovaEventingInterceptor interceptor={firstInterceptor}>
+        <NovaEventingInterceptor interceptor={secondInterceptor}>
+          <ComponentWithTwoEvents
+            name="toBeInterceptedInFirstInterceptor"
+            eventOriginatorToBeIntercepted={evenOriginatorToBeInterceptedFirst}
+          />
+          <ComponentWithTwoEvents
+            name="toBeInterceptedInSecondInterceptor"
+            eventOriginatorToBeIntercepted={evenOriginatorToBeInterceptedSecond}
+          />
+        </NovaEventingInterceptor>
+      </NovaEventingInterceptor>
+    </NovaEventingProvider>
+  );
+
+  it("intercepts the event in second interceptor and does not bubble it up", async () => {
+    const { getByText } = render(<MultipleInterceptorsTestComponent />);
+    const button = getByText(
+      "toBeInterceptedInSecondInterceptor: Fire event to be intercepted",
+    );
+    button.click();
+    expect(callbackToBeCalledOnSecondIntercept).toHaveBeenCalled();
+    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+    expect(bubbleMock).not.toHaveBeenCalled();
+    expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
+  });
+
+  it("bubbles the event when interceptor returns the event", async () => {
+    const { getByText } = render(<MultipleInterceptorsTestComponent />);
+    const button = getByText(
+      "toBeInterceptedInFirstInterceptor: Fire event without intercept",
+    );
+    button.click();
+    expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
+    expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
+    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
+  });
+
+  it("intercepts the event in first interceptor and does not bubble it up", async () => {
+    const { getByText } = render(<MultipleInterceptorsTestComponent />);
+    const button = getByText(
+      "toBeInterceptedInFirstInterceptor: Fire event to be intercepted",
+    );
+    button.click();
+
+    await waitFor(() => expect(bubbleMock).not.toHaveBeenCalled());
+    expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
+    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+
+    expect(callbackToBeCalledOnFirstIntercept).toHaveBeenCalled();
+  });
+});
