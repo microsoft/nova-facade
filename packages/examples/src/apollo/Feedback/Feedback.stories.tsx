@@ -1,6 +1,6 @@
 import { graphql } from "@nova/react";
 import {
-  EventingProvider,
+  EventingInterceptor,
   getNovaDecorator,
   getNovaEnvironmentForStory,
   type WithNovaEnvironment,
@@ -82,6 +82,8 @@ export const Like: Story = {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     await userEvent.click(likeButton);
+
+    await container.findByRole("button", { name: "Unlike" });
   },
 };
 
@@ -110,12 +112,16 @@ const FeedbackWithDeleteDialog = (
   const [open, setOpen] = React.useState(false);
   const [text, setText] = React.useState("");
   return (
-    <EventingProvider<typeof events>
+    <EventingInterceptor<typeof events>
       eventMap={{
         onDeleteFeedback: (eventWrapper) => {
           setOpen(true);
           setText(eventWrapper.event.data().feedbackText);
-          return Promise.resolve();
+          return Promise.resolve(undefined);
+        },
+        feedbackTelemetry: (eventWrapper) => {
+          console.log("Telemetry event", eventWrapper.event.data());
+          return Promise.resolve(eventWrapper);
         },
       }}
     >
@@ -125,7 +131,7 @@ const FeedbackWithDeleteDialog = (
         <button onClick={() => setOpen(false)}>Cancel</button>
         Are you sure you want to delete feedback "{text}"
       </dialog>
-    </EventingProvider>
+    </EventingInterceptor>
   );
 };
 

@@ -7,7 +7,7 @@ export type {
   MockResolvers,
   DefaultMockResolvers,
 } from "../shared/storybook-nova-decorator-shared";
-export { EventingProvider } from "../shared/eventing-provider";
+export { EventingInterceptor } from "../shared/eventing-interceptor";
 export type { StoryObjWithoutFragmentRefs } from "../shared/types";
 
 export {
