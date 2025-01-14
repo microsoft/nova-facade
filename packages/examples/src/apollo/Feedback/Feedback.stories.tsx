@@ -82,6 +82,8 @@ export const Like: Story = {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
     await userEvent.click(likeButton);
+
+    await container.findByRole("button", { name: "Unlike" });
   },
 };
 

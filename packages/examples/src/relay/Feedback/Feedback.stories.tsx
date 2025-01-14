@@ -104,9 +104,10 @@ export const Like: Story = {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
     });
-    await mock.resolveMostRecentOperation((operation) => {
+    mock.resolveMostRecentOperation((operation) => {
       return MockPayloadGenerator.generate(operation, likeResolvers);
     });
+    await container.findByRole("button", { name: "Unlike" });
   },
 };
 
