@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Wed, 15 Jan 2025 10:43:07 GMT",
+      "tag": "@nova/react_v2.6.5",
+      "version": "2.6.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "carmenberndt@microsoft.com",
+            "package": "@nova/react",
+            "commit": "7eac482ff55e219840ab18b90487c2a684be32e1",
+            "comment": "fix eventing pointer for multiple interceptors"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 07 Jan 2025 12:18:31 GMT",
       "tag": "@nova/react_v2.6.4",
       "version": "2.6.4",
