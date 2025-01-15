@@ -560,7 +560,6 @@ describe("Multiple NovaEventingInterceptors", () => {
   const evenOriginatorToBeInterceptedSecond = "toBeInterceptedSecond";
 
   const firstInterceptor = (eventWrapper: EventWrapper) => {
-    console.log("received event", eventWrapper.event.originator);
     if (eventWrapper.event.originator === evenOriginatorToBeInterceptedFirst) {
       callbackToBeCalledOnFirstIntercept();
       return Promise.resolve(undefined);
@@ -574,7 +573,6 @@ describe("Multiple NovaEventingInterceptors", () => {
       callbackToBeCalledOnSecondIntercept();
       return Promise.resolve(undefined);
     } else {
-      console.log("bubbling up event", eventWrapper.event.originator);
       return Promise.resolve(eventWrapper);
     }
   };
