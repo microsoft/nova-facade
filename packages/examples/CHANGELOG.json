@@ -2,6 +2,33 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Wed, 15 Jan 2025 12:24:50 GMT",
+      "tag": "@nova/examples_v1.5.11",
+      "version": "1.5.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "6dfd06006c05ff3b85a122764b554cfa7c848293",
+            "comment": "use interceptor instead of eventing"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.6.5",
+            "commit": "7eac482ff55e219840ab18b90487c2a684be32e1"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v6.0.0",
+            "commit": "7eac482ff55e219840ab18b90487c2a684be32e1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 26 Nov 2024 14:29:27 GMT",
       "tag": "@nova/examples_v1.5.10",
       "version": "1.5.10",

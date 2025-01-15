@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 26 Nov 2024 14:29:27 GMT and should not be manually modified.
+This log was last generated on Wed, 15 Jan 2025 12:24:50 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 6.0.0
+
+Wed, 15 Jan 2025 12:24:50 GMT
+
+### Major changes
+
+- rewrite evetingprovider to eventinginterceptor (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react to v2.6.5
 
 ## 5.7.0
 
