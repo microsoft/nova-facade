@@ -1,7 +1,7 @@
 {
   "type": "patch",
-  "comment": "fix eventing pointer for multiple interceptors",
-  "packageName": "@nova/react",
+  "comment": "applying package updates",
+  "packageName": "@nova/examples",
   "email": "carmenberndt@microsoft.com",
   "dependentChangeType": "patch"
 }

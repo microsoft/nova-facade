@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Wed, 15 Jan 2025 12:24:50 GMT",
+      "tag": "@nova/react-test-utils_v6.0.0",
+      "version": "6.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "6dfd06006c05ff3b85a122764b554cfa7c848293",
+            "comment": "rewrite evetingprovider to eventinginterceptor"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.6.5",
+            "commit": "7eac482ff55e219840ab18b90487c2a684be32e1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 26 Nov 2024 14:29:27 GMT",
       "tag": "@nova/react-test-utils_v5.7.0",
       "version": "5.7.0",
