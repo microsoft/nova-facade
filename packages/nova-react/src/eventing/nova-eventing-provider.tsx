@@ -194,6 +194,39 @@ export const NovaEventingInterceptor: React.FunctionComponent<
     [],
   );
 
+  // Internal should point to eventing/unmountEventing created by the interceptor
+  const internal: InternalEventingContext = React.useMemo(
+    () =>
+      createInternalEventingContextPointingToInterceptor(
+        rootInternal,
+        interceptorRef,
+      ),
+    [interceptorRef],
+  );
+
+  const contextValue = React.useMemo(
+    () => ({
+      eventing: reactEventing,
+      unmountEventing: reactUnmountEventing,
+      internal,
+    }),
+    [reactEventing, reactUnmountEventing, internal],
+  );
+
+  return (
+    <NovaEventingContext.Provider value={contextValue}>
+      {children}
+    </NovaEventingContext.Provider>
+  );
+};
+NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
+
+const createInternalEventingContextPointingToInterceptor = (
+  rootInternal: InternalEventingContext,
+  interceptorRef: React.MutableRefObject<
+    (event: EventWrapper) => Promise<EventWrapper | undefined>
+  >,
+): InternalEventingContext => {
   const eventing: NovaEventing = React.useMemo(
     () => ({
       bubble: async (eventWrapper: EventWrapper) =>
@@ -217,31 +250,12 @@ export const NovaEventingInterceptor: React.FunctionComponent<
   const eventingRef = React.useRef(eventing);
   const unmountEventingRef = React.useRef(unmountEventing);
 
-  const internal: InternalEventingContext = React.useMemo(
-    () => ({
-      ...rootInternal,
-      eventingRef,
-      unmountEventingRef,
-    }),
-    [eventingRef, unmountEventingRef],
-  );
-
-  const contextValue = React.useMemo(
-    () => ({
-      eventing: reactEventing,
-      unmountEventing: reactUnmountEventing,
-      internal,
-    }),
-    [reactEventing, reactUnmountEventing, internal],
-  );
-
-  return (
-    <NovaEventingContext.Provider value={contextValue}>
-      {children}
-    </NovaEventingContext.Provider>
-  );
+  return {
+    ...rootInternal,
+    eventingRef,
+    unmountEventingRef,
+  };
 };
-NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
 
 /**
  * Used for eventing that should be triggered when the component is unmounted, such as within a useEffect cleanup function
