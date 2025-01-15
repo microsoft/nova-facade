@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "applying package updates",
+  "packageName": "@nova/examples",
+  "email": "carmenberndt@microsoft.com",
+  "dependentChangeType": "patch"
+}
