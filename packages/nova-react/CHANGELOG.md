@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 25 Oct 2024 16:58:53 GMT and should not be manually modified.
+This log was last generated on Wed, 15 Jan 2025 10:43:07 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.5
+
+Wed, 15 Jan 2025 10:43:07 GMT
+
+### Patches
+
+- fix eventing pointer for multiple interceptors (carmenberndt@microsoft.com)
 
 ## 2.6.4
 
