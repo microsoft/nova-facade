@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "use interceptor instead of eventing",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

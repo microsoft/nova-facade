@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "rewrite evetingprovider to eventinginterceptor",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
