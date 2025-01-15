@@ -195,3 +195,5 @@ const MyComponentWrapper = () => {
 ```
 
 The `NovaEventingInterceptor` will intercept the event and if you can check it's properties to decide if is should be acted upon. If from `intercept` promise resolving to undefined is returned the event will not be passed to eventing higher up the tree. However, if to process the event further, one should return a promise resolving to the `eventWrapper` object. That also gives a possibility to alter the event and still pass it further up.
+
+You can nest as many interceptors as you need to either handle or pass events further up.
