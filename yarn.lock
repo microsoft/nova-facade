@@ -1652,6 +1652,23 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nova/react-test-utils@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@nova/react-test-utils/-/react-test-utils-6.0.0.tgz#4329904eb2e44036aa843d099cb0873836c74b25"
+  integrity sha512-XIS+2H9yJbWjsE7vtAlESqeG/J5XJ1MrEqaJzjBZAP3RKqC8YxUCgviMq9E5g+TlXYByMdwAgSKSOdWR0sFj1Q==
+  dependencies:
+    "@graphitation/graphql-js-operation-payload-generator" "^0.12.9"
+    "@graphitation/graphql-js-tag" "^0.9.4"
+    "@jest/types" ">27.0.0"
+    "@nova/react" "^2.6.4"
+    "@nova/types" "^1.5.1"
+    "@types/react" "^17 || ^18"
+    "@types/relay-runtime" ">16"
+    graphql "^15.5.0"
+    invariant "^2.2.4"
+    tslib "^2.2.0"
+    type-fest "~2.19"
+
 "@parcel/watcher@^2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@parcel/watcher/-/watcher-2.1.0.tgz"
