@@ -195,14 +195,11 @@ export const NovaEventingInterceptor: React.FunctionComponent<
   );
 
   // Internal should point to eventing/unmountEventing created by the interceptor, so that we can nest arbitrary numbers of interceptors
-  const internal: InternalEventingContext = React.useMemo(
-    () =>
-      createInternalEventingContextPointingToInterceptor(
-        rootInternal,
-        interceptorRef,
-      ),
-    [interceptorRef],
-  );
+  const internal: InternalEventingContext =
+    useCreateInternalEventingContextPointingToInterceptor(
+      rootInternal,
+      interceptorRef,
+    );
 
   const contextValue = React.useMemo(
     () => ({
@@ -221,7 +218,7 @@ export const NovaEventingInterceptor: React.FunctionComponent<
 };
 NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
 
-const createInternalEventingContextPointingToInterceptor = (
+const useCreateInternalEventingContextPointingToInterceptor = (
   rootInternal: InternalEventingContext,
   interceptorRef: React.MutableRefObject<
     (event: EventWrapper) => Promise<EventWrapper | undefined>
