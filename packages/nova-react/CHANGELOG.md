@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Wed, 15 Jan 2025 12:24:50 GMT and should not be manually modified.
+This log was last generated on Thu, 16 Jan 2025 14:55:41 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.6.6
+
+Thu, 16 Jan 2025 14:55:41 GMT
+
+### Patches
+
+- follow rules of hooks (carmenberndt@microsoft.com)
+- applying package updates (carmenberndt@microsoft.com)
 
 ## 2.6.5
 

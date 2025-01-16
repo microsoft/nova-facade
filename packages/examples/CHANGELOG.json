@@ -2,6 +2,33 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 16 Jan 2025 14:55:41 GMT",
+      "tag": "@nova/examples_v1.5.12",
+      "version": "1.5.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "carmenberndt@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "7b7ee733227cab16a5e5b3a69538fff54ae38da3",
+            "comment": "applying package updates"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.6.6",
+            "commit": "082c7c7f3d115da23d8ffecbccad08758fa2e5ea"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v6.0.1",
+            "commit": "082c7c7f3d115da23d8ffecbccad08758fa2e5ea"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Jan 2025 12:24:50 GMT",
       "tag": "@nova/examples_v1.5.11",
       "version": "1.5.11",

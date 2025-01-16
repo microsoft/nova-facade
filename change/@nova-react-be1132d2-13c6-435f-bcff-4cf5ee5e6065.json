@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "follow rules of hooks",
-  "packageName": "@nova/react",
-  "email": "carmenberndt@microsoft.com",
-  "dependentChangeType": "patch"
-}

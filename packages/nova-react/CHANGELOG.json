@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 16 Jan 2025 14:55:41 GMT",
+      "tag": "@nova/react_v2.6.6",
+      "version": "2.6.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "carmenberndt@microsoft.com",
+            "package": "@nova/react",
+            "commit": "082c7c7f3d115da23d8ffecbccad08758fa2e5ea",
+            "comment": "follow rules of hooks"
+          },
+          {
+            "author": "carmenberndt@microsoft.com",
+            "package": "@nova/react",
+            "commit": "7b7ee733227cab16a5e5b3a69538fff54ae38da3",
+            "comment": "applying package updates"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 15 Jan 2025 12:24:50 GMT",
       "tag": "@nova/react_v2.6.5",
       "version": "2.6.5",
