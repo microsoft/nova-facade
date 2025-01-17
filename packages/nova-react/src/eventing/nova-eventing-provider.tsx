@@ -195,11 +195,21 @@ export const NovaEventingInterceptor: React.FunctionComponent<
   );
 
   // Internal should point to eventing/unmountEventing created by the interceptor, so that we can nest arbitrary numbers of interceptors
-  const internal: InternalEventingContext =
-    useCreateInternalEventingContextPointingToInterceptor(
-      rootInternal,
-      interceptorRef,
-    );
+  const { eventing, unmountEventing } = React.useMemo(
+    () =>
+      createInternalEventingPointingToInterceptor(rootInternal, interceptorRef),
+    [],
+  );
+  const eventingRef = React.useRef(eventing);
+  const unmountEventingRef = React.useRef(unmountEventing);
+  const internal: InternalEventingContext = React.useMemo(
+    () => ({
+      ...rootInternal,
+      eventingRef,
+      unmountEventingRef,
+    }),
+    [],
+  );
 
   const contextValue = React.useMemo(
     () => ({
@@ -218,39 +228,25 @@ export const NovaEventingInterceptor: React.FunctionComponent<
 };
 NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
 
-const useCreateInternalEventingContextPointingToInterceptor = (
+const createInternalEventingPointingToInterceptor = (
   rootInternal: InternalEventingContext,
   interceptorRef: React.MutableRefObject<
     (event: EventWrapper) => Promise<EventWrapper | undefined>
   >,
-): InternalEventingContext => {
-  const eventing: NovaEventing = React.useMemo(
-    () => ({
-      bubble: async (eventWrapper: EventWrapper) =>
-        getBubble(rootInternal.eventingRef, eventWrapper, interceptorRef),
-    }),
-    [],
-  );
+): { eventing: NovaEventing; unmountEventing: NovaEventing } => {
+  const eventing: NovaEventing = {
+    bubble: async (eventWrapper: EventWrapper) =>
+      getBubble(rootInternal.eventingRef, eventWrapper, interceptorRef),
+  };
 
-  const unmountEventing: NovaEventing = React.useMemo(
-    () => ({
-      bubble: async (eventWrapper: EventWrapper) =>
-        getBubble(
-          rootInternal.unmountEventingRef,
-          eventWrapper,
-          interceptorRef,
-        ),
-    }),
-    [],
-  );
-
-  const eventingRef = React.useRef(eventing);
-  const unmountEventingRef = React.useRef(unmountEventing);
+  const unmountEventing: NovaEventing = {
+    bubble: async (eventWrapper: EventWrapper) =>
+      getBubble(rootInternal.unmountEventingRef, eventWrapper, interceptorRef),
+  };
 
   return {
-    ...rootInternal,
-    eventingRef,
-    unmountEventingRef,
+    eventing,
+    unmountEventing,
   };
 };
 
