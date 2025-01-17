@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix hook",
+  "packageName": "@nova/react",
+  "email": "carmenberndt@microsoft.com",
+  "dependentChangeType": "patch"
+}
