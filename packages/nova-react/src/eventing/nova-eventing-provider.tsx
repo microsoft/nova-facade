@@ -172,7 +172,7 @@ export const NovaEventingInterceptor: React.FunctionComponent<
       },
       generateEvent: getGenerateEvent(rootInternal.eventingRef, interceptorRef),
     }),
-    [],
+    [rootInternal],
   );
 
   const reactUnmountEventing: NovaReactEventing = React.useMemo(
@@ -191,14 +191,14 @@ export const NovaEventingInterceptor: React.FunctionComponent<
         interceptorRef,
       ),
     }),
-    [],
+    [rootInternal],
   );
 
   // Internal should point to eventing/unmountEventing created by the interceptor, so that we can nest arbitrary numbers of interceptors
   const { eventing, unmountEventing } = React.useMemo(
     () =>
       createInternalEventingPointingToInterceptor(rootInternal, interceptorRef),
-    [],
+    [rootInternal],
   );
   const eventingRef = React.useRef(eventing);
   const unmountEventingRef = React.useRef(unmountEventing);
@@ -208,7 +208,7 @@ export const NovaEventingInterceptor: React.FunctionComponent<
       eventingRef,
       unmountEventingRef,
     }),
-    [],
+    [rootInternal],
   );
 
   const contextValue = React.useMemo(
