@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 20 Jan 2025 15:40:11 GMT",
+      "tag": "@nova/react-test-utils_v6.0.2",
+      "version": "6.0.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "carmenberndt@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "ef1ab82c22cc0233430e67616bb049f40413d8ac",
+            "comment": "bump version"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.6.7",
+            "commit": "ef1ab82c22cc0233430e67616bb049f40413d8ac"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 17 Jan 2025 11:01:12 GMT",
       "tag": "@nova/react-test-utils_v6.0.1",
       "version": "6.0.1",

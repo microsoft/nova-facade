@@ -1,7 +1,7 @@
 {
   "name": "@nova/react-test-utils",
   "license": "MIT",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "main": "./src/relay/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -63,7 +63,7 @@
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.9",
     "@graphitation/graphql-js-tag": "^0.9.4",
     "@jest/types": ">27.0.0",
-    "@nova/react": "^2.6.6",
+    "@nova/react": "^2.6.7",
     "@nova/types": "^1.5.1",
     "@types/react": "^17 || ^18",
     "@types/relay-runtime": ">16",
