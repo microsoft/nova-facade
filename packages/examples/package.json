@@ -57,5 +57,18 @@
     "storybook": "^8.4.5",
     "typescript": "^5.6.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "access": "public",
+  "publishConfig": {
+    "main": "./lib/index",
+    "types": "./lib/index.d.ts",
+    "module": "./lib/index.mjs",
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "import": "./lib/index.mjs",
+        "require": "./lib/index.js"
+      }
+    }
+  }
 }
