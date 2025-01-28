@@ -5,10 +5,8 @@
   "projects": {
     "examples": {
       "language": "typescript",
-      "schema": "src/schema.graphql",
-      "schemaExtensions": [
-        "src/clientExtensions.graphql"
-      ]
+      "schema": "data/schema.graphql",
+      "schemaExtensions": ["data/client-extensions"]
     }
   }
 }
