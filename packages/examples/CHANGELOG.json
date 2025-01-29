@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Wed, 29 Jan 2025 06:50:59 GMT",
+      "tag": "@nova/examples_v1.5.13",
+      "version": "1.5.13",
+      "comments": {
+        "none": [
+          {
+            "author": "eloy.de.enige@gmail.com",
+            "package": "@nova/examples",
+            "commit": "bd9c88052888938f723bc5d942ba310e85c1fbc5",
+            "comment": "[examples] Fix relay-compiler build step"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jan 2025 15:40:11 GMT",
       "tag": "@nova/examples_v1.5.13",
       "version": "1.5.13",
