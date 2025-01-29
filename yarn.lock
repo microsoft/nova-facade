@@ -1694,6 +1694,13 @@
   resolved "https://registry.yarnpkg.com/@repeaterjs/repeater/-/repeater-3.0.4.tgz#a04d63f4d1bf5540a41b01a921c9a7fddc3bd1ca"
   integrity sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==
 
+"@restart/hooks@^0.4.9":
+  version "0.4.16"
+  resolved "https://registry.yarnpkg.com/@restart/hooks/-/hooks-0.4.16.tgz#95ae8ac1cc7e2bd4fed5e39800ff85604c6d59fb"
+  integrity sha512-f7aCv7c+nU/3mF7NWLtVVr0Ra80RqsO89hO72r+Y/nvQr5+q0UFGkocElTH6MJApvReVh6JHUFYn2cw1WdHF3w==
+  dependencies:
+    dequal "^2.0.3"
+
 "@rushstack/node-core-library@3.45.5":
   version "3.45.5"
   resolved "https://registry.yarnpkg.com/@rushstack/node-core-library/-/node-core-library-3.45.5.tgz#00f92143cc21c3ad94fcd81ba168a40ac8cb77f2"
@@ -7013,6 +7020,14 @@ relay-compiler@^18.0.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-18.1.0.tgz#ae6f82a3c967d6e2bb35c4e7971acae0b6a36e47"
   integrity sha512-DGWIORIij0TIys/Xd5W/iToqTv7UcN6fqCPDqwYhLnfU7ukdK8rpk7f6RCYvhyZG71e7a1b3TLGOQY8A3XE3yg==
+
+relay-hooks@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/relay-hooks/-/relay-hooks-9.2.0.tgz#7785b7ac8ebafb9a8d0b045a2e622668168fe1c0"
+  integrity sha512-6y4RjF0sGt85kxRM87eQlHFl4utBI2fXfFM7TNJ+CiYGaH7e65hTYsh65j/8B5IzGp93hevG0yVaeY/Zeapahg==
+  dependencies:
+    "@restart/hooks" "^0.4.9"
+    fbjs "^3.0.2"
 
 relay-runtime@12.0.0:
   version "12.0.0"

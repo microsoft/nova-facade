@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "[examples] Add example Relay provider and export relay Feedback example component",
+  "packageName": "@nova/examples",
+  "email": "eloy.de.enige@gmail.com",
+  "dependentChangeType": "patch"
+}
