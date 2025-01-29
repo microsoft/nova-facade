@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Mon, 20 Jan 2025 15:40:11 GMT and should not be manually modified.
+This log was last generated on Wed, 29 Jan 2025 10:39:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.6.0
+
+Wed, 29 Jan 2025 10:39:19 GMT
+
+### Minor changes
+
+- [examples] Add example Relay provider and export relay Feedback example component (eloy.de.enige@gmail.com)
 
 ## 1.5.13
 

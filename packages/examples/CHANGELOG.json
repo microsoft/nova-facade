@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Wed, 29 Jan 2025 10:39:19 GMT",
+      "tag": "@nova/examples_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "eloy.de.enige@gmail.com",
+            "package": "@nova/examples",
+            "commit": "19fa9074ffe95346186c6fdbf10f66a5ac668033",
+            "comment": "[examples] Add example Relay provider and export relay Feedback example component"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 29 Jan 2025 06:50:59 GMT",
       "tag": "@nova/examples_v1.5.13",
       "version": "1.5.13",
