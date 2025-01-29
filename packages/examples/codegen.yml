@@ -1,7 +1,7 @@
 overwrite: true
 schema:
-  - "./src/schema.graphql"
-  - "./src/clientExtensions.graphql"
+  - "./data/schema.graphql"
+  - "./data/client-extensions/*.graphql"
 generates:
   src/__generated__/schema.all.interface.ts:
     plugins:
