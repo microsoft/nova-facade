@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "[examples] Fix relay-compiler build step",
+  "packageName": "@nova/examples",
+  "email": "eloy.de.enige@gmail.com",
+  "dependentChangeType": "none"
+}
