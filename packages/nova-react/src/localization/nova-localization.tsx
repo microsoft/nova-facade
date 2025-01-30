@@ -6,10 +6,9 @@ const NovaLocalizationContext = React.createContext<NovaLocalization | null>(
   null,
 );
 
-type NovaLocalizationProviderProps = {
+type NovaLocalizationProviderProps = React.PropsWithChildren<{
   localization: NovaLocalization;
-  children?: React.ReactNode | undefined;
-};
+}>;
 
 export const NovaLocalizationProvider: React.FunctionComponent<
   NovaLocalizationProviderProps

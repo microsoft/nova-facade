@@ -310,14 +310,14 @@ This ensures that each host application can provide their own implementation of 
 import { NovaLocalizationProvider, type NovaLocalization } from "@nova/react";
 
 const localization: NovaLocalization = {
-  useFormat: (string: string, values: Record<string, string>) => {
+  useFormat: () => {
     // Your implementation goes here
     // You can use other hooks here.
     
     // For example useTranslation from i18next
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
-    return t(string, values);
+    return (string: string, values: Record<string, string>) => t(string, values);
   }
 }
 

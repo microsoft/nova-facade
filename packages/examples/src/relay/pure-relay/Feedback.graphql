@@ -1,0 +1,6 @@
+extend type ViewData {
+  likeLabel: String!
+    @localizedString(text: "Like", comment: "Label for the like button")
+  unlikeLabel: String!
+    @localizedString(text: "Unlike", comment: "Label for the unlike button")
+}
