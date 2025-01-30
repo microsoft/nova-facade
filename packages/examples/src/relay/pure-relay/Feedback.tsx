@@ -26,6 +26,8 @@ export const Feedback_feedbackRelayFragment = graphql`
 export const Feedback_viewDataRelayFragment = graphql`
   fragment Feedback_viewDataRelayFragment on ViewData {
     viewDataField
+    likeLabel
+    unlikeLabel
   }
 `;
 
@@ -105,7 +107,7 @@ export const FeedbackComponent = (props: Props) => {
           });
         }}
       >
-        {feedback.doesViewerLike ? "Unlike" : "Like"}
+        {feedback.doesViewerLike ? viewData.unlikeLabel : viewData.likeLabel}
       </button>
       <button onClick={onDeleteFeedback}>Delete feedback</button>
     </div>

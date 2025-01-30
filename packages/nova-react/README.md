@@ -197,3 +197,135 @@ const MyComponentWrapper = () => {
 The `NovaEventingInterceptor` will intercept the event and if you can check it's properties to decide if is should be acted upon. If from `intercept` promise resolving to undefined is returned the event will not be passed to eventing higher up the tree. However, if to process the event further, one should return a promise resolving to the `eventWrapper` object. That also gives a possibility to alter the event and still pass it further up.
 
 You can nest as many interceptors as you need to either handle or pass events further up.
+
+## Localization
+
+> Note for this to work you will need to use the Microsoft internal fork of the Relay compiler that includes the added functionality.
+
+Localized strings are provided to components through GraphQL fragments. For simple strings these will be typed as `string` and can be used directly. For strings that include placeholders the Relay compiler will type them as `StringWithPlaceholders` from `@nova/react`.
+
+This is an opaque type that includes the placeholders required by the string. You can use the `format` function provided by `useFormat` from `@nova/react` to format the string with the required values.
+
+### Defining a localized string
+
+You can define a localized string in your GraphQL schema by using the `@localizedString` directive. This directive takes a `text` argument which is the string with placeholders and a `comment` argument which is a description of the string.
+
+#### Simple string
+
+```graphql
+type ViewData {
+  greeting: String! @localizedString(
+    text: "Welcome!",
+    comment: "Greeting to the user",
+  )
+}
+```
+
+In typescript this will be typed as `string`.
+
+```ts
+type ViewData = {
+  greeting: string;
+};
+```
+
+#### String with placeholders
+
+In the case of a string with placeholders you will also need to provide a `placeholders` argument which is a list of objects with a `name` and `comment` field.
+
+```graphql
+type ViewData {
+  greeting: String! @localizedString(
+    text: "Hello, {name}",
+    comment: "Greeting to the user",
+    placeholders: [
+      {
+        name: "name",
+        comment: "The name of the user"
+      }
+    ]
+  )
+}
+```
+
+In typescript this will be typed as `StringWithPlaceholders`.
+
+```ts
+type ViewData = {
+  greeting: StringWithPlaceholders<{ name: string; }>;
+};
+```
+
+### Consuming a localized string
+
+When consuming a localized string you can use it directly if it is a simple string.
+
+```tsx
+import { useFragment } from "@nova/react";
+
+const MyComponent = ({ viewData }) => {
+  const { greeting } = useFragment(
+    graphql`
+      fragment MyComponent_viewData on ViewData {
+        greeting
+      }
+    `
+    viewData
+  )
+
+  return <div>{greeting}</div>;
+};
+```
+
+### Consuming a localized string with placeholders
+
+When consuming a localized string with placeholders you will need to use the `format` function provided by `useFormat` from `@nova/react`. This function takes the string and an object with the values for the placeholders.
+
+```tsx
+import { useFragment, useFormat } from "@nova/react";
+
+const MyComponent = ({ viewData }) => {
+  const { greeting } = useFragment(
+    graphql`
+      fragment MyComponent_viewData on ViewData {
+        greeting
+      }
+    `
+    viewData
+  )
+
+  const format = useFormat();
+
+  return <div>{format(greeting, { name })}</div>;
+};
+```
+
+### Providing the `useFormat` hook implementation
+
+The `useFormat` hook implementation is provided through the `NovaLocalizationProvider` component from `@nova/react`. This component should be placed at the top level of your application and will provide the implementation to all components that use the `useFormat` hook.
+
+This ensures that each host application can provide their own implementation of the `useFormat` hook.
+
+```tsx
+import { NovaLocalizationProvider, type NovaLocalization } from "@nova/react";
+
+const localization: NovaLocalization = {
+  useFormat: () => {
+    // Your implementation goes here
+    // You can use other hooks here.
+    
+    // For example useTranslation from i18next
+    const { t } = useTranslation();
+
+    return (string: string, values: Record<string, string>) => t(string, values);
+  }
+}
+
+const App = () => {
+  return (
+    <NovaLocalizationProvider localization={localization}>
+      <OtherComponents />
+    </NovaLocalizationProvider>
+  );
+};
+```

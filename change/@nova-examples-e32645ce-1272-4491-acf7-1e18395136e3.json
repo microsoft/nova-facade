@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add example for localization",
+  "packageName": "@nova/examples",
+  "email": "mark@thedutchies.com",
+  "dependentChangeType": "patch"
+}

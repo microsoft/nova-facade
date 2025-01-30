@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<050a0ed2102143b53c8840d20b61987f>>
+ * @generated SignedSource<<a7de7b87da0b11da8f1b5328226ce349>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -40,7 +40,13 @@ v1 = [
     "name": "id",
     "variableName": "id"
   }
-];
+],
+v2 = {
+  "enumValues": null,
+  "nullable": false,
+  "plural": false,
+  "type": "String"
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
@@ -155,6 +161,20 @@ return {
                 "kind": "ScalarField",
                 "name": "viewDataField",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "likeLabel",
+                "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "unlikeLabel",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -192,18 +212,15 @@ return {
           "plural": false,
           "type": "Message"
         },
-        "feedback.message.text": {
-          "enumValues": null,
-          "nullable": false,
-          "plural": false,
-          "type": "String"
-        },
+        "feedback.message.text": (v2/*: any*/),
         "viewData": {
           "enumValues": null,
           "nullable": true,
           "plural": false,
           "type": "ViewData"
         },
+        "viewData.likeLabel": (v2/*: any*/),
+        "viewData.unlikeLabel": (v2/*: any*/),
         "viewData.viewDataField": {
           "enumValues": null,
           "nullable": true,
