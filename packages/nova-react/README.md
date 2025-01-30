@@ -202,7 +202,7 @@ You can nest as many interceptors as you need to either handle or pass events fu
 
 > Note for this to work you will need to use the Microsoft internal fork of the Relay compiler that includes the added functionality.
 
-Localized strings are provided to components through GraphQL fragments. For simple strings these will be typed as `string` and can be used directly. For strings that include placeholders Relay the compiler will type them as `StringWithPlaceholders` from `@nova/react`.
+Localized strings are provided to components through GraphQL fragments. For simple strings these will be typed as `string` and can be used directly. For strings that include placeholders the Relay compiler will type them as `StringWithPlaceholders` from `@nova/react`.
 
 This is an opaque type that includes the placeholders required by the string. You can use the `format` function provided by `useFormat` from `@nova/react` to format the string with the required values.
 
