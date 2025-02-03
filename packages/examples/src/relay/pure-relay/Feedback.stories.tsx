@@ -63,8 +63,8 @@ const meta = {
       resolvers: {
         ViewData: () => ({
           viewDataField: "View data field",
-          likeLabel: "Like (localized)",
-          unlikeLabel: "Unlike (localized)",
+          likeLabel: "Like",
+          unlikeLabel: "Unlike",
         }),
       },
     },
