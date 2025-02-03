@@ -179,7 +179,9 @@ export const LikeFailure: Story = {
         { mockClientData: true },
       );
     });
-    const likeButton = await container.findByRole("button", { name: "Like" });
+    const likeButton = await container.findByRole("button", {
+      name: '<mock-value-for-field-"likeLabel">', // No mock resolvers available here, so we use the generated value
+    });
     userEvent.click(likeButton);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
