@@ -65,6 +65,7 @@ const meta = {
           viewDataField: "View data field",
           likeLabel: "Like",
           unlikeLabel: "Unlike",
+          numberOfLikesLabel: "You have {count} likes",
         }),
       },
     },

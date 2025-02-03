@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a7de7b87da0b11da8f1b5328226ce349>>
+ * @generated SignedSource<<eb997f8935f1e6f8cca5a15b2f22a8d2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -175,6 +175,13 @@ return {
                 "kind": "ScalarField",
                 "name": "unlikeLabel",
                 "storageKey": null
+              },
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "numberOfLikesLabel",
+                "storageKey": null
               }
             ],
             "storageKey": null
@@ -220,6 +227,7 @@ return {
           "type": "ViewData"
         },
         "viewData.likeLabel": (v2/*: any*/),
+        "viewData.numberOfLikesLabel": (v2/*: any*/),
         "viewData.unlikeLabel": (v2/*: any*/),
         "viewData.viewDataField": {
           "enumValues": null,

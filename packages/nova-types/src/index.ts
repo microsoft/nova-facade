@@ -4,6 +4,6 @@ export * from "./nova-graphql.interface";
 export * from "./nova-eventing.interface";
 export type {
   NovaLocalization,
-  FormatFn,
   StringWithPlaceholders,
+  Placeholders,
 } from "./nova-localization";

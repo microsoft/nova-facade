@@ -3,7 +3,11 @@ import {
   getNovaEnvironmentForStory,
 } from "../shared/storybook-nova-decorator-shared";
 import type { MakeDecoratorResult } from "../shared/shared-utils";
-import { defaultBubble, defaultTrigger } from "../shared/shared-utils";
+import {
+  defaultBubble,
+  defaultLocalization,
+  defaultTrigger,
+} from "../shared/shared-utils";
 import type { WithNovaEnvironment } from "../shared/storybook-nova-decorator-shared";
 import { novaGraphql } from "./nova-relay-graphql";
 import { RelayMockPayloadGenerator } from "./test-utils";
@@ -18,11 +22,17 @@ import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import type { EnvironmentConfig } from "relay-runtime";
+import type { NovaLocalization } from "@nova/types";
 
 // We need this as `generateWithDefer` is overloaded and we want to get most relaxed return type
-type OverloadedReturnType<T> = 
-    T extends { (...args: any[]) : infer R; (...args: any[]) : infer R } ? R  :
-    T extends (...args: any[]) => infer R ? R : any
+type OverloadedReturnType<T> = T extends {
+  (...args: any[]): infer R;
+  (...args: any[]): infer R;
+}
+  ? R
+  : T extends (...args: any[]) => infer R
+  ? R
+  : any;
 
 type GraphitationGenerateArgs = Parameters<
   RelayMockPayloadGenerator["generate"]
@@ -37,17 +47,17 @@ type RelayGenerateReturn =
 
 type Options = { getEnvironmentOptions?: () => Partial<EnvironmentConfig> } & {
   generateFunction?: (...args: GraphitationGenerateArgs) => RelayGenerateReturn;
-};
+} & { localization?: NovaLocalization };
 
 export const getNovaRelayDecorator: (
   schema: GraphQLSchema,
   options?: Options,
 ) => MakeDecoratorResult = (
   schema,
-  { generateFunction, getEnvironmentOptions } = {},
+  { generateFunction, getEnvironmentOptions, localization } = {},
 ) => {
   const createEnvironment = () =>
-    createNovaRelayEnvironment(getEnvironmentOptions?.());
+    createNovaRelayEnvironment(getEnvironmentOptions?.(), localization);
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
@@ -68,6 +78,7 @@ export const getNovaRelayDecorator: (
 
 function createNovaRelayEnvironment(
   options?: Partial<EnvironmentConfig>,
+  localization?: NovaLocalization,
 ): NovaMockEnvironment<"storybook"> {
   const relayEnvironment = createMockEnvironment(options);
   const env: NovaMockEnvironment<"storybook"> = {
@@ -89,6 +100,7 @@ function createNovaRelayEnvironment(
     eventing: {
       bubble: defaultBubble,
     },
+    localization: localization ?? defaultLocalization,
   };
   return env;
 }

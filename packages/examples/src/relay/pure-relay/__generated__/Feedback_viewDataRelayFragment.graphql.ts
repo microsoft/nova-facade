@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<aee1bd0a8dee1a323da7dd772799d9ba>>
+ * @generated SignedSource<<acdc9ca01169f7513c581072d20f30c8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,6 +12,7 @@ import { ReaderFragment } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
 export type Feedback_viewDataRelayFragment$data = {
   readonly likeLabel: string;
+  readonly numberOfLikesLabel: string;
   readonly unlikeLabel: string;
   readonly viewDataField: string | null | undefined;
   readonly " $fragmentType": "Feedback_viewDataRelayFragment";
@@ -50,6 +51,13 @@ const node: ReaderFragment = {
           "kind": "ScalarField",
           "name": "unlikeLabel",
           "storageKey": null
+        },
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "numberOfLikesLabel",
+          "storageKey": null
         }
       ]
     }
@@ -58,6 +66,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "bd429e7ff49487371eade969c3b2f56b";
+(node as any).hash = "803cadfd6f534eba6c419c1f3c681c73";
 
 export default node;

@@ -12,7 +12,11 @@ import {
   type WithNovaEnvironment,
 } from "../shared/storybook-nova-decorator-shared";
 import type { MakeDecoratorResult } from "../shared/shared-utils";
-import { defaultTrigger, defaultBubble } from "../shared/shared-utils";
+import {
+  defaultTrigger,
+  defaultBubble,
+  defaultLocalization,
+} from "../shared/shared-utils";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
@@ -63,6 +67,7 @@ function createNovaEnvironment(
     eventing: {
       bubble: defaultBubble,
     },
+    localization: defaultLocalization,
   };
   return env;
 }

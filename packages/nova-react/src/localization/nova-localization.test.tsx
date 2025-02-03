@@ -57,4 +57,39 @@ describe(useFormat, () => {
       name: "World",
     });
   });
+
+  it("works in the fallback scenario where the typ of the string with placeholders is a string (aka, no compiler support)", () => {
+    expect.assertions(3);
+
+    const formatFn = jest.fn();
+    const localization: NovaLocalization = {
+      useFormat: jest.fn().mockReturnValue(formatFn),
+    };
+
+    const TestPassedContextComponent: React.FC = () => {
+      const format = useFormat();
+
+      const greeting = "Hello, {name}!" as const;
+
+      format(greeting, {
+        name: "World",
+      });
+
+      return null;
+    };
+
+    render(
+      <NovaLocalizationProvider localization={localization}>
+        <TestPassedContextComponent />
+      </NovaLocalizationProvider>,
+    );
+
+    // twice due to strict mode
+    expect(localization.useFormat).toBeCalledTimes(2);
+    expect(formatFn).toBeCalledTimes(2);
+
+    expect(formatFn).toBeCalledWith("Hello, {name}!", {
+      name: "World",
+    });
+  });
 });

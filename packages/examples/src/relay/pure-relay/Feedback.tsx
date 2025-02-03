@@ -7,6 +7,7 @@ import {
   useFeedbackTelemetry,
 } from "../../events/helpers";
 import type { Feedback_viewDataRelayFragment$key } from "./__generated__/Feedback_viewDataRelayFragment.graphql";
+import { useFormat } from "@nova/react";
 
 type Props = {
   feedback: Feedback_feedbackRelayFragment$key;
@@ -28,6 +29,7 @@ export const Feedback_viewDataRelayFragment = graphql`
     viewDataField
     likeLabel
     unlikeLabel
+    numberOfLikesLabel
   }
 `;
 
@@ -55,6 +57,8 @@ export const FeedbackComponent = (props: Props) => {
 
   const feedbackTelemetry = useFeedbackTelemetry();
 
+  const format = useFormat();
+
   React.useEffect(() => {
     return () => {
       feedbackTelemetry("FeedbackComponentUnmounted");
@@ -74,6 +78,7 @@ export const FeedbackComponent = (props: Props) => {
         <div style={{ color: "red" }}>{errorMessage}</div>
       )}
       Feedback: {feedback.message.text}
+      <div>{format(viewData.numberOfLikesLabel, { count: 2 })}</div>
       <div>{viewData.viewDataField}</div>
       <button
         id="likeButton"

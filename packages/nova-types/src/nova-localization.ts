@@ -5,7 +5,7 @@ export type StringWithPlaceholders<T extends Record<string, string | number>> =
     [LocalizedString]: T;
   };
 
-type Placeholders<T> = T extends StringWithPlaceholders<infer P>
+export type Placeholders<T> = T extends StringWithPlaceholders<infer P>
   ? keyof P extends never // Make sure that the placeholder object is not empty
     ? never
     : P
