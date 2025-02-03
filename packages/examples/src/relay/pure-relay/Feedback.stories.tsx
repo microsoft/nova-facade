@@ -176,12 +176,18 @@ export const LikeFailure: Story = {
         operation,
         {
           Feedback: () => sampleFeedback,
+          ViewData: () => ({
+            viewDataField: "View data field",
+            likeLabel: "Like",
+            unlikeLabel: "Unlike",
+            numberOfLikesLabel: "You have {count} likes",
+          }),
         },
         { mockClientData: true },
       );
     });
     const likeButton = await container.findByRole("button", {
-      name: '<mock-value-for-field-"likeLabel">', // No mock resolvers available here, so we use the generated value
+      name: "Like",
     });
     userEvent.click(likeButton);
     await waitFor(async () => {

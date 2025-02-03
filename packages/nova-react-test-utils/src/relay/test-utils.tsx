@@ -9,7 +9,6 @@ import { novaGraphql } from "./nova-relay-graphql";
 import { createMockEnvironment } from "relay-test-utils";
 import { RelayEnvironmentProvider } from "react-relay";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
-import { NovaLocalizationProvider } from "@nova/react";
 import { defaultLocalization } from "../shared/shared-utils";
 
 export class RelayMockPayloadGenerator {
