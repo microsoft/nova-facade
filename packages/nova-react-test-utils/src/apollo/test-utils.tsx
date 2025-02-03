@@ -9,6 +9,7 @@ import { generate as payloadGenerator } from "@graphitation/graphql-js-operation
 import type { GraphQLTaggedNode } from "@nova/react";
 import type { NovaGraphQL } from "@nova/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
+import { defaultLocalization } from "../shared/shared-utils";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
@@ -52,6 +53,7 @@ export function createNovaApolloEnvironment(
     providerWrapper: ({ children }) => (
       <ApolloProvider client={client}>{children}</ApolloProvider>
     ),
+    localization: defaultLocalization,
   };
   return env;
 }
