@@ -71,11 +71,9 @@ export function createNovaRelayMockEnvironment(
     localization: defaultLocalization,
     providerWrapper: ({ children }: React.PropsWithChildren<unknown>) => (
       <RelayEnvironmentProvider environment={relayEnvironment}>
-        <NovaLocalizationProvider localization={defaultLocalization}>
-          <React.Suspense fallback={<div>Component suspended...</div>}>
-            {children}
-          </React.Suspense>
-        </NovaLocalizationProvider>
+        <React.Suspense fallback={<div>Component suspended...</div>}>
+          {children}
+        </React.Suspense>
       </RelayEnvironmentProvider>
     ),
   };
