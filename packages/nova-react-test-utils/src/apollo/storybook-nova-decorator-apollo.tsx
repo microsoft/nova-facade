@@ -4,7 +4,7 @@ import * as React from "react";
 import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import type { MockFunctions } from "@graphitation/apollo-mock-client";
 import { createMockClient } from "@graphitation/apollo-mock-client";
-import type { NovaGraphQL } from "@nova/types";
+import type { NovaGraphQL, NovaLocalization } from "@nova/types";
 import { ApolloProvider } from "@apollo/client";
 import {
   getDecorator,
@@ -25,13 +25,17 @@ type MockClientOptions = Parameters<typeof createMockClient>[1];
 
 type Options = MockClientOptions & {
   generateFunction?: typeof ApolloMockPayloadGenerator.generate;
-};
+} & { localization?: NovaLocalization };
 
 export const getNovaApolloDecorator: (
   schema: GraphQLSchema,
   options?: Options,
-) => MakeDecoratorResult = (schema, { generateFunction, ...rest } = {}) => {
-  const createEnvironment = () => createNovaEnvironment(schema, rest);
+) => MakeDecoratorResult = (
+  schema,
+  { generateFunction, localization, ...rest } = {},
+) => {
+  const createEnvironment = () =>
+    createNovaEnvironment(schema, rest, localization);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: NovaMockEnvironment<"storybook">,
@@ -50,6 +54,7 @@ export const getNovaApolloDecorator: (
 function createNovaEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
+  localization?: NovaLocalization,
 ): NovaMockEnvironment<"storybook"> {
   const client = createMockClient(schema, options);
   const env: NovaMockEnvironment<"storybook"> = {
@@ -67,7 +72,7 @@ function createNovaEnvironment(
     eventing: {
       bubble: defaultBubble,
     },
-    localization: defaultLocalization,
+    localization: localization ?? defaultLocalization,
   };
   return env;
 }
