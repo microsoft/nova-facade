@@ -63,6 +63,9 @@ const meta = {
       resolvers: {
         ViewData: () => ({
           viewDataField: "View data field",
+          likeLabel: "Like",
+          unlikeLabel: "Unlike",
+          numberOfLikesLabel: "You have {count} likes",
         }),
       },
     },
@@ -173,11 +176,19 @@ export const LikeFailure: Story = {
         operation,
         {
           Feedback: () => sampleFeedback,
+          ViewData: () => ({
+            viewDataField: "View data field",
+            likeLabel: "Like",
+            unlikeLabel: "Unlike",
+            numberOfLikesLabel: "You have {count} likes",
+          }),
         },
         { mockClientData: true },
       );
     });
-    const likeButton = await container.findByRole("button", { name: "Like" });
+    const likeButton = await container.findByRole("button", {
+      name: "Like",
+    });
     userEvent.click(likeButton);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();

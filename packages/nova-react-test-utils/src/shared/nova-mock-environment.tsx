@@ -4,14 +4,19 @@ import type {
   NovaCentralizedCommanding,
   NovaGraphQL,
   NovaEventing,
+  NovaLocalization,
 } from "@nova/types";
 import {
   mapEventMetadata,
   NovaCentralizedCommandingProvider,
   NovaEventingProvider,
   NovaGraphQLProvider,
+  NovaLocalizationProvider,
 } from "@nova/react";
-import type { TestingEnvironmentVariant, GraphQLClientVariant } from "./shared-utils";
+import type {
+  TestingEnvironmentVariant,
+  GraphQLClientVariant,
+} from "./shared-utils";
 
 type Commanding<T extends TestingEnvironmentVariant> = T extends "test"
   ? jest.Mocked<NovaCentralizedCommanding>
@@ -34,6 +39,7 @@ export interface NovaMockEnvironment<
   providerWrapper: ComponentType<PropsWithChildren>;
   graphql: E;
   type: GraphQLClientVariant;
+  localization: NovaLocalization;
 }
 
 export interface NovaMockEnvironmentProviderProps<
@@ -57,11 +63,13 @@ export const NovaMockEnvironmentProvider = <
     >
       <NovaCentralizedCommandingProvider commanding={environment.commanding}>
         <NovaGraphQLProvider graphql={environment.graphql}>
-          {React.createElement(
-            environment.providerWrapper,
-            undefined,
-            children,
-          )}
+          <NovaLocalizationProvider localization={environment.localization}>
+            {React.createElement(
+              environment.providerWrapper,
+              undefined,
+              children,
+            )}
+          </NovaLocalizationProvider>
         </NovaGraphQLProvider>
       </NovaCentralizedCommandingProvider>
     </NovaEventingProvider>

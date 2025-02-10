@@ -9,6 +9,7 @@ import { novaGraphql } from "./nova-relay-graphql";
 import { createMockEnvironment } from "relay-test-utils";
 import { RelayEnvironmentProvider } from "react-relay";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
+import { defaultLocalization } from "../shared/shared-utils";
 
 export class RelayMockPayloadGenerator {
   public gqlSchema: GraphQLSchema;
@@ -66,6 +67,7 @@ export function createNovaRelayMockEnvironment(
       ...novaGraphql,
       mock: relayEnvironment.mock,
     },
+    localization: defaultLocalization,
     providerWrapper: ({ children }: React.PropsWithChildren<unknown>) => (
       <RelayEnvironmentProvider environment={relayEnvironment}>
         <React.Suspense fallback={<div>Component suspended...</div>}>

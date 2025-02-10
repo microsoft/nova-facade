@@ -1,0 +1,12 @@
+extend type ViewData {
+  likeLabel: String!
+    @localizedString(text: "Like", comment: "Label for the like button")
+  unlikeLabel: String!
+    @localizedString(text: "Unlike", comment: "Label for the unlike button")
+  numberOfLikesLabel: String!
+    @localizedString(
+      text: "You have {count} likes"
+      comment: "Label for the number of likes"
+      placeholders: [{ name: "count", comment: "The number of likes" }]
+    )
+}
