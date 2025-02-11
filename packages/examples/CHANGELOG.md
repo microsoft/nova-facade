@@ -1,8 +1,23 @@
 # Change Log - @nova/examples
 
-This log was last generated on Wed, 29 Jan 2025 10:39:19 GMT and should not be manually modified.
+This log was last generated on Tue, 11 Feb 2025 14:14:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.0
+
+Tue, 11 Feb 2025 14:14:19 GMT
+
+### Minor changes
+
+- Add example for localization (mark@thedutchies.com)
+- Bump @nova/react to v2.7.0
+- Bump @nova/react-test-utils to v6.1.0
+- Bump @nova/types to v1.6.0
+
+### Patches
+
+- ignore __generated__ (pavelglac@microsoft.com)
 
 ## 1.6.0
 

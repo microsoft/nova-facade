@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 11 Feb 2025 14:14:19 GMT",
+      "tag": "@nova/types_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/types",
+            "commit": "a9573acafea8547d6140e920f899f2c2f51ce7ef",
+            "comment": "Add localization support"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Sep 2024 19:04:51 GMT",
       "tag": "@nova/types_v1.5.1",
       "version": "1.5.1",

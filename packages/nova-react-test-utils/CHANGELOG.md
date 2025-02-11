@@ -1,8 +1,18 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Mon, 20 Jan 2025 15:40:11 GMT and should not be manually modified.
+This log was last generated on Tue, 11 Feb 2025 14:14:19 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 6.1.0
+
+Tue, 11 Feb 2025 14:14:19 GMT
+
+### Minor changes
+
+- Add example and testing support for localization (mark@thedutchies.com)
+- Bump @nova/react to v2.7.0
+- Bump @nova/types to v1.6.0
 
 ## 6.0.2
 

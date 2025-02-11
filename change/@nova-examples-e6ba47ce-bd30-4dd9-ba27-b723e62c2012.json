@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "ignore __generated__",
-  "packageName": "@nova/examples",
-  "email": "pavelglac@microsoft.com",
-  "dependentChangeType": "patch"
-}

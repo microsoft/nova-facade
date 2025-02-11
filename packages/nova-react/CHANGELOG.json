@@ -2,6 +2,27 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Tue, 11 Feb 2025 14:14:19 GMT",
+      "tag": "@nova/react_v2.7.0",
+      "version": "2.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "mark@thedutchies.com",
+            "package": "@nova/react",
+            "commit": "a9573acafea8547d6140e920f899f2c2f51ce7ef",
+            "comment": "Add localization support"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react",
+            "comment": "Bump @nova/types to v1.6.0",
+            "commit": "a9573acafea8547d6140e920f899f2c2f51ce7ef"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jan 2025 15:40:11 GMT",
       "tag": "@nova/react_v2.6.7",
       "version": "2.6.7",
