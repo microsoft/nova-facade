@@ -57,6 +57,7 @@ extends:
                 persistCredentials: true # fix for beachball: https://github.com/microsoft/beachball/issues/674
               - script: yarn
                 displayName: yarn
+                fetchDepth: 2
               - script: |
                   yarn ci
                 displayName: build and test [test]
