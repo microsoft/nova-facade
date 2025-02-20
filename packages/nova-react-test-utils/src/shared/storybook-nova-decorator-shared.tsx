@@ -149,7 +149,7 @@ export const getNovaEnvironmentForStory = (
     | undefined;
   if (!env) {
     throw new Error(
-      `No environment found for story "${context.storyId}". Did you forget to add the "withNovaEnvironment" decorator or pass proper context to "play" function inside your unit test?`,
+      `No environment found for story "${context.id}". Did you forget to add the "withNovaEnvironment" decorator or pass proper context to "play" function inside your unit test?`,
     );
   }
   return env;
