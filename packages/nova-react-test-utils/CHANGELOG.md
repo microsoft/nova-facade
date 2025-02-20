@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 11 Feb 2025 14:14:19 GMT and should not be manually modified.
+This log was last generated on Thu, 20 Feb 2025 14:14:42 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 6.1.1
+
+Thu, 20 Feb 2025 14:14:42 GMT
+
+### Patches
+
+- fix access to property that doens't exist anymore (stwilczy@microsoft.com)
 
 ## 6.1.0
 

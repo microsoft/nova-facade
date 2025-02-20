@@ -1,7 +1,7 @@
 {
   "name": "@nova/examples",
   "license": "MIT",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
@@ -19,7 +19,7 @@
   "dependencies": {
     "@nova/graphql-compiler": "1.0.2",
     "@nova/react": "2.7.0",
-    "@nova/react-test-utils": "6.1.0",
+    "@nova/react-test-utils": "6.1.1",
     "@nova/types": "1.6.0",
     "graphql": "^15.5.0",
     "react": "^18.3.1",

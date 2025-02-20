@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 20 Feb 2025 14:14:42 GMT",
+      "tag": "@nova/react-test-utils_v6.1.1",
+      "version": "6.1.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "3282679be87f90e8c93cf25dce7f2361c1434669",
+            "comment": "fix access to property that doens't exist anymore"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 11 Feb 2025 14:14:19 GMT",
       "tag": "@nova/react-test-utils_v6.1.0",
       "version": "6.1.0",
