@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "add example for client only queries",
+  "packageName": "@nova/examples",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}

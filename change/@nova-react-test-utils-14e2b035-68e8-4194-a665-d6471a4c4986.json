@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "throw error for client only queries for better DX",
+  "packageName": "@nova/react-test-utils",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}
