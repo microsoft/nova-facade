@@ -3,6 +3,7 @@ type Mutation {
 }
 type Query {
   feedback(id: ID!): Feedback!
+  serverField: String!
 }
 
 type FeedbackLikeMutationResult {
