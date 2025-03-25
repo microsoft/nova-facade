@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 20 Feb 2025 14:14:42 GMT and should not be manually modified.
+This log was last generated on Tue, 25 Mar 2025 10:08:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.2
+
+Tue, 25 Mar 2025 10:08:16 GMT
+
+### Patches
+
+- test release (pavelglac@gmail.com)
 
 ## 1.7.1
 
