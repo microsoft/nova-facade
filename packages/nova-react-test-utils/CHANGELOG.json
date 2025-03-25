@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 25 Mar 2025 16:25:24 GMT",
+      "tag": "@nova/react-test-utils_v6.2.0",
+      "version": "6.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "868b11ad495500832b8ca845d4772a547a1888fa",
+            "comment": "throw error for client only queries for better DX"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 20 Feb 2025 14:14:42 GMT",
       "tag": "@nova/react-test-utils_v6.1.1",
       "version": "6.1.1",

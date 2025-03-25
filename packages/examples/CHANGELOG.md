@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 25 Mar 2025 10:08:16 GMT and should not be manually modified.
+This log was last generated on Tue, 25 Mar 2025 16:25:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.3
+
+Tue, 25 Mar 2025 16:25:24 GMT
+
+### Patches
+
+- add example for client only queries (stwilczy@microsoft.com)
+- Bump @nova/react-test-utils to v6.2.0
 
 ## 1.7.2
 
