@@ -13,7 +13,7 @@ describe("ViewDataOnly", () => {
     expect(screen.getByText(/This is a view data field/i)).toBeInTheDocument();
   });
 
-  it("throws an expcetion when only client fields are selected in test query", () => {
+  it("throws an exception when only client fields are selected in test query", () => {
     expect(() => {
       render(<ViewDataOnlyStory />);
     }).toThrowErrorMatchingInlineSnapshot(
