@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "ES6",
+    "target": "ES2020",
+    "module": "ES2020",
     "moduleResolution": "Node",
     "declaration": true,
     "declarationMap": true,
@@ -10,5 +10,6 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "noPropertyAccessFromIndexSignature": true,
+    "allowSyntheticDefaultImports": true,
   }
 }
