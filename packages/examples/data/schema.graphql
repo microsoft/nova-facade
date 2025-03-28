@@ -1,16 +1,21 @@
+interface Node {
+  id: ID!
+}
+
 type Mutation {
   feedbackLike(input: FeedbackLikeInput!): FeedbackLikeMutationResult!
 }
 type Query {
   feedback(id: ID!): Feedback!
   serverField: String!
+  node(id: ID!): Node
 }
 
 type FeedbackLikeMutationResult {
   feedback: Feedback!
 }
 
-type Feedback {
+type Feedback implements Node {
   id: ID!
   message: Message!
   doesViewerLike: Boolean!

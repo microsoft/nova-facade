@@ -13,9 +13,28 @@ import { FeedbackContainer } from "./FeedbackContainer";
 
 const schema = getSchema();
 
+type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
+
 const meta = {
   component: FeedbackContainer,
   decorators: [getNovaDecorator(schema)],
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
+        Node: ({ args }) => {
+          const { id } = args as { id: string };
+
+          if (id.startsWith("feedback:")) {
+            return {
+              __typename: "Feedback",
+              id,
+            };
+          }
+          return undefined;
+        },
+      },
+    },
+  } satisfies NovaParams,
 } satisfies Meta<typeof FeedbackContainer>;
 
 export default meta;
@@ -30,7 +49,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
 };
 
 export const Liked: Story = {
@@ -43,7 +62,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
 };
 
 export const Like: Story = {
@@ -59,7 +78,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -72,7 +91,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -103,7 +122,7 @@ export const QueryFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -121,11 +140,11 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParams,
 };
 
 const sampleFeedback = {
-  id: "42",
+  id: "feedback:42",
   message: {
     text: "Feedback title",
   },

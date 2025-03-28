@@ -20,4 +20,4 @@ Then inside your package.json add the compiler to your `scripts`:
 }
 ```
 
-**NOTE**: Both `duct-tape-compiler` and `@nova/graphql-compiler` are not compatible with Typescript 5.x. When you upgrade to Typescript 5.x, make sure to force resolution to Typescript 4.x for both compilers and it's dependencies like `relay-compiler-language-graphitation`.
+**NOTE**: `@nova/graphql-compiler` is not compatible with Typescript 5.x. When you upgrade to Typescript 5.x, make sure to force resolution to Typescript 4.x for both compilers and it's dependencies like `relay-compiler-language-graphitation`.

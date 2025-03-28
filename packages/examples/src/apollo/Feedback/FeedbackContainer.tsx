@@ -9,7 +9,6 @@ const FeedbackContainerQuery = graphql`
       ...Feedback_feedbackFragment
     }
   }
-  ${Feedback_feedbackFragment}
 `;
 
 export const FeedbackContainer = () => {

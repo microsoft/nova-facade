@@ -10,7 +10,7 @@ import type { Meta } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
-import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
+import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import * as React from "react";
 import type { events } from "../../events/events";
@@ -26,11 +26,23 @@ const meta = {
             ...Feedback_feedbackFragment
           }
         }
-        ${Feedback_feedbackFragment}
       `,
       variables: { id: "42" },
       referenceEntries: {
         feedback: (data) => data?.feedback,
+      },
+      resolvers: {
+        Node: ({ args }) => {
+          const { id } = args as { id: string };
+
+          if (id.startsWith("feedback:")) {
+            return {
+              __typename: "Feedback",
+              id,
+            };
+          }
+          return undefined;
+        },
       },
     },
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
@@ -150,7 +162,7 @@ export const WithDeleteDialog: Story = {
 };
 
 const sampleFeedback = {
-  id: "42",
+  id: "feedback:42",
   message: {
     text: "Feedback title",
   },
