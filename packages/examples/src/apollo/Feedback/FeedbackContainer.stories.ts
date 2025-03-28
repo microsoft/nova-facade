@@ -21,7 +21,11 @@ const meta = {
   parameters: {
     novaEnvironment: {
       resolvers: {
+        Feedback: () => ({
+          id: "feedback:42",
+        }),
         Node: ({ args }) => {
+          console.log("args", args);
           const { id } = args as { id: string };
 
           if (id.startsWith("feedback:")) {
