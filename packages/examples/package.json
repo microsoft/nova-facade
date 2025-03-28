@@ -46,7 +46,6 @@
     "@graphql-codegen/typescript-resolvers": "^3.1.1",
     "@graphql-tools/webpack-loader": "^6.7.1",
     "@storybook/addon-essentials": "^8.6.11",
-    "@storybook/addon-interactions": "^8.6.11",
     "@storybook/addon-links": "^8.6.11",
     "@storybook/react": "^8.6.11",
     "@storybook/react-vite": "^8.6.11",
