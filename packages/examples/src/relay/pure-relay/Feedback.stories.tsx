@@ -10,7 +10,7 @@ import {
 } from "@nova/react-test-utils/relay";
 import { MockPayloadGenerator } from "relay-test-utils";
 import type { Meta } from "@storybook/react";
-import { userEvent, waitFor, within, expect } from "@storybook/test";
+import { userEvent, waitFor, within, expect, fn } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryRelayQuery } from "./__generated__/FeedbackStoryRelayQuery.graphql";
@@ -18,7 +18,7 @@ import { getSchema } from "../../testing-utils/getSchema";
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
-
+import { type withErrorBoundaryParameters } from "../../testing-utils/deorators";
 const schema = getSchema();
 
 const novaDecorator = getNovaDecorator(schema, {
@@ -131,13 +131,19 @@ export const Like: Story = {
   },
 };
 
+const mockOnError = fn<[Error]>();
+
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
     parameters: {
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+      errorBoundary: {
+        onError: mockOnError,
+      },
+    } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap> &
+      withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -147,6 +153,12 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         await expect(operation).toBeDefined();
       });
       mock.rejectMostRecentOperation(new Error("Query failed"));
+
+      await waitFor(() => {
+        expect(mockOnError).toHaveBeenCalledTimes(1);
+      });
+      const call = mockOnError.mock.calls[0];
+      expect(call[0].message).toBe("Query failed");
     },
   };
 
