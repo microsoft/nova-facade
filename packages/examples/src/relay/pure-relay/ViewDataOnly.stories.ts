@@ -66,7 +66,7 @@ export const ViewDataOnlyStory: Story = {
   } satisfies withErrorBoundaryParameters,
   play: async (context) => {
     const canvas = within(context.canvasElement);
-    await canvas.findByText("Error!");
+    await canvas.findByText("Error in story!");
 
     await waitFor(() => {
       expect(mockOnError).toHaveBeenCalledTimes(1);

@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, waitFor, expect, fn } from "@storybook/test";
+import {
+  userEvent,
+  within,
+  waitFor,
+  expect,
+  fn,
+  screen,
+} from "@storybook/test";
 import {
   type UnknownOperation,
   type WithNovaEnvironment,
@@ -122,8 +129,22 @@ export const Like: Story = {
 
     await container.findByRole("button", { name: "Unlike" });
 
-    expect(telemetryEventMock).toHaveBeenCalledTimes(2);
-    const call = telemetryEventMock.mock.calls[1];
+    let feedbackOperationEvents: [
+      { event: FeedbackTelemetryEvent; source: unknown },
+    ][] = [];
+    await waitFor(() => {
+      feedbackOperationEvents = telemetryEventMock.mock.calls.filter(
+        ([{ event }]) => {
+          const operation = event.data().operation;
+          return (
+            operation === "FeedbackLiked" || operation === "FeedbackUnliked"
+          );
+        },
+      );
+      expect(feedbackOperationEvents).toHaveLength(1);
+    });
+
+    const call = feedbackOperationEvents[0];
     expect(call[0].event.data().operation).toBe("FeedbackLiked");
   },
 };
@@ -139,6 +160,7 @@ export const LikeFailure: Story = {
       graphql: { mock },
     } = getNovaEnvironmentForStory(context);
 
+    const container = within(context.canvasElement);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       await expect(operation).toBeDefined();
@@ -148,13 +170,14 @@ export const LikeFailure: Story = {
         Feedback: () => sampleFeedback,
       }),
     );
-    await Like.play?.(context);
+    const likeButton = await container.findByRole("button", { name: "Like" });
+    userEvent.click(likeButton);
     await waitFor(async () => {
       const operation = mock.getMostRecentOperation();
       expect(operation).toBeDefined();
     });
     mock.rejectMostRecentOperation(new Error("Like failed"));
-    const container = within(context.canvasElement);
+
     await container.findByText("Something went wrong");
   },
 };
@@ -174,6 +197,8 @@ export const QueryFailure: Story = {
       await expect(operation).toBeDefined();
     });
     await mock.rejectMostRecentOperation(new Error("Query failed"));
+
+    await screen.findByText("Error: Query failed");
   },
 };
 

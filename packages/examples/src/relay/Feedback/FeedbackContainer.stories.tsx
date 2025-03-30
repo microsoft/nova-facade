@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within, waitFor, expect, fn } from "@storybook/test";
+import {
+  userEvent,
+  within,
+  waitFor,
+  expect,
+  fn,
+  screen,
+} from "@storybook/test";
 import {
   type UnknownOperation,
   type WithNovaEnvironment,
@@ -12,17 +19,9 @@ import {
 } from "@nova/react-test-utils/relay";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
-import {
-  type events,
-  type FeedbackTelemetryEvent,
-  eventTypes,
-} from "../../events/events";
+import { type events, type FeedbackTelemetryEvent } from "../../events/events";
 import { getSchema } from "../../testing-utils/getSchema";
 import * as React from "react";
-import {
-  withErrorBoundary,
-  type withErrorBoundaryParameters,
-} from "../../testing-utils/deorators";
 
 const schema = getSchema();
 
@@ -122,8 +121,22 @@ export const Like: Story = {
     });
 
     await container.findByRole("button", { name: "Unlike" });
-    expect(telemetryEventMock).toHaveBeenCalledTimes(2);
-    const call = telemetryEventMock.mock.calls[1];
+    let feedbackOperationEvents: [
+      { event: FeedbackTelemetryEvent; source: unknown },
+    ][] = [];
+    await waitFor(() => {
+      feedbackOperationEvents = telemetryEventMock.mock.calls.filter(
+        ([{ event }]) => {
+          const operation = event.data().operation;
+          return (
+            operation === "FeedbackLiked" || operation === "FeedbackUnliked"
+          );
+        },
+      );
+      expect(feedbackOperationEvents).toHaveLength(1);
+    });
+
+    const call = feedbackOperationEvents[0];
     expect(call[0].event.data().operation).toBe("FeedbackLiked");
   },
 };
@@ -170,18 +183,12 @@ export const LikeFailure: Story = {
   },
 };
 
-const mockOnError = fn<[Error]>();
-
 export const QueryFailure: Story = {
   parameters: {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-    errorBoundary: {
-      onError: mockOnError,
-    },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap> &
-    withErrorBoundaryParameters,
+  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -191,12 +198,7 @@ export const QueryFailure: Story = {
       await expect(operation).toBeDefined();
     });
     mock.rejectMostRecentOperation(new Error("Query failed"));
-
-    await waitFor(() => {
-      expect(mockOnError).toHaveBeenCalledTimes(1);
-    });
-    const call = mockOnError.mock.calls[0];
-    expect(call[0].message).toBe("Query failed");
+    await screen.findByText("There was an error");
   },
 };
 

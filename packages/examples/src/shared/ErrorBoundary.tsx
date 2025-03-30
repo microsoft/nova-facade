@@ -22,7 +22,7 @@ export class ErrorBoundary extends React.Component<
   }
   render() {
     if (this.state.hasError) {
-      return <div>Error!</div>;
+      return this.props.fallback ?? <div>Error!</div>;
     }
     return this.props.children;
   }
