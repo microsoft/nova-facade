@@ -16,6 +16,8 @@ import { getSchema } from "../../testing-utils/getSchema";
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
+import { fn } from "@storybook/test";
+import { type withErrorBoundaryParameters } from "../../testing-utils/deorators";
 
 const schema = getSchema();
 
@@ -111,13 +113,19 @@ export const Like: Story = {
   },
 };
 
+const mockOnError = fn();
+
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
     parameters: {
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+      errorBoundary: {
+        onError: mockOnError,
+      },
+    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap> &
+      withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -126,7 +134,13 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         const operation = mock.getMostRecentOperation();
         await expect(operation).toBeDefined();
       });
-      await mock.rejectMostRecentOperation(new Error("Query failed"));
+      mock.rejectMostRecentOperation(new Error("Query failed"));
+
+      await waitFor(() => {
+        expect(mockOnError).toHaveBeenCalledTimes(1);
+      });
+      const call = mockOnError.mock.calls[0];
+      expect((call[0] as Error).message).toBe("Query failed");
     },
   };
 
