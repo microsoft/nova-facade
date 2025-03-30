@@ -7,7 +7,7 @@ import {
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/apollo";
 import type { Meta } from "@storybook/react";
-import { expect, userEvent, waitFor, within } from "@storybook/test";
+import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
@@ -15,6 +15,7 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 import * as React from "react";
 import type { events } from "../../events/events";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
+import type { withErrorBoundaryParameters } from "../../testing-utils/deorators";
 
 const meta = {
   component: FeedbackComponent,
@@ -100,13 +101,19 @@ export const Like: Story = {
   },
 };
 
+const mockOnError = fn<[Error]>();
+
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
     parameters: {
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+      errorBoundary: {
+        onError: mockOnError,
+      },
+    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap> &
+      withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -116,6 +123,12 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         await expect(operation).toBeDefined();
       });
       await mock.rejectMostRecentOperation(new Error("Query failed"));
+
+      await waitFor(() => {
+        expect(mockOnError).toHaveBeenCalledTimes(1);
+      });
+      const call = mockOnError.mock.calls[0];
+      expect(call[0].message).toBe("Query failed");
     },
   };
 

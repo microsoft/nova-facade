@@ -113,7 +113,7 @@ export const Like: Story = {
   },
 };
 
-const mockOnError = fn();
+const mockOnError = fn<[Error]>();
 
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
@@ -140,7 +140,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         expect(mockOnError).toHaveBeenCalledTimes(1);
       });
       const call = mockOnError.mock.calls[0];
-      expect((call[0] as Error).message).toBe("Query failed");
+      expect(call[0].message).toBe("Query failed");
     },
   };
 
