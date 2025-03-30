@@ -38,9 +38,10 @@ export default defineConfig({
       },
     ],
     coverage: {
-      // 👇 Add this
       exclude: [
         ...coverageConfigDefaults.exclude,
+        "lib/**",
+        "src/testing-utils/**",
         "**/.storybook/**",
         // 👇 This pattern must align with the `stories` property of your `.storybook/main.ts` config
         "**/*.stories.*",
