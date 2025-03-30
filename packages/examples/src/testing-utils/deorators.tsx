@@ -4,12 +4,14 @@ import { ErrorBoundary } from "../shared/ErrorBoundary";
 
 export const withErrorBoundary: Decorator = (Story, context) => {
   const defaultProps: withErrorBoundaryParameters["errorBoundary"] = {
-    fallback: <div>Error!</div>,
+    fallback: <div>Error in story!</div>,
     onError: console.error,
   };
 
-  const errorBoundaryProps =
-    context.parameters["errorBoundary"] ?? defaultProps;
+  const errorBoundaryProps = {
+    ...defaultProps,
+    ...context.parameters?.["errorBoundary"],
+  };
   return (
     <ErrorBoundary {...errorBoundaryProps}>
       <Story />
@@ -18,5 +20,5 @@ export const withErrorBoundary: Decorator = (Story, context) => {
 };
 
 export type withErrorBoundaryParameters = {
-  errorBoundary: Omit<React.ComponentProps<typeof ErrorBoundary>, "children">;
+  errorBoundary?: Omit<React.ComponentProps<typeof ErrorBoundary>, "children">;
 };
