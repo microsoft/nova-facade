@@ -16,7 +16,9 @@ type ApolloNovaGraphQL = NovaGraphQL & {
 export type NovaMockEnvironment<T extends TestingEnvironmentVariant = "test"> =
   GenericNovaMockEnvironment<T, ApolloNovaGraphQL> & { type: "apollo" };
 
-export const NovaMockEnvironmentProvider = <T extends TestingEnvironmentVariant = "test">({
+export const NovaMockEnvironmentProvider = <
+  T extends TestingEnvironmentVariant = "test",
+>({
   children,
   environment,
 }: React.PropsWithChildren<

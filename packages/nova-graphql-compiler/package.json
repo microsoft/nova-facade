@@ -1,38 +1,38 @@
 {
   "name": "@nova/graphql-compiler",
-  "license": "MIT",
   "version": "1.0.2",
-  "main": "./src/cli.js",
-  "scripts": {
-    "lint": "monorepo-scripts lint",
-    "test": "monorepo-scripts test",
-    "just": "monorepo-scripts"
-  },
-  "bin": {
-    "nova-graphql-compiler": "./src/cli.js"
-  },
-  "dependencies": {
-    "relay-runtime": "12.0.0",
-    "graphql": "^15.5.0",
-    "relay-compiler": "^12.0.0",
-    "relay-compiler-language-graphitation": "^0.8.2",
-    "yargs": "^16.2.0",
-    "typescript": "<5"
-  },
-  "devDependencies": {
-    "cross-spawn": "^7.0.0",
-    "monorepo-scripts": "*"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
     "directory": "packages/nova-graphql-compiler"
   },
+  "license": "MIT",
   "sideEffects": false,
-  "access": "public",
   "exports": {
     ".": {
       "require": "./src/cli.js"
     }
-  }
+  },
+  "main": "./src/cli.js",
+  "bin": {
+    "nova-graphql-compiler": "./src/cli.js"
+  },
+  "scripts": {
+    "just": "monorepo-scripts",
+    "lint": "monorepo-scripts lint",
+    "test": "monorepo-scripts test"
+  },
+  "dependencies": {
+    "graphql": "^15.5.0",
+    "relay-compiler": "^12.0.0",
+    "relay-compiler-language-graphitation": "^0.8.2",
+    "relay-runtime": "12.0.0",
+    "typescript": "<5",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "cross-spawn": "^7.0.0",
+    "monorepo-scripts": "*"
+  },
+  "access": "public"
 }

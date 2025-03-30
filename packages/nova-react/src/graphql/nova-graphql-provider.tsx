@@ -10,14 +10,15 @@ interface NovaGraphQLProviderProps {
   children?: React.ReactNode | undefined;
 }
 
-export const NovaGraphQLProvider: React.FunctionComponent<NovaGraphQLProviderProps> =
-  ({ children, graphql }) => {
-    return (
-      <NovaGraphQLContext.Provider value={graphql}>
-        {children}
-      </NovaGraphQLContext.Provider>
-    );
-  };
+export const NovaGraphQLProvider: React.FunctionComponent<
+  NovaGraphQLProviderProps
+> = ({ children, graphql }) => {
+  return (
+    <NovaGraphQLContext.Provider value={graphql}>
+      {children}
+    </NovaGraphQLContext.Provider>
+  );
+};
 NovaGraphQLProvider.displayName = "NovaGraphQLProvider";
 
 export const useNovaGraphQL = (): NovaGraphQL => {
