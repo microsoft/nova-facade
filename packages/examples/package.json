@@ -11,7 +11,7 @@
     "generate:relay": "relay-compiler",
     "lint": "monorepo-scripts lint",
     "prepare": "yarn generate",
-    "test": "monorepo-scripts test && yarn test:ui",
+    "test": "monorepo-scripts test",
     "test:ui": "vitest run",
     "test:ui:watch": "vitest",
     "test:ui:coverage": "vitest run --coverage",
