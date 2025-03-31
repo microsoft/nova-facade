@@ -11,6 +11,7 @@ import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import { defaultNodeResolver } from "../../testing-utils/resolvers";
+import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 
 const schema = getSchema();
 
@@ -18,7 +19,7 @@ type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
 const meta = {
   component: FeedbackContainer,
-  decorators: [getNovaDecorator(schema)],
+  decorators: [getNovaDecorator(schema, { cache: cacheConfig })],
   parameters: {
     novaEnvironment: {
       resolvers: {

@@ -15,10 +15,11 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 import * as React from "react";
 import type { events } from "../../events/events";
 import { defaultNodeResolver } from "../../testing-utils/resolvers";
+import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 
 const meta = {
   component: FeedbackComponent,
-  decorators: [getNovaDecorator(getSchema())],
+  decorators: [getNovaDecorator(getSchema(), { cache: cacheConfig })],
   parameters: {
     novaEnvironment: {
       query: graphql`
