@@ -1,19 +1,15 @@
 import type { Meta } from "@storybook/react";
-import { getSchema } from "../../testing-utils/getSchema";
+import { getSchema } from "../../../testing-utils/getSchema";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
-  getNovaEnvironmentForStory,
   type WithNovaEnvironment,
-  EventingInterceptor,
-  getOperationName,
-  getOperationType,
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
 import { MockPayloadGenerator } from "relay-test-utils";
-import { ViewDataOnly } from "./ViewDataOnly";
-import type { TypeMap } from "../../__generated__/schema.all.interface";
+import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlyStoryRelayQuery.graphql";
+import { ViewDataOnly } from "./ViewDataOnly";
 
 const schema = getSchema();
 

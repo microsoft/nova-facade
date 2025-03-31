@@ -4,6 +4,7 @@ type Mutation {
 type Query {
   feedback(id: ID!): Feedback!
   serverField: String!
+  serverObjectWithClientExtension: ServerObjectWithClientExtension!
 }
 
 type FeedbackLikeMutationResult {
@@ -23,4 +24,8 @@ type Message {
 input FeedbackLikeInput {
   feedbackId: ID!
   doesViewerLike: Boolean!
+}
+
+type ServerObjectWithClientExtension {
+  serverField: String!
 }

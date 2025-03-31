@@ -5,3 +5,7 @@ extend type Query {
 type ViewData {
   viewDataField: String
 }
+
+extend type ServerObjectWithClientExtension {
+  clientExtension: String
+}
