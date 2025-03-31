@@ -2025,17 +2025,6 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/addon-interactions@^8.6.11":
-  version "8.6.11"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-interactions/-/addon-interactions-8.6.11.tgz#2e76c1c32266492e6e2d80fa95f786b28c34738c"
-  integrity sha512-j9wUf8lQF922eC2HbWG4LdeflOu/togry80QB+Sqxs4+dg4iWhjxmN8gWav14/oa0vJBLN7Z2Tr4ifsJUEwRkg==
-  dependencies:
-    "@storybook/global" "^5.0.0"
-    "@storybook/instrumenter" "8.6.11"
-    "@storybook/test" "8.6.11"
-    polished "^4.2.2"
-    ts-dedent "^2.2.0"
-
 "@storybook/addon-links@^8.6.11":
   version "8.6.11"
   resolved "https://registry.yarnpkg.com/@storybook/addon-links/-/addon-links-8.6.11.tgz#cdd63ee3a38e6c370609bcbf5e5b91fe8b290b4c"
