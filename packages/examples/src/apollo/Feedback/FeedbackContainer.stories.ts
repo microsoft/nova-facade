@@ -10,6 +10,7 @@ import {
 import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
 
 const schema = getSchema();
 
@@ -24,18 +25,7 @@ const meta = {
         Feedback: () => ({
           id: "feedback:42",
         }),
-        Node: ({ args }) => {
-          console.log("args", args);
-          const { id } = args as { id: string };
-
-          if (id.startsWith("feedback:")) {
-            return {
-              __typename: "Feedback",
-              id,
-            };
-          }
-          return undefined;
-        },
+        Node: defaultNodeResolver,
       },
     },
   } satisfies NovaParams,

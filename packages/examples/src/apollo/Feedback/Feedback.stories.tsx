@@ -14,6 +14,7 @@ import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import * as React from "react";
 import type { events } from "../../events/events";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
 
 const meta = {
   component: FeedbackComponent,
@@ -32,17 +33,7 @@ const meta = {
         feedback: (data) => data?.feedback,
       },
       resolvers: {
-        Node: ({ args }) => {
-          const { id } = args as { id: string };
-
-          if (id.startsWith("feedback:")) {
-            return {
-              __typename: "Feedback",
-              id,
-            };
-          }
-          return undefined;
-        },
+        Node: defaultNodeResolver,
       },
     },
   } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
