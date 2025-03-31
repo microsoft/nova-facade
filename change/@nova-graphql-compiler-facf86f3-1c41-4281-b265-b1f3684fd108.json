@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "update readme",
+  "packageName": "@nova/graphql-compiler",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "none"
+}
