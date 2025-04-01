@@ -20,10 +20,10 @@ import {
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import { type events, type FeedbackTelemetryEvent } from "../../events/events";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/getSchema";
 import * as React from "react";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
@@ -62,7 +62,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole("button", { name: "Like" });
@@ -80,7 +80,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByRole("button", { name: "Unlike" });
@@ -103,7 +103,7 @@ export const Like: Story = {
     novaEnvironment: {
       resolvers: likeResolvers,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -146,7 +146,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const {
@@ -188,7 +188,7 @@ export const QueryFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -207,7 +207,7 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const loadingElement = await canvas.findByText("Loading...");

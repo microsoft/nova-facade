@@ -27,11 +27,12 @@ export type StringWithPlaceholders<T extends Record<string, string | number>> =
  * Extract the placeholders from a localized string.
  * Guarantees that the placeholder object is not empty.
  */
-export type Placeholders<T> = T extends StringWithPlaceholders<infer P>
-  ? keyof P extends never // Make sure that the placeholder object is not empty
-    ? never
-    : P
-  : never;
+export type Placeholders<T> =
+  T extends StringWithPlaceholders<infer P>
+    ? keyof P extends never // Make sure that the placeholder object is not empty
+      ? never
+      : P
+    : never;
 
 type UseFormat = () => (
   localizedStringFromGraphQL: unknown,

@@ -8,7 +8,6 @@ import {
 } from "@nova/react-test-utils/apollo";
 import type { Meta } from "@storybook/react";
 import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
-import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
@@ -16,10 +15,13 @@ import * as React from "react";
 import type { events } from "../../events/events";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 import type { withErrorBoundaryParameters } from "../../testing-utils/deorators";
+import { schema } from "../../testing-utils/schema";
+
+type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
 
 const meta = {
   component: FeedbackComponent,
-  decorators: [getNovaDecorator(getSchema(), { cache: cacheConfig })],
+  decorators: [getNovaDecorator(schema, { cache: cacheConfig })],
   parameters: {
     novaEnvironment: {
       query: graphql`
@@ -47,7 +49,7 @@ const meta = {
         },
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof FeedbackComponent>;
 
 export default meta;
@@ -62,7 +64,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Liked: Story = {
@@ -75,7 +77,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Like: Story = {
@@ -91,7 +93,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -112,7 +114,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       errorBoundary: {
         onError: mockOnError,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap> &
+    } satisfies NovaParameters &
       withErrorBoundaryParameters,
     play: async (context) => {
       const {

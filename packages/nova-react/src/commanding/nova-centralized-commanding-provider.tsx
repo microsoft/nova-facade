@@ -11,14 +11,15 @@ interface NovaCentralizedCommandingProviderProps {
   children?: React.ReactNode | undefined;
 }
 
-export const NovaCentralizedCommandingProvider: React.FunctionComponent<NovaCentralizedCommandingProviderProps> =
-  ({ children, commanding }) => {
-    return (
-      <NovaCommandingContext.Provider value={commanding}>
-        {children}
-      </NovaCommandingContext.Provider>
-    );
-  };
+export const NovaCentralizedCommandingProvider: React.FunctionComponent<
+  NovaCentralizedCommandingProviderProps
+> = ({ children, commanding }) => {
+  return (
+    <NovaCommandingContext.Provider value={commanding}>
+      {children}
+    </NovaCommandingContext.Provider>
+  );
+};
 NovaCentralizedCommandingProvider.displayName =
   "NovaCentralizedCommandingProvider";
 

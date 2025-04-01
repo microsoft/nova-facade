@@ -15,7 +15,9 @@ type RelayNovaGraphQL = NovaGraphQL & {
 export type NovaMockEnvironment<T extends TestingEnvironmentVariant = "test"> =
   GenericNovaMockEnvironment<T, RelayNovaGraphQL> & { type: "relay" };
 
-export const NovaMockEnvironmentProvider = <T extends TestingEnvironmentVariant = "test">({
+export const NovaMockEnvironmentProvider = <
+  T extends TestingEnvironmentVariant = "test",
+>({
   children,
   environment,
 }: React.PropsWithChildren<

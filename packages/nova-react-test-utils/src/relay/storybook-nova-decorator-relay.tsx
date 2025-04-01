@@ -31,8 +31,8 @@ type OverloadedReturnType<T> = T extends {
 }
   ? R
   : T extends (...args: any[]) => infer R
-  ? R
-  : any;
+    ? R
+    : any;
 
 type GraphitationGenerateArgs = Parameters<
   RelayMockPayloadGenerator["generate"]

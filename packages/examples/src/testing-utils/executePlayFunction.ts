@@ -1,8 +1,5 @@
 import type { ReactRenderer } from "@storybook/react";
-import type {
-  PlayFunctionContext,
-  ComposedStoryFn,
-} from "@storybook/types";
+import type { PlayFunctionContext, ComposedStoryFn } from "@storybook/types";
 import { act, waitFor } from "@testing-library/react/pure";
 
 type PlayFunctionThatReturnsPromise = (

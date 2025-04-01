@@ -17,7 +17,7 @@ const useMutation: NovaGraphQL<ConcreteRequest>["useMutation"] = (document) => {
     ({ variables, optimisticResponse, onCompleted }) => {
       const relayCompatibleOptimisticResponse =
         typeof optimisticResponse === "object"
-          ? optimisticResponse ?? undefined
+          ? (optimisticResponse ?? undefined)
           : undefined;
 
       return new Promise((resolve, reject) => {

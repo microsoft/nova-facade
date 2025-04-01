@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
@@ -13,7 +13,7 @@ import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlySt
 import { fn, within, expect, waitFor } from "@storybook/test";
 import { type withErrorBoundaryParameters } from "../../testing-utils/deorators";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
 
 const mockOnError = fn<[Error]>();
 
@@ -52,7 +52,7 @@ const meta = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof ViewDataOnly>;
 
 export default meta;
@@ -90,8 +90,11 @@ export const ViewDataOnlyWithServerFieldSelected: Story = {
           serverField
         }
       `,
+      referenceEntries: {
+        viewData: (data) => data?.viewData,
+      },
     },
-  },
+  } satisfies NovaParameters,
   play: async (context) => {
     const canvas = within(context.canvasElement);
     await canvas.findByText("This is a view data field");
