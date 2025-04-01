@@ -1,13 +1,9 @@
 import type { Meta } from "@storybook/react";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
-  getNovaEnvironmentForStory,
   type WithNovaEnvironment,
-  EventingInterceptor,
-  getOperationName,
-  getOperationType,
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
 import { MockPayloadGenerator } from "relay-test-utils";
@@ -15,7 +11,7 @@ import { ViewDataOnly } from "./ViewDataOnly";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlyStoryRelayQuery.graphql";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
 
 const novaDecorator = getNovaDecorator(schema, {
   generateFunction: (operation, mockResolvers) => {
@@ -52,7 +48,7 @@ const meta = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof ViewDataOnly>;
 
 export default meta;
@@ -72,6 +68,9 @@ export const ViewDataOnlyWithServerFieldSelected: Story = {
           serverField
         }
       `,
+      referenceEntries: {
+        viewData: (data) => data?.viewData,
+      },
     },
-  },
+  } satisfies NovaParameters,
 };

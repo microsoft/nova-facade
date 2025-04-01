@@ -1,23 +1,23 @@
-import { graphql } from "@nova/react";
+import { graphql } from "react-relay";
 import {
   getNovaDecorator,
   getNovaEnvironmentForStory,
-  MockPayloadGenerator as PayloadGenerator,
-  type StoryObjWithoutFragmentRefs,
   type WithNovaEnvironment,
+  type StoryObjWithoutFragmentRefs,
+  MockPayloadGenerator as PayloadGenerator,
   EventingInterceptor,
 } from "@nova/react-test-utils/relay";
 import type { Meta } from "@storybook/react";
 import { userEvent, waitFor, within, expect } from "@storybook/test";
+import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
-import { getSchema } from "../../testing-utils/getSchema";
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
@@ -44,7 +44,7 @@ const meta = {
         feedback: (data) => data?.feedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof FeedbackComponent>;
 
 export default meta;
@@ -59,7 +59,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Liked: Story = {
@@ -72,7 +72,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 const likeResolvers = {
@@ -90,7 +90,7 @@ export const Like: Story = {
     novaEnvironment: {
       resolvers: likeResolvers,
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -117,7 +117,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+    } satisfies NovaParameters,
     play: async (context) => {
       const {
         graphql: { mock },

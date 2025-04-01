@@ -8,16 +8,18 @@ import {
 } from "@nova/react-test-utils/apollo";
 import type { Meta } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import * as React from "react";
 import type { events } from "../../events/events";
 
+type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
+
 const meta = {
   component: FeedbackComponent,
-  decorators: [getNovaDecorator(getSchema())],
+  decorators: [getNovaDecorator(schema)],
   parameters: {
     novaEnvironment: {
       query: graphql`
@@ -33,7 +35,7 @@ const meta = {
         feedback: (data) => data?.feedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof FeedbackComponent>;
 
 export default meta;
@@ -48,7 +50,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Liked: Story = {
@@ -61,7 +63,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Like: Story = {
@@ -77,7 +79,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -93,7 +95,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryQuery, TypeMap>,
+    } satisfies NovaParameters,
     play: async (context) => {
       const {
         graphql: { mock },

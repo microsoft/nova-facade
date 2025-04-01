@@ -33,32 +33,31 @@ export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
 > = {
-  novaEnvironment:
-    | (
-        | {
-            query: GraphQLTaggedNode | RelayGraphQLTaggedNode;
-            variables?: TQuery["variables"];
-            referenceEntries: Record<
-              string,
-              (queryResult: TQuery["response"]) => unknown
-            >;
-          }
-        | {
-            query?: never;
-            variables?: never;
-            referenceEntries?: never;
-          }
-      ) &
-        (
-          | {
-              enableQueuedMockResolvers?: true;
-              resolvers?: MockResolvers<TypeMap>;
-            }
-          | {
-              enableQueuedMockResolvers?: false;
-              resolvers?: never;
-            }
-        );
+  novaEnvironment: (
+    | {
+        query: GraphQLTaggedNode | RelayGraphQLTaggedNode;
+        variables?: TQuery["variables"];
+        referenceEntries: Record<
+          string,
+          (queryResult: TQuery["response"]) => unknown
+        >;
+      }
+    | {
+        query?: never;
+        variables?: never;
+        referenceEntries?: never;
+      }
+  ) &
+    (
+      | {
+          enableQueuedMockResolvers?: true;
+          resolvers?: MockResolvers<TypeMap>;
+        }
+      | {
+          enableQueuedMockResolvers?: false;
+          resolvers?: never;
+        }
+    );
 };
 
 type RendererProps = {
