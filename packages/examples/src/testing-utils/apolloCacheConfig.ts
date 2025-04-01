@@ -6,9 +6,7 @@ import {
   getPossibleTypesAndDataIdFromNode,
   typePoliciesWithGlobalObjectIdStoreKeys,
 } from "@graphitation/apollo-react-relay-duct-tape";
-import { getSchema } from "./getSchema";
-
-const schema = getSchema();
+import { schema } from "./schema";
 
 const { possibleTypes, dataIdFromNode } =
   getPossibleTypesAndDataIdFromNode(schema);
