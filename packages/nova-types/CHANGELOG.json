@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 01 Apr 2025 18:41:21 GMT",
+      "tag": "@nova/types_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "none": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/types",
+            "commit": "e52d5ead93a6e135d39593f5cf14fe7a35f61c1e",
+            "comment": "prettify"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 11 Feb 2025 14:14:19 GMT",
       "tag": "@nova/types_v1.6.0",
       "version": "1.6.0",
