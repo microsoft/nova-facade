@@ -8,25 +8,26 @@
     ]
   },
   "scripts": {
-    "clean": "git clean -fdx -e node_modules",
-    "build": "lage build",
-    "types": "lage types",
-    "test": "lage test",
-    "lint": "lage lint",
-    "lage": "lage",
-    "prepare": "lage prepare",
-    "ci": "yarn lage build types test lint && yarn checkchange",
     "beachball": "beachball -b origin/main",
+    "build": "lage build",
     "change": "yarn beachball change",
     "checkchange": "yarn beachball check",
-    "release": "yarn beachball publish"
-  },
-  "devDependencies": {
-    "beachball": "2.31.12",
-    "lage": "2.7.15",
-    "prettier": "^2.8.1"
+    "ci": "yarn lage build types test lint && yarn checkchange",
+    "clean": "git clean -fdx -e node_modules",
+    "lage": "lage",
+    "lint": "lage lint",
+    "prepare": "lage prepare",
+    "release": "yarn beachball publish",
+    "test": "lage test",
+    "types": "lage types"
   },
   "resolutions": {
     "**/relay-compiler-language-graphitation/typescript": "<5"
+  },
+  "devDependencies": {
+    "beachball": "2.31.12",
+    "lage": "2.14.0",
+    "prettier": "^3.5.0",
+    "prettier-plugin-packagejson": "^2.5.0"
   }
 }

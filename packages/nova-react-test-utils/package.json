@@ -1,63 +1,34 @@
 {
   "name": "@nova/react-test-utils",
-  "license": "MIT",
   "version": "6.2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/nova-facade.git",
+    "directory": "packages/nova-test-utils"
+  },
+  "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./src/relay/index.ts",
+      "require": "./lib/relay/index.js"
+    },
+    "./relay": {
+      "import": "./src/relay/index.ts",
+      "require": "./lib/relay/index.js"
+    },
+    "./apollo": {
+      "import": "./src/apollo/index.ts",
+      "require": "./lib/apollo/index.js"
+    }
+  },
   "main": "./src/relay/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
+    "just": "monorepo-scripts",
     "lint": "monorepo-scripts lint",
     "test": "monorepo-scripts test",
-    "types": "monorepo-scripts types",
-    "just": "monorepo-scripts"
-  },
-  "peerDependencies": {
-    "@storybook/addon-actions": ">7.6",
-    "@storybook/preview-api": ">7.6",
-    "@storybook/react": ">7.6",
-    "@storybook/types": ">7.6",
-    "react": "^17 || ^18",
-    "@apollo/client": "^3.4",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.3.0",
-    "@graphitation/apollo-mock-client": "^0.11.9",
-    "react-relay": ">16",
-    "relay-runtime": ">16",
-    "relay-test-utils": ">16",
-    "@types/react-relay": ">16",
-    "@types/relay-test-utils": ">16"
-  },
-  "peerDependenciesMeta": {
-    "@apollo/client": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
-    },
-    "@graphitation/apollo-react-relay-duct-tape": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
-    },
-    "@graphitation/apollo-mock-client": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
-    },
-    "react-relay": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
-    },
-    "relay-runtime": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
-    },
-    "relay-test-utils": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
-    },
-    "@types/react-relay": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
-    },
-    "@types/relay-test-utils": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
-    }
+    "types": "monorepo-scripts types"
   },
   "dependencies": {
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.9",
@@ -74,8 +45,8 @@
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",
-    "@graphitation/apollo-react-relay-duct-tape": "^1.3.0",
     "@graphitation/apollo-mock-client": "^0.11.9",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.3.0",
     "@storybook/addon-actions": "^8.4.5",
     "@storybook/preview-api": "^8.4.5",
     "@storybook/react": "^8.4.5",
@@ -83,40 +54,65 @@
     "@testing-library/react": "^15.0.0",
     "@types/jest": "^29.2.0",
     "@types/react-relay": "^16.0.0",
-    "@types/relay-test-utils": "^18.0.0",
     "@types/react-test-renderer": "^18.3.0",
+    "@types/relay-test-utils": "^18.0.0",
     "monorepo-scripts": "*",
     "react": "^18.3.1",
     "react-relay": "^18.0.0",
+    "react-test-renderer": "^18.3.1",
     "relay-runtime": "^18.0.0",
-    "relay-test-utils": "^18.0.0",
-    "react-test-renderer": "^18.3.1"
+    "relay-test-utils": "^18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/microsoft/nova-facade.git",
-    "directory": "packages/nova-test-utils"
+  "peerDependencies": {
+    "@apollo/client": "^3.4",
+    "@graphitation/apollo-mock-client": "^0.11.9",
+    "@graphitation/apollo-react-relay-duct-tape": "^1.3.0",
+    "@storybook/addon-actions": ">7.6",
+    "@storybook/preview-api": ">7.6",
+    "@storybook/react": ">7.6",
+    "@storybook/types": ">7.6",
+    "@types/react-relay": ">16",
+    "@types/relay-test-utils": ">16",
+    "react": "^17 || ^18",
+    "react-relay": ">16",
+    "relay-runtime": ">16",
+    "relay-test-utils": ">16"
   },
-  "sideEffects": false,
-  "access": "public",
-  "exports": {
-    ".": {
-      "import": "./src/relay/index.ts",
-      "require": "./lib/relay/index.js"
+  "peerDependenciesMeta": {
+    "@apollo/client": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
     },
-    "./relay": {
-      "import": "./src/relay/index.ts",
-      "require": "./lib/relay/index.js"
+    "@graphitation/apollo-mock-client": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
     },
-    "./apollo": {
-      "import": "./src/apollo/index.ts",
-      "require": "./lib/apollo/index.js"
+    "@graphitation/apollo-react-relay-duct-tape": {
+      "optional": true,
+      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+    },
+    "@types/react-relay": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "@types/relay-test-utils": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "react-relay": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "relay-runtime": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
+    },
+    "relay-test-utils": {
+      "optional": true,
+      "reason": "This package is only required if you are using Relay as your GraphQL client."
     }
   },
   "publishConfig": {
-    "main": "./lib/relay/index",
-    "types": "./lib/relay/index.d.ts",
-    "module": "./lib/relay/index.mjs",
     "exports": {
       ".": {
         "import": "./lib/relay/index.mjs",
@@ -133,6 +129,10 @@
         "require": "./lib/apollo/index.js",
         "types": "./lib/apollo/index.d.ts"
       }
-    }
-  }
+    },
+    "main": "./lib/relay/index",
+    "module": "./lib/relay/index.mjs",
+    "types": "./lib/relay/index.d.ts"
+  },
+  "access": "public"
 }

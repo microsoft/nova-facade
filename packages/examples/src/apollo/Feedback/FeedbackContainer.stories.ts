@@ -7,11 +7,11 @@ import {
   MockPayloadGenerator,
   getNovaEnvironmentForStory,
 } from "@nova/react-test-utils/apollo";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
 const meta = {
   component: FeedbackContainer,
@@ -30,7 +30,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Liked: Story = {
@@ -43,7 +43,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Like: Story = {
@@ -59,7 +59,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -72,7 +72,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -103,7 +103,7 @@ export const QueryFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -121,7 +121,7 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<UnknownOperation, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 const sampleFeedback = {

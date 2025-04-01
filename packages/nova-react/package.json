@@ -1,19 +1,20 @@
 {
   "name": "@nova/react",
-  "license": "MIT",
   "version": "2.7.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/nova-facade.git",
+    "directory": "packages/nova-react"
+  },
+  "license": "MIT",
+  "sideEffects": false,
   "main": "./src/index.ts",
   "scripts": {
     "build": "monorepo-scripts build",
+    "just": "monorepo-scripts",
     "lint": "monorepo-scripts lint",
     "test": "monorepo-scripts test",
-    "types": "monorepo-scripts types",
-    "just": "monorepo-scripts"
-  },
-  "peerDependencies": {
-    "react": "^17.0.2 || ^18",
-    "@types/react": "^17.0.2 || ^18",
-    "@graphitation/graphql-js-tag": "^0.9.4"
+    "types": "monorepo-scripts types"
   },
   "dependencies": {
     "@nova/types": "^1.6.0",
@@ -31,23 +32,22 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/microsoft/nova-facade.git",
-    "directory": "packages/nova-react"
+  "peerDependencies": {
+    "@graphitation/graphql-js-tag": "^0.9.4",
+    "@types/react": "^17.0.2 || ^18",
+    "react": "^17.0.2 || ^18"
   },
-  "sideEffects": false,
-  "access": "public",
   "publishConfig": {
-    "main": "./lib/index",
-    "types": "./lib/index.d.ts",
-    "module": "./lib/index.mjs",
     "exports": {
       ".": {
         "types": "./lib/index.d.ts",
         "import": "./lib/index.mjs",
         "require": "./lib/index.js"
       }
-    }
-  }
+    },
+    "main": "./lib/index",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts"
+  },
+  "access": "public"
 }

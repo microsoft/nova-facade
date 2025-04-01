@@ -7,8 +7,10 @@ import { executePlayFunction } from "../../testing-utils/executePlayFunction";
 import { prepareStoryContextForTest } from "@nova/react-test-utils/relay";
 import type { NovaEventing, EventWrapper } from "@nova/types";
 
-const { ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError, Primary } =
-  composeStories(stories);
+const {
+  ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError,
+  Primary,
+} = composeStories(stories);
 
 const bubbleMock = jest.fn<NovaEventing, [EventWrapper]>();
 const generateEventMock = jest.fn<NovaEventing, [EventWrapper]>();

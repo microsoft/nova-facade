@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix usage of nova params and schema",
+  "packageName": "@nova/examples",
+  "email": "sjwilczynski@gmail.com",
+  "dependentChangeType": "patch"
+}
