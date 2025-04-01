@@ -1,35 +1,35 @@
 {
   "name": "@nova/types",
-  "license": "MIT",
   "version": "1.6.0",
-  "main": "./src/index.ts",
-  "scripts": {
-    "build": "monorepo-scripts build",
-    "lint": "monorepo-scripts lint",
-    "types": "monorepo-scripts types",
-    "just": "monorepo-scripts"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.2.0",
-    "monorepo-scripts": "*"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
     "directory": "packages/nova-types"
   },
+  "license": "MIT",
   "sideEffects": false,
-  "access": "public",
+  "main": "./src/index.ts",
+  "scripts": {
+    "build": "monorepo-scripts build",
+    "just": "monorepo-scripts",
+    "lint": "monorepo-scripts lint",
+    "types": "monorepo-scripts types"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.0",
+    "monorepo-scripts": "*"
+  },
   "publishConfig": {
-    "main": "./lib/index",
-    "types": "./lib/index.d.ts",
-    "module": "./lib/index.mjs",
     "exports": {
       ".": {
         "types": "./lib/index.d.ts",
         "import": "./lib/index.mjs",
         "require": "./lib/index.js"
       }
-    }
-  }
+    },
+    "main": "./lib/index",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts"
+  },
+  "access": "public"
 }

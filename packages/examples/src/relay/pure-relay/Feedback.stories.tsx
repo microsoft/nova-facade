@@ -14,12 +14,12 @@ import { userEvent, waitFor, within, expect } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryRelayQuery } from "./__generated__/FeedbackStoryRelayQuery.graphql";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>;
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
@@ -69,7 +69,7 @@ const meta = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
 } satisfies Meta<typeof FeedbackComponent>;
 
 export default meta;
@@ -84,7 +84,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 export const Liked: Story = {
@@ -97,7 +97,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
 };
 
 const likeResolvers = {
@@ -137,7 +137,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+    } satisfies NovaParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -155,7 +155,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>,
+  } satisfies NovaParameters,
   play: async (context) => {
     const container = within(context.canvasElement);
     const {

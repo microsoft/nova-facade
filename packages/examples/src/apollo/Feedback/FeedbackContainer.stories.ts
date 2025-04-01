@@ -7,13 +7,13 @@ import {
   MockPayloadGenerator,
   getNovaEnvironmentForStory,
 } from "@nova/react-test-utils/apollo";
-import { getSchema } from "../../testing-utils/getSchema";
+import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import { defaultNodeResolver } from "../../testing-utils/resolvers";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 
-const schema = getSchema();
+type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
 type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
 

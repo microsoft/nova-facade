@@ -24,18 +24,16 @@ const Feedback_feedbackFragment = graphql`
 export const FeedbackComponent = (props: Props) => {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
   const feedback = useFragment(Feedback_feedbackFragment, props.feedback);
-  const [like, isPending] = useMutation<FeedbackComponent_LikeMutation>(
-    graphql`
-      mutation FeedbackComponent_LikeMutation($input: FeedbackLikeInput!) {
-        feedbackLike(input: $input) {
-          feedback {
-            id
-            doesViewerLike
-          }
+  const [like, isPending] = useMutation<FeedbackComponent_LikeMutation>(graphql`
+    mutation FeedbackComponent_LikeMutation($input: FeedbackLikeInput!) {
+      feedbackLike(input: $input) {
+        feedback {
+          id
+          doesViewerLike
         }
       }
-    `,
-  );
+    }
+  `);
   const onDeleteFeedback = useOnDeleteFeedback(
     feedback.id,
     feedback.message.text,

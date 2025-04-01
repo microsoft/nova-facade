@@ -1,21 +1,22 @@
 {
   "name": "@nova/examples",
-  "license": "MIT",
   "version": "1.7.3",
+  "license": "MIT",
+  "sideEffects": false,
   "main": "./src/index.ts",
   "type": "module",
   "scripts": {
     "build": "monorepo-scripts build",
+    "build-storybook": "storybook build",
     "generate": "graphql-codegen --config codegen.yml && yarn generate:apollo && yarn generate:relay",
     "generate:apollo": "duct-tape-compiler --emitDocuments --schema ./data/schema.graphql --src ./src/apollo --watchman false",
     "generate:relay": "relay-compiler",
+    "just": "monorepo-scripts",
     "lint": "monorepo-scripts lint",
     "prepare": "yarn generate",
-    "test": "monorepo-scripts test",
-    "types": "monorepo-scripts types",
-    "just": "monorepo-scripts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "test": "monorepo-scripts test",
+    "types": "monorepo-scripts types"
   },
   "dependencies": {
     "@nova/react": "2.7.0",
@@ -64,18 +65,17 @@
     "vite-plugin-relay": "^2.1.0",
     "vite-plugin-commonjs": "^0.10.4"
   },
-  "sideEffects": false,
-  "access": "public",
   "publishConfig": {
-    "main": "./lib/index",
-    "types": "./lib/index.d.ts",
-    "module": "./lib/index.mjs",
     "exports": {
       ".": {
         "types": "./lib/index.d.ts",
         "import": "./lib/index.mjs",
         "require": "./lib/index.js"
       }
-    }
-  }
+    },
+    "main": "./lib/index",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts"
+  },
+  "access": "public"
 }
