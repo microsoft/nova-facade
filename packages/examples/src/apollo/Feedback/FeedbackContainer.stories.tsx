@@ -15,14 +15,12 @@ import {
   getNovaEnvironmentForStory,
   EventingInterceptor,
 } from "@nova/react-test-utils/apollo";
-import { getSchema } from "../../testing-utils/getSchema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 import type { events, FeedbackTelemetryEvent } from "../../events/events";
 import * as React from "react";
-
-const schema = getSchema();
+import { schema } from "../../testing-utils/schema";
 
 const telemetryEventMock =
   fn<[{ event: FeedbackTelemetryEvent; source: unknown }]>();

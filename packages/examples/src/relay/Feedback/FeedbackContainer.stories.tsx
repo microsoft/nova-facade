@@ -20,8 +20,8 @@ import {
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
 import { type events, type FeedbackTelemetryEvent } from "../../events/events";
-import { schema } from "../../testing-utils/getSchema";
 import * as React from "react";
+import { schema } from "../../testing-utils/schema";
 
 type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
