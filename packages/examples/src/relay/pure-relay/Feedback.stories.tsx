@@ -18,7 +18,7 @@ import { schema } from "../../testing-utils/schema";
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
-import { type withErrorBoundaryParameters } from "../../testing-utils/deorators";
+import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>;
 

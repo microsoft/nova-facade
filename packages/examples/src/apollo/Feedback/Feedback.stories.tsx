@@ -14,7 +14,7 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 import * as React from "react";
 import type { events } from "../../events/events";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
-import type { withErrorBoundaryParameters } from "../../testing-utils/deorators";
+import type { withErrorBoundaryParameters } from "../../testing-utils/decorators";
 import { schema } from "../../testing-utils/schema";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;

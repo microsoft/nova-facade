@@ -5,7 +5,7 @@ configure({
   asyncUtilTimeout: 2000,
 });
 
-import { withErrorBoundary } from "../src/testing-utils/deorators";
+import { withErrorBoundary } from "../src/testing-utils/decorators";
 const preview: Preview = {
   decorators: [withErrorBoundary],
   parameters: {

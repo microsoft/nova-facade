@@ -11,7 +11,7 @@ import { ViewDataOnly } from "./ViewDataOnly";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlyStoryRelayQuery.graphql";
 import { fn, within, expect, waitFor } from "@storybook/test";
-import { type withErrorBoundaryParameters } from "../../testing-utils/deorators";
+import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
 type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
 
