@@ -1,5 +1,4 @@
 import type { Meta } from "@storybook/react";
-import { getSchema } from "../../../testing-utils/getSchema";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
@@ -11,8 +10,8 @@ import { ServerWithExtension } from "./ServerWithExtension";
 import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import type { ServerWithExtensionStoryRelayQuery } from "./__generated__/ServerWithExtensionStoryRelayQuery.graphql";
 import { within, expect } from "@storybook/test";
+import { schema } from "../../../testing-utils/schema";
 
-const schema = getSchema();
 
 const novaDecorator = getNovaDecorator(schema, {
   generateFunction: (operation, mockResolvers) => {
