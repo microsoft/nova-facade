@@ -36,18 +36,7 @@ const meta = {
         Feedback: () => ({
           id: "feedback:42",
         }),
-        Node: ({ args }) => {
-          console.log("args", args);
-          const { id } = args as { id: string };
-
-          if (id.startsWith("feedback:")) {
-            return {
-              __typename: "Feedback",
-              id,
-            };
-          }
-          return undefined;
-        },
+        Node: defaultNodeResolver,
       },
     },
   } satisfies NovaParams,
@@ -220,3 +209,9 @@ const sampleFeedback = {
   },
   doesViewerLike: false,
 };
+function defaultNodeResolver(
+  context: MockResolverContext,
+  generateId: () => number,
+): { id?: string | undefined } | undefined {
+  throw new Error("Function not implemented.");
+}

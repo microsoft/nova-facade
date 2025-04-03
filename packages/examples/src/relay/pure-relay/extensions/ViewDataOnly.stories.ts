@@ -1,5 +1,5 @@
 import type { Meta } from "@storybook/react";
-import { schema } from "../../testing-utils/schema";
+import { schema } from "../../../testing-utils/schema";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
@@ -7,11 +7,11 @@ import {
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
 import { MockPayloadGenerator } from "relay-test-utils";
-import { ViewDataOnly } from "./ViewDataOnly";
-import type { TypeMap } from "../../__generated__/schema.all.interface";
+import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlyStoryRelayQuery.graphql";
 import { fn, within, expect, waitFor } from "@storybook/test";
-import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
+import { type withErrorBoundaryParameters } from "../../../testing-utils/decorators";
+import { ViewDataOnly } from "./ViewDataOnly";
 
 type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
 

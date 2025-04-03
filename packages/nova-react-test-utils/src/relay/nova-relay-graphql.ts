@@ -70,5 +70,10 @@ export const novaGraphql: Required<NovaGraphQL<ConcreteRequest>> = {
 const isClientOnlyQuery = (document: ConcreteRequest) => {
   const queryText = document.params.text;
 
-  return queryText === null;
+  const areAllSelectionsOnClientExtensions = document.fragment.selections.every(
+    (selection) =>
+      selection.kind === "ClientExtension" 
+  );
+
+  return queryText === null && areAllSelectionsOnClientExtensions;
 };

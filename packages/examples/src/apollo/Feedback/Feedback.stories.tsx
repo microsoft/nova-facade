@@ -16,6 +16,7 @@ import type { events } from "../../events/events";
 import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 import type { withErrorBoundaryParameters } from "../../testing-utils/decorators";
 import { schema } from "../../testing-utils/schema";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
 
@@ -36,17 +37,7 @@ const meta = {
         feedback: (data) => data?.feedback,
       },
       resolvers: {
-        Node: ({ args }) => {
-          const { id } = args as { id: string };
-
-          if (id.startsWith("feedback:")) {
-            return {
-              __typename: "Feedback",
-              id,
-            };
-          }
-          return undefined;
-        },
+        Node: defaultNodeResolver,
       },
     },
   } satisfies NovaParameters,
@@ -114,8 +105,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       errorBoundary: {
         onError: mockOnError,
       },
-    } satisfies NovaParameters &
-      withErrorBoundaryParameters,
+    } satisfies NovaParameters & withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },

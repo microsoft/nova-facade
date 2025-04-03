@@ -9,6 +9,7 @@ type Query {
   feedback(id: ID!): Feedback!
   serverField: String!
   node(id: ID!): Node
+  serverObjectWithClientExtension: ServerObjectWithClientExtension!
 }
 
 type FeedbackLikeMutationResult {
@@ -28,4 +29,8 @@ type Message {
 input FeedbackLikeInput {
   feedbackId: ID!
   doesViewerLike: Boolean!
+}
+
+type ServerObjectWithClientExtension {
+  serverField: String!
 }

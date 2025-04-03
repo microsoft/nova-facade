@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Tue, 01 Apr 2025 18:41:21 GMT",
+      "tag": "@nova/examples_v1.7.4",
+      "version": "1.7.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/examples",
+            "commit": "e52d5ead93a6e135d39593f5cf14fe7a35f61c1e",
+            "comment": "fix usage of nova params and schema"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 25 Mar 2025 16:25:24 GMT",
       "tag": "@nova/examples_v1.7.3",
       "version": "1.7.3",
