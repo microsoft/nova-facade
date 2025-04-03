@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "migrate to storybook test addon",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
