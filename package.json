@@ -19,7 +19,8 @@
     "prepare": "lage prepare",
     "release": "yarn beachball publish",
     "test": "lage test",
-    "types": "lage types"
+    "types": "lage types",
+    "postinstall": "patch-package"
   },
   "resolutions": {
     "**/relay-compiler-language-graphitation/typescript": "<5"
@@ -29,5 +30,9 @@
     "lage": "2.14.0",
     "prettier": "^3.5.0",
     "prettier-plugin-packagejson": "^2.5.0"
+  },
+  "dependencies": {
+    "patch-package": "^8.0.0",
+    "postinstall-postinstall": "^2.1.0"
   }
 }
