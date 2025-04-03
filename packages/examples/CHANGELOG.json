@@ -2,6 +2,35 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 03 Apr 2025 07:09:30 GMT",
+      "tag": "@nova/examples_v1.8.0",
+      "version": "1.8.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "e47debe1b7070d7527aa752537498892db497959",
+            "comment": "add another story for verifying client extensions"
+          }
+        ],
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "e47debe1b7070d7527aa752537498892db497959",
+            "comment": "migrate storybook to vite"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v6.2.1",
+            "commit": "e47debe1b7070d7527aa752537498892db497959"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Apr 2025 18:41:21 GMT",
       "tag": "@nova/examples_v1.7.4",
       "version": "1.7.4",

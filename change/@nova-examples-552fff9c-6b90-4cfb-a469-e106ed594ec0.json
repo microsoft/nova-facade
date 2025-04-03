@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "add another story for verifying client extensions",
-  "packageName": "@nova/examples",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

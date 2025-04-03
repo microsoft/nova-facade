@@ -1,8 +1,21 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 01 Apr 2025 18:41:21 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Apr 2025 07:09:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.8.0
+
+Thu, 03 Apr 2025 07:09:30 GMT
+
+### Minor changes
+
+- migrate storybook to vite (stwilczy@microsoft.com)
+- Bump @nova/react-test-utils to v6.2.1
+
+### Patches
+
+- add another story for verifying client extensions (stwilczy@microsoft.com)
 
 ## 1.7.4
 

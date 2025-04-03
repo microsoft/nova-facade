@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 25 Mar 2025 16:25:24 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Apr 2025 07:09:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 6.2.1
+
+Thu, 03 Apr 2025 07:09:30 GMT
+
+### Patches
+
+- fix detection of client extensions only queries (stwilczy@microsoft.com)
 
 ## 6.2.0
 

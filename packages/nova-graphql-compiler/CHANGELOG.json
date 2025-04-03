@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Thu, 03 Apr 2025 07:09:30 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.2",
+      "version": "1.0.2",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "e47debe1b7070d7527aa752537498892db497959",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Apr 2025 18:41:21 GMT",
       "tag": "@nova/graphql-compiler_v1.0.2",
       "version": "1.0.2",
