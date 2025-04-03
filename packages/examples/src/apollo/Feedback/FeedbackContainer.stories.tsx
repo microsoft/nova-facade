@@ -21,6 +21,7 @@ import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 import type { events, FeedbackTelemetryEvent } from "../../events/events";
 import * as React from "react";
 import { schema } from "../../testing-utils/schema";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
 
 const telemetryEventMock =
   fn<[{ event: FeedbackTelemetryEvent; source: unknown }]>();
@@ -209,9 +210,3 @@ const sampleFeedback = {
   },
   doesViewerLike: false,
 };
-function defaultNodeResolver(
-  context: MockResolverContext,
-  generateId: () => number,
-): { id?: string | undefined } | undefined {
-  throw new Error("Function not implemented.");
-}
