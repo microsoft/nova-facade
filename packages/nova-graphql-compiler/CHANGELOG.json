@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Thu, 03 Apr 2025 16:14:11 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "pavelglac@gmail.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "cc85724f1645db7c19277aaf0e0db4e00f21a93a",
+            "comment": "fix lage hashing"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Apr 2025 07:09:30 GMT",
       "tag": "@nova/graphql-compiler_v1.0.2",
       "version": "1.0.2",

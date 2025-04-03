@@ -1,8 +1,16 @@
 # Change Log - @nova/graphql-compiler
 
-This log was last generated on Tue, 17 Sep 2024 19:04:51 GMT and should not be manually modified.
+This log was last generated on Thu, 03 Apr 2025 16:14:11 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.0.3
+
+Thu, 03 Apr 2025 16:14:11 GMT
+
+### Patches
+
+- fix lage hashing (pavelglac@gmail.com)
 
 ## 1.0.2
 

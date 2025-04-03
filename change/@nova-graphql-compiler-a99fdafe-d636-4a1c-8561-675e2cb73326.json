@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix lage hashing",
-  "packageName": "@nova/graphql-compiler",
-  "email": "pavelglac@gmail.com",
-  "dependentChangeType": "patch"
-}
