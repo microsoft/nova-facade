@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix detection of client extensions only queries",
+  "packageName": "@nova/react-test-utils",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}
