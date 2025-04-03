@@ -11,7 +11,7 @@ type Props = {
   feedback: Feedback_feedbackFragment$key;
 };
 
-export const Feedback_feedbackFragment = graphql`
+const Feedback_feedbackFragment = graphql`
   fragment Feedback_feedbackFragment on Feedback {
     id
     message {

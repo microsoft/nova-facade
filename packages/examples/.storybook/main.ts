@@ -1,5 +1,9 @@
 import { dirname, join } from "path";
-import type { StorybookConfig } from "@storybook/react-webpack5";
+import type { StorybookConfig } from "@storybook/react-vite";
+import { mergeConfig } from "vite";
+import relayPlugin from "vite-plugin-relay";
+import graphqlLoader from "vite-plugin-graphql-loader";
+import commonjs from "vite-plugin-commonjs";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
@@ -7,33 +11,17 @@ const config: StorybookConfig = {
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@storybook/addon-interactions"),
-    getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
   ],
   framework: {
-    name: getAbsolutePath("@storybook/react-webpack5"),
+    name: getAbsolutePath("@storybook/react-vite"),
     options: {
       strictMode: true,
     },
   },
-  webpackFinal: (config) => {
-    return {
-      ...config,
-      module: {
-        ...config.module,
-        rules: [
-          ...(config?.module?.rules ?? []),
-          {
-            test: /.+[\\/]relay[\\/].+\.tsx?$/,
-            exclude: /node_modules/,
-            loader: "@graphitation/embedded-document-artefact-loader/webpack",
-          },
-          {
-            test: /\.(graphql)$/,
-            loader: "@graphql-tools/webpack-loader",
-          },
-        ],
-      },
-    };
+  viteFinal: (config) => {
+    return mergeConfig(config, {
+      plugins: [relayPlugin, graphqlLoader(), commonjs()],
+    });
   },
 };
 export default config;

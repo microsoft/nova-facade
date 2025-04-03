@@ -10,16 +10,18 @@ import type { Meta } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
-import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
+import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import * as React from "react";
 import type { events } from "../../events/events";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
+import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
 
 const meta = {
   component: FeedbackComponent,
-  decorators: [getNovaDecorator(schema)],
+  decorators: [getNovaDecorator(schema, { cache: cacheConfig })],
   parameters: {
     novaEnvironment: {
       query: graphql`
@@ -28,11 +30,13 @@ const meta = {
             ...Feedback_feedbackFragment
           }
         }
-        ${Feedback_feedbackFragment}
       `,
       variables: { id: "42" },
       referenceEntries: {
         feedback: (data) => data?.feedback,
+      },
+      resolvers: {
+        Node: defaultNodeResolver,
       },
     },
   } satisfies NovaParameters,
@@ -152,7 +156,7 @@ export const WithDeleteDialog: Story = {
 };
 
 const sampleFeedback = {
-  id: "42",
+  id: "feedback:42",
   message: {
     text: "Feedback title",
   },

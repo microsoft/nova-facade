@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "migrate storybook to vite",
+  "packageName": "@nova/examples",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}

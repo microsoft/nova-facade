@@ -6,6 +6,7 @@
     "examples": {
       "language": "typescript",
       "schema": "data/schema.graphql",
+      "eagerEsModules": true,
       "schemaExtensions": ["data/client-extensions", "src/relay/pure-relay"]
     }
   }

@@ -1,5 +1,5 @@
 import { graphql, useLazyLoadQuery } from "@nova/react";
-import { FeedbackComponent, Feedback_feedbackFragment } from "./Feedback";
+import { FeedbackComponent } from "./Feedback";
 import * as React from "react";
 import type { FeedbackContainerQuery as QueryType } from "./__generated__/FeedbackContainerQuery.graphql";
 
@@ -9,7 +9,6 @@ const FeedbackContainerQuery = graphql`
       ...Feedback_feedbackFragment
     }
   }
-  ${Feedback_feedbackFragment}
 `;
 
 export const FeedbackContainer = () => {

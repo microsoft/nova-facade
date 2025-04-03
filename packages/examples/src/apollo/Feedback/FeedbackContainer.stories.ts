@@ -10,12 +10,26 @@ import {
 import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackContainer } from "./FeedbackContainer";
+import { defaultNodeResolver } from "../../testing-utils/resolvers";
+import { cacheConfig } from "../../testing-utils/apolloCacheConfig";
 
 type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
+type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
+
 const meta = {
   component: FeedbackContainer,
-  decorators: [getNovaDecorator(schema)],
+  decorators: [getNovaDecorator(schema, { cache: cacheConfig })],
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
+        Feedback: () => ({
+          id: "feedback:42",
+        }),
+        Node: defaultNodeResolver,
+      },
+    },
+  } satisfies NovaParams,
 } satisfies Meta<typeof FeedbackContainer>;
 
 export default meta;
@@ -30,7 +44,7 @@ export const Primary: Story = {
         Feedback: () => sampleFeedback,
       },
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
 };
 
 export const Liked: Story = {
@@ -43,7 +57,7 @@ export const Liked: Story = {
         }),
       },
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
 };
 
 export const Like: Story = {
@@ -59,7 +73,7 @@ export const Like: Story = {
         }),
       },
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
   play: async ({ canvasElement }) => {
     const container = within(canvasElement);
     const likeButton = await container.findByRole("button", { name: "Like" });
@@ -72,7 +86,7 @@ export const LikeFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -103,7 +117,7 @@ export const QueryFailure: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
   play: async (context) => {
     const {
       graphql: { mock },
@@ -121,11 +135,11 @@ export const Loading: Story = {
     novaEnvironment: {
       enableQueuedMockResolvers: false,
     },
-  } satisfies NovaParameters,
+  } satisfies NovaParams,
 };
 
 const sampleFeedback = {
-  id: "42",
+  id: "feedback:42",
   message: {
     text: "Feedback title",
   },
