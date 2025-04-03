@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 25 Mar 2025 16:25:24 GMT and should not be manually modified.
+This log was last generated on Tue, 01 Apr 2025 18:41:21 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.4
+
+Tue, 01 Apr 2025 18:41:21 GMT
+
+### Patches
+
+- fix usage of nova params and schema (sjwilczynski@gmail.com)
 
 ## 1.7.3
 
