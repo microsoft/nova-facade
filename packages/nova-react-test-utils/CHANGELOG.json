@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 04 Apr 2025 20:38:15 GMT",
+      "tag": "@nova/react-test-utils_v6.2.2",
+      "version": "6.2.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "66d1076c8b81e1f4bd84e64b2c9b5af36c58478c",
+            "comment": "bump TS and fix compatibility with 1js"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Apr 2025 07:09:30 GMT",
       "tag": "@nova/react-test-utils_v6.2.1",
       "version": "6.2.1",

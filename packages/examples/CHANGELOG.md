@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 03 Apr 2025 07:09:30 GMT and should not be manually modified.
+This log was last generated on Fri, 04 Apr 2025 20:38:15 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.8.1
+
+Fri, 04 Apr 2025 20:38:15 GMT
+
+### Patches
+
+- bump TS and fix compatibility with 1js (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v6.2.2
 
 ## 1.8.0
 
