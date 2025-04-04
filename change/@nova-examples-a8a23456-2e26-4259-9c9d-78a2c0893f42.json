@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "bump TS and fix compatibility with 1js",
+  "packageName": "@nova/examples",
+  "email": "Stanislaw.Wilczynski@microsoft.com",
+  "dependentChangeType": "patch"
+}
