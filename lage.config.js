@@ -4,6 +4,7 @@ module.exports = {
     types: ["^types"],
     build: [],
     test: ["^build", "^types"],
+    "test:ui": [],
     lint: [],
   },
   npmClient: "yarn",
