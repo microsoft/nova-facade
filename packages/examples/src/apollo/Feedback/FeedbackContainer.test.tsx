@@ -1,25 +1,29 @@
+import { expect, it, vi, describe, beforeEach } from "vitest";
 import { composeStories } from "@storybook/react";
 import * as stories from "./FeedbackContainer.stories";
-import { render, screen, waitFor } from "@testing-library/react";
 import * as React from "react";
-import "@testing-library/jest-dom";
-import type { NovaEventing, EventWrapper } from "@nova/types";
+import type { EventWrapper } from "@nova/types";
 import { prepareStoryContextForTest } from "@nova/react-test-utils/apollo";
-import { executePlayFunction } from "../../testing-utils/executePlayFunction";
+import type * as NovaReact from "@nova/react";
+import { render } from "vitest-browser-react";
+import { page } from "@vitest/browser/context";
 
-const bubbleMock = jest.fn<NovaEventing, [EventWrapper]>();
-const generateEventMock = jest.fn<NovaEventing, [EventWrapper]>();
+const bubbleMock = vi.fn<(e: EventWrapper) => void>();
+const generateEventMock = vi.fn<(e: EventWrapper) => void>();
 
-jest.mock("@nova/react", () => ({
-  ...jest.requireActual("@nova/react"),
-  useNovaEventing: () => ({
-    bubble: bubbleMock,
-    generateEvent: generateEventMock,
-  }),
-}));
+vi.mock("@nova/react", async () => {
+  const actual = await vi.importActual<typeof NovaReact>("@nova/react");
+  return {
+    ...actual,
+    useNovaEventing: () => ({
+      bubble: bubbleMock,
+      generateEvent: generateEventMock,
+    }),
+  };
+});
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const { Primary, Liked, LikeFailure } = composeStories(stories);
@@ -30,24 +34,23 @@ describe("FeedbackContainer", () => {
     render(<Liked />);
     render(<Primary />);
     const text = "Feedback: Feedback title";
-    await waitFor(
+    await vi.waitFor(
       () => {
-        const texts = screen.getAllByText(text);
-        expect(texts).toHaveLength(3);
+        const texts = page.getByText(text);
+        expect(texts.elements()).toHaveLength(3);
       },
       { timeout: 3000 },
     );
-    expect(screen.getAllByText(text)[2]).toBeInTheDocument();
   });
 
-  // kept in jest to ensure prepareStoryContextForTest works correctly
+  // kept in unit to ensure prepareStoryContextForTest works correctly
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
-    await executePlayFunction(
-      LikeFailure,
+
+    await LikeFailure.play?.(
       prepareStoryContextForTest(LikeFailure, container),
     );
-    const error = await screen.findByText("Something went wrong");
-    expect(error).toBeInTheDocument();
+    const error = page.getByText("Something went wrong");
+    await expect.element(error).toBeInTheDocument();
   });
 });

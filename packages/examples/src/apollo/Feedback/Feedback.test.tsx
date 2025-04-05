@@ -1,36 +1,36 @@
+import { expect, it, vi, describe, beforeEach } from "vitest";
 import { composeStories } from "@storybook/react";
 import * as stories from "./Feedback.stories";
-import { render } from "@testing-library/react";
+import { render } from "vitest-browser-react";
 import * as React from "react";
-import "@testing-library/jest-dom";
-import { prepareStoryContextForTest } from "@nova/react-test-utils/apollo";
-import { executePlayFunction } from "../../testing-utils/executePlayFunction";
-import type { EventWrapper, NovaEventing } from "@nova/types";
+import type { EventWrapper } from "@nova/types";
+import { page } from "@vitest/browser/context";
 
-const {
-  ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError,
-  Primary,
-} = composeStories(stories);
+const { Primary } = composeStories(stories);
 
-const bubbleMock = jest.fn<NovaEventing, [EventWrapper]>();
-const generateEventMock = jest.fn<NovaEventing, [EventWrapper]>();
+const bubbleMock = vi.fn<(e: EventWrapper) => void>();
+const generateEventMock = vi.fn<(e: EventWrapper) => void>();
 
-jest.mock("@nova/react", () => ({
-  ...jest.requireActual("@nova/react"),
-  useNovaEventing: () => ({
-    bubble: bubbleMock,
-    generateEvent: generateEventMock,
-  }),
-}));
+vi.mock("@nova/react", async () => {
+  const actual = await vi.importActual("@nova/react");
+  return {
+    ...actual,
+    useNovaEventing: () => ({
+      bubble: bubbleMock,
+      generateEvent: generateEventMock,
+    }),
+  };
+});
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("Feedback", () => {
   it("rerenders without unmounting", async () => {
-    const { rerender, findByRole } = render(<Primary />);
-    await findByRole("button", { name: "Like" });
+    const { rerender } = render(<Primary />);
+    let likeButton = page.getByRole("button", { name: "Like" });
+    await expect.element(likeButton).toBeInTheDocument();
 
     let telemetryEvents = generateEventMock.mock.calls.filter(
       ([{ event }]) => event.type === "feedbackTelemetry",
@@ -39,7 +39,9 @@ describe("Feedback", () => {
     expect(telemetryEvents).toHaveLength(1); // coming from strict mode
 
     rerender(<Primary />);
-    await findByRole("button", { name: "Like" });
+
+    likeButton = page.getByRole("button", { name: "Like" });
+    await expect.element(likeButton).toBeInTheDocument();
 
     telemetryEvents = generateEventMock.mock.calls.filter(
       ([{ event }]) => event.type === "feedbackTelemetry",
