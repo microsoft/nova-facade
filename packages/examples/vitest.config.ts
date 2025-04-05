@@ -10,18 +10,6 @@ const dirname =
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
-const browserConfig = {
-  enabled: true,
-  provider: "playwright",
-  instances: [
-    {
-      browser: "chromium",
-      headless: true,
-    },
-  ],
-};
-
-// More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineConfig({
   test: {
     workspace: [
@@ -29,12 +17,22 @@ export default defineConfig({
         plugins: [...plugins],
         test: {
           name: "component",
-          browser: browserConfig,
+          browser: {
+            enabled: true,
+            provider: "playwright",
+            instances: [
+              {
+                browser: "chromium",
+                headless: true,
+              },
+            ],
+          },
           include: ["src/**/*.test.{ts,tsx}"],
           setupFiles: ["vitest.component.setup.ts"],
         },
       },
       // Project for Storybook browser tests
+      // More info at: https://storybook.js.org/docs/writing-tests/test-addon
       {
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config
@@ -43,7 +41,16 @@ export default defineConfig({
         ],
         test: {
           name: "storybook", // Name belongs inside the test config for the project
-          browser: browserConfig,
+          browser: {
+            enabled: true,
+            provider: "playwright",
+            instances: [
+              {
+                browser: "chromium",
+                headless: true,
+              },
+            ],
+          },
           setupFiles: [".storybook/vitest.setup.ts"],
         },
       },

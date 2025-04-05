@@ -9,6 +9,6 @@
     "outDir": "lib",
     "types": ["@vitest/browser/context", "@vitest/browser/providers/playwright"]
   },
-  "include": ["src", "vitest.component.setup.ts"],
+  "include": ["src"],
   "references": []
 }

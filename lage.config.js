@@ -4,7 +4,7 @@ module.exports = {
     types: ["^types"],
     build: [],
     test: ["^build", "^types"],
-    "examples#test": [],
+    "@nova/examples#test": [],
     lint: [],
   },
   npmClient: "yarn",

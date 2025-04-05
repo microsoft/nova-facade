@@ -12,7 +12,7 @@
     "build": "lage build",
     "change": "yarn beachball change",
     "checkchange": "yarn beachball check",
-    "ci": "yarn lage build types test test:ui lint && yarn checkchange",
+    "ci": "yarn lage build types test lint && yarn checkchange",
     "clean": "git clean -fdx -e node_modules",
     "lage": "lage",
     "lint": "lage lint",
