@@ -91,9 +91,9 @@ const Renderer: React.FC<RendererProps> = ({
       ([key, getValue]) => [key, getValue(data)] as const,
     );
     Object.assign(context.args, Object.fromEntries(entries));
-    return <>{getStory(context)}</>;
+    return <>{getStory(context) as React.ReactNode}</>;
   } else {
-    return <>{getStory(context)}</>;
+    return <>{getStory(context) as React.ReactNode}</>;
   }
 };
 

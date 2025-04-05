@@ -2,6 +2,56 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Fri, 04 Apr 2025 20:38:15 GMT",
+      "tag": "@nova/examples_v1.8.1",
+      "version": "1.8.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "66d1076c8b81e1f4bd84e64b2c9b5af36c58478c",
+            "comment": "bump TS and fix compatibility with 1js"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v6.2.2",
+            "commit": "66d1076c8b81e1f4bd84e64b2c9b5af36c58478c"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 03 Apr 2025 07:09:30 GMT",
+      "tag": "@nova/examples_v1.8.0",
+      "version": "1.8.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "e47debe1b7070d7527aa752537498892db497959",
+            "comment": "add another story for verifying client extensions"
+          }
+        ],
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "e47debe1b7070d7527aa752537498892db497959",
+            "comment": "migrate storybook to vite"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v6.2.1",
+            "commit": "e47debe1b7070d7527aa752537498892db497959"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Apr 2025 18:41:21 GMT",
       "tag": "@nova/examples_v1.7.4",
       "version": "1.7.4",

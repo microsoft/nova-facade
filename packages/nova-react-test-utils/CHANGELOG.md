@@ -1,8 +1,24 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 25 Mar 2025 16:25:24 GMT and should not be manually modified.
+This log was last generated on Fri, 04 Apr 2025 20:38:15 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 6.2.2
+
+Fri, 04 Apr 2025 20:38:15 GMT
+
+### Patches
+
+- bump TS and fix compatibility with 1js (Stanislaw.Wilczynski@microsoft.com)
+
+## 6.2.1
+
+Thu, 03 Apr 2025 07:09:30 GMT
+
+### Patches
+
+- fix detection of client extensions only queries (stwilczy@microsoft.com)
 
 ## 6.2.0
 
