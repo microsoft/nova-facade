@@ -19,11 +19,11 @@ export default defineConfig({
           name: "component",
           browser: {
             enabled: true,
+            headless: true,
             provider: "playwright",
             instances: [
               {
                 browser: "chromium",
-                headless: true,
               },
             ],
           },
@@ -43,11 +43,11 @@ export default defineConfig({
           name: "storybook", // Name belongs inside the test config for the project
           browser: {
             enabled: true,
+            headless: true,
             provider: "playwright",
             instances: [
               {
                 browser: "chromium",
-                headless: true,
               },
             ],
           },

@@ -19,11 +19,11 @@ import type {
 } from "./shared-utils";
 
 type Commanding<T extends TestingEnvironmentVariant> = T extends "test"
-  ? jest.Mocked<NovaCentralizedCommanding>
+  ? NovaCentralizedCommanding
   : NovaCentralizedCommanding;
 
 type Eventing<T extends TestingEnvironmentVariant> = T extends "test"
-  ? jest.Mocked<NovaEventing>
+  ? NovaEventing
   : NovaEventing;
 
 export interface NovaMockEnvironment<

@@ -7,7 +7,11 @@ import * as GraphQLHooks from "@graphitation/apollo-react-relay-duct-tape";
 import type { OperationDescriptor } from "@graphitation/graphql-js-operation-payload-generator";
 import { generate as payloadGenerator } from "@graphitation/graphql-js-operation-payload-generator";
 import type { GraphQLTaggedNode } from "@nova/react";
-import type { NovaGraphQL } from "@nova/types";
+import type {
+  NovaCentralizedCommanding,
+  NovaEventing,
+  NovaGraphQL,
+} from "@nova/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { defaultLocalization } from "../shared/shared-utils";
 
@@ -29,6 +33,8 @@ export const ApolloMockPayloadGenerator: {
   generate: payloadGenerator as Generate<any, any>,
 };
 
+const noop = () => Promise.resolve();
+
 /**
  * Creates a Nova environment object that can be used with the NovaMockEnvironmentProvider and has mocks instantiated
  * for each piece of the facade interface. Check README for details.
@@ -36,15 +42,17 @@ export const ApolloMockPayloadGenerator: {
 export function createNovaApolloEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
+  commandingTriggerMock?: NovaCentralizedCommanding["trigger"],
+  eventingBubbleMock?: NovaEventing["bubble"],
 ): NovaMockEnvironment {
   const client = createMockClient(schema, options);
   const env: NovaMockEnvironment = {
     type: "apollo",
     commanding: {
-      trigger: jest.fn(),
+      trigger: commandingTriggerMock || noop,
     },
     eventing: {
-      bubble: jest.fn(),
+      bubble: eventingBubbleMock || noop,
     },
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
