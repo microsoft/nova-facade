@@ -61,7 +61,7 @@ export const getNovaRelayDecorator: (
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
-    environment: NovaMockEnvironment<"storybook">,
+    environment: NovaMockEnvironment,
   ) => {
     const mockResolvers = parameters?.resolvers;
     const generate =
@@ -79,9 +79,9 @@ export const getNovaRelayDecorator: (
 function createNovaRelayEnvironment(
   options?: Partial<EnvironmentConfig>,
   localization?: NovaLocalization,
-): NovaMockEnvironment<"storybook"> {
+): NovaMockEnvironment {
   const relayEnvironment = createMockEnvironment(options);
-  const env: NovaMockEnvironment<"storybook"> = {
+  const env: NovaMockEnvironment = {
     type: "relay",
     graphql: {
       ...novaGraphql,
@@ -107,7 +107,7 @@ function createNovaRelayEnvironment(
 
 export const getNovaRelayEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
-): NovaMockEnvironment<"storybook"> => {
+): NovaMockEnvironment => {
   const env = getNovaEnvironmentForStory(context);
   if (!isRelayMockEnv(env)) {
     throw new Error("Expected relay environment to be present on context");
@@ -117,4 +117,4 @@ export const getNovaRelayEnvironmentForStory = (
 
 const isRelayMockEnv = (
   env: ReturnType<typeof getNovaEnvironmentForStory>,
-): env is NovaMockEnvironment<"storybook"> => env.type === "relay";
+): env is NovaMockEnvironment => env.type === "relay";

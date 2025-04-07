@@ -1,6 +1,6 @@
 import * as React from "react";
 import { buildASTSchema, parse } from "graphql";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render } from "vitest-browser-react";
 import type { EntityCommand, EventWrapper } from "@nova/types";
 import { graphql, useLazyLoadQuery } from "@nova/react";
 import {
@@ -14,6 +14,7 @@ import {
 import { NovaMockEnvironmentProvider } from "../shared/nova-mock-environment";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
+import { page } from "@vitest/browser/context";
 
 const triggerMock = vi.fn<(cmd: EntityCommand) => Promise<void>>();
 const bubbleMock = vi.fn<(evt: EventWrapper) => Promise<void>>();
@@ -92,15 +93,14 @@ describe(createNovaApolloEnvironment, () => {
 
       expect(environment.graphql.mock.getAllOperations().length).toEqual(1);
 
-      await waitFor(() =>
+      await vi.waitFor(() =>
         environment.graphql.mock.resolveMostRecentOperation((operation) =>
           ApolloMockPayloadGenerator.generate(operation),
         ),
       );
 
-      expect(
-        await screen.findByText('<mock-value-for-field-"name">'),
-      ).toBeInTheDocument();
+      const defaultMocked = page.getByText('<mock-value-for-field-"name">');
+      await expect.element(defaultMocked).toBeInTheDocument();
     });
 
     it("exposes a way to customize mocks for a specific operation", async () => {
@@ -112,7 +112,7 @@ describe(createNovaApolloEnvironment, () => {
 
       expect(environment.graphql.mock.getAllOperations().length).toEqual(1);
 
-      await waitFor(() =>
+      await vi.waitFor(() =>
         environment.graphql.mock.resolveMostRecentOperation((operation) =>
           ApolloMockPayloadGenerator.generate(operation, {
             User: () => ({
@@ -122,7 +122,8 @@ describe(createNovaApolloEnvironment, () => {
         ),
       );
 
-      expect(await screen.findByText("Custom name")).toBeInTheDocument();
+      const customMocked = page.getByText("Custom name");
+      await expect.element(customMocked).toBeInTheDocument();
     });
   });
 
@@ -135,7 +136,7 @@ describe(createNovaApolloEnvironment, () => {
       );
 
       // Use the correctly typed variable
-      await waitFor(() =>
+      await vi.waitFor(() =>
         expect(environment.graphql.mock.getAllOperations().length).toBe(1),
       );
 
@@ -154,7 +155,7 @@ describe(createNovaApolloEnvironment, () => {
       );
 
       // Use the correctly typed variable
-      await waitFor(() =>
+      await vi.waitFor(() =>
         expect(environment.graphql.mock.getAllOperations().length).toBe(1),
       );
 

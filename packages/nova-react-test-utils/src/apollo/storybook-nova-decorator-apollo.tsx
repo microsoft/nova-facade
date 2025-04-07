@@ -38,7 +38,7 @@ export const getNovaApolloDecorator: (
     createNovaEnvironment(schema, rest, localization);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
-    environment: NovaMockEnvironment<"storybook">,
+    environment: NovaMockEnvironment,
   ) => {
     const mockResolvers = parameters?.resolvers;
     const generate = generateFunction ?? ApolloMockPayloadGenerator.generate;
@@ -55,9 +55,9 @@ function createNovaEnvironment(
   schema: GraphQLSchema,
   options?: MockClientOptions,
   localization?: NovaLocalization,
-): NovaMockEnvironment<"storybook"> {
+): NovaMockEnvironment {
   const client = createMockClient(schema, options);
-  const env: NovaMockEnvironment<"storybook"> = {
+  const env: NovaMockEnvironment = {
     type: "apollo",
     graphql: {
       ...(GraphQLHooks as NovaGraphQL),
@@ -79,7 +79,7 @@ function createNovaEnvironment(
 
 export const getNovaApolloEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
-): NovaMockEnvironment<"storybook"> => {
+): NovaMockEnvironment => {
   const env = getNovaEnvironmentForStory(context);
   if (!isApolloMockEnv(env)) {
     throw new Error("Expected relay environment to be present on context");
@@ -89,6 +89,6 @@ export const getNovaApolloEnvironmentForStory = (
 
 const isApolloMockEnv = (
   env: ReturnType<typeof getNovaEnvironmentForStory>,
-): env is NovaMockEnvironment<"storybook"> => {
+): env is NovaMockEnvironment => {
   return env.type === "apollo";
 };

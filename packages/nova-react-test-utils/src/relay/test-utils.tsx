@@ -10,6 +10,7 @@ import { createMockEnvironment } from "relay-test-utils";
 import { RelayEnvironmentProvider } from "react-relay";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { defaultLocalization } from "../shared/shared-utils";
+import type { NovaCentralizedCommanding, NovaEventing } from "@nova/types";
 
 export class RelayMockPayloadGenerator {
   public gqlSchema: GraphQLSchema;
@@ -47,20 +48,24 @@ export class RelayMockPayloadGenerator {
 
 type RelayEnvironmentOptions = Parameters<typeof createMockEnvironment>[0];
 
+const noop = () => Promise.resolve();
+
 /**
  * Creates a Nova environment object that can be used with the NovaMockEnvironmentProvider and has mocks instantiated
  * for each piece of the facade interface. Check README for details.
  */
 export function createNovaRelayMockEnvironment(
   options?: RelayEnvironmentOptions,
+  commandingTriggerMock?: NovaCentralizedCommanding["trigger"],
+  eventingBubbleMock?: NovaEventing["bubble"],
 ) {
   const relayEnvironment = createMockEnvironment(options);
-  const env: NovaMockEnvironment<"test"> = {
+  const env: NovaMockEnvironment = {
     commanding: {
-      trigger: jest.fn(),
+      trigger: commandingTriggerMock || noop,
     },
     eventing: {
-      bubble: jest.fn(),
+      bubble: eventingBubbleMock || noop,
     },
     type: "relay",
     graphql: {

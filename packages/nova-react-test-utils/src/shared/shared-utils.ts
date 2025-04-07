@@ -8,8 +8,6 @@ import type { makeDecorator } from "@storybook/preview-api";
 
 export type GraphQLClientVariant = "apollo" | "relay";
 
-export type TestingEnvironmentVariant = "test" | "storybook";
-
 export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
   const eventData =
     typeof eventWrapper.event.data === "function"
