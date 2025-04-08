@@ -16,6 +16,8 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
+import { fn } from "@storybook/test";
+import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
 
@@ -111,13 +113,19 @@ export const Like: Story = {
   },
 };
 
+const mockOnError = fn<[Error]>();
+
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
     parameters: {
       novaEnvironment: {
         enableQueuedMockResolvers: false,
       },
-    } satisfies NovaParameters,
+      errorBoundary: {
+        onError: mockOnError,
+      },
+    } satisfies NovaParameters &
+      withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -126,7 +134,13 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
         const operation = mock.getMostRecentOperation();
         await expect(operation).toBeDefined();
       });
-      await mock.rejectMostRecentOperation(new Error("Query failed"));
+      mock.rejectMostRecentOperation(new Error("Query failed"));
+
+      await waitFor(() => {
+        expect(mockOnError).toHaveBeenCalledTimes(1);
+      });
+      const call = mockOnError.mock.calls[0];
+      expect(call[0].message).toBe("Query failed");
     },
   };
 

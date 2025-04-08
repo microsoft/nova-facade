@@ -46,20 +46,4 @@ describe("Feedback", () => {
     );
     expect(telemetryEvents).toHaveLength(1); // there are no remounts of the component on Story rerender
   });
-
-  it("throws an error when the developer makes a mistake", async () => {
-    const { container } = render(
-      <ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError />,
-    );
-    const context = prepareStoryContextForTest(
-      ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError,
-      container,
-    );
-    expect(async () => {
-      await executePlayFunction(
-        ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError,
-        context,
-      );
-    }).rejects.toThrowError("Query failed");
-  });
 });

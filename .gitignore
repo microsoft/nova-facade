@@ -8,3 +8,4 @@ lib
 __generated__
 
 *.tgz
+coverage
