@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Fri, 04 Apr 2025 20:38:15 GMT and should not be manually modified.
+This log was last generated on Tue, 08 Apr 2025 17:08:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.9.0
+
+Tue, 08 Apr 2025 17:08:06 GMT
+
+### Minor changes
+
+- migrate to storybook test addon (Stanislaw.Wilczynski@microsoft.com)
 
 ## 1.8.1
 

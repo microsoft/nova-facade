@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Tue, 08 Apr 2025 17:08:06 GMT",
+      "tag": "@nova/examples_v1.9.0",
+      "version": "1.9.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "f525c82d4255263ae158e1f7bdb54fc02a958058",
+            "comment": "migrate to storybook test addon"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 04 Apr 2025 20:38:15 GMT",
       "tag": "@nova/examples_v1.8.1",
       "version": "1.8.1",
