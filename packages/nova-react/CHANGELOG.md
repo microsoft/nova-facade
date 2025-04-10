@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 11 Feb 2025 14:14:19 GMT and should not be manually modified.
+This log was last generated on Thu, 10 Apr 2025 16:59:24 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.7.1
+
+Thu, 10 Apr 2025 16:59:24 GMT
+
+### Patches
+
+- Add additional react version (kerryn@zyridium.net)
 
 ## 2.7.0
 

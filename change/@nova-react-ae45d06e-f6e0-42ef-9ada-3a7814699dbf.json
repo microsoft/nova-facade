@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add additional react version",
-  "packageName": "@nova/react",
-  "email": "kerryn@zyridium.net",
-  "dependentChangeType": "patch"
-}

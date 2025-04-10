@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 10 Apr 2025 16:59:24 GMT",
+      "tag": "@nova/react_v2.7.1",
+      "version": "2.7.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "kerryn@zyridium.net",
+            "package": "@nova/react",
+            "commit": "3655a073fd11860c7e248e71fe971734e37cbe0f",
+            "comment": "Add additional react version"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Apr 2025 18:41:21 GMT",
       "tag": "@nova/react_v2.7.0",
       "version": "2.7.0",
