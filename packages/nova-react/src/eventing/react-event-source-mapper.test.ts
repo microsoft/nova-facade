@@ -1,14 +1,15 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment node
  */
 
 import type { SyntheticEvent } from "react";
+import { describe, test, expect, vi } from "vitest";
 import { mapEventMetadata } from "./react-event-source-mapper";
 import type { NovaEvent } from "@nova/types";
 import { InputType } from "@nova/types";
 
 const nowTimeStamp = 1670638671187;
-Date.now = jest.fn(() => nowTimeStamp);
+vi.spyOn(Date, 'now').mockImplementation(() => nowTimeStamp);
 
 const mappedTypes = [
   ["dblclick", InputType.mouse],
@@ -42,7 +43,7 @@ const mappedPointerTypes = [
 ];
 
 const novaEventWithData: NovaEvent<string> = {
-  data: jest.fn(),
+  data: vi.fn(),
   originator: "testOrigin",
   type: "testType",
 };
@@ -54,8 +55,8 @@ const mockUIEvent: SyntheticEvent = {
   target: {} as EventTarget,
   timeStamp,
   type: "keydown",
-  preventDefault: jest.fn(),
-  stopPropagation: jest.fn(),
+  preventDefault: vi.fn(),
+  stopPropagation: vi.fn(),
   nativeEvent: {
     view: {
       performance: {
@@ -69,9 +70,9 @@ const mockUIEvent: SyntheticEvent = {
   defaultPrevented: false,
   eventPhase: 0,
   isTrusted: false,
-  isDefaultPrevented: jest.fn(),
-  isPropagationStopped: jest.fn(),
-  persist: jest.fn(),
+  isDefaultPrevented: vi.fn(),
+  isPropagationStopped: vi.fn(),
+  persist: vi.fn(),
 };
 
 describe(mapEventMetadata, () => {
