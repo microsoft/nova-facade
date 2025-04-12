@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "move tests to vitest",
+  "packageName": "@nova/graphql-compiler",
+  "email": "sjwilczynski@gmail.com",
+  "dependentChangeType": "none"
+}
