@@ -17,7 +17,7 @@ describe("FeedbackContainer", () => {
     expect(texts.elements()).toHaveLength(3);
   });
 
-  // kept in jest to ensure prepareStoryContextForTest works correctly
+  // kept in unit tests to ensure prepareStoryContextForTest works correctly
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
     await LikeFailure.play?.(prepareStoryContextForTest(LikeFailure, container));

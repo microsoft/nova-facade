@@ -16,7 +16,6 @@
     "types": "monorepo-scripts types"
   },
   "devDependencies": {
-    "@types/jest": "^29.2.0",
     "monorepo-scripts": "*"
   },
   "publishConfig": {

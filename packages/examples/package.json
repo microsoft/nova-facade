@@ -15,7 +15,6 @@
     "lint": "monorepo-scripts lint",
     "prepare": "yarn generate",
     "storybook": "storybook dev -p 6006",
-    "pretest": "yarn playwright install --with-deps chromium",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
