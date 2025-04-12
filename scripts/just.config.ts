@@ -1,12 +1,5 @@
 import type { EsbuildBuildOptions } from "just-scripts";
-import {
-  tscTask,
-  esbuildTask,
-  jestTask,
-  eslintTask,
-  argv,
-  parallel,
-} from "just-scripts";
+import { tscTask, esbuildTask, eslintTask, parallel } from "just-scripts";
 import * as path from "path";
 import * as fs from "fs";
 import * as glob from "fast-glob";

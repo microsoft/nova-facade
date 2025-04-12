@@ -1,6 +1,5 @@
 import { defineConfig } from "vitest/config";
 
-// TODO: remove test variant from env and why is this triggering a browser instead of running in headless?
 export default defineConfig({
   test: {
     name: "component",
