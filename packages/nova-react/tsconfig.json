@@ -6,8 +6,7 @@
     "composite": true,
     "tsBuildInfoFile": ".tsbuildinfo",
     "rootDir": "src",
-    "outDir": "lib",
-    "types": ["@vitest/browser/context", "@vitest/browser/providers/playwright"]
+    "outDir": "lib"
   },
   "include": ["src"],
   "references": []

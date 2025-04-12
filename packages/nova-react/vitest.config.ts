@@ -1,19 +1,4 @@
-import { defineConfig } from "vitest/config";
+import { mergeConfig } from "vitest/config";
+import defaultConfig from "../../scripts/config/vitest.config";
 
-export default defineConfig({
-  test: {
-    name: "component",
-    browser: {
-      enabled: true,
-      headless: true,
-      provider: "playwright",
-      instances: [
-        {
-          browser: "chromium",
-        },
-      ],
-    },
-    include: ["src/**/*.test.{ts,tsx}"],
-    setupFiles: ["./vitest.setup.ts"],
-  },
-});
+export default mergeConfig(defaultConfig, {});

@@ -10,6 +10,7 @@
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
     "noPropertyAccessFromIndexSignature": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["@vitest/browser/context", "@vitest/browser/providers/playwright"]
   }
 }
