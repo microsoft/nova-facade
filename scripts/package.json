@@ -8,8 +8,6 @@
     "monorepo-scripts": "bin/monorepo-scripts.js"
   },
   "devDependencies": {
-    "@graphitation/embedded-document-artefact-loader": "^0.8.5",
-    "@graphql-tools/jest-transform": "^1.2.2",
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
