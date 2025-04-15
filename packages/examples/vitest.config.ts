@@ -1,6 +1,10 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { coverageConfigDefaults, defineConfig, mergeConfig } from "vitest/config";
+import {
+  coverageConfigDefaults,
+  defineConfig,
+  mergeConfig,
+} from "vitest/config";
 import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
 import { plugins } from "./vitest.plugins";
 import defaultConfig from "../../scripts/config/vitest.config";
@@ -17,8 +21,6 @@ export default defineConfig({
         plugins: [...plugins],
         test: mergeConfig(defaultConfig, {})["test"],
       },
-      // Project for Storybook browser tests
-      // More info at: https://storybook.js.org/docs/writing-tests/test-addon
       {
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config
@@ -26,7 +28,7 @@ export default defineConfig({
           storybookTest({ configDir: path.join(dirname, ".storybook") }),
         ],
         test: {
-          name: "storybook", // Name belongs inside the test config for the project
+          name: "storybook",
           browser: {
             enabled: true,
             headless: true,

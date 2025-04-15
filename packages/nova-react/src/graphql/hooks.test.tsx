@@ -67,7 +67,7 @@ describe(useLazyLoadQuery, () => {
       </NovaGraphQLProvider>,
     );
 
-    expect(mockHook).toHaveBeenCalledWith(
+    expect(graphql.useLazyLoadQuery).toHaveBeenCalledWith(
       query,
       {},
       { context: { callerInfo: "subject-with-query" } },
@@ -97,7 +97,7 @@ describe(useFragment, () => {
       </NovaGraphQLProvider>,
     );
 
-    expect(mockHook).toHaveBeenCalledWith(fragment, fragmentRef);
+    expect(graphql.useFragment).toHaveBeenCalledWith(fragment, fragmentRef);
     await expect.element(page.getByText("some-data")).toBeVisible();
   });
 
@@ -204,6 +204,7 @@ describe(useFragment, () => {
     const __: ExpectedReturnType = undefined;
     const ___: ExpectedReturnType = { someKey: "some-data" };
 
+    // Workaround for TS complaining about unused variables
     void _, __, ___;
   });
 
@@ -235,6 +236,7 @@ describe(useFragment, () => {
     const __: IsNotUndefined<ExpectedReturnType> = true;
     const ___: ExpectedReturnType = { someKey: "some-data" };
 
+    // Workaround for TS complaining about unused variables
     void _, __, ___;
   });
 });
@@ -335,8 +337,10 @@ describe(useRefetchableFragment, () => {
           readonly " $data"?: SomeFragment$data;
           readonly " $fragmentRefs": FragmentRefs<"SomeFragment">;
         };
+
         const fragment = {} as unknown as GraphQLTaggedNode;
         const opaqueFragmentRef = {} as unknown as SomeFragment$key;
+
         return useRefetchableFragment(fragment, opaqueFragmentRef);
       },
       {
@@ -351,10 +355,14 @@ describe(useRefetchableFragment, () => {
         ),
       },
     );
+
     type ExpectedReturnType = (typeof result.current)[0];
     const _: IsNotNull<ExpectedReturnType> = true;
+
     const __: IsNotUndefined<ExpectedReturnType> = true;
     const ___: ExpectedReturnType = { someKey: "some-data " };
+
+    // Workaround for TS complaining about unused variables
     void _, __, ___;
   });
 
@@ -367,11 +375,13 @@ describe(useRefetchableFragment, () => {
           readonly " $data"?: SomeFragment$data;
           readonly " $fragmentRefs": FragmentRefs<"SomeFragment">;
         };
+
         const fragment = {} as unknown as GraphQLTaggedNode;
         const opaqueFragmentRef = {} as unknown as
           | SomeFragment$key
           | null
           | undefined;
+
         return useRefetchableFragment(fragment, opaqueFragmentRef);
       },
       {
@@ -386,10 +396,14 @@ describe(useRefetchableFragment, () => {
         ),
       },
     );
+
     type ExpectedReturnType = (typeof result.current)[0];
+
     const _: IsNotNull<ExpectedReturnType> = false;
     const __: IsNotUndefined<ExpectedReturnType> = false;
     const ___: ExpectedReturnType = { someKey: "some-data " };
+
+    // Workaround for TS complaining about unused variables
     void _, __, ___;
   });
 });
@@ -416,6 +430,7 @@ describe(usePaginationFragment, () => {
       isLoadingPrevious: false,
       refetch: vi.fn(),
     };
+    
     const mockHook = vi.fn(() => mockedResponse);
     const graphql: NovaGraphQL = {
       usePaginationFragment: mockHook,

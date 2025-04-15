@@ -86,7 +86,7 @@ describe("useNovaEventing", () => {
       useNovaUnmountEventing();
       return null;
     };
-    78;
+
     expect(() => render(<TestUndefinedContextComponent />)).toThrow(
       "Nova Eventing provider must be initialized prior to consumption of unmountEventing!",
     );

@@ -85,6 +85,8 @@ describe(createNovaApolloEnvironment, () => {
     });
 
     it("exposes mocks for GraphQL operations", async () => {
+      expect.assertions(2);
+
       render(
         <NovaMockEnvironmentProvider environment={environment}>
           <QuerySubject />
@@ -135,7 +137,6 @@ describe(createNovaApolloEnvironment, () => {
         </NovaMockEnvironmentProvider>,
       );
 
-      // Use the correctly typed variable
       await vi.waitFor(() =>
         expect(environment.graphql.mock.getAllOperations().length).toBe(1),
       );
