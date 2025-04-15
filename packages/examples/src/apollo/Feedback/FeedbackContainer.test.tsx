@@ -43,7 +43,7 @@ describe("FeedbackContainer", () => {
     );
   });
 
-  // kept in unit to ensure prepareStoryContextForTest works correctly
+  // kept in unit test to ensure prepareStoryContextForTest works correctly
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
 

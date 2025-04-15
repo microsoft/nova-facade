@@ -13,17 +13,11 @@ import {
   NovaGraphQLProvider,
   NovaLocalizationProvider,
 } from "@nova/react";
-import type {
-  GraphQLClientVariant,
-} from "./shared-utils";
-
-type Commanding = NovaCentralizedCommanding;
-
-type Eventing = NovaEventing;
+import type { GraphQLClientVariant } from "./shared-utils";
 
 export interface NovaMockEnvironment<E extends NovaGraphQL = NovaGraphQL> {
-  commanding: Commanding;
-  eventing: Eventing;
+  commanding: NovaCentralizedCommanding;
+  eventing: NovaEventing;
   /**
    * A React component that will be used to wrap the NovaFacadeProvider children. This is used by the test-utils to
    * inject a ApolloProvider.
