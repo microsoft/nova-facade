@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 10 Apr 2025 16:59:24 GMT and should not be manually modified.
+This log was last generated on Thu, 17 Apr 2025 07:04:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.0.0
+
+Thu, 17 Apr 2025 07:04:14 GMT
+
+### Major changes
+
+- remove jest dependency and move tests to vitest (sjwilczynski@gmail.com)
 
 ## 6.2.3
 

@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Thu, 17 Apr 2025 07:04:14 GMT",
+      "tag": "@nova/types_v1.6.0",
+      "version": "1.6.0",
+      "comments": {
+        "none": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/types",
+            "commit": "0d00c426716e1b76d7acfafe6215bce634419715",
+            "comment": "remove not needed dev dependency"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 01 Apr 2025 18:41:21 GMT",
       "tag": "@nova/types_v1.6.0",
       "version": "1.6.0",

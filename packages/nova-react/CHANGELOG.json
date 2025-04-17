@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 17 Apr 2025 07:04:14 GMT",
+      "tag": "@nova/react_v2.7.1",
+      "version": "2.7.1",
+      "comments": {
+        "none": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/react",
+            "commit": "0d00c426716e1b76d7acfafe6215bce634419715",
+            "comment": "move tests to vitest"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Apr 2025 16:59:24 GMT",
       "tag": "@nova/react_v2.7.1",
       "version": "2.7.1",

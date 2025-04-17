@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Thu, 17 Apr 2025 07:04:14 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "none": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "0d00c426716e1b76d7acfafe6215bce634419715",
+            "comment": "move tests to vitest"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 03 Apr 2025 16:14:11 GMT",
       "tag": "@nova/graphql-compiler_v1.0.3",
       "version": "1.0.3",

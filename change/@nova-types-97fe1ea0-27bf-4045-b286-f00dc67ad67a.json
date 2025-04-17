@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "remove not needed dev dependency",
-  "packageName": "@nova/types",
-  "email": "sjwilczynski@gmail.com",
-  "dependentChangeType": "none"
-}

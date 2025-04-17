@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "move all tests to vitest",
-  "packageName": "@nova/examples",
-  "email": "sjwilczynski@gmail.com",
-  "dependentChangeType": "patch"
-}

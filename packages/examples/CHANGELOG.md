@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 10 Apr 2025 16:59:24 GMT and should not be manually modified.
+This log was last generated on Thu, 17 Apr 2025 07:04:14 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.10.0
+
+Thu, 17 Apr 2025 07:04:14 GMT
+
+### Minor changes
+
+- move all tests to vitest (sjwilczynski@gmail.com)
+- Bump @nova/react-test-utils to v7.0.0
 
 ## 1.9.1
 

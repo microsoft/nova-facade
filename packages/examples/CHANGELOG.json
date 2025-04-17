@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 17 Apr 2025 07:04:14 GMT",
+      "tag": "@nova/examples_v1.10.0",
+      "version": "1.10.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "sjwilczynski@gmail.com",
+            "package": "@nova/examples",
+            "commit": "0d00c426716e1b76d7acfafe6215bce634419715",
+            "comment": "move all tests to vitest"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.0.0",
+            "commit": "0d00c426716e1b76d7acfafe6215bce634419715"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Apr 2025 16:59:24 GMT",
       "tag": "@nova/examples_v1.9.1",
       "version": "1.9.1",
