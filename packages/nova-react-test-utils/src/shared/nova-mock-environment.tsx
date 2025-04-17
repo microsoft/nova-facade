@@ -13,25 +13,11 @@ import {
   NovaGraphQLProvider,
   NovaLocalizationProvider,
 } from "@nova/react";
-import type {
-  TestingEnvironmentVariant,
-  GraphQLClientVariant,
-} from "./shared-utils";
+import type { GraphQLClientVariant } from "./shared-utils";
 
-type Commanding<T extends TestingEnvironmentVariant> = T extends "test"
-  ? jest.Mocked<NovaCentralizedCommanding>
-  : NovaCentralizedCommanding;
-
-type Eventing<T extends TestingEnvironmentVariant> = T extends "test"
-  ? jest.Mocked<NovaEventing>
-  : NovaEventing;
-
-export interface NovaMockEnvironment<
-  T extends TestingEnvironmentVariant = "test",
-  E extends NovaGraphQL = NovaGraphQL,
-> {
-  commanding: Commanding<T>;
-  eventing: Eventing<T>;
+export interface NovaMockEnvironment<E extends NovaGraphQL = NovaGraphQL> {
+  commanding: NovaCentralizedCommanding;
+  eventing: NovaEventing;
   /**
    * A React component that will be used to wrap the NovaFacadeProvider children. This is used by the test-utils to
    * inject a ApolloProvider.
@@ -42,20 +28,16 @@ export interface NovaMockEnvironment<
   localization: NovaLocalization;
 }
 
-export interface NovaMockEnvironmentProviderProps<
-  T extends TestingEnvironmentVariant,
-  E extends NovaGraphQL,
-> {
-  environment: NovaMockEnvironment<T, E>;
+export interface NovaMockEnvironmentProviderProps<E extends NovaGraphQL> {
+  environment: NovaMockEnvironment<E>;
 }
 
 export const NovaMockEnvironmentProvider = <
-  T extends TestingEnvironmentVariant = "test",
   E extends NovaGraphQL = NovaGraphQL,
 >({
   children,
   environment,
-}: React.PropsWithChildren<NovaMockEnvironmentProviderProps<T, E>>) => {
+}: React.PropsWithChildren<NovaMockEnvironmentProviderProps<E>>) => {
   return (
     <NovaEventingProvider
       eventing={environment.eventing}

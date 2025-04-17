@@ -6,22 +6,19 @@ import {
 } from "../shared/nova-mock-environment";
 import type { NovaGraphQL } from "@nova/types";
 import type { MockEnvironment } from "relay-test-utils";
-import type { TestingEnvironmentVariant } from "../shared/shared-utils";
 
 type RelayNovaGraphQL = NovaGraphQL & {
   mock: MockEnvironment["mock"];
 };
 
-export type NovaMockEnvironment<T extends TestingEnvironmentVariant = "test"> =
-  GenericNovaMockEnvironment<T, RelayNovaGraphQL> & { type: "relay" };
+export type NovaMockEnvironment =
+  GenericNovaMockEnvironment<RelayNovaGraphQL> & { type: "relay" };
 
-export const NovaMockEnvironmentProvider = <
-  T extends TestingEnvironmentVariant = "test",
->({
+export const NovaMockEnvironmentProvider = ({
   children,
   environment,
 }: React.PropsWithChildren<
-  NovaMockEnvironmentProviderProps<T, RelayNovaGraphQL>
+  NovaMockEnvironmentProviderProps<RelayNovaGraphQL>
 >) => {
   return (
     <GenericNovaMockEnvironmentProvider environment={environment}>

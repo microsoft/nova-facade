@@ -1,9 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 import * as React from "react";
-import { render } from "@testing-library/react";
+import { render } from "vitest-browser-react";
+import { describe, it, expect, vi } from "vitest";
 import {
   NovaCentralizedCommandingProvider,
   useNovaCentralizedCommanding,
@@ -34,7 +31,7 @@ describe(useNovaCentralizedCommanding, () => {
     expect.assertions(1);
 
     const commanding = {
-      trigger: jest.fn(),
+      trigger: vi.fn(),
     } as unknown as NovaCentralizedCommanding;
 
     const TestPassedContextComponent: React.FC = () => {

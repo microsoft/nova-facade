@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "remove jest dependency and move tests to vitest",
+  "packageName": "@nova/react-test-utils",
+  "email": "sjwilczynski@gmail.com",
+  "dependentChangeType": "patch"
+}

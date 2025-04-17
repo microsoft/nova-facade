@@ -100,7 +100,7 @@ const Renderer: React.FC<RendererProps> = ({
 const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
-export const getDecorator = <E extends NovaMockEnvironment<"storybook">>(
+export const getDecorator = <E extends NovaMockEnvironment>(
   createEnvironment: () => E,
   initializeGenerator: (
     parameters: WithNovaEnvironment["novaEnvironment"],
@@ -144,7 +144,7 @@ export const getNovaEnvironmentForStory = (
   context: PlayFunctionContext<ReactRenderer>,
 ) => {
   const env = context.parameters?.[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] as
-    | NovaMockEnvironment<"storybook">
+    | NovaMockEnvironment
     | undefined;
   if (!env) {
     throw new Error(

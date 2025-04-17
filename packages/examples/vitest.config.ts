@@ -1,21 +1,27 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-
-import { coverageConfigDefaults, defineConfig } from "vitest/config";
-
+import {
+  coverageConfigDefaults,
+  defineConfig,
+  mergeConfig,
+} from "vitest/config";
 import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
+import { plugins } from "./vitest.plugins";
+import defaultConfig from "../../scripts/config/vitest.config";
 
 const dirname =
   typeof __dirname !== "undefined"
     ? __dirname
     : path.dirname(fileURLToPath(import.meta.url));
 
-// More info at: https://storybook.js.org/docs/writing-tests/test-addon
 export default defineConfig({
   test: {
     workspace: [
       {
-        extends: true,
+        plugins: [...plugins],
+        test: mergeConfig(defaultConfig, {})["test"],
+      },
+      {
         plugins: [
           // The plugin will run tests for the stories defined in your Storybook config
           // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
@@ -25,11 +31,11 @@ export default defineConfig({
           name: "storybook",
           browser: {
             enabled: true,
+            headless: true,
             provider: "playwright",
             instances: [
               {
                 browser: "chromium",
-                headless: true,
               },
             ],
           },
@@ -47,6 +53,7 @@ export default defineConfig({
         "**/*.stories.*",
         // 👇 This pattern must align with the output directory of `storybook build`
         "**/storybook-static/**",
+        "vitest.*",
       ],
     },
   },

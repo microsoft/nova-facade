@@ -27,13 +27,12 @@
     "build": "monorepo-scripts build",
     "just": "monorepo-scripts",
     "lint": "monorepo-scripts lint",
-    "test": "monorepo-scripts test",
+    "test": "vitest run",
     "types": "monorepo-scripts types"
   },
   "dependencies": {
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.9",
     "@graphitation/graphql-js-tag": "^0.9.4",
-    "@jest/types": ">27.0.0",
     "@nova/react": "^2.7.1",
     "@nova/types": "^1.6.0",
     "@types/react": "^17 || ^18",
@@ -51,17 +50,16 @@
     "@storybook/preview-api": "^8.4.5",
     "@storybook/react": "^8.4.5",
     "@storybook/types": "^8.4.5",
-    "@testing-library/react": "^15.0.0",
-    "@types/jest": "^29.2.0",
     "@types/react-relay": "^16.0.0",
-    "@types/react-test-renderer": "^18.3.0",
     "@types/relay-test-utils": "^18.0.0",
+    "@vitest/browser": "^3.1.0",
     "monorepo-scripts": "*",
     "react": "^18.3.1",
     "react-relay": "^18.0.0",
-    "react-test-renderer": "^18.3.1",
     "relay-runtime": "^18.0.0",
-    "relay-test-utils": "^18.0.0"
+    "relay-test-utils": "^18.0.0",
+    "vitest": "^3.1.0",
+    "vitest-browser-react": "^0.1.1"
   },
   "peerDependencies": {
     "@apollo/client": "^3.4",

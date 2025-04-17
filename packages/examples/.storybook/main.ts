@@ -1,10 +1,7 @@
 import { dirname, join } from "path";
 import type { StorybookConfig } from "@storybook/react-vite";
 import { mergeConfig } from "vite";
-import relayPlugin from "vite-plugin-relay";
-import graphqlLoader from "vite-plugin-graphql-loader";
-import commonjs from "vite-plugin-commonjs";
-
+import { plugins } from "../vitest.plugins";
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
   addons: [
@@ -20,7 +17,7 @@ const config: StorybookConfig = {
   },
   viteFinal: (config) => {
     return mergeConfig(config, {
-      plugins: [relayPlugin, graphqlLoader(), commonjs()],
+      plugins: [...plugins],
     });
   },
 };

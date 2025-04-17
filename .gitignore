@@ -9,3 +9,5 @@ __generated__
 
 *.tgz
 coverage
+__screenshots__
+.swc

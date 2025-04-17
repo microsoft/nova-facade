@@ -1,11 +1,13 @@
-const { spawn } = require("cross-spawn");
-const { readFile, rm } = require("fs/promises");
-const path = require("path/posix");
+import { spawn } from "cross-spawn";
+import { readFile, rm } from "fs/promises";
+import { join } from "path/posix";
+import { describe, it, expect } from "vitest";
+
 
 describe("cli", () => {
   it("generates files", async () => {
     // Remove old generated files if they exist
-    await rm(path.join(__dirname, "__fixtures__/src/__generated__"), {
+    await rm(join(__dirname, "__fixtures__/src/__generated__"), {
       recursive: true,
       force: true,
     });
@@ -28,7 +30,7 @@ describe("cli", () => {
 
     // Read the generated files
     const generatedFiles = await readFile(
-      path.join(
+      join(
         __dirname,
         "__fixtures__/src/__generated__/Example_feedbackFragment.graphql.ts",
       ),

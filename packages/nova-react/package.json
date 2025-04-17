@@ -13,7 +13,7 @@
     "build": "monorepo-scripts build",
     "just": "monorepo-scripts",
     "lint": "monorepo-scripts lint",
-    "test": "monorepo-scripts test",
+    "test": "vitest run",
     "types": "monorepo-scripts types"
   },
   "dependencies": {
@@ -23,14 +23,15 @@
   },
   "devDependencies": {
     "@graphitation/graphql-js-tag": "^0.9.4",
-    "@testing-library/react": "^15.0.0",
     "@types/invariant": "^2.2.35",
-    "@types/jest": "^29.2.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "monorepo-scripts": "*",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@vitest/browser": "^3.1.0",
+    "vitest": "^3.1.0",
+    "vitest-browser-react": "^0.1.1"
   },
   "peerDependencies": {
     "@graphitation/graphql-js-tag": "^0.9.4",

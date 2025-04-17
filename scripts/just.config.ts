@@ -1,12 +1,5 @@
 import type { EsbuildBuildOptions } from "just-scripts";
-import {
-  tscTask,
-  esbuildTask,
-  jestTask,
-  eslintTask,
-  argv,
-  parallel,
-} from "just-scripts";
+import { tscTask, esbuildTask, eslintTask, parallel } from "just-scripts";
 import * as path from "path";
 import * as fs from "fs";
 import * as glob from "fast-glob";
@@ -63,17 +56,6 @@ export const build = () => {
       format: "cjs",
     }),
   );
-};
-
-export const test = () => {
-  const config = fs.existsSync(path.join(process.cwd(), "jest.config.ts"))
-    ? path.join(process.cwd(), "jest.config.ts") // if it exists prioritize using package local config
-    : path.join(__dirname, "config", "jest.config.ts");
-  return jestTask({
-    config,
-    watch: argv().watch,
-    _: argv()._,
-  });
 };
 
 export const lint = eslintTask({

@@ -1,10 +1,7 @@
-/**
- * @jest-environment jsdom
- */
-
 import * as React from "react";
 import type { NovaGraphQL } from "@nova/types";
-import { render } from "@testing-library/react";
+import { render } from "vitest-browser-react";
+import { describe, it, expect, vi } from "vitest";
 import { NovaGraphQLProvider, useNovaGraphQL } from "./nova-graphql-provider";
 
 describe(useNovaGraphQL, () => {
@@ -23,9 +20,9 @@ describe(useNovaGraphQL, () => {
 
   it("is able to access the GraphQL instance provided by the provider", () => {
     expect.assertions(1);
-
+    
     const graphql = {
-      useLazyLoadQuery: jest.fn(),
+      useLazyLoadQuery: vi.fn(),
     } as unknown as NovaGraphQL;
 
     const TestPassedContextComponent: React.FC = () => {
@@ -36,7 +33,6 @@ describe(useNovaGraphQL, () => {
       graphqlFromContext.useLazyLoadQuery("foo", {});
       return null;
     };
-
     render(
       <NovaGraphQLProvider graphql={graphql}>
         <TestPassedContextComponent />

@@ -1,9 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 import * as React from "react";
-import { render, screen, renderHook } from "@testing-library/react";
+import { render, renderHook } from "vitest-browser-react";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 
 import { NovaGraphQLProvider } from "./nova-graphql-provider";
 import type { NovaGraphQL } from "@nova/types";
@@ -17,6 +14,7 @@ import {
 } from "./hooks";
 import type { GraphQLTaggedNode } from "./taggedNode";
 import type { FragmentRefs } from "./types";
+import { page } from "@vitest/browser/context";
 
 type IsNotNull<T> = null extends T ? false : true;
 type IsNotUndefined<T> = undefined extends T ? false : true;
@@ -25,7 +23,7 @@ describe(useLazyLoadQuery, () => {
   it("ensures an implementation is supplied", () => {
     const graphql: NovaGraphQL = {};
 
-    const spy = jest.spyOn(console, "error");
+    const spy = vi.spyOn(console, "error");
     spy.mockImplementation(() => {
       /* noop */
     });
@@ -42,14 +40,16 @@ describe(useLazyLoadQuery, () => {
         </NovaGraphQLProvider>,
       ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a useLazyLoadQuery hook"`,
+      `[Invariant Violation: Expected host to provide a useLazyLoadQuery hook]`,
     );
+    spy.mockRestore();
   });
 
-  it("uses the host's hook", () => {
+  it("uses the host's hook", async () => {
     const query = {} as unknown as GraphQLTaggedNode;
+    const mockHook = vi.fn(() => ({ data: "some-data" }));
     const graphql: NovaGraphQL = {
-      useLazyLoadQuery: jest.fn(() => ({ data: "some-data" })),
+      useLazyLoadQuery: mockHook,
     };
 
     const Subject: React.FC = () => {
@@ -72,14 +72,15 @@ describe(useLazyLoadQuery, () => {
       {},
       { context: { callerInfo: "subject-with-query" } },
     );
-    expect(screen.getByText("some-data")).toBeDefined();
+    await expect.element(page.getByText("some-data")).toBeVisible();
   });
 });
 
 describe(useFragment, () => {
-  it("uses the host's hook, if provided", () => {
+  it("uses the host's hook, if provided", async () => {
+    const mockHook = vi.fn(() => ({ someKey: "some-data" }));
     const graphql: NovaGraphQL = {
-      useFragment: jest.fn(() => ({ someKey: "some-data" })),
+      useFragment: mockHook,
     };
 
     const fragment = {} as unknown as GraphQLTaggedNode;
@@ -97,10 +98,10 @@ describe(useFragment, () => {
     );
 
     expect(graphql.useFragment).toHaveBeenCalledWith(fragment, fragmentRef);
-    expect(screen.getByText("some-data")).toBeDefined();
+    await expect.element(page.getByText("some-data")).toBeVisible();
   });
 
-  it("simply passes through the data it receives, if the host does not provide an implementation", () => {
+  it("simply passes through the data it receives, if the host does not provide an implementation", async () => {
     const graphql: NovaGraphQL = {
       useFragment: undefined,
     };
@@ -119,7 +120,7 @@ describe(useFragment, () => {
       </NovaGraphQLProvider>,
     );
 
-    expect(screen.getByText("some-data")).toBeDefined();
+    await expect.element(page.getByText("some-data")).toBeVisible();
   });
 
   it("unmasks the opaque data's typing that gets emitted by the compiler", () => {
@@ -160,9 +161,9 @@ describe(useFragment, () => {
     const fragment = {} as unknown as GraphQLTaggedNode;
 
     const { result, rerender } = renderHook<
-      null | undefined,
-      { fragmentRef: null | undefined }
-    >(({ fragmentRef }) => useFragment(fragment, fragmentRef), {
+      { fragmentRef: null | undefined },
+      null | undefined
+    >((props) => useFragment(fragment, props?.fragmentRef), {
       wrapper: ({ children }) => (
         <NovaGraphQLProvider graphql={{}}>{children}</NovaGraphQLProvider>
       ),
@@ -242,19 +243,19 @@ describe(useFragment, () => {
 
 describe(useRefetchableFragment, () => {
   beforeEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
 
-    jest.spyOn(console, "error").mockImplementation(() => {
+    vi.spyOn(console, "error").mockImplementation(() => {
       /* noop */
     });
   });
 
-  it("uses the host's hook, if provided", () => {
+  it("uses the host's hook, if provided", async () => {
+    const refetchFn = vi.fn(() => ({ dispose: vi.fn() }));
+    const mockHook = vi.fn(() => [{ someKey: "some-data" }, refetchFn]);
     const graphql: NovaGraphQL = {
-      useRefetchableFragment: jest.fn(() => [
-        { someKey: "some-data" },
-        ({}) => ({ dispose: jest.fn() }),
-      ]),
+      useRefetchableFragment:
+        mockHook as unknown as typeof useRefetchableFragment,
     };
 
     const fragment = {} as unknown as GraphQLTaggedNode;
@@ -275,7 +276,7 @@ describe(useRefetchableFragment, () => {
       fragment,
       fragmentRef,
     );
-    expect(screen.getByText("some-data")).toBeDefined();
+    await expect.element(page.getByText("some-data")).toBeVisible();
   });
 
   it("ensures an implementation is supplied", () => {
@@ -298,22 +299,22 @@ describe(useRefetchableFragment, () => {
         </NovaGraphQLProvider>,
       ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a useRefetchableFragment hook"`,
+      `[Invariant Violation: Expected host to provide a useRefetchableFragment hook]`,
     );
   });
 
   it("supports passing null as reference to the fragment", () => {
+    const mockRefetch = vi.fn();
     const { result } = renderHook(
       () => {
         const fragment = {} as unknown as GraphQLTaggedNode;
-
         return useRefetchableFragment(fragment, null);
       },
       {
         wrapper: ({ children }) => (
           <NovaGraphQLProvider
             graphql={{
-              useRefetchableFragment: (_, ref) => [ref, jest.fn()],
+              useRefetchableFragment: (_, ref) => [ref, mockRefetch],
             }}
           >
             {children}
@@ -321,40 +322,14 @@ describe(useRefetchableFragment, () => {
         ),
       },
     );
-
     const [data] = result.current;
-
     const _: null | undefined = data;
     void _;
-
-    expect(result.current[0]).toBeNull();
-  });
-
-  it("supports passing null as reference to the fragment", () => {
-    const { result } = renderHook(
-      () => {
-        const fragment = {} as unknown as GraphQLTaggedNode;
-        const fragmentRef = null;
-
-        return useRefetchableFragment(fragment, fragmentRef);
-      },
-      {
-        wrapper: ({ children }) => (
-          <NovaGraphQLProvider
-            graphql={{
-              useRefetchableFragment: (_, ref) => [ref, jest.fn()],
-            }}
-          >
-            {children}
-          </NovaGraphQLProvider>
-        ),
-      },
-    );
-
     expect(result.current[0]).toBeNull();
   });
 
   it("return type does not include null or undefined when the ref is not null", () => {
+    const mockRefetch = vi.fn();
     const { result } = renderHook(
       () => {
         type SomeFragment$data = { someKey: string };
@@ -372,7 +347,7 @@ describe(useRefetchableFragment, () => {
         wrapper: ({ children }) => (
           <NovaGraphQLProvider
             graphql={{
-              useRefetchableFragment: (_, ref) => [ref, jest.fn()],
+              useRefetchableFragment: (_, ref) => [ref, mockRefetch],
             }}
           >
             {children}
@@ -382,8 +357,8 @@ describe(useRefetchableFragment, () => {
     );
 
     type ExpectedReturnType = (typeof result.current)[0];
-
     const _: IsNotNull<ExpectedReturnType> = true;
+
     const __: IsNotUndefined<ExpectedReturnType> = true;
     const ___: ExpectedReturnType = { someKey: "some-data " };
 
@@ -392,6 +367,7 @@ describe(useRefetchableFragment, () => {
   });
 
   it("supports null and undefined as result types when the key can be null or undefined", () => {
+    const mockRefetch = vi.fn();
     const { result } = renderHook(
       () => {
         type SomeFragment$data = { someKey: string };
@@ -412,7 +388,7 @@ describe(useRefetchableFragment, () => {
         wrapper: ({ children }) => (
           <NovaGraphQLProvider
             graphql={{
-              useRefetchableFragment: (_, ref) => [ref, jest.fn()],
+              useRefetchableFragment: (_, ref) => [ref, mockRefetch],
             }}
           >
             {children}
@@ -434,29 +410,30 @@ describe(useRefetchableFragment, () => {
 
 describe(usePaginationFragment, () => {
   beforeEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
 
-    jest.spyOn(console, "error").mockImplementation(() => {
+    vi.spyOn(console, "error").mockImplementation(() => {
       /* noop */
     });
   });
 
-  it("uses the host's hook, if provided", () => {
+  it("uses the host's hook, if provided", async () => {
     const mockedResponse = {
       data: {
         someKey: "some-data",
       },
-      loadNext: jest.fn(),
-      loadPrevious: jest.fn(),
+      loadNext: vi.fn(),
+      loadPrevious: vi.fn(),
       hasNext: false,
       hasPrevious: false,
       isLoadingNext: false,
       isLoadingPrevious: false,
-      refetch: jest.fn(),
+      refetch: vi.fn(),
     };
-
+    
+    const mockHook = vi.fn(() => mockedResponse);
     const graphql: NovaGraphQL = {
-      usePaginationFragment: jest.fn(() => mockedResponse),
+      usePaginationFragment: mockHook,
     };
 
     const fragment = {} as unknown as GraphQLTaggedNode;
@@ -477,7 +454,7 @@ describe(usePaginationFragment, () => {
       fragment,
       fragmentRef,
     );
-    expect(screen.getByText("some-data")).toBeDefined();
+    await expect.element(page.getByText("some-data")).toBeVisible();
   });
 
   it("ensures an implementation is supplied", () => {
@@ -500,13 +477,13 @@ describe(usePaginationFragment, () => {
         </NovaGraphQLProvider>,
       ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a usePaginationFragment hook"`,
+      `[Invariant Violation: Expected host to provide a usePaginationFragment hook]`,
     );
   });
 
   it("does not include null or undefined in the return type when the key is defined.", () => {
     const graphql: NovaGraphQL = {
-      usePaginationFragment: jest.fn().mockImplementation(() => ({
+      usePaginationFragment: vi.fn().mockImplementation(() => ({
         data: {},
       })),
     };
@@ -540,7 +517,7 @@ describe(usePaginationFragment, () => {
 
   it("allows fragment ref, null, or undefined to be passed as a fragment ref and returns data, null, or undefined", () => {
     const graphql: NovaGraphQL = {
-      usePaginationFragment: jest.fn().mockImplementation(() => ({
+      usePaginationFragment: vi.fn().mockImplementation(() => ({
         data: {},
       })),
     };
@@ -577,7 +554,7 @@ describe(usePaginationFragment, () => {
 
   it("allows null or undefined to be passed as a fragment ref and returns null or undefined", () => {
     const graphql: NovaGraphQL = {
-      usePaginationFragment: jest.fn().mockImplementation(() => ({
+      usePaginationFragment: vi.fn().mockImplementation(() => ({
         data: {},
       })),
     };
@@ -607,7 +584,7 @@ describe(useSubscription, () => {
   it("ensures an implementation is supplied", () => {
     const graphql: NovaGraphQL = {};
 
-    const spy = jest.spyOn(console, "error");
+    const spy = vi.spyOn(console, "error");
     spy.mockImplementation(() => {
       /* noop */
     });
@@ -624,18 +601,20 @@ describe(useSubscription, () => {
         </NovaGraphQLProvider>,
       ),
     ).toThrowErrorMatchingInlineSnapshot(
-      `"Expected host to provide a useSubscription hook"`,
+      `[Invariant Violation: Expected host to provide a useSubscription hook]`,
     );
+    spy.mockRestore();
   });
 
   it("uses the host's hook", () => {
     const subscription: GraphQLTaggedNode = { __brand: "GraphQLTaggedNode" };
+    const mockHook = vi.fn();
     const graphql: NovaGraphQL = {
-      useSubscription: jest.fn(),
+      useSubscription: mockHook,
     };
 
-    const onNext = jest.fn();
-    const onError = jest.fn();
+    const onNext = vi.fn();
+    const onError = vi.fn();
 
     const expectedArgument = {
       subscription,

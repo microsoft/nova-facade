@@ -369,7 +369,7 @@ graphql.mock.queueOperationResolver((operation) => {
 
 Sure, please check [unit tests file](../examples/src/relay/Feedback/FeedbackContainer.test.tsx) to see how stories can be leveraged inside unit tests, using [composeStories](https://storybook.js.org/docs/writing-tests/import-stories-in-tests/stories-in-unit-tests) to treat storybook as the single source of truth for all the config/setup needed to test your component.
 
-Here is also an example:
+Here is an example in jest:
 
 ```tsx
 import { composeStories } from "@storybook/react";
@@ -388,6 +388,32 @@ it("should show an error if the like button fails", async () => {
   );
   const error = await screen.findByText("Something went wrong");
   expect(error).toBeInTheDocument();
+});
+```
+
+He is an examples in vitest:
+
+```tsx
+import { expect, it, describe } from "vitest";
+import { composeStories } from "@storybook/react";
+import * as stories from "./FeedbackContainer.stories";
+import * as React from "react";
+import { prepareStoryContextForTest } from "@nova/react-test-utils/apollo";
+import { render } from "vitest-browser-react";
+import { page } from "@vitest/browser/context";
+
+const { Primary, Liked, LikeFailure } = composeStories(stories);
+
+describe("FeedbackContainer", () => {
+  it("should show an error if the like button fails", async () => {
+    const { container } = render(<LikeFailure />);
+
+    await LikeFailure.play?.(
+      prepareStoryContextForTest(LikeFailure, container),
+    );
+    const error = page.getByText("Something went wrong");
+    await expect.element(error).toBeInTheDocument();
+  });
 });
 ```
 

@@ -1,9 +1,6 @@
-/**
- * @jest-environment jsdom
- */
-
 import * as React from "react";
-import { render, waitFor } from "@testing-library/react";
+import { render } from "vitest-browser-react";
+import { describe, it, test, expect, beforeEach, vi } from "vitest";
 import type {
   GeneratedEventWrapper,
   ReactEventWrapper,
@@ -17,19 +14,17 @@ import {
 } from "./nova-eventing-provider";
 import type { EventWrapper, NovaEventing } from "@nova/types";
 import { InputType } from "@nova/types";
+import { mapEventMetadata } from "./react-event-source-mapper";
+import { page } from "@vitest/browser/context";
 
-import * as ReactEventSourceMapper from "./react-event-source-mapper";
-
-const { useEffect } = React;
-
-jest.mock("./react-event-source-mapper");
+vi.mock("./react-event-source-mapper", { spy: true });
 
 describe("useNovaEventing", () => {
   let TestComponent: React.FunctionComponent<any>;
   let eventing: NovaEventing;
   let prevWrappedEventing: NovaReactEventing;
   let eventCallback: () => void;
-  const renderSpy = jest.fn();
+  const renderSpy = vi.fn();
   const initialChildren = "initial children";
   const updatedChildren = "updated children";
 
@@ -41,19 +36,13 @@ describe("useNovaEventing", () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-
-    const mapEventMetadataSpy = jest.spyOn(
-      ReactEventSourceMapper,
-      "mapEventMetadata",
-    );
-
-    eventing = { bubble: jest.fn() };
+    vi.clearAllMocks();
+    eventing = { bubble: vi.fn() };
     prevWrappedEventing = undefined as unknown as NovaReactEventing;
 
     TestComponent = ({ childrenText }) => {
       renderSpy();
-      const wrappedEventing: NovaReactEventing = useNovaEventing();
+      const wrappedEventing = useNovaEventing();
       expect(wrappedEventing).toBeDefined();
       expect(wrappedEventing).not.toBe(eventing);
       if (prevWrappedEventing) {
@@ -61,9 +50,12 @@ describe("useNovaEventing", () => {
       }
       prevWrappedEventing = wrappedEventing;
 
-      const eventWrapper = {} as ReactEventWrapper;
+      const eventWrapper: ReactEventWrapper = {
+        event: { originator: "test", type: "test" },
+        reactEvent: {} as React.SyntheticEvent,
+      };
       wrappedEventing.bubble(eventWrapper);
-      expect(mapEventMetadataSpy).toHaveBeenCalledWith(eventWrapper);
+      expect(mapEventMetadata).toHaveBeenCalledWith(eventWrapper);
       expect(eventing.bubble).toHaveBeenCalled();
 
       eventCallback = () => {
@@ -100,77 +92,71 @@ describe("useNovaEventing", () => {
     );
   });
 
-  test("Takes in children and eventing props, renders children, and updates children as expected.", () => {
+  test("Takes in children and eventing props, renders children, and updates children as expected.", async () => {
     const wrapper = render(
       <NovaEventingProvider
-        children={<TestComponent childrenText={initialChildren} />}
         eventing={eventing}
-        reactEventMapper={ReactEventSourceMapper.mapEventMetadata}
-      />,
+        reactEventMapper={mapEventMetadata}
+      >
+        <TestComponent childrenText={initialChildren} />
+      </NovaEventingProvider>,
     );
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      initialChildren,
-    );
+    await expect.element(page.getByText(initialChildren)).toBeVisible();
 
     expectComponentToRenderTimes(1);
 
     wrapper.rerender(
       <NovaEventingProvider
-        children={<TestComponent childrenText={updatedChildren} />}
         eventing={eventing}
-        reactEventMapper={ReactEventSourceMapper.mapEventMetadata}
-      />,
+        reactEventMapper={mapEventMetadata}
+      >
+        <TestComponent childrenText={updatedChildren} />
+      </NovaEventingProvider>,
     );
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      updatedChildren,
-    );
+    await expect.element(page.getByText(updatedChildren)).toBeVisible();
     expectComponentToRenderTimes(2);
   });
 
-  test("Takes in children and eventing props, creates a stable wrapped NovaReactEventing instance from eventing across re-renders when children do not change.", () => {
+  test("Takes in children and eventing props, creates a stable wrapped NovaReactEventing instance from eventing across re-renders when children do not change.", async () => {
     const stableTestComponentInstance = (
       <TestComponent childrenText={initialChildren} />
     );
-
     const wrapper = render(
       <NovaEventingProvider
-        children={stableTestComponentInstance}
         eventing={eventing}
-        reactEventMapper={ReactEventSourceMapper.mapEventMetadata}
-      />,
+        reactEventMapper={mapEventMetadata}
+      >
+        {stableTestComponentInstance}
+      </NovaEventingProvider>,
     );
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      initialChildren,
-    );
+    await expect.element(page.getByText(initialChildren)).toBeVisible();
     expectComponentToRenderTimes(1);
 
     wrapper.rerender(
       <NovaEventingProvider
-        children={stableTestComponentInstance}
         eventing={eventing}
-        reactEventMapper={ReactEventSourceMapper.mapEventMetadata}
-      />,
+        reactEventMapper={mapEventMetadata}
+      >
+        {stableTestComponentInstance}
+      </NovaEventingProvider>,
     );
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      initialChildren,
-    );
+    await expect.element(page.getByText(initialChildren)).toBeVisible();
     expectComponentToRenderTimes(1);
 
     // Update eventing instance to test useRef pathway. This will ensure the wrapped eventing instance
     // returned from useEventing is stable from one render to the next.
-    const newEventing = { bubble: jest.fn() };
+    const newEventing = { bubble: vi.fn() };
 
     wrapper.rerender(
       <NovaEventingProvider
-        children={stableTestComponentInstance}
         eventing={newEventing}
-        reactEventMapper={ReactEventSourceMapper.mapEventMetadata}
-      />,
+        reactEventMapper={mapEventMetadata}
+      >
+        {stableTestComponentInstance}
+      </NovaEventingProvider>,
     );
 
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      initialChildren,
-    );
+    await expect.element(page.getByText(initialChildren)).toBeVisible();
     expectComponentToRenderTimes(1);
 
     //Trigger a callback on the test child through eventing
@@ -181,19 +167,15 @@ describe("useNovaEventing", () => {
     // Update mapper instance to test useRef pathway. This will ensure the wrapped eventing instance
     // returned from useEventing is stable from one render to the next.
     const newMapper: (reactEventWrapper: ReactEventWrapper) => EventWrapper =
-      jest.fn();
+      vi.fn();
 
     wrapper.rerender(
-      <NovaEventingProvider
-        children={stableTestComponentInstance}
-        eventing={newEventing}
-        reactEventMapper={newMapper}
-      />,
+      <NovaEventingProvider eventing={newEventing} reactEventMapper={newMapper}>
+        {stableTestComponentInstance}
+      </NovaEventingProvider>,
     );
 
-    expect(wrapper.queryAllByTestId("children")[0].innerHTML).toBe(
-      initialChildren,
-    );
+    await expect.element(page.getByText(initialChildren)).toBeVisible();
     expectComponentToRenderTimes(1);
 
     //Trigger a callback on the test child through eventing
@@ -253,13 +235,13 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
     expect.assertions(2);
 
     const eventing = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
-    const mapper = jest.fn();
+    const mapper = vi.fn();
 
     const now = 1000;
-    jest.spyOn(Date, "now").mockImplementation(() => now);
+    vi.spyOn(Date, "now").mockImplementation(() => now);
 
     render(
       <NovaEventingProvider eventing={eventing} reactEventMapper={mapper}>
@@ -276,10 +258,10 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
     expect.assertions(2);
 
     const eventing = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
-    const mapper = jest.fn();
+    const mapper = vi.fn();
 
     const overrideTime = 9999999999;
 
@@ -299,10 +281,10 @@ describe("NovaReactEventing exposes 'generateEvent'", () => {
 describe("useUnmountEventing", () => {
   it("falls back to eventing instance when unmountEventing is not provided", () => {
     const eventing = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
-    const mapper = jest.fn();
+    const mapper = vi.fn();
 
     const TestPassedContextComponent: React.FC =
       (): React.ReactElement | null => {
@@ -324,14 +306,14 @@ describe("useUnmountEventing", () => {
 
   it('calls "bubble" on the unmountEventing instance when provided', () => {
     const eventing = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
     const unmountEventingMock = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
-    const mapper = jest.fn();
+    const mapper = vi.fn();
 
     const TestPassedContextComponent: React.FC =
       (): React.ReactElement | null => {
@@ -357,19 +339,19 @@ describe("useUnmountEventing", () => {
 
   it("calls the unmounting eventing instance when the component calls unmounting through a useEffect cleanup event", () => {
     const eventing = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
     const unmountEventingMock = {
-      bubble: jest.fn(),
+      bubble: vi.fn(),
     } as unknown as NovaEventing;
 
-    const mapper = jest.fn();
+    const mapper = vi.fn();
 
     const TestPassedContextComponent: React.FC = () => {
       const unmountEventing = useNovaUnmountEventing();
       expect(unmountEventing).toBeDefined();
 
-      useEffect(
+      React.useEffect(
         () => () => {
           unmountEventing.bubble({} as ReactEventWrapper);
         },
@@ -399,25 +381,20 @@ describe("useUnmountEventing", () => {
 describe("NovaEventingInterceptor", () => {
   const originalError = console.error;
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     console.error = originalError;
   });
-  const realMapper = jest.requireActual(
-    "./react-event-source-mapper",
-  ).mapEventMetadata;
 
-  const mapEventMetadataMock = jest.fn().mockImplementation(realMapper);
-
-  const bubbleMock = jest.fn();
+  const bubbleMock = vi.fn();
 
   const parentEventing = {
     bubble: bubbleMock,
     generateEvent: bubbleMock,
   } as unknown as NovaEventing;
 
-  const callbackToBeCalledOnIntercept = jest.fn();
+  const callbackToBeCalledOnIntercept = vi.fn();
 
-  const defaultInterceptor = (eventWrapper: EventWrapper) => {
+  const defaultInterceptor = async (eventWrapper: EventWrapper) => {
     if (eventWrapper.event.originator === "toBeIntercepted") {
       callbackToBeCalledOnIntercept();
       return Promise.resolve(undefined);
@@ -462,7 +439,7 @@ describe("NovaEventingInterceptor", () => {
   }> = ({ interceptor = defaultInterceptor }) => (
     <NovaEventingProvider
       eventing={parentEventing}
-      reactEventMapper={mapEventMetadataMock}
+      reactEventMapper={mapEventMetadata}
     >
       <ComponentWithTwoEvents name="outside" />
       <NovaEventingInterceptor interceptor={interceptor}>
@@ -472,46 +449,46 @@ describe("NovaEventingInterceptor", () => {
   );
 
   it("intercepts the event and does not bubble it up", async () => {
-    const { getByText } = render(<InterceptorTestComponent />);
-    const button = getByText("inside: Fire event to be intercepted");
-    button.click();
+    render(<InterceptorTestComponent />);
+    const button = page.getByText("inside: Fire event to be intercepted");
+    await button.click();
     expect(callbackToBeCalledOnIntercept).toHaveBeenCalled();
-    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(mapEventMetadata).toHaveBeenCalled());
     expect(bubbleMock).not.toHaveBeenCalled();
   });
 
   it("bubbles the event when interceptor returns the event", async () => {
-    const { getByText } = render(<InterceptorTestComponent />);
-    const button = getByText("inside: Fire event without intercept");
-    button.click();
+    render(<InterceptorTestComponent />);
+    const button = page.getByText("inside: Fire event without intercept");
+    await button.click();
     expect(callbackToBeCalledOnIntercept).not.toHaveBeenCalled();
-    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalled());
   });
 
   it("doesn't catch events outside of interceptor context", async () => {
-    const { getByText } = render(<InterceptorTestComponent />);
-    const button = getByText("outside: Fire event to be intercepted");
-    button.click();
+    render(<InterceptorTestComponent />);
+    const button = page.getByText("outside: Fire event to be intercepted");
+    await button.click();
     expect(callbackToBeCalledOnIntercept).not.toHaveBeenCalled();
-    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalled());
   });
 
   it("throws an error when rendered outside of NovaEventingProvider", () => {
-    console.error = jest.fn();
+    console.error = vi.fn();
     expect.assertions(1);
-    const InterceptorTestComponent: React.FC = () => (
+    const InterceptorTestComponentError: React.FC = () => (
       <NovaEventingInterceptor interceptor={defaultInterceptor}>
         <ComponentWithTwoEvents name="inside" />
       </NovaEventingInterceptor>
     );
 
-    expect(() => render(<InterceptorTestComponent />)).toThrow(
+    expect(() => render(<InterceptorTestComponentError />)).toThrow(
       "Nova Eventing provider must be initialized prior to creating NovaEventingInterceptor!",
     );
   });
 
   it("intercepts the event and bubbles up the event when interceptor returns the event anyway", async () => {
-    const interceptor = (eventWrapper: EventWrapper) => {
+    const interceptor = async (eventWrapper: EventWrapper) => {
       if (eventWrapper.event.originator === "toBeIntercepted") {
         callbackToBeCalledOnIntercept();
         return Promise.resolve({
@@ -522,13 +499,11 @@ describe("NovaEventingInterceptor", () => {
         return Promise.resolve(eventWrapper);
       }
     };
-    const { getByText } = render(
-      <InterceptorTestComponent interceptor={interceptor} />,
-    );
-    const button = getByText("inside: Fire event to be intercepted");
-    button.click();
+    render(<InterceptorTestComponent interceptor={interceptor} />);
+    const button = page.getByText("inside: Fire event to be intercepted");
+    await button.click();
     expect(callbackToBeCalledOnIntercept).toHaveBeenCalled();
-    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalled());
     const bubbleCall = bubbleMock.mock.calls[0][0];
     expect(bubbleCall.event.data()).toBe("addedData");
   });
@@ -537,29 +512,24 @@ describe("NovaEventingInterceptor", () => {
 describe("Multiple NovaEventingInterceptors", () => {
   const originalError = console.error;
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     console.error = originalError;
   });
-  const realMapper = jest.requireActual(
-    "./react-event-source-mapper",
-  ).mapEventMetadata;
 
-  const mapEventMetadataMock = jest.fn().mockImplementation(realMapper);
-
-  const bubbleMock = jest.fn();
+  const bubbleMock = vi.fn();
 
   const parentEventing = {
     bubble: bubbleMock,
     generateEvent: bubbleMock,
   } as unknown as NovaEventing;
 
-  const callbackToBeCalledOnFirstIntercept = jest.fn();
-  const callbackToBeCalledOnSecondIntercept = jest.fn();
+  const callbackToBeCalledOnFirstIntercept = vi.fn();
+  const callbackToBeCalledOnSecondIntercept = vi.fn();
 
   const evenOriginatorToBeInterceptedFirst = "toBeInterceptedFirst";
   const evenOriginatorToBeInterceptedSecond = "toBeInterceptedSecond";
 
-  const firstInterceptor = (eventWrapper: EventWrapper) => {
+  const firstInterceptor = async (eventWrapper: EventWrapper) => {
     if (eventWrapper.event.originator === evenOriginatorToBeInterceptedFirst) {
       callbackToBeCalledOnFirstIntercept();
       return Promise.resolve(undefined);
@@ -568,7 +538,7 @@ describe("Multiple NovaEventingInterceptors", () => {
     }
   };
 
-  const secondInterceptor = (eventWrapper: EventWrapper) => {
+  const secondInterceptor = async (eventWrapper: EventWrapper) => {
     if (eventWrapper.event.originator === evenOriginatorToBeInterceptedSecond) {
       callbackToBeCalledOnSecondIntercept();
       return Promise.resolve(undefined);
@@ -620,7 +590,7 @@ describe("Multiple NovaEventingInterceptors", () => {
   const MultipleInterceptorsTestComponent: React.FC = () => (
     <NovaEventingProvider
       eventing={parentEventing}
-      reactEventMapper={mapEventMetadataMock}
+      reactEventMapper={mapEventMetadata}
     >
       <NovaEventingInterceptor interceptor={firstInterceptor}>
         <NovaEventingInterceptor interceptor={secondInterceptor}>
@@ -638,39 +608,39 @@ describe("Multiple NovaEventingInterceptors", () => {
   );
 
   it("intercepts the event in second interceptor and does not bubble it up", async () => {
-    const { getByText } = render(<MultipleInterceptorsTestComponent />);
-    const button = getByText(
+    render(<MultipleInterceptorsTestComponent />);
+    const button = page.getByText(
       "toBeInterceptedInSecondInterceptor: Fire event to be intercepted",
     );
-    button.click();
+    await button.click();
 
-    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(mapEventMetadata).toHaveBeenCalled());
     expect(callbackToBeCalledOnSecondIntercept).toHaveBeenCalled();
     expect(bubbleMock).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
   });
 
   it("bubbles the event when interceptor returns the event", async () => {
-    const { getByText } = render(<MultipleInterceptorsTestComponent />);
-    const button = getByText(
+    render(<MultipleInterceptorsTestComponent />);
+    const button = page.getByText(
       "toBeInterceptedInFirstInterceptor: Fire event without intercept",
     );
-    button.click();
+    await button.click();
 
-    await waitFor(() => expect(bubbleMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalled());
     expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).not.toHaveBeenCalled();
   });
 
   it("intercepts the event in first interceptor and does not bubble it up", async () => {
-    const { getByText } = render(<MultipleInterceptorsTestComponent />);
-    const button = getByText(
+    render(<MultipleInterceptorsTestComponent />);
+    const button = page.getByText(
       "toBeInterceptedInFirstInterceptor: Fire event to be intercepted",
     );
-    button.click();
+    await button.click();
 
-    await waitFor(() => expect(bubbleMock).not.toHaveBeenCalled());
-    await waitFor(() => expect(mapEventMetadataMock).toHaveBeenCalled());
+    await vi.waitFor(() => expect(bubbleMock).not.toHaveBeenCalled());
+    await vi.waitFor(() => expect(mapEventMetadata).toHaveBeenCalled());
     expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).toHaveBeenCalled();
   });

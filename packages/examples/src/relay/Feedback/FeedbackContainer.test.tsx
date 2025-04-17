@@ -1,10 +1,10 @@
+import { expect, it, describe } from "vitest";
+import { page } from "@vitest/browser/context";
 import { composeStories } from "@storybook/react";
 import * as stories from "./FeedbackContainer.stories";
-import { render, screen } from "@testing-library/react";
 import * as React from "react";
-import "@testing-library/jest-dom";
-import { executePlayFunction } from "../../testing-utils/executePlayFunction";
 import { prepareStoryContextForTest } from "@nova/react-test-utils";
+import { render } from "vitest-browser-react";
 
 const { Primary, Liked, LikeFailure } = composeStories(stories);
 
@@ -13,19 +13,15 @@ describe("FeedbackContainer", () => {
     render(<Primary />);
     render(<Liked />);
     render(<Primary />);
-    const texts = await screen.findAllByText("Feedback: Feedback title");
-    expect(texts).toHaveLength(3);
-    expect(texts[2]).toBeInTheDocument();
+    const texts = page.getByText("Feedback: Feedback title");
+    expect(texts.elements()).toHaveLength(3);
   });
 
-  // kept in jest to ensure prepareStoryContextForTest works correctly
+  // kept in unit test to ensure prepareStoryContextForTest works correctly
   it("should show an error if the like button fails", async () => {
     const { container } = render(<LikeFailure />);
-    await executePlayFunction(
-      LikeFailure,
-      prepareStoryContextForTest(LikeFailure, container),
-    );
-    const error = await screen.findByText("Something went wrong");
-    expect(error).toBeInTheDocument();
+    await LikeFailure.play?.(prepareStoryContextForTest(LikeFailure, container));
+    const error = page.getByText("Something went wrong");
+    await expect.element(error).toBeInTheDocument();
   });
 });

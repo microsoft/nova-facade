@@ -1,10 +1,7 @@
-/**
- * @jest-environment jsdom
- */
-
 import * as React from "react";
 import type { StringWithPlaceholders, NovaLocalization } from "@nova/types";
-import { render } from "@testing-library/react";
+import { render } from "vitest-browser-react";
+import { describe, it, expect, vi } from "vitest";
 import { NovaLocalizationProvider, useFormat } from "./nova-localization";
 
 describe(useFormat, () => {
@@ -24,9 +21,9 @@ describe(useFormat, () => {
   it("is able to access the `format` function provided by the provider", () => {
     expect.assertions(3);
 
-    const formatFn = jest.fn();
+    const formatFn = vi.fn();
     const localization: NovaLocalization = {
-      useFormat: jest.fn().mockReturnValue(formatFn),
+      useFormat: vi.fn().mockReturnValue(formatFn),
     };
 
     const TestPassedContextComponent: React.FC = () => {
@@ -39,7 +36,6 @@ describe(useFormat, () => {
       format(greeting, {
         name: "World",
       });
-
       return null;
     };
 
@@ -61,9 +57,9 @@ describe(useFormat, () => {
   it("works in the fallback scenario where the typ of the string with placeholders is a string (aka, no compiler support)", () => {
     expect.assertions(3);
 
-    const formatFn = jest.fn();
+    const formatFn = vi.fn();
     const localization: NovaLocalization = {
-      useFormat: jest.fn().mockReturnValue(formatFn),
+      useFormat: vi.fn().mockReturnValue(formatFn),
     };
 
     const TestPassedContextComponent: React.FC = () => {
@@ -77,13 +73,11 @@ describe(useFormat, () => {
 
       return null;
     };
-
     render(
       <NovaLocalizationProvider localization={localization}>
         <TestPassedContextComponent />
       </NovaLocalizationProvider>,
     );
-
     // twice due to strict mode
     expect(localization.useFormat).toBeCalledTimes(2);
     expect(formatFn).toBeCalledTimes(2);
