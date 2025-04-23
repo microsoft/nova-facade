@@ -57,7 +57,7 @@ export const novaGraphql: Required<NovaGraphQL<ConcreteRequest>> = {
     if (!isGraphqlArtifact(document)) {
       throw new Error(
         "Failed to load GraphQL artifact, got raw document instead. Make sure you have configured a loader (e.g., webpack loader, swc plugin) for working with compiled artifacts." +
-          " Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#artifacts-loader, for more information.",
+          " Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#prerequisites, for more information.",
       );
     }
     if (isClientOnlyQuery(document)) {
