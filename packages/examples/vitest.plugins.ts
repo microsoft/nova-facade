@@ -17,3 +17,5 @@ export const plugins = [
   }),
   graphqlLoader(),
 ];
+
+export const pluginsWithoutRelay = [react(), graphqlLoader()];
