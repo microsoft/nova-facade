@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 17 Apr 2025 07:04:14 GMT and should not be manually modified.
+This log was last generated on Thu, 24 Apr 2025 13:20:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.0.1
+
+Thu, 24 Apr 2025 13:20:25 GMT
+
+### Patches
+
+- throw an informative error message when artifact loader is missing (Stanislaw.Wilczynski@microsoft.com)
 
 ## 7.0.0
 

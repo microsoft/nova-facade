@@ -1,8 +1,17 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 17 Apr 2025 07:04:14 GMT and should not be manually modified.
+This log was last generated on Thu, 24 Apr 2025 13:20:25 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.10.1
+
+Thu, 24 Apr 2025 13:20:25 GMT
+
+### Patches
+
+- add example for failure when artifact loader is missing (Stanislaw.Wilczynski@microsoft.com)
+- Bump @nova/react-test-utils to v7.0.1
 
 ## 1.10.0
 

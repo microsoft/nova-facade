@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 24 Apr 2025 13:20:25 GMT",
+      "tag": "@nova/react-test-utils_v7.0.1",
+      "version": "7.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "aa80bcafc44bb1fa8ce5da7b1ae2a983bdce0607",
+            "comment": "throw an informative error message when artifact loader is missing"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 17 Apr 2025 07:04:14 GMT",
       "tag": "@nova/react-test-utils_v7.0.0",
       "version": "7.0.0",

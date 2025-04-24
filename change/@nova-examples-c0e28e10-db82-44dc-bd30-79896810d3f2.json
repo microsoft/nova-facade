@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "add example for failure when artifact loader is missing",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

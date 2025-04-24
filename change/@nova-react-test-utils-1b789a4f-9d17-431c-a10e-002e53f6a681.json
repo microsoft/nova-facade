@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "throw an informative error message when artifact loader is missing",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}
