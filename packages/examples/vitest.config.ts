@@ -6,7 +6,7 @@ import {
   mergeConfig,
 } from "vitest/config";
 import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
-import { plugins } from "./vitest.plugins";
+import { plugins, pluginsWithoutRelay } from "./vitest.plugins";
 import defaultConfig from "../../scripts/config/vitest.config";
 
 const dirname =
@@ -19,7 +19,29 @@ export default defineConfig({
     workspace: [
       {
         plugins: [...plugins],
-        test: mergeConfig(defaultConfig, {})["test"],
+        test: mergeConfig(defaultConfig, {
+          test: {
+            setupFiles: [".storybook/vitest.setup.ts"],
+          },
+        })["test"],
+      },
+      {
+        plugins: [...pluginsWithoutRelay],
+        test: {
+          name: "expectedErrors",
+          include: ["src/**/*.test.error.{ts,tsx}"],
+          browser: {
+            enabled: true,
+            headless: true,
+            provider: "playwright",
+            instances: [
+              {
+                browser: "chromium",
+              },
+            ],
+          },
+          setupFiles: [".storybook/vitest.setup.ts"],
+        },
       },
       {
         plugins: [

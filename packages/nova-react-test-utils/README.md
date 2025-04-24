@@ -6,6 +6,10 @@ This package provides test utilities for components written with the React speci
 
 The utilities provided by this package should be used to test [apollo-react-relay-duct-tape](https://github.com/microsoft/graphitation/tree/main/packages/apollo-react-relay-duct-tape) or [react-relay](https://github.com/facebook/relay/tree/main/packages/react-relay) based components. Two variants of each utility and decorator are exposed under both `@nova/react-test-utils/apollo` and `@nova/react-test-utils/relay`, which should be picked based on which GraphQL runtime you want your tests and storybooks to use. If importing directly from `@nova/react-test-utils`, Relay variants will be imported by default.
 
+## Prerequisites
+
+If you are using GraphQL setup with artifact generation (like Relay or Apollo Duct Tape with `--emitDocuments`), you need to make sure that artifacts loader is setup for stories/tests. Depending on the tool, you can use [@graphitation/embedded-document-artefact-loader](@graphitation/embedded-document-artefact-loader) or [@swc/plugin-relay](https://www.npmjs.com/package/@swc/plugin-relay) for storybook. For unit tests, [examples](../examples/vitest.plugins.ts) contains a usage with vitest plugin and for jest you should rely on [babel-plugin-relay](https://www.npmjs.com/package/babel-plugin-relay) or [@graphitation/embedded-document-artefact-loader](https://github.com/microsoft/graphitation/tree/main/packages/embedded-document-artefact-loader#jest).
+
 ## Unit tests
 
 To leverage the power of mentioned packages inside your unit tests, you need to wrap the tested component with `NovaMockEnvironmentProvider`:

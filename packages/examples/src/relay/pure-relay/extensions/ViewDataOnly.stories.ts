@@ -73,7 +73,7 @@ export const ViewDataOnlyStory: Story = {
     });
     const call = mockOnError.mock.calls[0];
     expect(call[0].message).toBe(
-      "Client only queries are not supported in nova-react-test-utils, please add at least a single server field, otherwise mock resolvers won't be called. Addtionally if you want to test any queries with client extension, please use relay based payload generator over default one, as the default still doesn't support client extension. Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#pure-relay-or-nova-with-relay-how-can-i-make-sure-the-mock-data-is-generated-for-client-extensions",
+      "Client only queries are not supported in nova-react-test-utils, please add at least a single server field, otherwise mock resolvers won't be called. Additionally if you want to test any queries with client extension, please use relay based payload generator over default one, as the default still doesn't support client extension. Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#pure-relay-or-nova-with-relay-how-can-i-make-sure-the-mock-data-is-generated-for-client-extensions",
     );
   },
 };
