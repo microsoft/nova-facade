@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 10 Apr 2025 16:59:24 GMT and should not be manually modified.
+This log was last generated on Fri, 16 May 2025 12:44:02 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.8.0
+
+Fri, 16 May 2025 12:44:02 GMT
+
+### Minor changes
+
+- Add plural typings for useFragment (alina.o.zaieva@gmail.com)
 
 ## 2.7.1
 

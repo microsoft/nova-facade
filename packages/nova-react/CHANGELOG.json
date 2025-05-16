@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 16 May 2025 12:44:02 GMT",
+      "tag": "@nova/react_v2.8.0",
+      "version": "2.8.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "alina.o.zaieva@gmail.com",
+            "package": "@nova/react",
+            "commit": "9e2c5410dc2964dec2db7f2385c860e0b1f2272b",
+            "comment": "Add plural typings for useFragment"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 17 Apr 2025 07:04:14 GMT",
       "tag": "@nova/react_v2.7.1",
       "version": "2.7.1",

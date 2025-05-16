@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add plural typings for useFragment",
-  "packageName": "@nova/react",
-  "email": "alina.o.zaieva@gmail.com",
-  "dependentChangeType": "patch"
-}
