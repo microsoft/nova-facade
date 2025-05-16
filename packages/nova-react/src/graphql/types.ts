@@ -61,7 +61,7 @@ export type KeyTypeData<
 
 export type ArrayKeyType<TData = unknown> = ReadonlyArray<KeyType<
   ReadonlyArray<TData>
-> | null>;
+> | null | undefined>;
 export type ArrayKeyTypeData<
   TKey extends ArrayKeyType<TData>,
   TData = unknown,

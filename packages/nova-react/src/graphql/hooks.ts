@@ -9,6 +9,8 @@ import type {
   PaginationFn,
   RefetchFn,
   FetchPolicy,
+  ArrayKeyType,
+  ArrayKeyTypeData,
 } from "./types";
 
 /**
@@ -147,6 +149,14 @@ export function useFragment<TKey extends KeyType>(
   fragmentInput: GraphQLTaggedNode,
   fragmentRef: TKey | null | undefined,
 ): KeyTypeData<TKey> | null | undefined;
+export function useFragment<TKey extends ArrayKeyType>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey,
+): ArrayKeyTypeData<TKey>;
+export function useFragment<TKey extends ArrayKeyType>(
+  fragmentInput: GraphQLTaggedNode,
+  fragmentRef: TKey | null | undefined,
+): ArrayKeyTypeData<TKey> | null | undefined;
 
 export function useFragment<TKey extends KeyType>(
   fragmentInput: GraphQLTaggedNode,

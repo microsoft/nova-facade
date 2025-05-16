@@ -239,6 +239,38 @@ describe(useFragment, () => {
     // Workaround for TS complaining about unused variables
     void _, __, ___;
   });
+
+  it("returns an array when the fragment ref is an array", () => {
+    type SomeFragment$data = ReadonlyArray<{ someKey: string }>;
+    type SomeFragment$key = ReadonlyArray<{
+      readonly " $data"?: SomeFragment$data;
+      readonly " $fragmentRefs": FragmentRefs<"SomeFragment">;
+    }>;
+
+    const fragment = {} as unknown as GraphQLTaggedNode;
+    const opaqueFragmentRef = [{}] as unknown as SomeFragment$key;
+
+    const { result } = renderHook(
+      () => useFragment(fragment, opaqueFragmentRef),
+      {
+        wrapper: ({ children }) => (
+          <NovaGraphQLProvider graphql={{}}>{children}</NovaGraphQLProvider>
+        ),
+        initialProps: {
+          fragmentRef: opaqueFragmentRef,
+        },
+      },
+    );
+
+    type ExpectedReturnType = typeof result.current;
+
+    const _: IsNotNull<ExpectedReturnType> = true;
+    const __: IsNotUndefined<ExpectedReturnType> = true;
+    const ___: ExpectedReturnType = [{ someKey: "some-data" }];
+
+    // Workaround for TS complaining about unused variables
+    void _, __, ___;
+  });
 });
 
 describe(useRefetchableFragment, () => {
