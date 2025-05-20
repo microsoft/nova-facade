@@ -61,10 +61,11 @@ export const novaGraphql: Required<NovaGraphQL<ConcreteRequest>> = {
       );
     }
     if (isClientOnlyQuery(document)) {
-      throw new Error(
-        "Client only queries are not supported in nova-react-test-utils, please add at least a single server field, otherwise mock resolvers won't be called." +
-          " Additionally if you want to test any queries with client extension, please use relay based payload generator over default one, as the default still doesn't support client extension." +
-          " Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#pure-relay-or-nova-with-relay-how-can-i-make-sure-the-mock-data-is-generated-for-client-extensions",
+      console.warn(`The ${document.params.name} query is a client-only query, which means mock resolvers won't get called. Please select at least one server field in the query to ensure that mock resolvers are called.`);
+      console.warn(
+          ` If you want to test any queries with client extension, please use relay based payload generator over default one, as the default still doesn't support client extension. ` +
+          ` Check https://github.com/microsoft/nova-facade/tree/main/packages/nova-react-test-utils#pure-relay-or-nova-with-relay-how-can-i-make-sure-the-mock-data-is-generated-for-client-extensions ` +
+          ` If you have a nested client extensions only query, make sure to have a query with server field on top of your story which selects same client extensions to fill the cache.`,
       );
     }
     return {
