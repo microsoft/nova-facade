@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "update example to match new error",
-  "packageName": "@nova/examples",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

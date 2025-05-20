@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "relax error on view data only queries",
-  "packageName": "@nova/react-test-utils",
-  "email": "Stanislaw.Wilczynski@microsoft.com",
-  "dependentChangeType": "patch"
-}

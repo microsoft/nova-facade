@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Tue, 20 May 2025 11:40:12 GMT",
+      "tag": "@nova/examples_v1.10.3",
+      "version": "1.10.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "8b910f98f185ceab875c898dde32ddc9e0d5ab51",
+            "comment": "update example to match new error"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.0.3",
+            "commit": "8b910f98f185ceab875c898dde32ddc9e0d5ab51"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 May 2025 12:44:02 GMT",
       "tag": "@nova/examples_v1.10.2",
       "version": "1.10.2",

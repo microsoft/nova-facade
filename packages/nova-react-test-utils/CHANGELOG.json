@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 20 May 2025 11:40:12 GMT",
+      "tag": "@nova/react-test-utils_v7.0.3",
+      "version": "7.0.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "Stanislaw.Wilczynski@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "8b910f98f185ceab875c898dde32ddc9e0d5ab51",
+            "comment": "relax error on view data only queries"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 May 2025 12:44:02 GMT",
       "tag": "@nova/react-test-utils_v7.0.2",
       "version": "7.0.2",

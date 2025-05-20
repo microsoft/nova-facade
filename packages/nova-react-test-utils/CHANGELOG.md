@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 16 May 2025 12:44:02 GMT and should not be manually modified.
+This log was last generated on Tue, 20 May 2025 11:40:12 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.0.3
+
+Tue, 20 May 2025 11:40:12 GMT
+
+### Patches
+
+- relax error on view data only queries (Stanislaw.Wilczynski@microsoft.com)
 
 ## 7.0.2
 
