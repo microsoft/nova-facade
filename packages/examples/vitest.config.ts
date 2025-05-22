@@ -26,6 +26,7 @@ export default defineConfig({
         })["test"],
       },
       {
+        cacheDir: path.join(dirname, ".vitest2"),
         plugins: [...pluginsWithoutRelay],
         test: {
           name: "expectedErrors",
