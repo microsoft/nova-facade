@@ -329,3 +329,28 @@ const App = () => {
   );
 };
 ```
+
+## Feature configuration
+
+High value components may need to be configurable by their hosts, e.g., what features are enabled. Such configuration is provided through a GraphQL schema, and to indicate that field is a component setting, a `@featureSetting` directive should be used.
+
+Requirements to fields annotated with `@featureSetting`:
+
+- The field must be one of the following types:
+  - `Boolean`
+  - `Int`
+  - `Float`
+  - a custom enum type
+- The field should be nullable to make handling of a default case explicit in component.
+- The field's name should end in `Setting` to make field's purpose clear from query/fragment code.
+
+Defining a setting field:
+
+```graphql
+type ViewData {
+  darkModeSetting: Boolean @featureSetting
+}
+```
+
+For now, setting fields are a schema-only metadata that is not utilized by Nova tooling or in runtime.
+On component side, they are consumed via a fragment, same as any other field.
