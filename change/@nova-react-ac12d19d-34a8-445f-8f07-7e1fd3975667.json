@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Add documentation for feature configuration",
+  "packageName": "@nova/react",
+  "email": "alina.o.zaieva@gmail.com",
+  "dependentChangeType": "patch"
+}
