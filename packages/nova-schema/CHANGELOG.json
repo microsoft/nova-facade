@@ -1,0 +1,20 @@
+{
+  "name": "@nova/schema",
+  "entries": [
+    {
+      "date": "Thu, 05 Jun 2025 11:26:01 GMT",
+      "tag": "@nova/schema_v1.0.0",
+      "version": "1.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "alina.o.zaieva@gmail.com",
+            "package": "@nova/schema",
+            "commit": "074543f7d2f248004224e8774701f77fb3540a18",
+            "comment": "Create the package"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,7 +1,0 @@
-{
-  "type": "major",
-  "comment": "Create the package",
-  "packageName": "@nova/schema",
-  "email": "alina.o.zaieva@gmail.com",
-  "dependentChangeType": "patch"
-}
