@@ -11,3 +11,5 @@ __generated__
 coverage
 __screenshots__
 .swc
+.vitest
+.vitest2

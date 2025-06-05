@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "bump storybook and vitest",
+  "packageName": "@nova/react",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "none"
+}
