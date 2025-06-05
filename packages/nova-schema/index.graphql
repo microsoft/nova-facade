@@ -1,0 +1,33 @@
+input LocalizedStringPlaceholder {
+  """
+  The name of the placeholder (without curly braces).
+  """
+  name: String!
+
+  """
+  The description of the placeholder.
+  """
+  comment: String!
+}
+
+"""
+Marks a field as a localized string.
+
+See https://github.com/microsoft/nova-facade/tree/main/packages/nova-react#defining-a-localized-string
+"""
+directive @localizedString(
+  """
+  The text of the localized string. May contain placeholders in format `{placeholderName}`.
+  """
+  text: String!
+
+  """
+  The description of the localized string.
+  """
+  comment: String!
+
+  """
+  Descriptions of the placeholders used in the localized string.
+  """
+  placeholders: [LocalizedStringPlaceholder!]! = []
+) on FIELD_DEFINITION
