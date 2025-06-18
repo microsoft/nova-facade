@@ -340,8 +340,8 @@ Requirements to fields annotated with `@featureSetting`:
   - `Boolean`
   - `Int`
   - `Float`
-  - a custom enum type
-- The field should be nullable to make handling of a default case explicit in component.
+  - A custom enum type
+- The field should be nullable to make handling of a default case explicit in the component.
 - The field's name should end in `Setting` to make field's purpose clear from query/fragment code.
 
 Defining a setting field:
