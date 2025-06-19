@@ -31,3 +31,10 @@ directive @localizedString(
   """
   placeholders: [LocalizedStringPlaceholder!]! = []
 ) on FIELD_DEFINITION
+
+"""
+Marks a field as a part of feature configuration.
+
+See https://github.com/microsoft/nova-facade/tree/main/packages/nova-react#feature-configuration
+"""
+directive @featureSetting on FIELD_DEFINITION
