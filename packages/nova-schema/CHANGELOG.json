@@ -2,6 +2,21 @@
   "name": "@nova/schema",
   "entries": [
     {
+      "date": "Thu, 19 Jun 2025 09:45:30 GMT",
+      "tag": "@nova/schema_v1.1.0",
+      "version": "1.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "alina.o.zaieva@gmail.com",
+            "package": "@nova/schema",
+            "commit": "101f53c90a41d2a3855a9e0b180e6eec65fd78de",
+            "comment": "Add @featureSetting directive definition"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Jun 2025 11:26:01 GMT",
       "tag": "@nova/schema_v1.0.0",
       "version": "1.0.0",

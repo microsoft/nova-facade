@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 19 Jun 2025 09:45:30 GMT",
+      "tag": "@nova/examples_v1.10.4",
+      "version": "1.10.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.8.1",
+            "commit": "101f53c90a41d2a3855a9e0b180e6eec65fd78de"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.0.4",
+            "commit": "101f53c90a41d2a3855a9e0b180e6eec65fd78de"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 20 May 2025 11:40:12 GMT",
       "tag": "@nova/examples_v1.10.3",
       "version": "1.10.3",

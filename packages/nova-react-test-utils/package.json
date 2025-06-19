@@ -1,6 +1,6 @@
 {
   "name": "@nova/react-test-utils",
-  "version": "7.0.3",
+  "version": "7.0.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
@@ -33,7 +33,7 @@
   "dependencies": {
     "@graphitation/graphql-js-operation-payload-generator": "^0.12.9",
     "@graphitation/graphql-js-tag": "^0.9.4",
-    "@nova/react": "^2.8.0",
+    "@nova/react": "^2.8.1",
     "@nova/types": "^1.6.0",
     "@types/react": "^17 || ^18",
     "@types/relay-runtime": ">16",

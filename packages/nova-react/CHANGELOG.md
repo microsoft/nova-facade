@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 16 May 2025 12:44:02 GMT and should not be manually modified.
+This log was last generated on Thu, 19 Jun 2025 09:45:30 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.8.1
+
+Thu, 19 Jun 2025 09:45:30 GMT
+
+### Patches
+
+- Add documentation for feature configuration (alina.o.zaieva@gmail.com)
 
 ## 2.8.0
 

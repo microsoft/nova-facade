@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Thu, 19 Jun 2025 09:45:30 GMT",
+      "tag": "@nova/react_v2.8.1",
+      "version": "2.8.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "alina.o.zaieva@gmail.com",
+            "package": "@nova/react",
+            "commit": "101f53c90a41d2a3855a9e0b180e6eec65fd78de",
+            "comment": "Add documentation for feature configuration"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 16 May 2025 12:44:02 GMT",
       "tag": "@nova/react_v2.8.0",
       "version": "2.8.0",
