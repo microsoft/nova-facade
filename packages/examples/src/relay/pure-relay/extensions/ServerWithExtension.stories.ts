@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { graphql } from "react-relay";
 import {
   getNovaDecorator,
@@ -9,7 +9,7 @@ import { MockPayloadGenerator } from "relay-test-utils";
 import { ServerWithExtension } from "./ServerWithExtension";
 import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import type { ServerWithExtensionStoryRelayQuery } from "./__generated__/ServerWithExtensionStoryRelayQuery.graphql";
-import { within, expect } from "@storybook/test";
+import { within, expect } from "storybook/test";
 import { schema } from "../../../testing-utils/schema";
 
 

@@ -5,7 +5,7 @@ import {
   defineConfig,
   mergeConfig,
 } from "vitest/config";
-import { storybookTest } from "@storybook/experimental-addon-test/vitest-plugin";
+import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import { plugins, pluginsWithoutRelay } from "./vitest.plugins";
 import defaultConfig from "../../scripts/config/vitest.config";
 
@@ -16,7 +16,7 @@ const dirname =
 
 export default defineConfig({
   test: {
-    workspace: [
+    projects: [
       {
         plugins: [...plugins],
         test: mergeConfig(defaultConfig, {
