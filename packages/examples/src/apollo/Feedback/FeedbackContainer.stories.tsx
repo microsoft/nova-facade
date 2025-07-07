@@ -1,12 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import {
-  userEvent,
-  within,
-  waitFor,
-  expect,
-  fn,
-  screen,
-} from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { userEvent, within, waitFor, expect, fn, screen } from "storybook/test";
 import {
   type UnknownOperation,
   type WithNovaEnvironment,
@@ -22,9 +15,10 @@ import type { events, FeedbackTelemetryEvent } from "../../events/events";
 import * as React from "react";
 import { schema } from "../../testing-utils/schema";
 import { defaultNodeResolver } from "../../testing-utils/resolvers";
+import type { EventWrapper } from "@nova/types";
 
 const telemetryEventMock =
-  fn<[{ event: FeedbackTelemetryEvent; source: unknown }]>();
+  fn<(args: { event: FeedbackTelemetryEvent }) => Promise<EventWrapper>>();
 
 type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
@@ -117,9 +111,7 @@ export const Like: Story = {
 
     await container.findByRole("button", { name: "Unlike" });
 
-    let feedbackOperationEvents: [
-      { event: FeedbackTelemetryEvent; source: unknown },
-    ][] = [];
+    let feedbackOperationEvents: [{ event: FeedbackTelemetryEvent }][] = [];
     await waitFor(() => {
       feedbackOperationEvents = telemetryEventMock.mock.calls.filter(
         ([{ event }]) => {

@@ -2,7 +2,6 @@ import {
   getDecorator,
   getNovaEnvironmentForStory,
 } from "../shared/storybook-nova-decorator-shared";
-import type { MakeDecoratorResult } from "../shared/shared-utils";
 import {
   defaultBubble,
   defaultLocalization,
@@ -18,8 +17,7 @@ import {
   type MockPayloadGenerator,
 } from "relay-test-utils";
 import type { GraphQLSchema } from "graphql";
-import type { ReactRenderer } from "@storybook/react";
-import type { PlayFunctionContext } from "@storybook/types";
+import type { Args, Decorator, StoryContext } from "@storybook/react";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
 import type { EnvironmentConfig } from "relay-runtime";
 import type { NovaLocalization } from "@nova/types";
@@ -52,7 +50,7 @@ type Options = { getEnvironmentOptions?: () => Partial<EnvironmentConfig> } & {
 export const getNovaRelayDecorator: (
   schema: GraphQLSchema,
   options?: Options,
-) => MakeDecoratorResult = (
+) => Decorator<Args> = (
   schema,
   { generateFunction, getEnvironmentOptions, localization } = {},
 ) => {
@@ -106,7 +104,7 @@ function createNovaRelayEnvironment(
 }
 
 export const getNovaRelayEnvironmentForStory = (
-  context: PlayFunctionContext<ReactRenderer>,
+  context: StoryContext,
 ): NovaMockEnvironment => {
   const env = getNovaEnvironmentForStory(context);
   if (!isRelayMockEnv(env)) {

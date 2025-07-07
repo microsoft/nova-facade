@@ -7,8 +7,8 @@ import {
   MockPayloadGenerator as PayloadGenerator,
   EventingInterceptor,
 } from "@nova/react-test-utils/relay";
-import type { Meta } from "@storybook/react";
-import { userEvent, waitFor, within, expect } from "@storybook/test";
+import type { Meta } from "@storybook/react-vite";
+import { userEvent, waitFor, within, expect } from "storybook/test";
 import { schema } from "../../testing-utils/schema";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
@@ -16,7 +16,7 @@ import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.grap
 import * as React from "react";
 import type { events } from "../../events/events";
 import { RecordSource, Store } from "relay-runtime";
-import { fn } from "@storybook/test";
+import { fn } from "storybook/test";
 import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
 type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
@@ -113,7 +113,7 @@ export const Like: Story = {
   },
 };
 
-const mockOnError = fn<[Error]>();
+const mockOnError = fn<(error: Error) => void>();
 
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {

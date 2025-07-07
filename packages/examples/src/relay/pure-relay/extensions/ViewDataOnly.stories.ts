@@ -1,4 +1,4 @@
-import type { Meta } from "@storybook/react";
+import type { Meta } from "@storybook/react-vite";
 import { schema } from "../../../testing-utils/schema";
 import { graphql } from "react-relay";
 import {
@@ -9,13 +9,13 @@ import {
 import { MockPayloadGenerator } from "relay-test-utils";
 import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import type { ViewDataOnlyStoryRelayQuery } from "./__generated__/ViewDataOnlyStoryRelayQuery.graphql";
-import { fn, within, expect, waitFor } from "@storybook/test";
+import { fn, within, expect, waitFor } from "storybook/test";
 import { type withErrorBoundaryParameters } from "../../../testing-utils/decorators";
 import { ViewDataOnly } from "./ViewDataOnly";
 
 type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
 
-const mockOnError = fn<[Error]>();
+const mockOnError = fn<(error: Error) => void>();
 
 const originalConsoleWarn = console.warn;
 const consoleWarnMock = fn((...args) => {

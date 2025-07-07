@@ -11,15 +11,13 @@ import {
   getNovaEnvironmentForStory,
   type WithNovaEnvironment,
 } from "../shared/storybook-nova-decorator-shared";
-import type { MakeDecoratorResult } from "../shared/shared-utils";
 import {
   defaultTrigger,
   defaultBubble,
   defaultLocalization,
 } from "../shared/shared-utils";
-import type { ReactRenderer } from "@storybook/react";
-import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
+import type { StoryContext, Decorator, Args } from "@storybook/react";
 
 type MockClientOptions = Parameters<typeof createMockClient>[1];
 
@@ -30,10 +28,7 @@ type Options = MockClientOptions & {
 export const getNovaApolloDecorator: (
   schema: GraphQLSchema,
   options?: Options,
-) => MakeDecoratorResult = (
-  schema,
-  { generateFunction, localization, ...rest } = {},
-) => {
+) => Decorator<Args> = (schema, { generateFunction, localization, ...rest } = {}) => {
   const createEnvironment = () =>
     createNovaEnvironment(schema, rest, localization);
   const initializeGenerator = (
@@ -78,7 +73,7 @@ function createNovaEnvironment(
 }
 
 export const getNovaApolloEnvironmentForStory = (
-  context: PlayFunctionContext<ReactRenderer>,
+  context: StoryContext,
 ): NovaMockEnvironment => {
   const env = getNovaEnvironmentForStory(context);
   if (!isApolloMockEnv(env)) {

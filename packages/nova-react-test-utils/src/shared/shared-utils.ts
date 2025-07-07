@@ -3,23 +3,24 @@ import type {
   EventWrapper,
   NovaLocalization,
 } from "@nova/types";
-import { action } from "@storybook/addon-actions";
-import type { makeDecorator } from "@storybook/preview-api";
+import { getAction } from "./storybook-compat";
 
 export type GraphQLClientVariant = "apollo" | "relay";
 
-export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
+export async function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
   const eventData =
     typeof eventWrapper.event.data === "function"
       ? eventWrapper.event.data()
       : eventWrapper.event.data;
+  const action = await getAction();
   action(`${eventWrapper.event.originator}.${eventWrapper.event.type}`)(
     eventData,
   );
   return Promise.resolve();
 }
 
-export function defaultTrigger(command: EntityCommand): Promise<void> {
+export async function defaultTrigger(command: EntityCommand): Promise<void> {
+  const action = await getAction();
   action("trigger")(command);
   return Promise.resolve();
 }
@@ -55,5 +56,3 @@ export const defaultLocalization: NovaLocalization = {
     };
   },
 };
-
-export type MakeDecoratorResult = ReturnType<typeof makeDecorator>;

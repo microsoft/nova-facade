@@ -6,8 +6,8 @@ import {
   type WithNovaEnvironment,
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/apollo";
-import type { Meta } from "@storybook/react";
-import { expect, fn, userEvent, waitFor, within } from "@storybook/test";
+import type { Meta } from "@storybook/react-vite";
+import { expect, fn, userEvent, waitFor, within } from "storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
@@ -94,7 +94,7 @@ export const Like: Story = {
   },
 };
 
-const mockOnError = fn<[Error]>();
+const mockOnError = fn<(error: Error) => void>();
 
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
