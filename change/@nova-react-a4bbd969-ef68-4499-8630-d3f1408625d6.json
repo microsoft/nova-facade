@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add new forwardEvent api",
+  "packageName": "@nova/react",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}

@@ -1,5 +1,10 @@
 import { NovaEventingInterceptor } from "@nova/react";
-import type { EventWrapper, NovaEvent, Source } from "@nova/types";
+import type {
+  EventWrapper,
+  NovaEvent,
+  Source,
+  EventInterceptor,
+} from "@nova/types";
 import * as React from "react";
 
 type EventCreatorMap = Record<string, (...args: any[]) => NovaEvent<unknown>>;
@@ -17,7 +22,7 @@ export const EventingInterceptor = <T extends EventCreatorMap>({
   eventMap: EventMap<T>;
   children: React.ReactNode;
 }) => {
-  const interceptor = (eventWrapper: EventWrapper) => {
+  const interceptor: EventInterceptor = (eventWrapper) => {
     const eventType = eventWrapper.event.type;
     const customEventHandler = eventMap[eventType];
     if (customEventHandler) {
