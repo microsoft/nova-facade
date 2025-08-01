@@ -9,6 +9,18 @@ export interface NovaEventing {
   bubble(event: EventWrapper): Promise<void>;
 }
 
+/**
+ * Function type for intercepting events in the Nova eventing system.
+ *
+ * @param event - The event being intercepted
+ * @param forwardEvent - Function to forward additional events that bypass the current interceptor
+ * @returns Promise that resolves to the event to continue bubbling, or undefined to stop bubbling
+ */
+export type EventInterceptor = (
+  event: EventWrapper,
+  forwardEvent: (event: EventWrapper) => Promise<void>,
+) => Promise<EventWrapper | undefined>;
+
 export interface EventWrapper {
   /**
    * The event details for handling

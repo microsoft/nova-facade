@@ -106,10 +106,10 @@ The guidance is to always use `bubble` as that way event automatically gets addi
 import { NovaEventingProvider, reactEventMapper } from "@nova/react";
 
 const eventHandler = (eventWrapper: EventWrapper) => {
-  if (eventWrapper.event.eventType === "showProfile") {
+  if (eventWrapper.event.type === "showProfile") {
     // trigger some action to show profile
   }
-  if (eventWrapper.originator === "MyComponent") {
+  if (eventWrapper.event.originator === "MyComponent") {
     return handleEventsForMyComponent(eventWrapper);
   }
 };
@@ -117,7 +117,7 @@ const eventHandler = (eventWrapper: EventWrapper) => {
 const AppEventingProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NovaEventingProvider
-      bubble={eventHandler}
+      eventing={{ bubble: eventHandler }}
       reactEventMapper={
         reactEventMapper
       } /* you can also provide your own implementation of mapper */
@@ -140,7 +140,7 @@ const MyComponent = () => {
     // use `generateEvent` for events not related to user interactions
     eventing.generateEvent({
       event: {
-        eventType: "onRenderComplete",
+        type: "onRenderComplete",
         originator: "MyComponent",
       },
     });
@@ -151,7 +151,7 @@ const MyComponent = () => {
     eventing.bubble({
       reactEvent: event,
       event: {
-        eventType: "selectProfile",
+        type: "selectProfile",
         originator: "MyComponent",
         data: () => ({
           userId: "123",
@@ -172,12 +172,12 @@ As `NovaEventingProvider` is usually defined at the top level of the app, you ma
 const MyComponentWrapper = () => {
   const [userId, setUserId] = useState<string | null>(null);
 
-  const defaultInterceptor = (eventWrapper: EventWrapper) => {
+  const defaultInterceptor: EventInterceptor = (eventWrapper) => {
     if (
       eventWrapper.event.originator === "MyComponent" &&
-      eventWrapper.event.eventType === "selectProfile"
+      eventWrapper.event.type === "selectProfile"
     ) {
-      const data = eventWrapper.event.data();
+      const data = eventWrapper.event.data.();
       setUserId(data.userId);
       return Promise.resolve(undefined);
     } else {
@@ -186,7 +186,7 @@ const MyComponentWrapper = () => {
   };
 
   return (
-    <NovaEventingInterceptor intercept={defaultInterceptor}>
+    <NovaEventingInterceptor interceptor={defaultInterceptor}>
       {userId && <Profile userId={userId} />}
       <ComponentThatRenderMyComponentSomewhereInside />
     </NovaEventingInterceptor>
@@ -194,7 +194,54 @@ const MyComponentWrapper = () => {
 };
 ```
 
-The `NovaEventingInterceptor` will intercept the event and if you can check it's properties to decide if is should be acted upon. If from `intercept` promise resolving to undefined is returned the event will not be passed to eventing higher up the tree. However, if to process the event further, one should return a promise resolving to the `eventWrapper` object. That also gives a possibility to alter the event and still pass it further up.
+The `NovaEventingInterceptor` will intercept the event and you can check its properties to decide if it should be acted upon. If the interceptor returns a promise resolving to `undefined`, the event will not be passed to eventing higher up the tree. However, if you want to process the event further, you should return a promise resolving to the `eventWrapper` object. This also gives you the possibility to alter the event and still pass it further up.
+
+#### Forwarding Multiple Events
+
+The interceptor function receives a `forwardEvent` parameter that allows you to forward additional events while still controlling the original event through the return value:
+
+```ts
+import type { EventInterceptor } from "@nova/types";
+
+const multiEventInterceptor: EventInterceptor = async (
+  eventWrapper,
+  forwardEvent,
+) => {
+  if (eventWrapper.event.type === "userAction") {
+    // Forward additional tracking event
+    void forwardEvent({
+      event: {
+        type: "trackingEvent",
+        originator: "interceptor",
+        data: () => ({ tracked: true }),
+      },
+      source: eventWrapper.source,
+    });
+
+    // Forward analytics event
+    void forwardEvent({
+      event: {
+        type: "analyticsEvent",
+        originator: "interceptor",
+        data: () => ({ analytics: "clicked" }),
+      },
+      source: eventWrapper.source,
+    });
+
+    // Still forward the original event
+    return eventWrapper;
+  }
+
+  return eventWrapper;
+};
+```
+
+**Key points about `forwardEvent`:**
+
+- Forwarded events bypass the current interceptor but still go through parent interceptors
+- You can forward multiple events for a single incoming event
+- Forwarded events are processed independently of the original event
+- The return value still controls whether the original event continues up the chain
 
 You can nest as many interceptors as you need to either handle or pass events further up.
 
@@ -214,10 +261,8 @@ You can define a localized string in your GraphQL schema by using the `@localize
 
 ```graphql
 type ViewData {
-  greeting: String! @localizedString(
-    text: "Welcome!",
-    comment: "Greeting to the user",
-  )
+  greeting: String!
+    @localizedString(text: "Welcome!", comment: "Greeting to the user")
 }
 ```
 
@@ -235,16 +280,12 @@ In the case of a string with placeholders you will also need to provide a `place
 
 ```graphql
 type ViewData {
-  greeting: String! @localizedString(
-    text: "Hello, {name}",
-    comment: "Greeting to the user",
-    placeholders: [
-      {
-        name: "name",
-        comment: "The name of the user"
-      }
-    ]
-  )
+  greeting: String!
+    @localizedString(
+      text: "Hello, {name}"
+      comment: "Greeting to the user"
+      placeholders: [{ name: "name", comment: "The name of the user" }]
+    )
 }
 ```
 
@@ -252,7 +293,7 @@ In typescript this will be typed as `StringWithPlaceholders`.
 
 ```ts
 type ViewData = {
-  greeting: StringWithPlaceholders<{ name: string; }>;
+  greeting: StringWithPlaceholders<{ name: string }>;
 };
 ```
 
@@ -313,13 +354,14 @@ const localization: NovaLocalization = {
   useFormat: () => {
     // Your implementation goes here
     // You can use other hooks here.
-    
+
     // For example useTranslation from i18next
     const { t } = useTranslation();
 
-    return (string: string, values: Record<string, string>) => t(string, values);
-  }
-}
+    return (string: string, values: Record<string, string>) =>
+      t(string, values);
+  },
+};
 
 const App = () => {
   return (
