@@ -21,6 +21,7 @@ export const Feedback_feedbackRelayFragment = graphql`
       text
     }
     doesViewerLike
+    displayLabel
   }
 `;
 
@@ -77,7 +78,7 @@ export const FeedbackComponent = (props: Props) => {
       {errorMessage != null && (
         <div style={{ color: "red" }}>{errorMessage}</div>
       )}
-      Feedback: {feedback.message.text}
+      {feedback.displayLabel}: {feedback.message.text}
       <div>{format(viewData.numberOfLikesLabel, { count: 2 })}</div>
       <div>{viewData.viewDataField}</div>
       <button

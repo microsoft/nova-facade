@@ -21,4 +21,5 @@ export {
 export {
   getNovaRelayDecorator as getNovaDecorator,
   getNovaRelayEnvironmentForStory as getNovaEnvironmentForStory,
+  type EnvironmentMockResolversContext,
 } from "./storybook-nova-decorator-relay";

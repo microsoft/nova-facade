@@ -101,7 +101,7 @@ const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
 export const getDecorator = <E extends NovaMockEnvironment>(
-  createEnvironment: () => E,
+  createEnvironment: (parameters?: WithNovaEnvironment["novaEnvironment"]) => E,
   initializeGenerator: (
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: E,
@@ -111,10 +111,14 @@ export const getDecorator = <E extends NovaMockEnvironment>(
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
-      // Environment needs to be created within makeDecorator wrapper to ensure it is created for each story separately and the environment is not shared between stories.
-      const environment = React.useMemo(() => createEnvironment(), []);
       const parameters = (settings.parameters ??
         {}) as WithNovaEnvironment["novaEnvironment"];
+      // Environment needs to be created within makeDecorator wrapper to ensure it is created for each story separately and the environment is not shared between stories.
+      // Pass parameters to createEnvironment so it can configure Relay resolver context
+      const environment = React.useMemo(
+        () => createEnvironment(parameters),
+        [],
+      );
       if (parameters.enableQueuedMockResolvers ?? true) {
         initializeGenerator(parameters, environment);
       }

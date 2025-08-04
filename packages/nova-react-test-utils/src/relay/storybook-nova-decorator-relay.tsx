@@ -1,6 +1,7 @@
 import {
   getDecorator,
   getNovaEnvironmentForStory,
+  type MockResolvers,
 } from "../shared/storybook-nova-decorator-shared";
 import type { MakeDecoratorResult } from "../shared/shared-utils";
 import {
@@ -15,13 +16,15 @@ import * as React from "react";
 import { RelayEnvironmentProvider } from "react-relay";
 import {
   createMockEnvironment,
+  type MockResolver,
+  type DefaultMockResolvers,
   type MockPayloadGenerator,
 } from "relay-test-utils";
 import type { GraphQLSchema } from "graphql";
 import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext } from "@storybook/types";
 import type { NovaMockEnvironment } from "./nova-mock-environment";
-import type { EnvironmentConfig } from "relay-runtime";
+import { RecordSource, Store, type EnvironmentConfig } from "relay-runtime";
 import type { NovaLocalization } from "@nova/types";
 
 // We need this as `generateWithDefer` is overloaded and we want to get most relaxed return type
@@ -45,7 +48,13 @@ type RelayGenerateReturn =
   | ReturnType<(typeof MockPayloadGenerator)["generate"]>
   | OverloadedReturnType<(typeof MockPayloadGenerator)["generateWithDefer"]>;
 
-type Options = { getEnvironmentOptions?: () => Partial<EnvironmentConfig> } & {
+type StoreOptions = ConstructorParameters<typeof Store>[1];
+
+type EnvironmentOptions = Partial<EnvironmentConfig> & {
+  storeOptions?: StoreOptions;
+};
+
+type Options = { getEnvironmentOptions?: () => EnvironmentOptions } & {
   generateFunction?: (...args: GraphitationGenerateArgs) => RelayGenerateReturn;
 } & { localization?: NovaLocalization };
 
@@ -56,8 +65,14 @@ export const getNovaRelayDecorator: (
   schema,
   { generateFunction, getEnvironmentOptions, localization } = {},
 ) => {
-  const createEnvironment = () =>
-    createNovaRelayEnvironment(getEnvironmentOptions?.(), localization);
+  const createEnvironment = (
+    parameters?: WithNovaEnvironment["novaEnvironment"],
+  ) =>
+    createNovaRelayEnvironment(
+      getEnvironmentOptions?.(),
+      localization,
+      parameters?.resolvers,
+    );
   const relayMockPayloadGenerator = new RelayMockPayloadGenerator(schema);
   const initializeGenerator = (
     parameters: WithNovaEnvironment["novaEnvironment"],
@@ -76,11 +91,44 @@ export const getNovaRelayDecorator: (
   return getDecorator(createEnvironment, initializeGenerator);
 };
 
+export type EnvironmentMockResolversContext<
+  TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+> = {
+  mock: {
+    resolve: <K extends keyof TypeMap>(
+      typeName: K,
+      context?: Partial<MockResolverContext>,
+    ) => TypeMap[K];
+    storeById: (id: string, data: unknown) => void;
+    resolveById: (id: string) => unknown;
+  };
+};
+
 function createNovaRelayEnvironment(
-  options?: Partial<EnvironmentConfig>,
+  options?: EnvironmentOptions,
   localization?: NovaLocalization,
+  resolvers?: MockResolvers,
 ): NovaMockEnvironment {
-  const relayEnvironment = createMockEnvironment(options);
+  const resolverContext = getResolverContextForEnvironment(resolvers ?? {});
+
+  const storeConfiguration: StoreOptions = options?.storeOptions
+    ? {
+        ...options.storeOptions,
+        resolverContext: {
+          ...(options?.storeOptions?.resolverContext ?? {}),
+          ...resolverContext,
+        },
+      }
+    : { resolverContext };
+
+  const store =
+    options?.store ?? new Store(new RecordSource(), storeConfiguration);
+
+  const relayEnvironment = createMockEnvironment({
+    ...options,
+    store,
+  });
+
   const env: NovaMockEnvironment = {
     type: "relay",
     graphql: {
@@ -118,3 +166,45 @@ export const getNovaRelayEnvironmentForStory = (
 const isRelayMockEnv = (
   env: ReturnType<typeof getNovaEnvironmentForStory>,
 ): env is NovaMockEnvironment => env.type === "relay";
+
+type MockResolverContext = Parameters<MockResolver>[0];
+
+const getResolverContextForEnvironment: (
+  resolvers: MockResolvers,
+) => EnvironmentMockResolversContext = (resolvers) => {
+  const dataById = new Map<string, unknown>();
+  let currentId = 0;
+
+  const defaultResolvers: MockResolvers<DefaultMockResolvers> = {
+    ID: (context) =>
+      `${context?.parentType ? context.parentType + "-" : ""}mock-id-${currentId++}`,
+    Int: () => 42,
+    Float: () => 4.2,
+    Boolean: () => false,
+  };
+
+  const allResolvers = {
+    ...defaultResolvers,
+    ...resolvers,
+  };
+
+  const resolverContext: EnvironmentMockResolversContext = {
+    mock: {
+      resolve: (typeName, context) => {
+        const resolver = allResolvers[typeName];
+        return resolver?.(
+          (context ?? {}) as MockResolverContext,
+          () => currentId++,
+        );
+      },
+      storeById: (id, data) => {
+        dataById.set(id, data);
+      },
+      resolveById: (id) => {
+        return dataById.get(id);
+      },
+    },
+  };
+
+  return resolverContext;
+};
