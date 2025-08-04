@@ -340,6 +340,48 @@ const novaDecorator = getNovaDecorator(schema, {
 });
 ```
 
+#### (Pure relay or Nova with Relay) Can I provide mock data to relay resolvers?
+
+For Relay environments, the `resolvers` parameter also provides mock data to Relay resolvers through resolver context. This means you can mock both GraphQL operations and Relay resolver data using the same configuration:
+
+```tsx
+export const MyStory: Story = {
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
+        Feedback: () => ({
+          id: "42",
+          message: { text: "Feedback title" },
+          displayLabel: "Custom Label from Story", // Used by Relay resolver
+        }),
+      }
+    }
+  }
+};
+```
+
+In your Relay resolver, you can access this mock data through the context:
+
+```tsx
+/**
+ * @RelayResolver Feedback.displayLabel: String
+ */
+export function displayLabel(
+  _args: any,
+  context: SomeContextType & EnvironmentMockResolversContext<TypeMap>,
+) {
+  // Gets "Custom Label from Story" from the story's resolvers
+  const mockLabel = context.mock.resolve("Feedback")?.displayLabel;
+  if (mockLabel !== undefined) {
+    return mockLabel;
+  }
+  
+  // Whatever other code you want to run for your resolver.
+}
+```
+
+This allows you to provide custom mock data for your Relay resolvers on a per-story basis, making it easy to test different scenarios and data states.
+
 #### How can I mock query/mutation/subscription?
 
 - [Query example](../examples/src/relay/Feedback/FeedbackContainer.stories.ts#L30)
