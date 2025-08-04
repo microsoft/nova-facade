@@ -2070,10 +2070,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-relay@*", "@types/react-relay@^16.0.0":
-  version "16.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-16.0.6.tgz#afc467fab89dc4c96fb1424f84b869750f5c42f2"
-  integrity sha512-VTntVQJhlwQYNUlbNgGf8RYy7EtQPRZqsD/w2Si0ygZspJXuNlVdRkklWMFN99EMRhHDpqlNHD8i3wIs7QRz9g==
+"@types/react-relay@*", "@types/react-relay@^18.0.0":
+  version "18.2.1"
+  resolved "https://registry.yarnpkg.com/@types/react-relay/-/react-relay-18.2.1.tgz#2c87a622e98ebf3d0162dd2edc9c3ed014df6ca1"
+  integrity sha512-KgmFapsxAylhxcFfaAv5GZZJhTHnDvV8IDZVsUm5afpJUvgZC1Y68ssfOGsFfiFY/2EhxHM/YPfpdKbfmF3Ecg==
   dependencies:
     "@types/react" "*"
     "@types/relay-runtime" "*"
@@ -2086,15 +2086,15 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
-"@types/relay-runtime@*", "@types/relay-runtime@>16", "@types/relay-runtime@^18.0.0":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-18.0.0.tgz#d48dd4552ab480281a679c47d98fc02e304460f6"
-  integrity sha512-LK9NAw/WsdiMtQU+SxnhFd2bA6HfRsjniAENdznA8BKbGGvcMi0K8Gyq/XtoNmCMR9jxzO9rqFTksKkiXgsGYg==
+"@types/relay-runtime@*", "@types/relay-runtime@>=19", "@types/relay-runtime@^19.0.0":
+  version "19.0.2"
+  resolved "https://registry.yarnpkg.com/@types/relay-runtime/-/relay-runtime-19.0.2.tgz#1fe872771ce75835b301916c2f4403db5534fff8"
+  integrity sha512-lcWb+/7cPG21UgtK/fdpt8QgtV2GYc8TQIusZUBL1k2oy+8oNwYQAAj0/j1pkg77sk/p5MQPQZYOWN9i8wpUhg==
 
-"@types/relay-test-utils@>=17.0.0", "@types/relay-test-utils@^18.0.0":
-  version "18.0.0"
-  resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-18.0.0.tgz#a3d86503bc6d27c039e721514c78259541658f23"
-  integrity sha512-sg++buiunZkj0MkL1/Q6w4p19ut3USC5BQnWJ1D4Bp4pNOrck4nhVDIyklm/ilVyM0wCbvROa5wL+nsYVo4Frw==
+"@types/relay-test-utils@>=17.0.0", "@types/relay-test-utils@^19.0.0":
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/@types/relay-test-utils/-/relay-test-utils-19.0.0.tgz#3ee2a4c8f577d812fdfb8e61dbd85e3558f9dbfa"
+  integrity sha512-yC/wVgDetV+88HrHLKlesIfju3RGsp32vLs0IiwBPKD0npQSTrFddcP3FNPe5Kkk4/Y/kgY3oR/DA8g8Bmmppw==
   dependencies:
     "@types/react" "*"
     "@types/react-relay" "*"
@@ -5488,16 +5488,16 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-relay@^18.0.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-18.1.0.tgz#fd19a6b786c251f4005423403d67cc3d5cc42c42"
-  integrity sha512-kqRbWid1A+B5HyvS05zwQacBhgWbIAlclTOO4CEWTwq0Sz00rZP1S9Bfcrl0ViImNKZHNa8+2I27409v9Sw1bQ==
+react-relay@^20.0.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/react-relay/-/react-relay-20.1.0.tgz#a2329ad8c6665c4d63f531e9e8fb6f2d528f8b2f"
+  integrity sha512-Ryo44/9KQrrv6GXXvDjmYjA1Y0ui5i9WBN1sVy8q2AGc+LKOM1IuCcJaa6Ys3sJEnCcilbmFwJvKobwKxB0HtA==
   dependencies:
     "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
     nullthrows "^1.1.1"
-    relay-runtime "18.1.0"
+    relay-runtime "20.1.0"
 
 "react@^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", react@^18.3.1:
   version "18.3.1"
@@ -5584,15 +5584,15 @@ relay-compiler@^12.0.0:
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-relay-compiler@^18.0.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-18.1.0.tgz#ae6f82a3c967d6e2bb35c4e7971acae0b6a36e47"
-  integrity sha512-DGWIORIij0TIys/Xd5W/iToqTv7UcN6fqCPDqwYhLnfU7ukdK8rpk7f6RCYvhyZG71e7a1b3TLGOQY8A3XE3yg==
+relay-compiler@^20.0.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/relay-compiler/-/relay-compiler-20.1.0.tgz#57273483bfe694293c5111ea083e6b3d5e74f0ea"
+  integrity sha512-QpIdE68NqdFnO0TObCYqEmUdXRcgG/VY/UH+p1kIxdXIM08YfliVf7ck5ypkKAj1iB/invDhsKb1W7PMAuYTAQ==
 
-relay-hooks@^9.2.0:
-  version "9.2.0"
-  resolved "https://registry.yarnpkg.com/relay-hooks/-/relay-hooks-9.2.0.tgz#7785b7ac8ebafb9a8d0b045a2e622668168fe1c0"
-  integrity sha512-6y4RjF0sGt85kxRM87eQlHFl4utBI2fXfFM7TNJ+CiYGaH7e65hTYsh65j/8B5IzGp93hevG0yVaeY/Zeapahg==
+relay-hooks@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/relay-hooks/-/relay-hooks-9.4.0.tgz#30c13cd2cb63c18ae5859d93676ce0d60e71b68c"
+  integrity sha512-HjhZoA4w2O8j+mt8sRgHbwAlCT5voJGQIwg0YigSfehVVWPl3cJ1YNYM1be04f+z2zG6TRgUwMzPZGUFYhM+Fw==
   dependencies:
     "@restart/hooks" "^0.4.9"
     fbjs "^3.0.2"
@@ -5606,24 +5606,24 @@ relay-runtime@12.0.0:
     fbjs "^3.0.0"
     invariant "^2.2.4"
 
-relay-runtime@18.1.0, relay-runtime@^18.0.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-18.1.0.tgz#62f03669e70d499b6b7d688fa61780b312843bf9"
-  integrity sha512-C3Ct6mty9ZD93KnzHLP4mFw9T3zqPL5VwFaNPRvVgdJYSwQT2dfzWz1336fWwMgAXIQGZIqIjedeamjy6P4ZkA==
+relay-runtime@20.1.0, relay-runtime@^20.0.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/relay-runtime/-/relay-runtime-20.1.0.tgz#00613c64c4221231c088e9d14a76ef5c7ed7300a"
+  integrity sha512-Co/0HuYySz5xbMvShoa43Bouyj1q0X6ufWYR9+8J/fIM4VvyQy4GsXsn/y8BMpSD21cHfChIKfOqHjwR4Ry59w==
   dependencies:
     "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
 
-relay-test-utils@^18.0.0:
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-18.1.0.tgz#3fcfcc3af13ffc9dc854d373934e32a30f0212b4"
-  integrity sha512-gm0mnVsZq5vyRerGI0DQJDKAVBjuQJUPCHAtc1DQDjmUG/9xxadmCidCCqzjPBFyhYqj3kPKC86yJIMNpnpt0g==
+relay-test-utils@^20.0.0:
+  version "20.1.0"
+  resolved "https://registry.yarnpkg.com/relay-test-utils/-/relay-test-utils-20.1.0.tgz#e9f786b33068cecc6a833652e36a0c958e852f9e"
+  integrity sha512-gs0pfzZ7Ubt6BrM27ZReiUmcYzrltKhuRkjLB6FWyAiTgHXwgAaUDF3LBZd6aSNm6TMmX0ze5J1DXKXDs8Wxag==
   dependencies:
     "@babel/runtime" "^7.25.0"
     fbjs "^3.0.2"
     invariant "^2.2.4"
-    relay-runtime "18.1.0"
+    relay-runtime "20.1.0"
 
 remedial@^1.0.7:
   version "1.0.8"
