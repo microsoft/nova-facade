@@ -285,7 +285,7 @@ const meta = {
 } satisfies Meta<typeof FeedbackContainer>;
 ```
 
-The second parameter of `getNovaDecorator` is an `getEnvironmentOptions` callback that should return object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
+The second parameter of `getNovaDecorator` is an `getEnvironmentOptions` callback that should return object of type `Partial<EnvironmentConfig>` from `relay-test-utils`. **Note**: internally we add a little bit funcionality to store instance, particularly for supporting data for Relay Resolvers. To avoid that functionality from being overridden, we encourage to use `storeOption` instead of `Store` which will be passed to `Store` object constructor.
 
 #### Can I swap out the graphitation MockPayloadGenerator for something else?
 
@@ -354,9 +354,9 @@ export const MyStory: Story = {
           message: { text: "Feedback title" },
           displayLabel: "Custom Label from Story", // Used by Relay resolver
         }),
-      }
-    }
-  }
+      },
+    },
+  },
 };
 ```
 
@@ -375,7 +375,7 @@ export function displayLabel(
   if (mockLabel !== undefined) {
     return mockLabel;
   }
-  
+
   // Whatever other code you want to run for your resolver.
 }
 ```
