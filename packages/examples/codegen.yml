@@ -2,6 +2,7 @@ overwrite: true
 schema:
   - "./data/schema.graphql"
   - "./data/client-extensions/*.graphql"
+  - "./data/relay-resolvers-sdl/*.graphql"
 generates:
   src/__generated__/schema.all.interface.ts:
     plugins:
