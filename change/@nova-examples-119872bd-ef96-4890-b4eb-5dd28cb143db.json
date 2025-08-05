@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "bump storybook and vitest",
-  "packageName": "@nova/examples",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "none"
-}

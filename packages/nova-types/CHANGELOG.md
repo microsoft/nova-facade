@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 11 Feb 2025 14:14:19 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Aug 2025 08:13:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.0
+
+Tue, 05 Aug 2025 08:13:06 GMT
+
+### Minor changes
+
+- expose EventInterceptor type (stwilczy@microsoft.com)
 
 ## 1.6.0
 

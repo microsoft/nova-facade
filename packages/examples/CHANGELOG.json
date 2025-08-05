@@ -2,6 +2,41 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Tue, 05 Aug 2025 08:13:06 GMT",
+      "tag": "@nova/examples_v1.10.5",
+      "version": "1.10.5",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "bump storybook and vitest"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.9.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.0.5",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/types to v1.7.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 Jun 2025 09:45:30 GMT",
       "tag": "@nova/examples_v1.10.4",
       "version": "1.10.4",
