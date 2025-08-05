@@ -33,8 +33,8 @@ export function name(
 
   // Return name object directly since PersonName doesn't have an ID
   return {
-    firstName: data?.firstName ?? context.mock.resolve("String") ?? "John",
-    lastName: data?.lastName ?? context.mock.resolve("String") ?? "Doe",
+    firstName: data?.firstName ?? context.mock.resolve("String"),
+    lastName: data?.lastName ?? context.mock.resolve("String"),
     ...data,
   };
 }
@@ -47,7 +47,7 @@ export function firstName(
   _args: any,
   context: EnvironmentMockResolversContext<TypeMap>,
 ): string {
-  return model.firstName ?? context.mock.resolve("String") ?? "John";
+  return model.firstName ?? context.mock.resolve("String");
 }
 
 /**
@@ -58,7 +58,7 @@ export function lastName(
   _args: any,
   context: EnvironmentMockResolversContext<TypeMap>,
 ): string {
-  return model.lastName ?? context.mock.resolve("String") ?? "Doe";
+  return model.lastName ?? context.mock.resolve("String");
 }
 
 /**

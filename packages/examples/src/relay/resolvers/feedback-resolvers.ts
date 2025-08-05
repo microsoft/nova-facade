@@ -15,6 +15,5 @@ export function displayLabel(
   }
 
   // Fall back to default resolver behavior
-  const defaultLabel = context.mock.resolve("String");
-  return defaultLabel ?? "Feedback";
+  return context.mock.resolve("String");
 }

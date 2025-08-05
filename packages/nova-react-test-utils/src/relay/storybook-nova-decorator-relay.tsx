@@ -181,6 +181,8 @@ const getResolverContextForEnvironment: (
     Int: () => 42,
     Float: () => 4.2,
     Boolean: () => false,
+    String: (context) =>
+      `${context?.parentType ? context.parentType + "-" : ""}${context?.name ? context.name + "-" : ""}mock-string`,
   };
 
   const allResolvers = {
