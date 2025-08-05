@@ -1,8 +1,18 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 19 Jun 2025 09:45:30 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Aug 2025 08:13:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.0.5
+
+Tue, 05 Aug 2025 08:13:06 GMT
+
+### Patches
+
+- use new EventInterceptor type (stwilczy@microsoft.com)
+- Bump @nova/react to v2.9.0
+- Bump @nova/types to v1.7.0
 
 ## 7.0.4
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "use new EventInterceptor type",
-  "packageName": "@nova/react-test-utils",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

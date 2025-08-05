@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "bump storybook and vitest",
-  "packageName": "@nova/react-test-utils",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "none"
-}

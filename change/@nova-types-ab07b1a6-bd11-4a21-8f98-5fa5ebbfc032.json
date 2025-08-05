@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "expose EventInterceptor type",
-  "packageName": "@nova/types",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}
