@@ -71,7 +71,3 @@ extends:
                 inputs:
                   artifactName: SBom-$(System.JobAttempt)
                   targetPath: $(System.DefaultWorkingDirectory)/_manifest
-              - template: .azure-devops/steps/pierce-ado-npm-mirror-cache.yml@self
-                parameters:
-                  adoNpmFeedPat: $(adoNpmFeedPat)
-                  adoNpmFeedBaseUrl: $(adoNpmFeedBaseUrl)
