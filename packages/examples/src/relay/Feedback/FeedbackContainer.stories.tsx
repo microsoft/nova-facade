@@ -22,6 +22,7 @@ import { FeedbackContainer } from "./FeedbackContainer";
 import { type events, type FeedbackTelemetryEvent } from "../../events/events";
 import * as React from "react";
 import { schema } from "../../testing-utils/schema";
+import { displayLabel } from "../resolvers/feedback-resolvers";
 
 type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
 
@@ -221,4 +222,5 @@ const sampleFeedback = {
     text: "Feedback title",
   },
   doesViewerLike: false,
+  displayLabel: "Feedback",
 };

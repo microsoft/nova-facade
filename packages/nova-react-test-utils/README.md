@@ -285,7 +285,7 @@ const meta = {
 } satisfies Meta<typeof FeedbackContainer>;
 ```
 
-The second parameter of `getNovaDecorator` is an `getEnvironmentOptions` callback that should return object of type `Partial<EnvironmentConfig>` from `relay-test-utils`.
+The second parameter of `getNovaDecorator` is an `getEnvironmentOptions` callback that should return object of type `Partial<EnvironmentConfig>` from `relay-test-utils`. **Note**: internally we add a little bit funcionality to store instance, particularly for supporting data for Relay Resolvers. To avoid that functionality from being overridden, we encourage to use `storeOption` instead of `Store` which will be passed to `Store` object constructor.
 
 #### Can I swap out the graphitation MockPayloadGenerator for something else?
 
@@ -339,6 +339,60 @@ const novaDecorator = getNovaDecorator(schema, {
   },
 });
 ```
+
+#### (Pure relay or Nova with Relay) Can I provide mock data to relay resolvers?
+
+For Relay environments, the `resolvers` parameter also provides mock data to Relay resolvers through resolver context. This means you can mock both GraphQL operations and Relay resolver data using the same configuration:
+
+```tsx
+export const MyStory: Story = {
+  parameters: {
+    novaEnvironment: {
+      resolvers: {
+        Feedback: () => ({
+          id: "42",
+          message: { text: "Feedback title" },
+          displayLabel: "Custom Label from Story", // Used by Relay resolver
+        }),
+      },
+    },
+  },
+};
+```
+
+In your Relay resolver, you can access this mock data through the context:
+
+```tsx
+/**
+ * @RelayResolver Feedback.displayLabel: String
+ */
+export function displayLabel(
+  _args: any,
+  context: SomeContextType & EnvironmentMockResolversContext<TypeMap>,
+) {
+  // Gets "Custom Label from Story" from the story's resolvers
+  const mockLabel = context.mock.resolve("Feedback")?.displayLabel;
+  if (mockLabel !== undefined) {
+    return mockLabel;
+  }
+
+  // Whatever other code you want to run for your resolver.
+}
+```
+
+This allows you to provide custom mock data for your Relay resolvers on a per-story basis, making it easy to test different scenarios and data states.
+
+##### Understanding the Mock Context API
+
+The `context.mock` object provides several methods for working with mock data in Relay resolvers:
+
+- **`resolve(typeName, context?)`** - Returns the mock data for a given GraphQL type. If the type is specified in your story's `resolvers` parameter, it uses that data. Otherwise, it generates default mock values for scalar types (`String`, `Int`, `Boolean`, etc.). The optional `context` parameter gives an option to provide additional information like `parentType`, `args` and field `name` to generate more contextual mock data.
+
+- **`resolveById(id: string)`** - Retrieves mock data that was previously stored by ID using `storeById`. This is essential for resolvers for [strong object types](https://relay.dev/docs/guides/relay-resolvers/defining-types/#defining-a-strong-type). As they only get `id` as parameter, we provide this API as easy to access globally stored, resolved objects.
+
+- **`storeById(id: string, data: unknown)`** - Stores mock data by ID so it can be retrieved later with `resolveById`. You can use this when a parent resolver returns an object defined with strong type and you need to save that data to be extracted by resolver for that type itself
+
+Check our internal example for this in [suggested-friends-resolvers](../examples/src/relay/resolvers/suggested-friends-resolvers.ts)
 
 #### How can I mock query/mutation/subscription?
 

@@ -1,0 +1,18 @@
+extend type Feedback {
+  displayLabel: String
+}
+
+# Types for suggested friends functionality
+type SuggestedFriend {
+  id: ID!
+  name: PersonName!
+}
+
+type PersonName {
+  firstName: String!
+  lastName: String!
+}
+
+extend type Viewer {
+  suggestedFriends: [SuggestedFriend!]!
+}

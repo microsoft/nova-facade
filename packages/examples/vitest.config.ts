@@ -16,7 +16,7 @@ const dirname =
 
 export default defineConfig({
   test: {
-    workspace: [
+    projects: [
       {
         plugins: [...plugins],
         test: mergeConfig(defaultConfig, {

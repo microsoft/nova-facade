@@ -18,6 +18,7 @@ export const Feedback_feedbackFragment = graphql`
       text
     }
     doesViewerLike
+    displayLabel
   }
 `;
 
@@ -60,7 +61,7 @@ export const FeedbackComponent = (props: Props) => {
       {errorMessage != null && (
         <div style={{ color: "red" }}>{errorMessage}</div>
       )}
-      Feedback: {feedback.message.text}
+      {feedback.displayLabel}: {feedback.message.text}
       <button
         id="likeButton"
         disabled={isPending}
