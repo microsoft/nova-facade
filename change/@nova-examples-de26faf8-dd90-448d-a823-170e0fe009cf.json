@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add examples with relay resolvers",
-  "packageName": "@nova/examples",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

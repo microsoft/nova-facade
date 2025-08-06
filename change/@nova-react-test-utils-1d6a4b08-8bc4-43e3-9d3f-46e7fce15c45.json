@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "add support for mocking relay resolvers",
-  "packageName": "@nova/react-test-utils",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

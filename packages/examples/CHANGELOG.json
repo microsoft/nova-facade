@@ -2,6 +2,27 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Wed, 06 Aug 2025 10:00:16 GMT",
+      "tag": "@nova/examples_v1.11.0",
+      "version": "1.11.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "af6253a31cd72450e11bb3e2b82f4115484a2dfe",
+            "comment": "add examples with relay resolvers"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.1.0",
+            "commit": "af6253a31cd72450e11bb3e2b82f4115484a2dfe"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Aug 2025 08:13:06 GMT",
       "tag": "@nova/examples_v1.10.5",
       "version": "1.10.5",
