@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "add stronger referece entries types",
+  "packageName": "@nova/react-test-utils",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}
