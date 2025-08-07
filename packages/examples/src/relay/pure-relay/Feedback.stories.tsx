@@ -19,7 +19,11 @@ import * as React from "react";
 import type { events } from "../../events/events";
 import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
-type NovaParameters = WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  FeedbackStoryRelayQuery,
+  TypeMap,
+  typeof FeedbackComponent
+>;
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({

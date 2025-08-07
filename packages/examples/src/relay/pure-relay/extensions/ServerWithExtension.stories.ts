@@ -12,7 +12,6 @@ import type { ServerWithExtensionStoryRelayQuery } from "./__generated__/ServerW
 import { within, expect } from "@storybook/test";
 import { schema } from "../../../testing-utils/schema";
 
-
 const novaDecorator = getNovaDecorator(schema, {
   generateFunction: (operation, mockResolvers) => {
     const result = MockPayloadGenerator.generate(
@@ -48,7 +47,11 @@ const meta = {
         }),
       },
     },
-  } satisfies WithNovaEnvironment<ServerWithExtensionStoryRelayQuery, TypeMap>,
+  } satisfies WithNovaEnvironment<
+    ServerWithExtensionStoryRelayQuery,
+    TypeMap,
+    typeof ServerWithExtension
+  >,
 } satisfies Meta<typeof ServerWithExtension>;
 
 export default meta;
