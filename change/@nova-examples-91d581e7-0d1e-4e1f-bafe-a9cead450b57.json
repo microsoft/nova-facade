@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "use stronger typing for reference entries",
-  "packageName": "@nova/examples",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Wed, 06 Aug 2025 10:00:16 GMT and should not be manually modified.
+This log was last generated on Fri, 08 Aug 2025 20:19:18 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.0
+
+Fri, 08 Aug 2025 20:19:18 GMT
+
+### Minor changes
+
+- add stronger referece entries types (stwilczy@microsoft.com)
 
 ## 7.1.0
 

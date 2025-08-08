@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 08 Aug 2025 20:19:18 GMT",
+      "tag": "@nova/react-test-utils_v7.2.0",
+      "version": "7.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "850b3dd862fb8876fc833c38dc69089ad0f74d7d",
+            "comment": "add stronger referece entries types"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 06 Aug 2025 10:00:16 GMT",
       "tag": "@nova/react-test-utils_v7.1.0",
       "version": "7.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@nova/examples",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@nova/react": "2.9.0",
-    "@nova/react-test-utils": "7.1.0",
+    "@nova/react-test-utils": "7.2.0",
     "@nova/types": "1.7.0",
     "graphql": "^15.5.0",
     "react": "^18.3.1",
