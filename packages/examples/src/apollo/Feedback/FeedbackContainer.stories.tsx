@@ -26,7 +26,11 @@ import { defaultNodeResolver } from "../../testing-utils/resolvers";
 const telemetryEventMock =
   fn<[{ event: FeedbackTelemetryEvent; source: unknown }]>();
 
-type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
+type NovaParams = WithNovaEnvironment<
+  UnknownOperation,
+  TypeMap,
+  typeof FeedbackContainer
+>;
 
 const meta = {
   component: FeedbackContainer,

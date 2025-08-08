@@ -18,7 +18,11 @@ import type { events } from "../../events/events";
 import { fn } from "@storybook/test";
 import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
-type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  FeedbackStoryQuery,
+  TypeMap,
+  typeof FeedbackComponent
+>;
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
@@ -42,7 +46,7 @@ const meta = {
       `,
       variables: { id: "42" },
       referenceEntries: {
-        feedback: (data) => data?.feedback,
+        feedback: (data) => data.feedback,
       },
     },
   } satisfies NovaParameters,
@@ -65,7 +69,7 @@ export const Primary: Story = {
     const container = within(context.canvasElement);
     // Verify that value from relay resolvers come through
     await container.findByText("Feedback from resolvers: Feedback title");
-  }
+  },
 };
 
 export const Liked: Story = {

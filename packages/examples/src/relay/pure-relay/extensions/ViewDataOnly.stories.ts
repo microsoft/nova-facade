@@ -13,7 +13,11 @@ import { fn, within, expect, waitFor } from "@storybook/test";
 import { type withErrorBoundaryParameters } from "../../../testing-utils/decorators";
 import { ViewDataOnly } from "./ViewDataOnly";
 
-type NovaParameters = WithNovaEnvironment<ViewDataOnlyStoryRelayQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  ViewDataOnlyStoryRelayQuery,
+  TypeMap,
+  typeof ViewDataOnly
+>;
 
 const mockOnError = fn<[Error]>();
 

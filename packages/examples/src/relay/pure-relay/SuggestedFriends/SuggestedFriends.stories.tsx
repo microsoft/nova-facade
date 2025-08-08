@@ -11,7 +11,11 @@ import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import { SuggestedFriendsComponent } from "./SuggestedFriends";
 import type { SuggestedFriendsStoryQuery } from "./__generated__/SuggestedFriendsStoryQuery.graphql";
 
-type NovaParameters = WithNovaEnvironment<SuggestedFriendsStoryQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  SuggestedFriendsStoryQuery,
+  TypeMap,
+  typeof SuggestedFriendsComponent
+>;
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
@@ -45,7 +49,7 @@ const meta = {
               },
             },
             {
-              id: "friend-2", 
+              id: "friend-2",
               name: {
                 firstName: "Bob",
                 lastName: "Smith",
@@ -68,7 +72,6 @@ const meta = {
 export default meta;
 type Story = StoryObjWithoutFragmentRefs<typeof meta>;
 
-
 export const WithDefaultFriends: Story = {
   play: async (context) => {
     const container = within(context.canvasElement);
@@ -76,7 +79,7 @@ export const WithDefaultFriends: Story = {
     await container.findByText("Alice Johnson");
     await container.findByText("Bob Smith");
     await container.findByText("Carol Williams");
-  }
+  },
 };
 
 export const EmptyState: Story = {
@@ -92,7 +95,7 @@ export const EmptyState: Story = {
   play: async (context) => {
     const container = within(context.canvasElement);
     await container.findByText("No suggested friends available.");
-  }
+  },
 };
 
 export const WithManyFriends: Story = {
@@ -116,9 +119,9 @@ export const WithManyFriends: Story = {
     // Verify we have 10 friends
     await container.findByText("Friend1 TestUser1");
     await container.findByText("Friend10 TestUser10");
-    
+
     // Count the list items
     const listItems = container.getAllByRole("listitem");
     expect(listItems).toHaveLength(10);
-  }
+  },
 };

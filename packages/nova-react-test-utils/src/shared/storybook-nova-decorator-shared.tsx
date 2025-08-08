@@ -12,6 +12,7 @@ import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
 import type { ReactRenderer } from "@storybook/react";
 import type { OperationType } from "relay-runtime";
+import type { ValidatedReferenceEntries } from "./types";
 
 type Context = Parameters<Parameters<typeof makeDecorator>[0]["wrapper"]>[1];
 
@@ -32,15 +33,15 @@ export type UnknownOperation = {
 export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+  TComponent = never,
 > = {
   novaEnvironment: (
     | {
         query: GraphQLTaggedNode | RelayGraphQLTaggedNode;
         variables?: TQuery["variables"];
-        referenceEntries: Record<
-          string,
-          (queryResult: TQuery["response"]) => unknown
-        >;
+        referenceEntries: [TComponent] extends [never]
+          ? Record<string, (queryResult: TQuery["response"]) => unknown>
+          : ValidatedReferenceEntries<TComponent, TQuery>;
       }
     | {
         query?: never;
@@ -107,7 +108,11 @@ export const getDecorator = <E extends NovaMockEnvironment>(
     environment: E,
   ) => void,
 ) => {
-  const WrapperWithEnvironment: React.FC<RendererProps> = ({ params, context, getStory }) => {
+  const WrapperWithEnvironment: React.FC<RendererProps> = ({
+    params,
+    context,
+    getStory,
+  }) => {
     const environment = React.useMemo(() => createEnvironment(params), []);
     if (params.enableQueuedMockResolvers ?? true) {
       initializeGenerator(params, environment);
@@ -127,9 +132,13 @@ export const getDecorator = <E extends NovaMockEnvironment>(
     wrapper: (getStory, context, settings) => {
       const parameters = (settings.parameters ??
         {}) as WithNovaEnvironment["novaEnvironment"];
-      
+
       return (
-        <WrapperWithEnvironment params={parameters} context={context} getStory={getStory} />
+        <WrapperWithEnvironment
+          params={parameters}
+          context={context}
+          getStory={getStory}
+        />
       );
     },
   });
