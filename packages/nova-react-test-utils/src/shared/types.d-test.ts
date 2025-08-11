@@ -254,6 +254,8 @@ interface PropsWithFragments {
   user: MockFragmentKey;
   regularProp: string;
   optionalProp?: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  anyProp: any;
 }
 
 interface MockQuery extends OperationType {
