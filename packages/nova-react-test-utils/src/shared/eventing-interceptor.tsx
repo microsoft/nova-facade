@@ -15,13 +15,19 @@ type EventMap<T extends EventCreatorMap> = {
   }) => Promise<undefined | EventWrapper>;
 };
 
+export type EventingInterceptorProps<T extends EventCreatorMap> = {
+  eventMap: EventMap<T>;
+  children: React.ReactNode;
+};
+
+export type EventingInterceptorFn = <T extends EventCreatorMap>(
+  props: EventingInterceptorProps<T>,
+) => React.ReactElement;
+
 export const EventingInterceptor = <T extends EventCreatorMap>({
   eventMap,
   children,
-}: {
-  eventMap: EventMap<T>;
-  children: React.ReactNode;
-}) => {
+}: EventingInterceptorProps<T>) => {
   const interceptor: EventInterceptor = (eventWrapper) => {
     const eventType = eventWrapper.event.type;
     const customEventHandler = eventMap[eventType];
