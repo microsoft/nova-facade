@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 12 Aug 2025 09:22:59 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Aug 2025 10:03:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.2
+
+Tue, 12 Aug 2025 10:03:44 GMT
+
+### Patches
+
+- fix type for fragment keys (stwilczy@microsoft.com)
 
 ## 7.2.1
 
