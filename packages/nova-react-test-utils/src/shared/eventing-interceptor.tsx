@@ -20,7 +20,7 @@ export type EventingInterceptorProps<T extends EventCreatorMap> = React.PropsWit
 }>;
 export type EventingInterceptorFC<T extends EventCreatorMap> = React.FC<EventingInterceptorProps<T>>;
 
-export const EventingInterceptor = <T extends EventCreatorMap>({
+export const EventingInterceptor = (<T extends EventCreatorMap>({
   eventMap,
   children,
 }: EventingInterceptorProps<T>) => {
@@ -45,4 +45,4 @@ export const EventingInterceptor = <T extends EventCreatorMap>({
       {children}
     </NovaEventingInterceptor>
   );
-};
+}) satisfies EventingInterceptorFC<EventCreatorMap>;
