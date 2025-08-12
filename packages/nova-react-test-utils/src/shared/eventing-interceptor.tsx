@@ -20,16 +20,20 @@ export type EventingInterceptorProps<T extends EventCreatorMap> = React.PropsWit
 }>;
 export type EventingInterceptorFC<T extends EventCreatorMap> = React.FC<EventingInterceptorProps<T>>;
 
-export const EventingInterceptor: EventingInterceptorFC<EventCreatorMap> = ({
+export const EventingInterceptor = <T extends EventCreatorMap>({
   eventMap,
   children,
-}) => {
+}: EventingInterceptorProps<T>) => {
   const interceptor: EventInterceptor = (eventWrapper) => {
     const eventType = eventWrapper.event.type;
     const customEventHandler = eventMap[eventType];
     if (customEventHandler) {
       return customEventHandler(
-        eventWrapper,
+        // As the key was in the map we now the type is correct
+        eventWrapper as unknown as {
+          event: ReturnType<T[keyof T]>;
+          source: Source;
+        },
       );
     } else {
       return Promise.resolve(eventWrapper);
