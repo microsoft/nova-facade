@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(nova-react-test-utils): explicit export type of EventingInterceptorFn",
-  "packageName": "@nova/react-test-utils",
-  "email": "31008843+ansemb@users.noreply.github.com",
-  "dependentChangeType": "patch"
-}

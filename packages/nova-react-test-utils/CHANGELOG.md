@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 08 Aug 2025 20:19:18 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Aug 2025 09:22:59 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.1
+
+Tue, 12 Aug 2025 09:22:59 GMT
+
+### Patches
+
+- fix(nova-react-test-utils): explicit export type of EventingInterceptorFn (31008843+ansemb@users.noreply.github.com)
 
 ## 7.2.0
 

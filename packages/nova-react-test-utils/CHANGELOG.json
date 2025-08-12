@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 12 Aug 2025 09:22:59 GMT",
+      "tag": "@nova/react-test-utils_v7.2.1",
+      "version": "7.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "31008843+ansemb@users.noreply.github.com",
+            "package": "@nova/react-test-utils",
+            "commit": "1f4b28fa4820f4a0f4a28d650476e2275dac3a8e",
+            "comment": "fix(nova-react-test-utils): explicit export type of EventingInterceptorFn"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 08 Aug 2025 20:19:18 GMT",
       "tag": "@nova/react-test-utils_v7.2.0",
       "version": "7.2.0",
