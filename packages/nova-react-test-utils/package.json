@@ -40,7 +40,7 @@
     "graphql": "^15.5.0",
     "invariant": "^2.2.4",
     "tslib": "^2.2.0",
-    "type-fest": "~2.19"
+    "type-fest": "^4.0.0"
   },
   "devDependencies": {
     "@apollo/client": "^3.4.15",

@@ -1,11 +1,12 @@
 import type { StoryObj } from "@storybook/react";
-import type { Simplify, RequiredKeysOf } from "type-fest";
+import type { Simplify, RequiredKeysOf, IfAny, SimplifyDeep } from "type-fest";
+import type { ComponentType } from "react";
 
 /**
  * Utility type to extract the props of a React component.
  */
 export type Props<Component> =
-  Component extends React.ComponentType<infer P> ? P : never;
+  Component extends ComponentType<infer P> ? P : never;
 
 /**
  * Utility type to return the keys of a component's props, where the value of the key is an object containing an optional " $data" property.
@@ -14,7 +15,11 @@ export type Props<Component> =
 export type FragmentKeys<Component> =
   Props<Component> extends infer P
     ? Required<{
-        [K in keyof P]: P[K] extends { " $data"?: unknown } ? K : never;
+        [K in keyof P]: IfAny<
+          P[K],
+          never,
+          P[K] extends { " $data"?: unknown } ? K : never
+        >;
       }>[keyof P]
     : never;
 
@@ -55,13 +60,12 @@ type OptionalArgs<T> = T extends { args?: infer A }
 
 // Omits Z from the Storybook "args" field of T
 type OmitFromArgs<T, Z> = Omit<T, "args"> &
-  Simplify<
+  SimplifyDeep<
     (Record<string, never> extends Omit<RequiredArgs<T>, keyof Z>
       ? { args?: Omit<RequiredArgs<T>, keyof Z> }
       : { args: Omit<RequiredArgs<T>, keyof Z> }) & {
       args?: Omit<OptionalArgs<T>, keyof Z>;
-    },
-    { deep: true }
+    }
   >;
 
 // Check if keys of T are a subset of keys of P. Returns true if they are or union of keys that are not.
@@ -89,19 +93,23 @@ export type ValidatedReferenceEntries<
   TComponent,
   TQuery extends { response: unknown },
 > =
-  TComponent extends React.ComponentType<any>
+  // The any here is important, changing to unknown or never would break inferring component
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TComponent extends ComponentType<any>
     ? FragmentKeys<TComponent> extends never
       ? Record<string, (queryResult: TQuery["response"]) => unknown>
       : // Fragment keys must have correct type, other keys can be anything
-        Simplify<{
-          [K in FragmentKeys<TComponent>]: (
-            queryResult: TQuery["response"],
-          ) => FragmentKeyType<TComponent, K> | null | undefined;
-        } & {
-          [K in Exclude<string, FragmentKeys<TComponent>>]?: (
-            queryResult: TQuery["response"],
-          ) => unknown;
-        }>
+        Simplify<
+          {
+            [K in FragmentKeys<TComponent>]: (
+              queryResult: TQuery["response"],
+            ) => FragmentKeyType<TComponent, K> | null | undefined;
+          } & {
+            [K in Exclude<string, FragmentKeys<TComponent>>]?: (
+              queryResult: TQuery["response"],
+            ) => unknown;
+          }
+        >
     : Record<string, (queryResult: TQuery["response"]) => unknown>;
 
 export type StoryObjWithoutFragmentRefs<T> = T extends {
@@ -112,7 +120,7 @@ export type StoryObjWithoutFragmentRefs<T> = T extends {
     };
   };
 }
-  ? C extends React.ComponentType<infer P extends object>
+  ? C extends ComponentType<infer P extends object>
     ? AreKeysSubset<D, P> extends true
       ? OmitFromArgs<StoryObj<T>, D>
       : ReferenceEntriesError<AreKeysSubset<D, P>>
