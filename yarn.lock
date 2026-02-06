@@ -790,12 +790,12 @@
   dependencies:
     invariant "^2.2.4"
 
-"@graphitation/apollo-react-relay-duct-tape-compiler@^1.6.0":
-  version "1.6.20"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape-compiler/-/apollo-react-relay-duct-tape-compiler-1.6.20.tgz#870464eae9fd62c70281b421d8c8982e2a0128e3"
-  integrity sha512-hNaInn8mNHx4oDO33DetaJ48jWQHZ1Pmj0dZN+Cdj6wprzrS/vXrlphpgd1jgJHuCvRJVS4yX01JiQQnTvyo/w==
+"@graphitation/apollo-react-relay-duct-tape-compiler@^1.8.13":
+  version "1.8.13"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-react-relay-duct-tape-compiler/-/apollo-react-relay-duct-tape-compiler-1.8.13.tgz#e30a463dce5fafd91d5de431108919a0b025e889"
+  integrity sha512-hpc4wm/X4Amcfh2bC03J7LPS/Hi7eabqw6A/3chW6AsD19LtaP983XmT75pOeS6mBrNAYpoTwsK3VlpyQNeUkw==
   dependencies:
-    "@graphitation/graphql-js-tag" "^0.9.4"
+    "@graphitation/graphql-js-tag" "^0.11.0"
     "@graphql-tools/optimize" "^1.1.1"
     relay-compiler "^12.0.0"
     yargs "^16.2.0"
@@ -825,10 +825,10 @@
     graphql "^15.0.0"
     invariant "^2.2.4"
 
-"@graphitation/graphql-js-tag@^0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.9.4.tgz#f0512c0c6014e652bf9ed0912670bb751fa08b57"
-  integrity sha512-MlAlNZNP1WCKoD2FGeSDULnnBILfn/gdtbITe33fjQNsqgPyfcSaCTdQrWLkVuflwpZEhbb0AP1iudXiN4jG4A==
+"@graphitation/graphql-js-tag@^0.11.0":
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/@graphitation/graphql-js-tag/-/graphql-js-tag-0.11.0.tgz#a7b80aa2305fd02ae6ebfa8c0f5f96a2a6b97567"
+  integrity sha512-19+Oy7K29Vh8+pBsVI9MuMIsrQc79N6jPPy/MfizTRXBULsDyo0N0wOAbjRrkpwOMifG7YbcrWu28eV7OVaAFg==
   dependencies:
     invariant "^2.0.0"
 
