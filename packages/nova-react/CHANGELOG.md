@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Tue, 05 Aug 2025 08:13:06 GMT and should not be manually modified.
+This log was last generated on Fri, 06 Feb 2026 13:42:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.9.1
+
+Fri, 06 Feb 2026 13:42:57 GMT
+
+### Patches
+
+- bump @graphitation/graphql-js-tag (pavelglac@gmail.com)
 
 ## 2.9.0
 

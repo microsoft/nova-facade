@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Tue, 12 Aug 2025 10:03:44 GMT and should not be manually modified.
+This log was last generated on Fri, 06 Feb 2026 13:42:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.3
+
+Fri, 06 Feb 2026 13:42:57 GMT
+
+### Patches
+
+- bump @graphitation/graphql-js-tag (pavelglac@gmail.com)
+- Bump @nova/react to v2.9.1
 
 ## 7.2.2
 

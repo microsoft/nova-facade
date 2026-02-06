@@ -1,8 +1,18 @@
 # Change Log - @nova/examples
 
-This log was last generated on Tue, 12 Aug 2025 10:03:44 GMT and should not be manually modified.
+This log was last generated on Fri, 06 Feb 2026 13:42:57 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.11.4
+
+Fri, 06 Feb 2026 13:42:57 GMT
+
+### Patches
+
+- bump @graphitation/graphql-js-tag (pavelglac@gmail.com)
+- Bump @nova/react to v2.9.1
+- Bump @nova/react-test-utils to v7.2.3
 
 ## 1.11.3
 

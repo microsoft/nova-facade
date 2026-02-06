@@ -2,6 +2,27 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Fri, 06 Feb 2026 13:42:57 GMT",
+      "tag": "@nova/react-test-utils_v7.2.3",
+      "version": "7.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "pavelglac@gmail.com",
+            "package": "@nova/react-test-utils",
+            "commit": "6bab7857efa8ec7c886065aef984da25cc9de5d7",
+            "comment": "bump @graphitation/graphql-js-tag"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.9.1",
+            "commit": "6bab7857efa8ec7c886065aef984da25cc9de5d7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 12 Aug 2025 10:03:44 GMT",
       "tag": "@nova/react-test-utils_v7.2.2",
       "version": "7.2.2",

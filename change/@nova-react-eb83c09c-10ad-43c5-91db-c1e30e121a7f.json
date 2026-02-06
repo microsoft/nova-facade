@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "bump @graphitation/graphql-js-tag",
-  "packageName": "@nova/react",
-  "email": "pavelglac@gmail.com",
-  "dependentChangeType": "patch"
-}

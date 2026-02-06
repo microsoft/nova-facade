@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Fri, 06 Feb 2026 13:42:57 GMT",
+      "tag": "@nova/react_v2.9.1",
+      "version": "2.9.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "pavelglac@gmail.com",
+            "package": "@nova/react",
+            "commit": "6bab7857efa8ec7c886065aef984da25cc9de5d7",
+            "comment": "bump @graphitation/graphql-js-tag"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Aug 2025 08:13:06 GMT",
       "tag": "@nova/react_v2.9.0",
       "version": "2.9.0",
