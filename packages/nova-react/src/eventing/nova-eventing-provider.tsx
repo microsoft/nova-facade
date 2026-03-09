@@ -1,5 +1,10 @@
 import * as React from "react";
-import type { NovaEvent, NovaEventing, EventWrapper } from "@nova/types";
+import type {
+  NovaEvent,
+  NovaEventing,
+  EventWrapper,
+  EventInterceptor,
+} from "@nova/types";
 import { InputType } from "@nova/types";
 import invariant from "invariant";
 
@@ -138,7 +143,7 @@ export const useNovaEventing = (): NovaReactEventing => {
 };
 
 interface NovaEventingInterceptorProps {
-  interceptor: (event: EventWrapper) => Promise<EventWrapper | undefined>;
+  interceptor: EventInterceptor;
   children?: React.ReactNode | undefined;
 }
 
@@ -230,9 +235,7 @@ NovaEventingInterceptor.displayName = "NovaEventingInterceptor";
 
 const createInternalEventingPointingToInterceptor = (
   rootInternal: InternalEventingContext,
-  interceptorRef: React.MutableRefObject<
-    (event: EventWrapper) => Promise<EventWrapper | undefined>
-  >,
+  interceptorRef: React.MutableRefObject<EventInterceptor>,
 ): { eventing: NovaEventing; unmountEventing: NovaEventing } => {
   const eventing: NovaEventing = {
     bubble: async (eventWrapper: EventWrapper) =>
@@ -268,16 +271,19 @@ export const useNovaUnmountEventing = (): NovaReactEventing => {
 const getBubble = async (
   eventingRef: React.MutableRefObject<NovaEventing>,
   eventWrapper: EventWrapper,
-  interceptorRef?: React.MutableRefObject<
-    (event: EventWrapper) => Promise<EventWrapper | undefined>
-  >,
+  interceptorRef?: React.MutableRefObject<EventInterceptor>,
 ) => {
   if (!interceptorRef) {
     return eventingRef.current.bubble(eventWrapper);
   }
 
+  // Create forwardEvent function that bypasses current interceptor but respects parent interceptors
+  const forwardEvent = async (event: EventWrapper) => {
+    return eventingRef.current.bubble(event);
+  };
+
   let eventToBubble: EventWrapper | undefined = eventWrapper;
-  eventToBubble = await interceptorRef.current(eventWrapper);
+  eventToBubble = await interceptorRef.current(eventWrapper, forwardEvent);
 
   return eventToBubble
     ? eventingRef.current.bubble(eventToBubble)
@@ -286,9 +292,7 @@ const getBubble = async (
 
 const getGenerateEvent = (
   eventingRef: React.MutableRefObject<NovaEventing>,
-  interceptorRef?: React.MutableRefObject<
-    (event: EventWrapper) => Promise<EventWrapper | undefined>
-  >,
+  interceptorRef?: React.MutableRefObject<EventInterceptor>,
 ) => {
   return async (eventWrapper: GeneratedEventWrapper) => {
     const mappedEvent = {
@@ -302,8 +306,13 @@ const getGenerateEvent = (
       return eventingRef.current.bubble(mappedEvent);
     }
 
+    // Create forwardEvent function that bypasses current interceptor but respects parent interceptors
+    const forwardEvent = async (event: EventWrapper) => {
+      return eventingRef.current.bubble(event);
+    };
+
     let eventToBubble: EventWrapper | undefined = mappedEvent;
-    eventToBubble = await interceptorRef.current(mappedEvent);
+    eventToBubble = await interceptorRef.current(mappedEvent, forwardEvent);
 
     return eventToBubble
       ? eventingRef.current.bubble(eventToBubble)

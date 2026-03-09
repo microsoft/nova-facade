@@ -15,17 +15,20 @@ import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryQuery } from "./__generated__/FeedbackStoryQuery.graphql";
 import * as React from "react";
 import type { events } from "../../events/events";
-import { RecordSource, Store } from "relay-runtime";
 import { fn } from "storybook/test";
 import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
-type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  FeedbackStoryQuery,
+  TypeMap,
+  typeof FeedbackComponent
+>;
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
-    store: new Store(new RecordSource()),
+    storeOptions: {},
   }),
 });
 
@@ -43,7 +46,7 @@ const meta = {
       `,
       variables: { id: "42" },
       referenceEntries: {
-        feedback: (data) => data?.feedback,
+        feedback: (data) => data.feedback,
       },
     },
   } satisfies NovaParameters,
@@ -62,6 +65,11 @@ export const Primary: Story = {
       },
     },
   } satisfies NovaParameters,
+  play: async (context) => {
+    const container = within(context.canvasElement);
+    // Verify that value from relay resolvers come through
+    await container.findByText("Feedback from resolvers: Feedback title");
+  },
 };
 
 export const Liked: Story = {
@@ -124,8 +132,7 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       errorBoundary: {
         onError: mockOnError,
       },
-    } satisfies NovaParameters &
-      withErrorBoundaryParameters,
+    } satisfies NovaParameters & withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
@@ -192,4 +199,5 @@ const sampleFeedback = {
     text: "Feedback title",
   },
   doesViewerLike: false,
+  displayLabel: "Feedback from resolvers",
 };

@@ -17,7 +17,11 @@ import * as React from "react";
 import { schema } from "../../testing-utils/schema";
 import type { EventWrapper } from "@nova/types";
 
-type NovaParameters = WithNovaEnvironment<UnknownOperation, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  UnknownOperation,
+  TypeMap,
+  typeof FeedbackContainer
+>;
 
 const MockPayloadGenerator = new PayloadGenerator(schema);
 
@@ -213,4 +217,5 @@ const sampleFeedback = {
     text: "Feedback title",
   },
   doesViewerLike: false,
+  displayLabel: "Feedback",
 };

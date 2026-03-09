@@ -16,6 +16,9 @@ const config: StorybookConfig = {
   viteFinal: (config) => {
     return mergeConfig(config, {
       plugins: [...plugins],
+      optimizeDeps: {
+        include: ["relay-runtime/experimental"],
+      },
     });
   },
 };

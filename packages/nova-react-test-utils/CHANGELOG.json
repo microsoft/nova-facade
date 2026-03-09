@@ -2,6 +2,101 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Tue, 12 Aug 2025 10:03:44 GMT",
+      "tag": "@nova/react-test-utils_v7.2.2",
+      "version": "7.2.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "692e9c186efa59a7e7a685733df1397c86df0cf9",
+            "comment": "fix type for fragment keys"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 12 Aug 2025 09:22:59 GMT",
+      "tag": "@nova/react-test-utils_v7.2.1",
+      "version": "7.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "31008843+ansemb@users.noreply.github.com",
+            "package": "@nova/react-test-utils",
+            "commit": "1f4b28fa4820f4a0f4a28d650476e2275dac3a8e",
+            "comment": "fix(nova-react-test-utils): explicit export type of EventingInterceptorFn"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 08 Aug 2025 20:19:18 GMT",
+      "tag": "@nova/react-test-utils_v7.2.0",
+      "version": "7.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "850b3dd862fb8876fc833c38dc69089ad0f74d7d",
+            "comment": "add stronger referece entries types"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 10:00:16 GMT",
+      "tag": "@nova/react-test-utils_v7.1.0",
+      "version": "7.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "af6253a31cd72450e11bb3e2b82f4115484a2dfe",
+            "comment": "add support for mocking relay resolvers"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Aug 2025 08:13:06 GMT",
+      "tag": "@nova/react-test-utils_v7.0.5",
+      "version": "7.0.5",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "bump storybook and vitest"
+          }
+        ],
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "use new EventInterceptor type"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.9.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.7.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 Jun 2025 09:45:30 GMT",
       "tag": "@nova/react-test-utils_v7.0.4",
       "version": "7.0.4",

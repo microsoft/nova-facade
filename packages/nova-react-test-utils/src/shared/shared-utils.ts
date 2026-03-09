@@ -3,24 +3,22 @@ import type {
   EventWrapper,
   NovaLocalization,
 } from "@nova/types";
-import { getAction } from "./storybook-compat";
+import { action } from "./storybook-compat";
 
 export type GraphQLClientVariant = "apollo" | "relay";
 
-export async function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
+export function defaultBubble(eventWrapper: EventWrapper): Promise<void> {
   const eventData =
     typeof eventWrapper.event.data === "function"
       ? eventWrapper.event.data()
       : eventWrapper.event.data;
-  const action = await getAction();
   action(`${eventWrapper.event.originator}.${eventWrapper.event.type}`)(
     eventData,
   );
   return Promise.resolve();
 }
 
-export async function defaultTrigger(command: EntityCommand): Promise<void> {
-  const action = await getAction();
+export function defaultTrigger(command: EntityCommand): Promise<void> {
   action("trigger")(command);
   return Promise.resolve();
 }

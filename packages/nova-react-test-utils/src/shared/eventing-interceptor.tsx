@@ -1,5 +1,10 @@
 import { NovaEventingInterceptor } from "@nova/react";
-import type { EventWrapper, NovaEvent, Source } from "@nova/types";
+import type {
+  EventWrapper,
+  NovaEvent,
+  Source,
+  EventInterceptor,
+} from "@nova/types";
 import * as React from "react";
 
 type EventCreatorMap = Record<string, (...args: any[]) => NovaEvent<unknown>>;
@@ -10,14 +15,16 @@ type EventMap<T extends EventCreatorMap> = {
   }) => Promise<undefined | EventWrapper>;
 };
 
-export const EventingInterceptor = <T extends EventCreatorMap>({
+export type EventingInterceptorProps<T extends EventCreatorMap> = React.PropsWithChildren<{
+  eventMap: EventMap<T>;
+}>;
+export type EventingInterceptorFC<T extends EventCreatorMap> = React.FC<EventingInterceptorProps<T>>;
+
+export const EventingInterceptor = (<T extends EventCreatorMap>({
   eventMap,
   children,
-}: {
-  eventMap: EventMap<T>;
-  children: React.ReactNode;
-}) => {
-  const interceptor = (eventWrapper: EventWrapper) => {
+}: EventingInterceptorProps<T>) => {
+  const interceptor: EventInterceptor = (eventWrapper) => {
     const eventType = eventWrapper.event.type;
     const customEventHandler = eventMap[eventType];
     if (customEventHandler) {
@@ -38,4 +45,4 @@ export const EventingInterceptor = <T extends EventCreatorMap>({
       {children}
     </NovaEventingInterceptor>
   );
-};
+}) satisfies EventingInterceptorFC<EventCreatorMap>;

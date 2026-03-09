@@ -18,7 +18,11 @@ import type { withErrorBoundaryParameters } from "../../testing-utils/decorators
 import { schema } from "../../testing-utils/schema";
 import { defaultNodeResolver } from "../../testing-utils/resolvers";
 
-type NovaParameters = WithNovaEnvironment<FeedbackStoryQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  FeedbackStoryQuery,
+  TypeMap,
+  typeof FeedbackComponent
+>;
 
 const meta = {
   component: FeedbackComponent,

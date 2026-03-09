@@ -7,6 +7,7 @@ import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
 import type { composeStory, StoryContext } from "@storybook/react";
 import type { OperationType } from "relay-runtime";
 import { makeDecorator, type MakeDecoratorResult } from "./storybook-compat";
+import type { ValidatedReferenceEntries } from "./types";
 
 type ComposedStoryFn = ReturnType<typeof composeStory>;
 
@@ -29,15 +30,15 @@ export type UnknownOperation = {
 export type WithNovaEnvironment<
   TQuery extends OperationType = UnknownOperation,
   TypeMap extends DefaultMockResolvers = DefaultMockResolvers,
+  TComponent = never,
 > = {
   novaEnvironment: (
     | {
         query: GraphQLTaggedNode | RelayGraphQLTaggedNode;
         variables?: TQuery["variables"];
-        referenceEntries: Record<
-          string,
-          (queryResult: TQuery["response"]) => unknown
-        >;
+        referenceEntries: [TComponent] extends [never]
+          ? Record<string, (queryResult: TQuery["response"]) => unknown>
+          : ValidatedReferenceEntries<TComponent, TQuery>;
       }
     | {
         query?: never;
@@ -98,29 +99,43 @@ const NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR =
   "novaEnvironmentAssignedParameterValue";
 
 export const getDecorator = <E extends NovaMockEnvironment>(
-  createEnvironment: () => E,
+  createEnvironment: (parameters?: WithNovaEnvironment["novaEnvironment"]) => E,
   initializeGenerator: (
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: E,
   ) => void,
 ): MakeDecoratorResult => {
+  const WrapperWithEnvironment: React.FC<RendererProps> = ({
+    params,
+    context,
+    getStory,
+  }) => {
+    const environment = React.useMemo(() => createEnvironment(params), []);
+    if (params.enableQueuedMockResolvers ?? true) {
+      initializeGenerator(params, environment);
+    }
+
+    context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
+    return (
+      <NovaMockEnvironmentProvider environment={environment}>
+        <Renderer params={params} context={context} getStory={getStory} />
+      </NovaMockEnvironmentProvider>
+    );
+  };
+
   return makeDecorator({
     name: "withNovaEnvironment",
     parameterName: "novaEnvironment",
     wrapper: (getStory, context, settings) => {
-      // Environment needs to be created within makeDecorator wrapper to ensure it is created for each story separately and the environment is not shared between stories.
-      const environment = React.useMemo(() => createEnvironment(), []);
       const parameters = (settings.parameters ??
         {}) as WithNovaEnvironment["novaEnvironment"];
-      if (parameters.enableQueuedMockResolvers ?? true) {
-        initializeGenerator(parameters, environment);
-      }
 
-      context.parameters[NAME_OF_ASSIGNED_PARAMETER_IN_DECORATOR] = environment;
       return (
-        <NovaMockEnvironmentProvider environment={environment}>
-          <Renderer params={parameters} context={context} getStory={getStory} />
-        </NovaMockEnvironmentProvider>
+        <WrapperWithEnvironment
+          params={parameters}
+          context={context}
+          getStory={getStory}
+        />
       );
     },
   });

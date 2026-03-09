@@ -17,14 +17,17 @@ import type { FeedbackStoryRelayQuery } from "./__generated__/FeedbackStoryRelay
 import { schema } from "../../testing-utils/schema";
 import * as React from "react";
 import type { events } from "../../events/events";
-import { RecordSource, Store } from "relay-runtime";
 import { type withErrorBoundaryParameters } from "../../testing-utils/decorators";
 
-type NovaParameters = WithNovaEnvironment<FeedbackStoryRelayQuery, TypeMap>;
+type NovaParameters = WithNovaEnvironment<
+  FeedbackStoryRelayQuery,
+  TypeMap,
+  typeof FeedbackComponent
+>;
 
 const novaDecorator = getNovaDecorator(schema, {
   getEnvironmentOptions: () => ({
-    store: new Store(new RecordSource()),
+    storeOptions: {},
   }),
   // We add this to verify scenario of using relay's MockPayloadGenerator
   generateFunction: (operation, mockResolvers) => {
@@ -86,6 +89,11 @@ export const Primary: Story = {
       },
     },
   } satisfies NovaParameters,
+  play: async (context) => {
+    const container = within(context.canvasElement);
+    // Verify that value from relay resolvers come through
+    await container.findByText("Feedback from resolvers: Feedback title");
+  },
 };
 
 export const Liked: Story = {
@@ -264,4 +272,5 @@ const sampleFeedback = {
     text: "Feedback title",
   },
   doesViewerLike: false,
+  displayLabel: "Feedback from resolvers",
 };

@@ -1,8 +1,50 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Thu, 19 Jun 2025 09:45:30 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Aug 2025 10:03:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.2
+
+Tue, 12 Aug 2025 10:03:44 GMT
+
+### Patches
+
+- fix type for fragment keys (stwilczy@microsoft.com)
+
+## 7.2.1
+
+Tue, 12 Aug 2025 09:22:59 GMT
+
+### Patches
+
+- fix(nova-react-test-utils): explicit export type of EventingInterceptorFn (31008843+ansemb@users.noreply.github.com)
+
+## 7.2.0
+
+Fri, 08 Aug 2025 20:19:18 GMT
+
+### Minor changes
+
+- add stronger referece entries types (stwilczy@microsoft.com)
+
+## 7.1.0
+
+Wed, 06 Aug 2025 10:00:16 GMT
+
+### Minor changes
+
+- add support for mocking relay resolvers (stwilczy@microsoft.com)
+
+## 7.0.5
+
+Tue, 05 Aug 2025 08:13:06 GMT
+
+### Patches
+
+- use new EventInterceptor type (stwilczy@microsoft.com)
+- Bump @nova/react to v2.9.0
+- Bump @nova/types to v1.7.0
 
 ## 7.0.4
 

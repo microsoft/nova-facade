@@ -2,6 +2,113 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Tue, 12 Aug 2025 10:03:44 GMT",
+      "tag": "@nova/examples_v1.11.3",
+      "version": "1.11.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.2.2",
+            "commit": "692e9c186efa59a7e7a685733df1397c86df0cf9"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 12 Aug 2025 09:22:59 GMT",
+      "tag": "@nova/examples_v1.11.2",
+      "version": "1.11.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.2.1",
+            "commit": "1f4b28fa4820f4a0f4a28d650476e2275dac3a8e"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 08 Aug 2025 20:19:18 GMT",
+      "tag": "@nova/examples_v1.11.1",
+      "version": "1.11.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "850b3dd862fb8876fc833c38dc69089ad0f74d7d",
+            "comment": "use stronger typing for reference entries"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.2.0",
+            "commit": "850b3dd862fb8876fc833c38dc69089ad0f74d7d"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 10:00:16 GMT",
+      "tag": "@nova/examples_v1.11.0",
+      "version": "1.11.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "af6253a31cd72450e11bb3e2b82f4115484a2dfe",
+            "comment": "add examples with relay resolvers"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.1.0",
+            "commit": "af6253a31cd72450e11bb3e2b82f4115484a2dfe"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Aug 2025 08:13:06 GMT",
+      "tag": "@nova/examples_v1.10.5",
+      "version": "1.10.5",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "bump storybook and vitest"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.9.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.0.5",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/types to v1.7.0",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 Jun 2025 09:45:30 GMT",
       "tag": "@nova/examples_v1.10.4",
       "version": "1.10.4",

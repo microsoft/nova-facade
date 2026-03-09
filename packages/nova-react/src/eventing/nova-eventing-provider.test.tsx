@@ -12,7 +12,7 @@ import {
   useNovaEventing,
   useNovaUnmountEventing,
 } from "./nova-eventing-provider";
-import type { EventWrapper, NovaEventing } from "@nova/types";
+import type { EventWrapper, NovaEventing, EventInterceptor } from "@nova/types";
 import { InputType } from "@nova/types";
 import { mapEventMetadata } from "./react-event-source-mapper";
 import { page } from "@vitest/browser/context";
@@ -385,7 +385,7 @@ describe("NovaEventingInterceptor", () => {
     console.error = originalError;
   });
 
-  const bubbleMock = vi.fn();
+  const bubbleMock = vi.fn<(event: EventWrapper) => Promise<void>>();
 
   const parentEventing = {
     bubble: bubbleMock,
@@ -435,7 +435,7 @@ describe("NovaEventingInterceptor", () => {
   };
 
   const InterceptorTestComponent: React.FC<{
-    interceptor?: (event: EventWrapper) => Promise<EventWrapper | undefined>;
+    interceptor?: EventInterceptor;
   }> = ({ interceptor = defaultInterceptor }) => (
     <NovaEventingProvider
       eventing={parentEventing}
@@ -505,7 +505,69 @@ describe("NovaEventingInterceptor", () => {
     expect(callbackToBeCalledOnIntercept).toHaveBeenCalled();
     await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalled());
     const bubbleCall = bubbleMock.mock.calls[0][0];
-    expect(bubbleCall.event.data()).toBe("addedData");
+    expect(bubbleCall.event.data?.()).toBe("addedData");
+  });
+
+  it("allows interceptor to forward multiple events using forwardEvent parameter", async () => {
+    const multiEventInterceptor = async (
+      eventWrapper: EventWrapper,
+      forwardEvent: (event: EventWrapper) => Promise<void>,
+    ) => {
+      if (eventWrapper.event.originator === "toBeIntercepted") {
+        callbackToBeCalledOnIntercept();
+
+        // Forward additional tracking event
+        void forwardEvent({
+          event: {
+            type: "trackingEvent",
+            originator: "interceptor",
+            data: () => ({ tracked: true }),
+          },
+          source: eventWrapper.source,
+        });
+
+        // Forward analytics event
+        void forwardEvent({
+          event: {
+            type: "analyticsEvent",
+            originator: "interceptor",
+            data: () => ({ analytics: "clicked" }),
+          },
+          source: eventWrapper.source,
+        });
+
+        // Still return the original event
+        return Promise.resolve(eventWrapper);
+      } else {
+        return Promise.resolve(eventWrapper);
+      }
+    };
+
+    render(<InterceptorTestComponent interceptor={multiEventInterceptor} />);
+    const button = page.getByText("inside: Fire event to be intercepted");
+    await button.click();
+
+    expect(callbackToBeCalledOnIntercept).toHaveBeenCalled();
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalledTimes(3)); // Original + 2 forwarded
+
+    // Check that we got the original event plus the two forwarded events
+    const calls = bubbleMock.mock.calls;
+    expect(calls).toHaveLength(3);
+
+    // Verify the forwarded events
+    const trackingCall = calls.find(
+      (call) => call[0].event.type === "trackingEvent",
+    );
+    const analyticsCall = calls.find(
+      (call) => call[0].event.type === "analyticsEvent",
+    );
+    const originalCall = calls.find(
+      (call) => call[0].event.originator === "toBeIntercepted",
+    );
+
+    expect(trackingCall).toBeDefined();
+    expect(analyticsCall).toBeDefined();
+    expect(originalCall).toBeDefined();
   });
 });
 
@@ -516,7 +578,7 @@ describe("Multiple NovaEventingInterceptors", () => {
     console.error = originalError;
   });
 
-  const bubbleMock = vi.fn();
+  const bubbleMock = vi.fn<(event: EventWrapper) => Promise<void>>();
 
   const parentEventing = {
     bubble: bubbleMock,
@@ -643,5 +705,84 @@ describe("Multiple NovaEventingInterceptors", () => {
     await vi.waitFor(() => expect(mapEventMetadata).toHaveBeenCalled());
     expect(callbackToBeCalledOnSecondIntercept).not.toHaveBeenCalled();
     expect(callbackToBeCalledOnFirstIntercept).toHaveBeenCalled();
+  });
+
+  it("forwards events from inner interceptor to outer interceptor", async () => {
+    const outerInterceptorCallback = vi.fn();
+    const innerInterceptorCallback = vi.fn();
+
+    // Inner interceptor forwards a "forwarded" event that outer interceptor should catch
+    const innerInterceptor: EventInterceptor = async (
+      eventWrapper: EventWrapper,
+      forwardEvent: (event: EventWrapper) => Promise<void>,
+    ) => {
+      if (eventWrapper.event.originator === "triggerForwarding") {
+        innerInterceptorCallback();
+
+        // Forward an event that the outer interceptor should catch
+        void forwardEvent({
+          event: {
+            type: "forwardedEvent",
+            originator: "catchByOuter",
+            data: () => ({ forwarded: true }),
+          },
+          source: eventWrapper.source,
+        });
+
+        return Promise.resolve(eventWrapper);
+      }
+      return Promise.resolve(eventWrapper);
+    };
+
+    // Outer interceptor catches the forwarded event
+    const outerInterceptor: EventInterceptor = async (eventWrapper: EventWrapper) => {
+      if (eventWrapper.event.originator === "catchByOuter") {
+        outerInterceptorCallback();
+        return Promise.resolve(undefined); // Intercept the forwarded event
+      }
+      return Promise.resolve(eventWrapper);
+    };
+
+    const ComponentThatTriggersForwarding = () => {
+      const eventing = useNovaEventing();
+      const onClick = (event: React.SyntheticEvent) => {
+        eventing.bubble({
+          reactEvent: event,
+          event: { originator: "triggerForwarding", type: "testEvent" },
+        });
+      };
+      return <button onClick={onClick}>Trigger forwarding</button>;
+    };
+
+    const ForwardingTestComponent: React.FC = () => (
+      <NovaEventingProvider
+        eventing={parentEventing}
+        reactEventMapper={mapEventMetadata}
+      >
+        <NovaEventingInterceptor interceptor={outerInterceptor}>
+          <NovaEventingInterceptor interceptor={innerInterceptor}>
+            <ComponentThatTriggersForwarding />
+          </NovaEventingInterceptor>
+        </NovaEventingInterceptor>
+      </NovaEventingProvider>
+    );
+
+    render(<ForwardingTestComponent />);
+    const button = page.getByText("Trigger forwarding");
+    await button.click();
+
+    // Inner interceptor should be called first
+    expect(innerInterceptorCallback).toHaveBeenCalled();
+    
+    // Outer interceptor should catch the forwarded event
+    await vi.waitFor(() => expect(outerInterceptorCallback).toHaveBeenCalled());
+
+    // The original event should bubble up (not intercepted by outer)
+    // But the forwarded event should be intercepted by outer
+    await vi.waitFor(() => expect(bubbleMock).toHaveBeenCalledTimes(1));
+
+    // Verify the original event made it through
+    const bubbleCall = bubbleMock.mock.calls[0][0];
+    expect(bubbleCall.event.originator).toBe("triggerForwarding");
   });
 });

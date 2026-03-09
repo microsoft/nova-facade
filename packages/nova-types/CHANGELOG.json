@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Tue, 05 Aug 2025 08:13:06 GMT",
+      "tag": "@nova/types_v1.7.0",
+      "version": "1.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/types",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "expose EventInterceptor type"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 17 Apr 2025 07:04:14 GMT",
       "tag": "@nova/types_v1.6.0",
       "version": "1.6.0",

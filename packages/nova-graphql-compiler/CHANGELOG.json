@@ -2,6 +2,21 @@
   "name": "@nova/graphql-compiler",
   "entries": [
     {
+      "date": "Tue, 05 Aug 2025 08:13:06 GMT",
+      "tag": "@nova/graphql-compiler_v1.0.3",
+      "version": "1.0.3",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/graphql-compiler",
+            "commit": "161a00e55530665b08c941108d5915b519e9c6c6",
+            "comment": "bump storybook and vitest"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 17 Apr 2025 07:04:14 GMT",
       "tag": "@nova/graphql-compiler_v1.0.3",
       "version": "1.0.3",

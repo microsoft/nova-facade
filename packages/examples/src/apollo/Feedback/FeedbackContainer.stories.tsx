@@ -20,7 +20,11 @@ import type { EventWrapper } from "@nova/types";
 const telemetryEventMock =
   fn<(args: { event: FeedbackTelemetryEvent }) => Promise<EventWrapper>>();
 
-type NovaParams = WithNovaEnvironment<UnknownOperation, TypeMap>;
+type NovaParams = WithNovaEnvironment<
+  UnknownOperation,
+  TypeMap,
+  typeof FeedbackContainer
+>;
 
 const meta = {
   component: FeedbackContainer,

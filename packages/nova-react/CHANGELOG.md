@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Thu, 19 Jun 2025 09:45:30 GMT and should not be manually modified.
+This log was last generated on Tue, 05 Aug 2025 08:13:06 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.9.0
+
+Tue, 05 Aug 2025 08:13:06 GMT
+
+### Minor changes
+
+- add new forwardEvent api (stwilczy@microsoft.com)
+- Bump @nova/types to v1.7.0
 
 ## 2.8.1
 

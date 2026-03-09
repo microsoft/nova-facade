@@ -1,8 +1,52 @@
 # Change Log - @nova/examples
 
-This log was last generated on Thu, 19 Jun 2025 09:45:30 GMT and should not be manually modified.
+This log was last generated on Tue, 12 Aug 2025 10:03:44 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.11.3
+
+Tue, 12 Aug 2025 10:03:44 GMT
+
+### Patches
+
+- Bump @nova/react-test-utils to v7.2.2
+
+## 1.11.2
+
+Tue, 12 Aug 2025 09:22:59 GMT
+
+### Patches
+
+- Bump @nova/react-test-utils to v7.2.1
+
+## 1.11.1
+
+Fri, 08 Aug 2025 20:19:18 GMT
+
+### Patches
+
+- use stronger typing for reference entries (stwilczy@microsoft.com)
+- Bump @nova/react-test-utils to v7.2.0
+
+## 1.11.0
+
+Wed, 06 Aug 2025 10:00:16 GMT
+
+### Minor changes
+
+- add examples with relay resolvers (stwilczy@microsoft.com)
+- Bump @nova/react-test-utils to v7.1.0
+
+## 1.10.5
+
+Tue, 05 Aug 2025 08:13:06 GMT
+
+### Patches
+
+- Bump @nova/react to v2.9.0
+- Bump @nova/react-test-utils to v7.0.5
+- Bump @nova/types to v1.7.0
 
 ## 1.10.4
 
