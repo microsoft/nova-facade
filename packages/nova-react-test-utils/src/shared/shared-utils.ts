@@ -3,8 +3,7 @@ import type {
   EventWrapper,
   NovaLocalization,
 } from "@nova/types";
-import { action } from "@storybook/addon-actions";
-import type { makeDecorator } from "@storybook/preview-api";
+import { action } from "storybook/actions";
 
 export type GraphQLClientVariant = "apollo" | "relay";
 
@@ -55,5 +54,3 @@ export const defaultLocalization: NovaLocalization = {
     };
   },
 };
-
-export type MakeDecoratorResult = ReturnType<typeof makeDecorator>;

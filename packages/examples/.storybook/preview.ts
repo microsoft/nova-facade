@@ -1,5 +1,5 @@
-import type { Preview } from "@storybook/react";
-import { configure } from "@storybook/test";
+import type { Preview } from "@storybook/react-vite";
+import { configure } from "storybook/test";
 
 configure({
   asyncUtilTimeout: 2000,

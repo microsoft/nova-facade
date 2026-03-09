@@ -5,7 +5,7 @@ import {
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
 import type { Meta } from "@storybook/react";
-import { within, expect } from "@storybook/test";
+import { within, expect } from "storybook/test";
 import { schema } from "../../../testing-utils/schema";
 import type { TypeMap } from "../../../__generated__/schema.all.interface";
 import { SuggestedFriendsComponent } from "./SuggestedFriends";
