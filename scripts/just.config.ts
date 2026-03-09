@@ -4,7 +4,18 @@ import * as path from "path";
 import * as fs from "fs";
 import * as glob from "fast-glob";
 
-export const types = tscTask({ emitDeclarationOnly: true });
+export const types = async () => {
+  await tscTask({ emitDeclarationOnly: true })();
+  // Copy .d.ts -> .d.mts so ESM imports resolve to correct declaration files
+  const dtsFiles = glob.sync(["lib/**/*.d.ts"], { ignore: ["lib/**/*.d.mts"] });
+  for (const file of dtsFiles) {
+    fs.copyFileSync(file, file.replace(/\.d\.ts$/, ".d.mts"));
+  }
+  const mapFiles = glob.sync(["lib/**/*.d.ts.map"]);
+  for (const file of mapFiles) {
+    fs.copyFileSync(file, file.replace(/\.d\.ts\.map$/, ".d.mts.map"));
+  }
+};
 
 export const build = () => {
   const baseEsbuildOptions: EsbuildBuildOptions = {

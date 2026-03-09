@@ -113,19 +113,16 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "types": "./lib/relay/index.d.ts",
-        "import": "./lib/relay/index.mjs",
-        "require": "./lib/relay/index.js"
+        "import": { "types": "./lib/relay/index.d.mts", "default": "./lib/relay/index.mjs" },
+        "require": { "types": "./lib/relay/index.d.ts", "default": "./lib/relay/index.js" }
       },
       "./relay": {
-        "types": "./lib/relay/index.d.ts",
-        "import": "./lib/relay/index.mjs",
-        "require": "./lib/relay/index.js"
+        "import": { "types": "./lib/relay/index.d.mts", "default": "./lib/relay/index.mjs" },
+        "require": { "types": "./lib/relay/index.d.ts", "default": "./lib/relay/index.js" }
       },
       "./apollo": {
-        "types": "./lib/apollo/index.d.ts",
-        "import": "./lib/apollo/index.mjs",
-        "require": "./lib/apollo/index.js"
+        "import": { "types": "./lib/apollo/index.d.mts", "default": "./lib/apollo/index.mjs" },
+        "require": { "types": "./lib/apollo/index.d.ts", "default": "./lib/apollo/index.js" }
       }
     },
     "main": "./lib/relay/index",
