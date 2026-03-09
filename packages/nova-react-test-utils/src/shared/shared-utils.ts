@@ -3,7 +3,7 @@ import type {
   EventWrapper,
   NovaLocalization,
 } from "@nova/types";
-import { action } from "./storybook-compat";
+import { action } from "storybook/actions";
 
 export type GraphQLClientVariant = "apollo" | "relay";
 

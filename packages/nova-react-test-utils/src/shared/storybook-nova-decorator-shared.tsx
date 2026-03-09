@@ -6,7 +6,7 @@ import type { NovaMockEnvironment } from "./nova-mock-environment";
 import { NovaMockEnvironmentProvider } from "./nova-mock-environment";
 import type { composeStory, StoryContext } from "@storybook/react";
 import type { OperationType } from "relay-runtime";
-import { makeDecorator, type MakeDecoratorResult } from "./storybook-compat";
+import { makeDecorator } from "storybook/internal/preview-api";
 import type { ValidatedReferenceEntries } from "./types";
 
 type ComposedStoryFn = ReturnType<typeof composeStory>;
@@ -104,7 +104,7 @@ export const getDecorator = <E extends NovaMockEnvironment>(
     parameters: WithNovaEnvironment["novaEnvironment"],
     environment: E,
   ) => void,
-): MakeDecoratorResult => {
+): ReturnType<typeof makeDecorator> => {
   const WrapperWithEnvironment: React.FC<RendererProps> = ({
     params,
     context,
