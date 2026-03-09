@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Dependency version bumps",
-  "packageName": "@nova/react",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "none"
-}

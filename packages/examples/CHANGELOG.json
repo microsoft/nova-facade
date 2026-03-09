@@ -2,6 +2,29 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 13:13:06 GMT",
+      "tag": "@nova/examples_v1.11.6",
+      "version": "1.11.6",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "2418a4f1e451a32d4471bee9f08157863465dd6b",
+            "comment": "Update to Storybook v9"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v8.0.0",
+            "commit": "2418a4f1e451a32d4471bee9f08157863465dd6b"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Mar 2026 12:48:28 GMT",
       "tag": "@nova/examples_v1.11.5",
       "version": "1.11.5",

@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 13:13:06 GMT",
+      "tag": "@nova/react-test-utils_v8.0.0",
+      "version": "8.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "2418a4f1e451a32d4471bee9f08157863465dd6b",
+            "comment": "BREAKING: Drop Storybook v8 support, require Storybook v9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Mar 2026 12:48:28 GMT",
       "tag": "@nova/react-test-utils_v7.2.4",
       "version": "7.2.4",

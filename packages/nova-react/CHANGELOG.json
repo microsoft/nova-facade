@@ -2,6 +2,21 @@
   "name": "@nova/react",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 13:13:06 GMT",
+      "tag": "@nova/react_v2.9.2",
+      "version": "2.9.2",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react",
+            "commit": "2418a4f1e451a32d4471bee9f08157863465dd6b",
+            "comment": "Dependency version bumps"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Mar 2026 12:48:28 GMT",
       "tag": "@nova/react_v2.9.2",
       "version": "2.9.2",
