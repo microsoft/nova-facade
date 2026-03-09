@@ -2,6 +2,33 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 12:48:28 GMT",
+      "tag": "@nova/react-test-utils_v7.2.4",
+      "version": "7.2.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510",
+            "comment": "Fix exports map: move types condition before import/require for modern moduleResolution compatibility"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/react to v2.9.2",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/react-test-utils",
+            "comment": "Bump @nova/types to v1.7.1",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Feb 2026 13:42:57 GMT",
       "tag": "@nova/react-test-utils_v7.2.3",
       "version": "7.2.3",

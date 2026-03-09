@@ -1,8 +1,17 @@
 # Change Log - @nova/react
 
-This log was last generated on Fri, 06 Feb 2026 13:42:57 GMT and should not be manually modified.
+This log was last generated on Mon, 09 Mar 2026 12:48:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 2.9.2
+
+Mon, 09 Mar 2026 12:48:28 GMT
+
+### Patches
+
+- Add .d.mts declarations and nested export conditions for modern moduleResolution (stwilczy@microsoft.com)
+- Bump @nova/types to v1.7.1
 
 ## 2.9.1
 

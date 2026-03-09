@@ -1,6 +1,6 @@
 {
   "name": "@nova/react",
-  "version": "2.9.1",
+  "version": "2.9.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
@@ -17,7 +17,7 @@
     "types": "monorepo-scripts types"
   },
   "dependencies": {
-    "@nova/types": "^1.7.0",
+    "@nova/types": "^1.7.1",
     "graphql": "^15.5.0",
     "invariant": "^2.2.4"
   },
@@ -41,8 +41,14 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "import": { "types": "./lib/index.d.mts", "default": "./lib/index.mjs" },
-        "require": { "types": "./lib/index.d.ts", "default": "./lib/index.js" }
+        "import": {
+          "types": "./lib/index.d.mts",
+          "default": "./lib/index.mjs"
+        },
+        "require": {
+          "types": "./lib/index.d.ts",
+          "default": "./lib/index.js"
+        }
       }
     },
     "main": "./lib/index",

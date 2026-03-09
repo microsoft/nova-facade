@@ -2,6 +2,21 @@
   "name": "@nova/types",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 12:48:28 GMT",
+      "tag": "@nova/types_v1.7.1",
+      "version": "1.7.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/types",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510",
+            "comment": "Add .d.mts declarations and nested export conditions for modern moduleResolution"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 05 Aug 2025 08:13:06 GMT",
       "tag": "@nova/types_v1.7.0",
       "version": "1.7.0",

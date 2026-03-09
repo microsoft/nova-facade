@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add .d.mts declarations and nested export conditions for modern moduleResolution",
-  "packageName": "@nova/react",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}

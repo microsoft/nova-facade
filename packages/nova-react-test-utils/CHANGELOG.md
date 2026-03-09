@@ -1,8 +1,18 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Fri, 06 Feb 2026 13:42:57 GMT and should not be manually modified.
+This log was last generated on Mon, 09 Mar 2026 12:48:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 7.2.4
+
+Mon, 09 Mar 2026 12:48:28 GMT
+
+### Patches
+
+- Fix exports map: move types condition before import/require for modern moduleResolution compatibility (stwilczy@microsoft.com)
+- Bump @nova/react to v2.9.2
+- Bump @nova/types to v1.7.1
 
 ## 7.2.3
 

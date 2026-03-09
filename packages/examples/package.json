@@ -1,6 +1,6 @@
 {
   "name": "@nova/examples",
-  "version": "1.11.4",
+  "version": "1.11.5",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -21,9 +21,9 @@
     "types": "monorepo-scripts types"
   },
   "dependencies": {
-    "@nova/react": "2.9.1",
-    "@nova/react-test-utils": "7.2.3",
-    "@nova/types": "1.7.0",
+    "@nova/react": "2.9.2",
+    "@nova/react-test-utils": "7.2.4",
+    "@nova/types": "1.7.1",
     "graphql": "^15.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -70,8 +70,14 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "import": { "types": "./lib/index.d.mts", "default": "./lib/index.mjs" },
-        "require": { "types": "./lib/index.d.ts", "default": "./lib/index.js" }
+        "import": {
+          "types": "./lib/index.d.mts",
+          "default": "./lib/index.mjs"
+        },
+        "require": {
+          "types": "./lib/index.d.ts",
+          "default": "./lib/index.js"
+        }
       }
     },
     "main": "./lib/index",

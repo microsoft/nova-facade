@@ -2,6 +2,41 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Mon, 09 Mar 2026 12:48:28 GMT",
+      "tag": "@nova/examples_v1.11.5",
+      "version": "1.11.5",
+      "comments": {
+        "none": [
+          {
+            "author": "stwilczy@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510",
+            "comment": "Add nested export conditions"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react to v2.9.2",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/react-test-utils to v7.2.4",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510"
+          },
+          {
+            "author": "beachball",
+            "package": "@nova/examples",
+            "comment": "Bump @nova/types to v1.7.1",
+            "commit": "7f098b080d23fe1451b36a079bc04a991b402510"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Feb 2026 13:42:57 GMT",
       "tag": "@nova/examples_v1.11.4",
       "version": "1.11.4",

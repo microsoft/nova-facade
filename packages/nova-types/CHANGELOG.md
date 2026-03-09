@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-This log was last generated on Tue, 05 Aug 2025 08:13:06 GMT and should not be manually modified.
+This log was last generated on Mon, 09 Mar 2026 12:48:28 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.7.1
+
+Mon, 09 Mar 2026 12:48:28 GMT
+
+### Patches
+
+- Add .d.mts declarations and nested export conditions for modern moduleResolution (stwilczy@microsoft.com)
 
 ## 1.7.0
 

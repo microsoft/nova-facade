@@ -1,6 +1,6 @@
 {
   "name": "@nova/types",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
@@ -21,8 +21,14 @@
   "publishConfig": {
     "exports": {
       ".": {
-        "import": { "types": "./lib/index.d.mts", "default": "./lib/index.mjs" },
-        "require": { "types": "./lib/index.d.ts", "default": "./lib/index.js" }
+        "import": {
+          "types": "./lib/index.d.mts",
+          "default": "./lib/index.mjs"
+        },
+        "require": {
+          "types": "./lib/index.d.ts",
+          "default": "./lib/index.js"
+        }
       }
     },
     "main": "./lib/index",
