@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix exports map: move types condition before import/require for modern moduleResolution compatibility",
+  "packageName": "@nova/react-test-utils",
+  "email": "stwilczy@microsoft.com",
+  "dependentChangeType": "patch"
+}
