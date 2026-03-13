@@ -23,7 +23,8 @@
     "types": "lage types"
   },
   "resolutions": {
-    "**/relay-compiler-language-graphitation/typescript": "<5"
+    "**/relay-compiler-language-graphitation/typescript": "<5",
+    "**/relay-compiler/immutable": "3.8.3"
   },
   "devDependencies": {
     "beachball": "2.31.12",
