@@ -23,7 +23,14 @@
     "types": "lage types"
   },
   "resolutions": {
-    "**/relay-compiler-language-graphitation/typescript": "<5"
+    "**/relay-compiler-language-graphitation/typescript": "<5",
+    "immutable": "^3.8.0",
+    "**/relay-compiler/glob/minimatch": "^4.0.0",
+    "**/@ardatan/relay-compiler/glob/minimatch": "^4.0.0",
+    "**/beachball/minimatch": "^4.0.0",
+    "**/eslint/minimatch": "^4.0.0",
+    "**/@eslint/eslintrc/minimatch": "^4.0.0",
+    "**/@humanwhocodes/config-array/minimatch": "^4.0.0"
   },
   "devDependencies": {
     "beachball": "2.31.12",

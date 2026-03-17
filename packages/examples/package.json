@@ -43,7 +43,7 @@
     "@storybook/addon-vitest": "^9.0.15",
     "@storybook/react-vite": "^9.0.15",
     "@swc/core": "^1.11.0",
-    "@swc/plugin-relay": "^7.0.0",
+    "@swc/plugin-relay": "^12.0.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@types/react-relay": "^18.0.0",
