@@ -2,6 +2,21 @@
   "name": "@nova/examples",
   "entries": [
     {
+      "date": "Thu, 19 Mar 2026 11:52:38 GMT",
+      "tag": "@nova/examples_v1.11.7",
+      "version": "1.11.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "celiac@microsoft.com",
+            "package": "@nova/examples",
+            "commit": "176c1eef4df295ac06d45b3b36be778e668a4b41",
+            "comment": "updating dependencies"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Mar 2026 13:13:06 GMT",
       "tag": "@nova/examples_v1.11.6",
       "version": "1.11.6",

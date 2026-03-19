@@ -1,8 +1,16 @@
 # Change Log - @nova/examples
 
-This log was last generated on Mon, 09 Mar 2026 13:13:06 GMT and should not be manually modified.
+This log was last generated on Thu, 19 Mar 2026 11:52:38 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 1.11.7
+
+Thu, 19 Mar 2026 11:52:38 GMT
+
+### Patches
+
+- updating dependencies (celiac@microsoft.com)
 
 ## 1.11.6
 
