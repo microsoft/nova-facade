@@ -23,13 +23,15 @@
     "types": "lage types"
   },
   "resolutions": {
-    "**/relay-compiler-language-graphitation/typescript": "<5"
+    "**/relay-compiler-language-graphitation/typescript": "<5",
+    "immutable": "^3.8.3"
   },
   "devDependencies": {
     "beachball": "2.31.12",
     "lage": "2.14.0",
     "prettier": "^3.5.0",
-    "prettier-plugin-packagejson": "^2.5.0"
+    "prettier-plugin-packagejson": "^2.5.0",
+    "minimatch": "^3.1.3"
   },
   "engines": {
     "node": ">=20.11.0",
