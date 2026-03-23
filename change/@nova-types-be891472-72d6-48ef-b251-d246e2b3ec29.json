@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "bumping version",
+  "packageName": "@nova/types",
+  "email": "celiac@microsoft.com",
+  "dependentChangeType": "patch"
+}
