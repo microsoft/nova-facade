@@ -1,0 +1,9 @@
+{
+  "type": "patch",
+  "comment": {
+    "title": ""
+  },
+  "packageName": "@nova/react",
+  "email": "celiac@microsoft.com",
+  "dependentChangeType": "patch"
+}
