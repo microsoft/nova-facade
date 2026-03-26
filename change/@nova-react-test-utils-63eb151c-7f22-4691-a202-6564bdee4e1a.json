@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "bump apollo-mock-client",
-  "packageName": "@nova/react-test-utils",
-  "email": "pavelglac@microsoft.com",
-  "dependentChangeType": "patch"
-}

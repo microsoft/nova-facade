@@ -2,6 +2,21 @@
   "name": "@nova/react-test-utils",
   "entries": [
     {
+      "date": "Thu, 26 Mar 2026 17:14:16 GMT",
+      "tag": "@nova/react-test-utils_v8.0.1",
+      "version": "8.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "pavelglac@microsoft.com",
+            "package": "@nova/react-test-utils",
+            "commit": "4c81777a1aee40a5b29061eccc3f5c0b9dbbba37",
+            "comment": "bump apollo-mock-client"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Mar 2026 13:13:06 GMT",
       "tag": "@nova/react-test-utils_v8.0.0",
       "version": "8.0.0",

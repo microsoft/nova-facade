@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-This log was last generated on Mon, 09 Mar 2026 13:13:06 GMT and should not be manually modified.
+This log was last generated on Thu, 26 Mar 2026 17:14:16 GMT and should not be manually modified.
 
 <!-- Start content -->
+
+## 8.0.1
+
+Thu, 26 Mar 2026 17:14:16 GMT
+
+### Patches
+
+- bump apollo-mock-client (pavelglac@microsoft.com)
 
 ## 8.0.0
 
