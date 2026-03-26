@@ -788,10 +788,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.36.0.tgz#9837f768c03a1e4a30bd304a64fb8844f0e72efe"
   integrity sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==
 
-"@graphitation/apollo-mock-client@^0.11.9":
-  version "0.11.9"
-  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.11.9.tgz#4c4d49312fd39109ac52cf426b64616c8f14e736"
-  integrity sha512-fvTYAhaH+xVcOtP2Ozehqwm2iZoSWBV84ig57OB2n/K8jR1uX7A3q8IHOrVH7D4FvakGqWNX0UC8AZxAzbey/A==
+"@graphitation/apollo-mock-client@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@graphitation/apollo-mock-client/-/apollo-mock-client-0.13.0.tgz#cd761a73a8c964b05f472df3709e30a9b74ffaa4"
+  integrity sha512-pIgXjQrDxXyg6PV63jogE7g8lEbdFL2qEzbgFGD1LW902hbHwHJpdfYhJTXp5OJHaTdA8TsRlVnLfgvEd3aSfw==
   dependencies:
     invariant "^2.2.4"
 
