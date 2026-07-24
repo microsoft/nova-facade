@@ -14,7 +14,6 @@
     "checkchange": "yarn beachball check",
     "ci": "yarn lage build types test lint && yarn checkchange",
     "clean": "git clean -fdx -e node_modules",
-    "postinstall": "yarn playwright install --with-deps chromium",
     "lage": "lage",
     "lint": "lage lint",
     "prepare": "lage prepare",
@@ -34,6 +33,6 @@
   },
   "engines": {
     "node": ">=20.11.0",
-    "yarn": "^1.21.1"
+    "yarn": ">=4.0.0"
   }
 }
