@@ -13,3 +13,7 @@ __screenshots__
 .swc
 .vitest
 .vitest2
+
+# Yarn Berry install state cache
+.yarn/install-state.gz
+

@@ -31,9 +31,9 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "vitest": "^3.2.4",
     "cross-spawn": "^7.0.0",
-    "monorepo-scripts": "*"
+    "monorepo-scripts": "*",
+    "vitest": "^3.2.4"
   },
   "access": "public"
 }
