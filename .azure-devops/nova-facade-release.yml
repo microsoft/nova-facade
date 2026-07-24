@@ -73,6 +73,11 @@ extends:
                   YARN_NPM_AUTH_TOKEN: $(NPM_TOKEN)
                   NPM_CONFIG_USERCONFIG: $(Agent.TempDirectory)/npm-mirror.npmrc
               - script: |
+                  yarn workspace @nova/examples exec playwright install --with-deps chromium
+                displayName: Install Playwright browsers
+                env:
+                  NPM_CONFIG_USERCONFIG: $(Agent.TempDirectory)/npm-mirror.npmrc
+              - script: |
                   yarn ci
                 displayName: build and test [test]
                 env:

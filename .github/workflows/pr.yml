@@ -21,4 +21,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
+      - run: yarn workspace @nova/examples exec playwright install --with-deps chromium
       - run: yarn ci
