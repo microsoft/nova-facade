@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Migrate build tooling to Yarn 4 and network-isolated pipelines",
+  "packageName": "@nova/react-test-utils",
+  "email": "pavelglac@gmail.com",
+  "dependentChangeType": "none"
+}

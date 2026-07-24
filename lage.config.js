@@ -1,10 +1,10 @@
 module.exports = {
   pipeline: {
     prepare: [],
-    types: ["^types"],
-    build: [],
-    test: [],
-    lint: [],
+    types: ["prepare", "^types"],
+    build: ["prepare"],
+    test: ["prepare"],
+    lint: ["prepare"],
   },
   npmClient: "yarn",
 };
