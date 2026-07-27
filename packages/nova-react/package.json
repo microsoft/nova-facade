@@ -1,6 +1,6 @@
 {
   "name": "@nova/react",
-  "version": "2.9.2",
+  "version": "2.9.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",

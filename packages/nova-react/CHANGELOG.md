@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-This log was last generated on Mon, 09 Mar 2026 12:48:28 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 27 Jul 2026 11:06:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.9.3
+
+Mon, 27 Jul 2026 11:06:44 GMT
+
+### Patches
+
+- network isolation (pavelglac@gmail.com)
 
 ## 2.9.2
 
