@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "network isolation",
+  "packageName": "@nova/graphql-compiler",
+  "email": "pavelglac@gmail.com",
+  "dependentChangeType": "patch"
+}
