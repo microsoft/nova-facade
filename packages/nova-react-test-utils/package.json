@@ -74,36 +74,28 @@
   },
   "peerDependenciesMeta": {
     "@apollo/client": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+      "optional": true
     },
     "@graphitation/apollo-mock-client": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+      "optional": true
     },
     "@graphitation/apollo-react-relay-duct-tape": {
-      "optional": true,
-      "reason": "This package is only required if you are using Apollo as your GraphQL client."
+      "optional": true
     },
     "@types/react-relay": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
+      "optional": true
     },
     "@types/relay-test-utils": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
+      "optional": true
     },
     "react-relay": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
+      "optional": true
     },
     "relay-runtime": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
+      "optional": true
     },
     "relay-test-utils": {
-      "optional": true,
-      "reason": "This package is only required if you are using Relay as your GraphQL client."
+      "optional": true
     }
   },
   "publishConfig": {
