@@ -1,8 +1,16 @@
 # Change Log - @nova/graphql-compiler
 
-This log was last generated on Thu, 03 Apr 2025 16:14:11 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 27 Jul 2026 11:06:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.0.4
+
+Mon, 27 Jul 2026 11:06:44 GMT
+
+### Patches
+
+- network isolation (pavelglac@gmail.com)
 
 ## 1.0.3
 

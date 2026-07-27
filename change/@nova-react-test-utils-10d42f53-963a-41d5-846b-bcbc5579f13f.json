@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "network isolation",
-  "packageName": "@nova/react-test-utils",
-  "email": "pavelglac@gmail.com",
-  "dependentChangeType": "patch"
-}
