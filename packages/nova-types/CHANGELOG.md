@@ -1,8 +1,16 @@
 # Change Log - @nova/types
 
-<!-- This log was last generated on Thu, 30 Jul 2026 13:29:00 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 30 Jul 2026 14:03:55 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.7.3
+
+Thu, 30 Jul 2026 14:03:55 GMT
+
+### Patches
+
+- manual bump and fix (pavelglac@gmail.com)
 
 ## 1.7.2
 
