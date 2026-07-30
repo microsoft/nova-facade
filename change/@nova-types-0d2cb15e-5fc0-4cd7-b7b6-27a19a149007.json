@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Doc",
+  "packageName": "@nova/types",
+  "email": "pavelglac@gmail.com",
+  "dependentChangeType": "patch"
+}
