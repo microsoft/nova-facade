@@ -1,8 +1,16 @@
 # Change Log - @nova/react
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:06:44 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 30 Jul 2026 13:29:00 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.9.4
+
+Thu, 30 Jul 2026 13:29:00 GMT
+
+### Patches
+
+- Bump @nova/types to v1.7.2
 
 ## 2.9.3
 
