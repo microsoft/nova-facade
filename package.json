@@ -8,10 +8,10 @@
     ]
   },
   "scripts": {
-    "beachball": "beachball -b origin/main",
+    "beachball": "beachball",
     "build": "lage build",
-    "change": "yarn beachball change",
-    "checkchange": "yarn beachball check",
+    "change": "yarn beachball -b origin/main change",
+    "checkchange": "yarn beachball -b origin/main check",
     "ci": "yarn lage build types test lint && yarn checkchange",
     "clean": "git clean -fdx -e node_modules",
     "postinstall": "yarn workspace @nova/examples playwright install --with-deps chromium",

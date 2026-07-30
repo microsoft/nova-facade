@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Doc",
+  "comment": "manual bump and fix",
   "packageName": "@nova/types",
   "email": "pavelglac@gmail.com",
   "dependentChangeType": "patch"
