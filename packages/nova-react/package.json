@@ -1,6 +1,6 @@
 {
   "name": "@nova/react",
-  "version": "2.9.5",
+  "version": "2.9.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/nova-facade.git",
@@ -17,7 +17,7 @@
     "types": "monorepo-scripts types"
   },
   "dependencies": {
-    "@nova/types": "^1.7.3",
+    "@nova/types": "^1.7.4",
     "graphql": "^15.5.0",
     "invariant": "^2.2.4"
   },
