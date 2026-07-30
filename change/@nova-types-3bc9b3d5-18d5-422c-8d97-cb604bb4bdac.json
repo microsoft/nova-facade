@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "test",
-  "packageName": "@nova/types",
-  "email": "pavelglac@gmail.com",
-  "dependentChangeType": "patch"
-}
