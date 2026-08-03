@@ -1,8 +1,17 @@
 # Change Log - @nova/react-test-utils
 
-<!-- This log was last generated on Thu, 30 Jul 2026 16:40:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 03 Aug 2026 15:38:07 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 8.0.7
+
+Mon, 03 Aug 2026 15:38:07 GMT
+
+### Patches
+
+- Bump @nova/react to v2.9.8
+- Bump @nova/types to v1.7.6
 
 ## 8.0.6
 
