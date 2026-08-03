@@ -27,7 +27,7 @@ extends:
 
   parameters:
     settings:
-      networkIsolationPolicy: Permissive,CFSClean
+      networkIsolationPolicy: Permissive,CFSClean,CFSClean2,CFSClean3
     sdl:
       sourceAnalysisPool:
         name: Azure-Pipelines-1ESPT-ExDShared
