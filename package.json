@@ -23,7 +23,9 @@
     "types": "lage types"
   },
   "resolutions": {
-    "immutable": "^3.8.3"
+    "immutable": "^4.3.9",
+    "relay-compiler@npm:^12.0.0": "patch:relay-compiler@npm%3A12.0.0#~/.yarn/patches/relay-compiler-npm-12.0.0-a1e0c422ef.patch",
+    "@ardatan/relay-compiler@npm:12.0.0": "patch:@ardatan/relay-compiler@npm%3A12.0.0#~/.yarn/patches/@ardatan-relay-compiler-npm-12.0.0-03a59496e5.patch"
   },
   "devDependencies": {
     "beachball": "3.0.0-alpha.4",
