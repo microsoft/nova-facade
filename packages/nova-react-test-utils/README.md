@@ -56,6 +56,8 @@ The `environment.eventing.bubble` is simple `jest.fn()` so you can assert on it.
 Similarly to unit tests this package provides decorators for storybook stories using
 either Apollo or Relay. The package exposes two implementation of same `getNovaDecorator` one for Relay and one for Apollo. One should be picked based on whether or not the component is using Apollo or Relay as GraphQL client.
 
+The Storybook integrations support Storybook 9 and Storybook 10.
+
 ```tsx
 import type { Meta, StoryObj } from "@storybook/react";
 import type {

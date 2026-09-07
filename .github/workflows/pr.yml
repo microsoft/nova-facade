@@ -22,3 +22,29 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn install
       - run: yarn ci
+
+  storybook-9-compatibility:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Use Node.js 20
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+      - run: yarn install
+      - name: Install Storybook 9
+        run: >
+          yarn up
+          "@storybook/react@^9.0.0"
+          "@storybook/react-vite@^9.0.0"
+          "@storybook/addon-vitest@^9.0.0"
+          "storybook@^9.0.0"
+      - run: yarn workspace @nova/examples generate
+      - run: yarn workspace @nova/react-test-utils types
+      - run: yarn workspace @nova/react-test-utils test
+      - run: yarn workspace @nova/examples types
+      - run: yarn workspace @nova/examples test
+      - run: yarn workspace @nova/examples build-storybook
