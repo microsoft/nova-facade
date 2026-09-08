@@ -2156,7 +2156,7 @@ __metadata:
     "@graphql-codegen/typescript": "npm:^3.0.2"
     "@graphql-codegen/typescript-resolvers": "npm:^3.1.1"
     "@nova/react": "npm:2.9.8"
-    "@nova/react-test-utils": "npm:8.0.7"
+    "@nova/react-test-utils": "npm:8.1.0"
     "@nova/types": "npm:1.7.6"
     "@storybook/addon-vitest": "npm:^10.0.0"
     "@storybook/react-vite": "npm:^10.0.0"
@@ -2218,7 +2218,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nova/react-test-utils@npm:8.0.7, @nova/react-test-utils@workspace:packages/nova-react-test-utils":
+"@nova/react-test-utils@npm:8.1.0, @nova/react-test-utils@workspace:packages/nova-react-test-utils":
   version: 0.0.0-use.local
   resolution: "@nova/react-test-utils@workspace:packages/nova-react-test-utils"
   dependencies:

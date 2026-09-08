@@ -1,8 +1,16 @@
 # Change Log - @nova/react-test-utils
 
-<!-- This log was last generated on Mon, 03 Aug 2026 15:38:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 08 Sep 2026 10:05:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 8.1.0
+
+Tue, 08 Sep 2026 10:05:31 GMT
+
+### Minor changes
+
+- Support both Storybook 9 and Storybook 10 (stwilczy@microsoft.com)
 
 ## 8.0.7
 

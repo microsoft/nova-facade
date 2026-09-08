@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Update examples to Storybook 10",
-  "packageName": "@nova/examples",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "none"
-}
