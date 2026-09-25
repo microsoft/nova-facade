@@ -112,8 +112,10 @@ extends:
                   YARN_NPM_AUTH_TOKEN: $(NPM_TOKEN)
                   NPM_CONFIG_USERCONFIG: $(Agent.TempDirectory)/npm-mirror.npmrc
 
-              - script: yarn build
-                displayName: build
+              - script: |
+                  yarn build
+                  yarn types
+                displayName: Build publishable packages
                 env:
                   NPM_CONFIG_USERCONFIG: $(Agent.TempDirectory)/npm-mirror.npmrc
 
