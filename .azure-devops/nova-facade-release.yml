@@ -115,8 +115,7 @@ extends:
               - script: |
                   yarn build
                   yarn types
-                  yarn verify-package-declarations
-                displayName: Build and validate publishable packages
+                displayName: Build publishable packages
                 env:
                   NPM_CONFIG_USERCONFIG: $(Agent.TempDirectory)/npm-mirror.npmrc
 

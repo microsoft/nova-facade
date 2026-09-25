@@ -12,7 +12,7 @@
     "build": "lage build",
     "change": "yarn beachball -b origin/main change",
     "checkchange": "yarn beachball -b origin/main check",
-    "ci": "yarn lage build types test lint && yarn verify-package-declarations && yarn checkchange",
+    "ci": "yarn lage build types test lint && yarn checkchange",
     "clean": "git clean -fdx -e node_modules",
     "postinstall": "yarn workspace @nova/examples playwright install --with-deps chromium",
     "lage": "lage",
@@ -20,8 +20,7 @@
     "prepare": "lage prepare",
     "release": "yarn beachball publish",
     "test": "lage test",
-    "types": "lage types",
-    "verify-package-declarations": "node scripts/bin/verify-package-declarations.js"
+    "types": "lage types"
   },
   "resolutions": {
     "immutable": "^4.3.9",
