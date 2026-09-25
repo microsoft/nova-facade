@@ -1,6 +1,6 @@
 {
   "name": "@nova/examples",
-  "version": "1.11.15",
+  "version": "1.11.16",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -21,9 +21,9 @@
     "types": "monorepo-scripts types"
   },
   "dependencies": {
-    "@nova/react": "2.9.8",
-    "@nova/react-test-utils": "8.1.0",
-    "@nova/types": "1.7.6",
+    "@nova/react": "2.9.9",
+    "@nova/react-test-utils": "8.1.1",
+    "@nova/types": "1.7.7",
     "graphql": "^15.5.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

@@ -2155,9 +2155,9 @@ __metadata:
     "@graphql-codegen/cli": "npm:^3.2.2"
     "@graphql-codegen/typescript": "npm:^3.0.2"
     "@graphql-codegen/typescript-resolvers": "npm:^3.1.1"
-    "@nova/react": "npm:2.9.8"
-    "@nova/react-test-utils": "npm:8.1.0"
-    "@nova/types": "npm:1.7.6"
+    "@nova/react": "npm:2.9.9"
+    "@nova/react-test-utils": "npm:8.1.1"
+    "@nova/types": "npm:1.7.7"
     "@storybook/addon-vitest": "npm:^10.0.0"
     "@storybook/react-vite": "npm:^10.0.0"
     "@swc/core": "npm:^1.11.0"
@@ -2218,7 +2218,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nova/react-test-utils@npm:8.1.0, @nova/react-test-utils@workspace:packages/nova-react-test-utils":
+"@nova/react-test-utils@npm:8.1.1, @nova/react-test-utils@workspace:packages/nova-react-test-utils":
   version: 0.0.0-use.local
   resolution: "@nova/react-test-utils@workspace:packages/nova-react-test-utils"
   dependencies:
@@ -2227,8 +2227,8 @@ __metadata:
     "@graphitation/apollo-react-relay-duct-tape": "npm:^1.3.0"
     "@graphitation/graphql-js-operation-payload-generator": "npm:^0.12.9"
     "@graphitation/graphql-js-tag": "npm:^0.11.0"
-    "@nova/react": "npm:^2.9.8"
-    "@nova/types": "npm:^1.7.6"
+    "@nova/react": "npm:^2.9.9"
+    "@nova/types": "npm:^1.7.7"
     "@storybook/react": "npm:^10.0.0"
     "@types/react": "npm:^17 || ^18"
     "@types/react-relay": "npm:^18.0.0"
@@ -2279,12 +2279,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nova/react@npm:2.9.8, @nova/react@npm:^2.9.8, @nova/react@workspace:packages/nova-react":
+"@nova/react@npm:2.9.9, @nova/react@npm:^2.9.9, @nova/react@workspace:packages/nova-react":
   version: 0.0.0-use.local
   resolution: "@nova/react@workspace:packages/nova-react"
   dependencies:
     "@graphitation/graphql-js-tag": "npm:^0.11.0"
-    "@nova/types": "npm:^1.7.6"
+    "@nova/types": "npm:^1.7.7"
     "@types/invariant": "npm:^2.2.35"
     "@types/react": "npm:^18.3.1"
     "@types/react-dom": "npm:^18.3.0"
@@ -2309,7 +2309,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@nova/types@npm:1.7.6, @nova/types@npm:^1.7.6, @nova/types@workspace:packages/nova-types":
+"@nova/types@npm:1.7.7, @nova/types@npm:^1.7.7, @nova/types@workspace:packages/nova-types":
   version: 0.0.0-use.local
   resolution: "@nova/types@workspace:packages/nova-types"
   dependencies:

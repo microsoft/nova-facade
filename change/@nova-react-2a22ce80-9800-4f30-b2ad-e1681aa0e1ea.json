@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Restore declaration files in published packages",
-  "packageName": "@nova/react",
-  "email": "stwilczy@microsoft.com",
-  "dependentChangeType": "patch"
-}
